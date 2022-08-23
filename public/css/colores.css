@@ -1,0 +1,7 @@
+:root {
+    --color-primario: #35598D;
+    --color-secundario: #D71043;
+    --color-encabezado: #EEEEEE;
+    --color-letras-informacion: #FFFFFF;
+    --tiempo-transicion: 0.5s;
+}

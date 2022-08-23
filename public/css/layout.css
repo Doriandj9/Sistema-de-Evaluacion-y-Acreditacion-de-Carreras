@@ -1,0 +1,18 @@
+.l-enlinea-flex{
+    display: inline-flex;
+}
+
+.l-enlinea-flex.encabezado-principal{
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+.flex-linea.l-enlinea-flex > span:first-child{
+    background-color: white;
+    padding: 0.5rem;
+}
+.text-negro{
+    color: black;
+}

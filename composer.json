@@ -1,0 +1,39 @@
+{
+    "name": "software/seac",
+    "description": "Es el sistema de evaluacion y acreditacion de carreras para la carrera de Software de la Universidad Estatal de Bolivar del año 2022",
+    "type": "project",
+    "require": {
+        "dompdf/dompdf": "2.0.0",
+        "symfony/dotenv": "6.0.x-dev",
+        "firebase/php-jwt": "dev-main"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "4.0.x-dev",
+        "phpunit/phpunit": "9.5.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DorianA",
+            "email": "dorian9armijos@gmail.com"
+        }
+    ],
+    "scripts": {
+        "correr-pruebas": "phpunit --colors=always --stop-on-error --stop-on-failure --testdox",
+        "estilo-doc": "phpcs --standard=.phpcs.xml --colors -s",
+        "estilo-doc-corregir": "phpcbf --standard=.phpcs.xml --colors -s",
+        "estilo-doc-completo": "phpcs --standard=.phpcs.xml --report=summary -p",
+        "estilo-doc-completo-corregir": "phpcbf --standard=.phpcs.xml --colors -s --report=summary -p"
+    },
+    "minimum-stability": "dev"
+}

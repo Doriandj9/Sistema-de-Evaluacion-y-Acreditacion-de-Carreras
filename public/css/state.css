@@ -1,0 +1,15 @@
+
+
+.is-hover-boton-enviar{
+    transition: all 0.5s;
+}
+
+.is-hover-boton-enviar:hover{
+    background-color: #0c2549;
+}
+.is-bordes-azul{
+    transition: all 0.5s;
+}
+.is-bordes-azul:hover{
+    border: 1px solid #0c2549;
+}

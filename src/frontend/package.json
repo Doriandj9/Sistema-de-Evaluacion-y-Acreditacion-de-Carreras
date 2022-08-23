@@ -1,0 +1,29 @@
+{
+  "name": "seac",
+  "version": "1.0.0",
+  "description": "Es el sistema de evaluacion y acreditacion de carreras para la carrera de Software de la Universidad Estatal de Bolivar del año 2022",
+  "main": "/public/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prettier":{
+    "arrowParens": "always",
+    "bracketSameLine": false,
+    "bracketSpacing": true,
+    "editorconfig": false,
+    "embeddedLanguageFormatting": "auto",
+    "useTabs": true
+  },
+  "keywords": [
+    "Sistema",
+    "Evaluacion",
+    "Repositorio",
+    "Software",
+    "UEB"
+  ],
+  "author": "Dorian Armijos",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.4"
+  }
+}

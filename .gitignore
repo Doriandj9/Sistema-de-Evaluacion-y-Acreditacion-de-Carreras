@@ -1,0 +1,3 @@
+# Se ignoraran los siguientes archivos para subir al repositorio
+.phpunit.cache
+/config/.env

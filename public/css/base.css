@@ -1,0 +1,27 @@
+@import url('./colores.css');
+body , html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: white;
+}
+
+a{
+    text-decoration: none;
+}
+
+input{
+    box-sizing: border-box;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+span.material-icons{
+    user-select: none;
+    color: var(--color-primario);
+}
