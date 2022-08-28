@@ -8,8 +8,6 @@ class ComposerStaticInit13c80f060a6b006c923b2df1a1e8ad2b
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '2a3c2110e8e0295330dc3d11a4cbc4cb' => __DIR__ . '/..' . '/php-webdriver/webdriver/lib/Exception/TimeoutException.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
     );
 
@@ -20,8 +18,6 @@ class ComposerStaticInit13c80f060a6b006c923b2df1a1e8ad2b
         ),
         'S' => 
         array (
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\Dotenv\\' => 25,
             'Svg\\' => 4,
             'Sabberworm\\CSS\\' => 15,
@@ -38,7 +34,6 @@ class ComposerStaticInit13c80f060a6b006c923b2df1a1e8ad2b
         array (
             'FontLib\\' => 8,
             'Firebase\\JWT\\' => 13,
-            'Facebook\\WebDriver\\' => 19,
         ),
         'D' => 
         array (
@@ -56,14 +51,6 @@ class ComposerStaticInit13c80f060a6b006c923b2df1a1e8ad2b
         'Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
-        ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Component\\Process\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/process',
         ),
         'Symfony\\Component\\Dotenv\\' => 
         array (
@@ -92,10 +79,6 @@ class ComposerStaticInit13c80f060a6b006c923b2df1a1e8ad2b
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
-        ),
-        'Facebook\\WebDriver\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-webdriver/webdriver/lib',
         ),
         'Dompdf\\' => 
         array (

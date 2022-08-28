@@ -3,7 +3,7 @@
         'name' => 'software/seac',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '5fbb630f285c8f9f1e8814a9226da01cdec841d1',
+        'reference' => 'fd98778ed3b149ba6c892cb5c3a80b224d74b759',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -27,12 +27,6 @@
             'install_path' => __DIR__ . '/../dompdf/dompdf',
             'aliases' => array(),
             'dev_requirement' => false,
-        ),
-        'facebook/webdriver' => array(
-            'dev_requirement' => false,
-            'replaced' => array(
-                0 => '*',
-            ),
         ),
         'firebase/php-jwt' => array(
             'pretty_version' => 'dev-main',
@@ -110,17 +104,6 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../phenx/php-svg-lib',
             'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'php-webdriver/webdriver' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'e31d1f792ec71e777de1bee71e1260df2108d078',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../php-webdriver/webdriver',
-            'aliases' => array(
-                0 => '9999999-dev',
-            ),
             'dev_requirement' => false,
         ),
         'phpunit/php-code-coverage' => array(
@@ -335,7 +318,7 @@
         'software/seac' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '5fbb630f285c8f9f1e8814a9226da01cdec841d1',
+            'reference' => 'fd98778ed3b149ba6c892cb5c3a80b224d74b759',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -356,26 +339,6 @@
             'reference' => '1c2288fdfd0787288cd04b9868f879f2212159c4',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/dotenv',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'symfony/polyfill-mbstring' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/polyfill-mbstring',
-            'aliases' => array(
-                0 => '1.26.x-dev',
-            ),
-            'dev_requirement' => false,
-        ),
-        'symfony/process' => array(
-            'pretty_version' => '6.0.x-dev',
-            'version' => '6.0.9999999.9999999-dev',
-            'reference' => '44270a08ccb664143dede554ff1c00aaa2247a43',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/process',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
