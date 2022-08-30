@@ -77,6 +77,13 @@ class Http
      * @var int
      */
     public const STATUS_PERMANENT_REDIRECT = 308;
+    
+    /**
+     * HTTP 401 code
+     * 
+     * @var int
+     */
+    public const STATUS_UNAUTHORIZED = 401;
     /**
      * HTTP 404 code
      *
