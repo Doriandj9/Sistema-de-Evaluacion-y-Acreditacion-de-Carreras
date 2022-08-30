@@ -52,7 +52,7 @@ function render(datos){
     if(datos.result){
         precarga.end();
         new Notificacion(
-            'Se guardo con exito el nuevo periodo academico sdasdadassssssss ssssssssssssssssssad ddddddddddddddddddddaaaaaaadddddddddddas',
+            'Se guardo con exito el nuevo periodo academico',
             'Aceptar',
             false
             )
