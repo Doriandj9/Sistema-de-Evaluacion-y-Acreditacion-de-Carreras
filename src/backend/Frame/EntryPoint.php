@@ -133,7 +133,6 @@ class EntryPoint
                 http_response_code(Http::STATUS_NOT_FOUND);
                 Http::redirect('/error-404');
             }
-
             if (
                 isset($restrigciones['login']) &&
                 !$this->contentRoutes->getAutentificacion()->comprobacionSesion()
@@ -154,41 +153,27 @@ class EntryPoint
                 Http::redirect('/error-permisos');
             }
 
-            if (isset($restrigciones['api-key'])) {
-                if ($this->method === 'POST') {
-                    if (!isset($_POST['tok_'])) {
-                        http_response_code(Http::STATUS_FORBIDDEN);
-                        Http::responseJson(json_encode(
-                            [
-                            'ident' => 0,
-                            'mensaje' => 'Error no contiene un token para acceder al recurso'
-                            ]
-                        ));
-                    }
-                }
-
-                if ($this->method === 'GET') {
-                    if (!isset($_GET['tok_'])) {
-                        http_response_code(Http::STATUS_FORBIDDEN);
-                        Http::responseJson(json_encode(
-                            [
-                            'ident'=> 0,
-                            'mensaje' => 'Error no contiene un token para acceder al recurso'
-                            ]
-                        ));
-                    }
+            if (isset($restrigciones['token_autorizacion'])) {
+                if (!isset(getallheaders()['token_autorizacion'])) {
+                    http_response_code(Http::STATUS_UNAUTHORIZED);
+                            Http::responseJson(json_encode(
+                                [
+                                    'ident' => 0,
+                                    'mensaje' => 'Error no contiene ningun token para acceder al recurso'
+                                ]
+                            ));
                 }
             }
-
-            if ( isset($_POST['tok_']) && $_SESSION['token'] !== $_POST['tok_'] ||
-                isset($_GET['tok_']) && $_SESSION['token'] !== $_GET['tok_'] ) {
-                    http_response_code(Http::STATUS_FORBIDDEN);
-                    Http::responseJson(json_encode(
-                        [
-                            'ident' => 0,
-                            'mensaje' => 'Error token invalido / token expirado'
-                        ]
-                    ));
+            if (isset($restrigciones['token_autorizacion'])) {
+                if (!isset($_SESSION['token']) || getallheaders()['token_autorizacion'] !== $_SESSION['token']) {
+                        http_response_code(Http::STATUS_FORBIDDEN);
+                        Http::responseJson(json_encode(
+                            [
+                                'ident' => 0,
+                                'mensaje' => 'Error token invalido / token expirado'
+                            ]
+                        ));
+                }
             }
 
             $controller = $rutas[$this->route][$this->method]['controller'];

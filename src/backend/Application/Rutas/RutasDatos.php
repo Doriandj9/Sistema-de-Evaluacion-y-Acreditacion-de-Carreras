@@ -30,8 +30,8 @@ class RutasDatos implements Route
     public function getRestrict(): array
     {
         return [
-            'login' => true,
-            'api-key' => true
+           'login' => true,
+            'token_autorizacion' => true
         ];
     }
 }
