@@ -1,2 +1,8 @@
 <?php
-echo json_encode($docentes,JSON_UNESCAPED_UNICODE);
+echo json_encode(
+    [
+        'docentes' => $docentes,
+        'ident' => 1
+    ],
+    JSON_UNESCAPED_UNICODE
+);
