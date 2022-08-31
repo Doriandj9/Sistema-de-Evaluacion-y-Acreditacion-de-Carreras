@@ -41,7 +41,7 @@ class Docente extends DatabaseTable
 
         $this->className = '\stdClass';
 
-        $resultado = $this->runQuery($consulta,$parametros);
+        $resultado = $this->runQuery($consulta, $parametros);
 
         return $resultado->fetchAll(\PDO::FETCH_CLASS, $this->className, []);
     }
@@ -51,7 +51,8 @@ class Docente extends DatabaseTable
         return $this->getUsuario($this->correo)[0]->permisos & $permisos;
     }
 
-    public function getUsuarioCompleto(){
+    public function getUsuarioCompleto()
+    {
         //Es una consulta que permite que saber que usuario quiere ingresar con su permisos
         $consulta = 'SELECT permisos,id_docentes,correo,carrera FROM (SELECT permisos,docentes.id as id_docentes,
         docentes.correo as correo, carreras.nombre as carrera FROM docentes INNER JOIN usuarios_docente ON docentes.id =
@@ -63,7 +64,7 @@ class Docente extends DatabaseTable
 
         $this->className = '\stdClass';
 
-        $resultado = $this->runQuery($consulta,$parametros);
+        $resultado = $this->runQuery($consulta, $parametros);
 
         return $resultado->fetchAll(\PDO::FETCH_CLASS, $this->className, []);
     }

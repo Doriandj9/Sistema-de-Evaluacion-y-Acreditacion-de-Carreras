@@ -49,14 +49,14 @@ class Coordinador implements Controller
         // Esta linea sirve para generar la clave encriptada del coordinador para ingresar al sistema
         // que por defecto es el mismo numero de cedula
         $dato_docente_clave = [
-            'clave' => password_hash($_POST['coordinador'],PASSWORD_DEFAULT)
+            'clave' => password_hash($_POST['coordinador'], PASSWORD_DEFAULT)
         ];
         // las siguientes lineas va a permitir determinar si existe un error
         // al ingresar un usuario coordinador que previamente haya estado ingresado
         // en el sistema simplemente salte la exepcion y actualiza las fechas de inicio y final
         try {
             $this->usuarioDocenteModelo->insert($datos_docentes_usuario);
-            $this->docenteModelo->update($_POST['coordinador'],$dato_docente_clave);// aqui se actualiza la clave
+            $this->docenteModelo->update($_POST['coordinador'], $dato_docente_clave);// aqui se actualiza la clave
             Http::responseJson(json_encode(
                 ['ident' => 1, 'result' => 'Se ingreso correctamente el usuario coordinador', 'error' => '']
             ));

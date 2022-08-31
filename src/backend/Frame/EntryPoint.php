@@ -140,13 +140,13 @@ class EntryPoint
                 ) {
                     // Si la ruta contiene la restingcion de que debe estar logueado primero
                     // y si no lo esta lo redirige hacia un error de login con la cabecera
-                    // no autorizado 401 
+                    // no autorizado 401
                 http_response_code(Http::STATUS_UNAUTHORIZED);
                 Http::redirect('/error-login');
             }
 
             $usuario = $this->contentRoutes->getAutentificacion()->getUsuario();
-                
+
             if (
                 isset($restrigciones['permisos']) &&
                 !$usuario->tienePermisos($restrigciones['permisos'])
@@ -158,11 +158,11 @@ class EntryPoint
                 if ($this->method === 'POST') {
                     if (!isset($_POST['tok_'])) {
                         http_response_code(Http::STATUS_FORBIDDEN);
-                       Http::responseJson(json_encode(
-                        [
+                        Http::responseJson(json_encode(
+                            [
                             'ident' => 0,
                             'mensaje' => 'Error no contiene un token para acceder al recurso'
-                        ]
+                            ]
                         ));
                     }
                 }
@@ -170,11 +170,11 @@ class EntryPoint
                 if ($this->method === 'GET') {
                     if (!isset($_GET['tok_'])) {
                         http_response_code(Http::STATUS_FORBIDDEN);
-                       Http::responseJson(json_encode(
-                        [
+                        Http::responseJson(json_encode(
+                            [
                             'ident'=> 0,
                             'mensaje' => 'Error no contiene un token para acceder al recurso'
-                        ]
+                            ]
                         ));
                     }
                 }
@@ -188,7 +188,7 @@ class EntryPoint
                             'ident' => 0,
                             'mensaje' => 'Error token invalido / token expirado'
                         ]
-                        ));
+                    ));
             }
 
             $controller = $rutas[$this->route][$this->method]['controller'];
