@@ -1,4 +1,8 @@
+<IfModule mod_rewrite.c>
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.php [NC,L,QSA]
+# Redicionamiento ya que este archivo contiene datos sensible del sistema
+Redirect /config/.env /error-404
+</IfModule>
