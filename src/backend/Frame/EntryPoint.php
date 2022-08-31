@@ -147,23 +147,38 @@ class EntryPoint
             if (isset($restrigciones['api-key'])) {
                 if ($this->method === 'POST') {
                     if (!isset($_POST['tok_'])) {
-                        http_response_code(Http::STATUS_NOT_FOUND);
-                        Http::redirect('/error-404');
+                        http_response_code(Http::STATUS_UNAUTHORIZED);
+                       Http::responseJson(json_encode(
+                        [
+                            'ident' => 0,
+                            'mensaje' => 'Error no contiene un token para acceder al recurso'
+                        ]
+                        ));
                     }
                 }
 
                 if ($this->method === 'GET') {
                     if (!isset($_GET['tok_'])) {
-                        http_response_code(Http::STATUS_NOT_FOUND);
-                        Http::redirect('/error-404');
+                        http_response_code(Http::STATUS_UNAUTHORIZED);
+                       Http::responseJson(json_encode(
+                        [
+                            'ident'=> 0,
+                            'mensaje' => 'Error no contiene un token para acceder al recurso'
+                        ]
+                        ));
                     }
                 }
             }
 
             if ( isset($_POST['tok_']) && $_SESSION['token'] !== $_POST['tok_'] ||
                 isset($_GET['tok_']) && $_SESSION['token'] !== $_GET['tok_'] ) {
-                    http_response_code(Http::STATUS_NOT_FOUND);
-                    Http::redirect('/error-404');
+                    http_response_code(Http::STATUS_UNAUTHORIZED);
+                    Http::responseJson(json_encode(
+                        [
+                            'ident' => 0,
+                            'mensaje' => 'Error token invalido / token expirado'
+                        ]
+                        ));
             }
 
             $controller = $rutas[$this->route][$this->method]['controller'];
