@@ -35,25 +35,25 @@ function getDatosDocentes(e){
         const idCarrera = e.target.value
         Docentes.getDatos(idCarrera)
         .then(renderDocentes)
-        .catch(e => {new Notificacion(
-            'Error no contiene permisos necesarios o expiro su token',
-            'Regresar'
-        )
-        precarga.end();
-    }); 
+        .catch(renderErrores); 
     }
 }
 
 function renderDocentes(datos){
-    docentes.innerHTML = '';
-    let html = '';
-    html += '<option value="none">Docentes ... </option>';
-    datos.forEach(docente => {
-        const {id,nombre} = docente;
-        html += `<option value="${id.trim()}">${nombre}</option>`;
-    });
-    precarga.end();
-    docentes.innerHTML = html;
+    if(datos.ident){
+        docentes.innerHTML = '';
+        let html = '';
+        html += '<option value="none">Docentes ... </option>';
+        datos.docentes.forEach(docente => {
+            const {id,nombre} = docente;
+            html += `<option value="${id.trim()}">${nombre}</option>`;
+        });
+        precarga.end();
+        docentes.innerHTML = html;
+    }else{
+        throw new Error(datos.mensaje);
+    }
+    
 
 }
 
@@ -79,3 +79,11 @@ function renderRespuesta(respuesta){
     )
    }
 }
+
+function renderErrores(e){
+   new Notificacion(
+        e,
+        'Regresar'
+    )
+    precarga.end();
+} 
