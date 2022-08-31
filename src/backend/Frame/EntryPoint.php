@@ -110,6 +110,10 @@ class EntryPoint
      */
     public function run(): void
     {
+        /**
+         * Se busca si la ruta que llega es una ruta padre para agregar a la variable $parentRoute
+         * caso contrario que siga con la ruta que envio el cliente
+         */
         if (empty($this->indicatorRoute) && isset(self::REFERENCES_PARENT_ROUTES[$this->route])) {
             $parentRoute = $this->contentRoutes->getRoutes(self::REFERENCES_PARENT_ROUTES[$this->route]);
         } else {
@@ -117,6 +121,7 @@ class EntryPoint
         }
 
         if ($parentRoute) {
+            // Si existe esa ruta a continiacion se emparejan las variables con sus contenidos
             $rutas = $parentRoute->getRoutes();
             $template = $parentRoute->getTemplate();
             $restrigciones = $parentRoute->getRestrict();
@@ -124,6 +129,7 @@ class EntryPoint
                 !isset($rutas[$this->route]) ||
                 !isset($rutas[$this->route][$this->method])
             ) {
+                // Se verifica que si exite la ruta o el metodo para esa ruta
                 http_response_code(Http::STATUS_NOT_FOUND);
                 Http::redirect('/error-404');
             }
@@ -132,11 +138,15 @@ class EntryPoint
                 isset($restrigciones['login']) &&
                 !$this->contentRoutes->getAutentificacion()->comprobacionSesion()
                 ) {
+                    // Si la ruta contiene la restingcion de que debe estar logueado primero
+                    // y si no lo esta lo redirige hacia un error de login con la cabecera
+                    // no autorizado 401 
+                http_response_code(Http::STATUS_UNAUTHORIZED);
                 Http::redirect('/error-login');
             }
 
             $usuario = $this->contentRoutes->getAutentificacion()->getUsuario();
-
+                
             if (
                 isset($restrigciones['permisos']) &&
                 !$usuario->tienePermisos($restrigciones['permisos'])
@@ -147,7 +157,7 @@ class EntryPoint
             if (isset($restrigciones['api-key'])) {
                 if ($this->method === 'POST') {
                     if (!isset($_POST['tok_'])) {
-                        http_response_code(Http::STATUS_UNAUTHORIZED);
+                        http_response_code(Http::STATUS_FORBIDDEN);
                        Http::responseJson(json_encode(
                         [
                             'ident' => 0,
@@ -159,7 +169,7 @@ class EntryPoint
 
                 if ($this->method === 'GET') {
                     if (!isset($_GET['tok_'])) {
-                        http_response_code(Http::STATUS_UNAUTHORIZED);
+                        http_response_code(Http::STATUS_FORBIDDEN);
                        Http::responseJson(json_encode(
                         [
                             'ident'=> 0,
@@ -172,7 +182,7 @@ class EntryPoint
 
             if ( isset($_POST['tok_']) && $_SESSION['token'] !== $_POST['tok_'] ||
                 isset($_GET['tok_']) && $_SESSION['token'] !== $_GET['tok_'] ) {
-                    http_response_code(Http::STATUS_UNAUTHORIZED);
+                    http_response_code(Http::STATUS_FORBIDDEN);
                     Http::responseJson(json_encode(
                         [
                             'ident' => 0,
