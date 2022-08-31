@@ -20,7 +20,7 @@ export default class Docentes {
             const respuesta =  await consulta.json();
             return respuesta;
         } catch (error) {
-            
+            console.error(error);
         }
     }
 }
