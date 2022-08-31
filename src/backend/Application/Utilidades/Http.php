@@ -85,6 +85,12 @@ class Http
      */
     public const STATUS_UNAUTHORIZED = 401;
     /**
+     * HTTP 401 code
+     * 
+     * @var int
+     */
+    public const STATUS_FORBIDDEN = 401;
+    /**
      * HTTP 404 code
      *
      * @var int
