@@ -23,7 +23,7 @@
                     <ul class="flex-columna gap-flex-1">
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe7fd;</span>
-                                <span class="text-blanco text-w-medio"><?= $usuario->nombre; ?></span>
+                                <span class="text-blanco text-w-medio"><?=$usuario->nombre;?></span>
                             </li>
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe80c;</span>
@@ -33,15 +33,15 @@
                 </div>
                 <div class="contenedor-navegacion">
                     <h4 class="text-blanco borde-top text-center padding-top-2">Menú Principal</h4>
-                    <nav class="flex-columna margin-top-menos-1">
+                    <nav class="flex-columna margin-top-menos-1" id="menu-principal">
     
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe88a;</span>
                         <span class="text-blanco bordes-op-menu">Inicio</span>
                         </a>
                         <a href="/admin/agregar/ciclo/academico" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons text-negro">&#xe147;</span>
-                        <span class="text-blanco bordes-op-menu">Agregar Periodo Académico</span>
+                        <span class="material-icons text-negro">&#xe02f;</span>
+                        <span class="text-blanco bordes-op-menu">Periodo Académico</span>
                         </a>
                         <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe0e0;</span>

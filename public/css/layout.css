@@ -10,9 +10,16 @@
     overflow: hidden;
 }
 .flex-linea.l-enlinea-flex > span:first-child{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
     background-color: white;
-    padding: 0.5rem;
+    box-sizing: border-box;
+    border-top:  2px solid white;
 }
+
 .text-negro{
     color: black;
 }

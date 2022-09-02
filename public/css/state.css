@@ -1,4 +1,4 @@
-
+@import url('./colores.css');
 
 .is-hover-boton-enviar{
     transition: all 0.5s;
@@ -12,4 +12,12 @@
 }
 .is-bordes-azul:hover{
     border: 1px solid #0c2549;
+}
+
+.is-activo-item-menu > span:first-child{
+    background-color: var(--color-secundario) !important;
+    color: white;
+}
+.is-activo-item-menu > span:last-child{
+    background-color: var(--color-secundario) !important;
 }
