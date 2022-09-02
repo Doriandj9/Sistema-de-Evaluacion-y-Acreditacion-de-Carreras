@@ -1,9 +1,55 @@
 :root {
-    --color-primario: #35598D;
-    --color-secundario: #D71043;
+    /*Colores de Fondo*/
+    --color-f-1: #FFFFFF;
+    --color-f-2: #DAE0D2;
+    --color-f-3: #CCCCCC;
+    --color-f-4: #59809C;
+    --color-f-5: #505C6A;
+    --color-f-6: #385C72;
+    /*Colores de Texto*/
+    --color-t-1: #FFFFFF;
+    --color-t-2: #333333;
+    --color-t-3: #14283B;
+    --color-t-4: #121212;
+    --color-t-5: #000000;
+    /*Colores de Bordes*/
+    --color-b-1: #D9E4ED;
+    --color-b-2: #ACCFE8;
+    --color-b-3: #999999;
+    --color-b-4: #505C6A;
+    --color-b-5: #000000;
+    /*Definicion de colores*/
+    --color-primario: var(--color-f-4);
+    --color-secundario: var(--color-f-5);
     --color-encabezado: #EEEEEE;
     --color-letras-informacion: #FFFFFF;
     --tiempo-transicion: 0.5s;
     --color-no-selecionado: #6c757d;
     --color-bordes-fila-tabla: rgba(0, 0, 0, 0.25);
+    /*Tipografias tamaños y anchor*/
+    --tipografia-1: "Times New Roman";
+    --tamano-t1: 1rem; /*16px*/
+    --anchor-t1: 400;
+    --tipografia-2: Georgia, serif;
+    --tamano-t2: 0.75rem; /*12px*/
+    --tamano-2-t2: 0.6rem; /*9.6px*/
+    --anchor-t2: 400;
+    --tipografia-3: "Courier New", Courier, monospace;
+    --tamano-t3: 0.9375rem;/*15px*/
+    --anchor-t3: 700;
+    --tipografia-4: Verdana, Arial, Helvetica,sans-serif;
+    --tamano-t4: 0.75rem;/*12px*/
+    --tamano-2-t4: 0.975rem; /*15.6px*/
+    --tamano-3-t4: 0.675rem; /*10.8px*/
+    --anchor-t4: 400;
+    --anchor-2-t4: 700;
+    --tipografia-5: sans-serif, Geneva, Helvetica;
+    --tamano-t5: 0.875rem; /*14px*/
+    --tamano-2-t5: 1,02375rem; /*16.38px*/
+    --tamano-3-t5: 0,6875rem; /*11px*/
+    --anchor-t5: 400;
+    --anchor-2-t5: 700;
+    --tipografia-6: "Open Sans", sans-serif;
+    --tamano-t6: 1rem;/*16px*/
+    --anchor-t6: 400;
 }
