@@ -31,6 +31,7 @@ function verificacionEntrada(e){
         errores = false;
     }else{
         mensajeError.classList.remove('oculto');
+        errores = true;
     }
 }
 
