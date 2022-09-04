@@ -20,7 +20,7 @@ class ModeloDocenteTest extends TestCase
     protected function setUp(): void
     {
         $this->argumentos = [
-            'id' => '0123456789',
+            'id' => '1123456789',
             'nombre' => 'Docente de Prueba',
             'correo' => 'prueba@gmail.com',
             'clave' => '1234'

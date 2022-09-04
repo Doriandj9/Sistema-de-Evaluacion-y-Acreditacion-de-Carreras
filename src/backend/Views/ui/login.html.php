@@ -13,9 +13,10 @@
         <label for="">
             Contraseña
         </label>
-        <div class="flex-linea flex-items-center input-personalizado-login">
+        <div class="flex-linea flex-items-center input-personalizado-login raya p-relativo">
         <span class="material-icons">&#xe897;</span>
         <input type="password" name="password" placeholder="Contraseña">
+        <span class="material-icons visible posicionado-derecha-ojo" id="eye">&#xe8f4;</span>
         </div>
         <button class="boton boton-enviar-login is-hover-boton-enviar">Ingresar</button>
     </form>

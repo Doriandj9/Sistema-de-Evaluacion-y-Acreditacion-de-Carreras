@@ -38,8 +38,13 @@
     margin-left: 0.5rem;    
 }
 .footer-principal {
-    height: 2.5rem;
+    height: 3.5rem;
     background-color: var(--color-primario);
+}
+.footer-principal p{
+    font-family: var(--tipografia-2);
+    font-size: var(--tamano-t2);
+    margin: 0;
 }
 
 .contenedor-navegacion{
@@ -395,4 +400,23 @@ nav.flex-columna > a:last-child > span:last-child{
 .input-personalizado-login select option{
     font-size: 0.9rem;
     line-height: 0.9rem;
+}
+.raya::after{
+    position: absolute;
+    content: '';
+    border-top: 3px solid rgba(123, 111, 111, 0.3);
+    width: 23px;
+    top: 0;
+    right: 0;
+    transform: rotate(-135deg) translate(-10px,-10px);
+    z-index: 1;
+}
+.posicionado-derecha-ojo{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+    color: rgba(123, 111, 111, 0.3) !important;
+    z-index: 5;
 }

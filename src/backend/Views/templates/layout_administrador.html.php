@@ -69,6 +69,13 @@
                         <?= $contenido ?>
                     </div>
                     <footer class="footer-principal">
+                    <div class="text-center margin-arriba-1">
+                <img src="/public/assets/img/creative-commons.png" width="100" height="15" alt="creative commons">
+            </div>
+            <p class="text-center text-blanco margin-arriba-1">
+            Esta obra está bajo una Licencia Creative Commons Atribución
+             - No Comercial - Sin Obras Derivadas 3.0 Ecuador This site is powered by Carrera de Software
+            </p>
                     </footer>
             </div>
         </main>
