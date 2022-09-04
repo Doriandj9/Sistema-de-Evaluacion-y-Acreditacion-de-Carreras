@@ -28,7 +28,7 @@ class Coordinador implements Controller
         $carreras = $this->carrerasModelo->select();
         return [
             'title' => 'Ingreso de un Coordinador',
-            'template' => 'administrador/coordinador.html.php',
+            'template' => 'administrador/agregar_coordinador.html.php',
             'variables' => [
                 'carreras' => $carreras
             ]
