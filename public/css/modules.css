@@ -35,7 +35,11 @@
 }
 .contenido-principal{
     flex-grow: 1;
-    margin-left: 0.5rem;    
+}
+.contenedor-contenido-vistas{
+    width: 90%;
+    min-height: 95%;
+    margin: auto;
 }
 .footer-principal {
     height: 3.5rem;
@@ -236,7 +240,6 @@
     color: white;
     background-color: var(--color-primario);
     border-radius: 0.5rem;
-
 }
 .input-personalizado-login {
     background-color: white;
@@ -248,6 +251,7 @@
     outline: none;
     background-color: white;
     padding: 0.5rem;
+    flex-grow: 1;
 }
 .input-personalizado-login > span{
     color: var(--color-primario);
@@ -354,14 +358,14 @@ nav.flex-columna > a:last-child > span:last-child{
 }
 .tabla-vertical thead > tr > th {
     background-color: var(--color-primario);
-    padding: 1.6rem 1.1rem;
+    padding: 1.3rem 0.8rem;
     color: white;
     font-weight: 500;
     font-size: 0.95rem;
     text-align: center;
 }
 .tabla-vertical tbody > tr > td{
-    padding: 1.6rem 1.1rem;
+    padding: 1.2rem 0.8rem;
     color: white;
 }
 .tabla-vertical tbody > tr > td:nth-child(2n-1) {
@@ -396,6 +400,7 @@ nav.flex-columna > a:last-child > span:last-child{
     width: 9rem;
     border-radius: 0.5rem;
     overflow: auto;
+    flex-grow: 1;
 }
 .input-personalizado-login select option{
     font-size: 0.9rem;
@@ -419,4 +424,38 @@ nav.flex-columna > a:last-child > span:last-child{
     transform: translateY(-50%);
     color: rgba(123, 111, 111, 0.3) !important;
     z-index: 5;
+}
+.block{
+    display: block;
+}
+
+.tabla.tabla-vertical thead > .titulo-tablas th:first-child{
+    background-color: var(--color-secundario);
+    padding: 0.15rem;
+}
+.tabla.tabla-vertical thead > .titulo-tablas th:first-child div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: var(--tipografia-4);
+    font-size: var(--tamano-2-t4);
+    font-weight: var(--anchor-2-t4);
+}
+
+.tabla.tabla-vertical thead > .titulo-tablas th:first-child div > span{
+    color: white;
+}
+ .tabla.tabla-vertical thead > .titulo-tablas th:first-child div > span:first-child{
+    font-size: calc(0.975rem + 0.875rem);
+} 
+.boton-iconos{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    gap: 0.25rem;
+}
+.boton-iconos span.material-icons{
+    color: white;
 }

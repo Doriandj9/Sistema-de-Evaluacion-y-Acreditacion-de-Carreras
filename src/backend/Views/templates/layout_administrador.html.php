@@ -66,7 +66,9 @@
             </div>
             <div class="contenedor-contenido-principal">
                     <div class="contenido-principal">
-                        <?= $contenido ?>
+                        <div class="contenedor-contenido-vistas">
+                            <?= $contenido ?>
+                        </div>
                     </div>
                     <footer class="footer-principal">
                     <div class="text-center margin-arriba-1">

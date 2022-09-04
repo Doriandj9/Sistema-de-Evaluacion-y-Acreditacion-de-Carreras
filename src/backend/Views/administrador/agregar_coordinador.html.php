@@ -1,8 +1,8 @@
-<div class="contenedor-x75 centrado-linea">
+<div class="centrado-linea">
     <h2 class="text-center">Seleción de Coordinador</h2>
 
     <form>
-        <table class="tabla tabla-vertical contenedor-x75 margin-arriba-2 centrado-linea">
+        <table class="tabla tabla-vertical contenedor-x100 margin-arriba-2 centrado-linea">
             <thead>
                 <tr>
                     <th>Carreras</th>
@@ -47,7 +47,7 @@
                         </div>
                     </td>
                     <td>
-                        <button class="boton boton-enviar is-hover-boton-enviar">Agregar</button>
+                        <button class="boton boton-enviar is-hover-boton-enviar block centrado-linea">Agregar</button>
                     </td>
                 </tr>
             </tbody>
