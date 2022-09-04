@@ -1,4 +1,4 @@
-<div class="centrado-linea contenedor-x75 margin-arriba-2">
+<div class="centrado-linea  margin-arriba-2">
     <h2 class="text-center">Ingreso de Periodo Académico</h2>
     <div class="descripcion text-justificado">
         En esta seccion se debera ingresar el periodo academico vigente con las siguientes restrinciones:
@@ -13,7 +13,7 @@
     </li>
     </ol>
     <form>
-        <table class="tabla tabla-vertical contenedor-x75 margin-arriba-2 centrado-linea">
+        <table class="tabla tabla-vertical contenedor-x100 margin-arriba-2 centrado-linea">
             <thead>
                 <tr>
                     <th>Periodo Académico</th>
@@ -46,7 +46,7 @@
                         </div>
                     </td>
                     <td>
-                        <button class="boton boton-enviar is-hover-boton-enviar">Agregar</button>
+                        <button class="boton boton-enviar is-hover-boton-enviar block centrado-linea">Agregar</button>
                     </td>
                 </tr>
             </tbody>
