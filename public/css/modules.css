@@ -35,7 +35,11 @@
 }
 .contenido-principal{
     flex-grow: 1;
-    margin-left: 0.5rem;    
+}
+.contenedor-contenido-vistas{
+    width: 95%;
+    min-height: 95%;
+    margin: auto;
 }
 .footer-principal {
     height: 3.5rem;
@@ -236,7 +240,6 @@
     color: white;
     background-color: var(--color-primario);
     border-radius: 0.5rem;
-
 }
 .input-personalizado-login {
     background-color: white;
@@ -248,6 +251,7 @@
     outline: none;
     background-color: white;
     padding: 0.5rem;
+    flex-grow: 1;
 }
 .input-personalizado-login > span{
     color: var(--color-primario);
@@ -419,4 +423,7 @@ nav.flex-columna > a:last-child > span:last-child{
     transform: translateY(-50%);
     color: rgba(123, 111, 111, 0.3) !important;
     z-index: 5;
+}
+.block{
+    display: block;
 }
