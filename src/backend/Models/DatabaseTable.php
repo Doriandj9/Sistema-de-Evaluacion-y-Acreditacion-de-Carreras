@@ -90,9 +90,12 @@ abstract class DatabaseTable extends Coneccion
      *
      * @return array|false
      */
-    public function select(): array|false
+    public function select(bool $orden = false, string $columna = null): array|false
     {
         $consulta = 'SELECT * FROM ' . $this->table;
+        if($orden && $columna !== null){
+            $consulta .= 'ORDER BY ' . $columna;
+        }
         $resultado = $this->runQuery($consulta);
         return $resultado->fetchAll(\PDO::FETCH_CLASS, $this->className, $this->arguments);
     }
