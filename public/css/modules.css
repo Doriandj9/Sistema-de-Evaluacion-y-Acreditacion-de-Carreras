@@ -353,9 +353,7 @@ nav.flex-columna > a:last-child > span:last-child{
     border-collapse: collapse;
     box-sizing: border-box;
 }
-.tabla-vertical{
-    box-shadow: -0.15rem 0.15rem 0.5rem rgba(0, 0, 0, 0.5);
-}
+
 .tabla-vertical thead > tr > th {
     background-color: var(--color-primario);
     padding: 1.3rem 0.8rem;
@@ -366,7 +364,7 @@ nav.flex-columna > a:last-child > span:last-child{
 }
 .tabla-vertical tbody > tr > td{
     padding: 1.2rem 0.8rem;
-    color: white;
+    color: black;
 }
 .tabla-vertical tbody > tr > td:nth-child(2n-1) {
     background-color: var(--color-encabezado);
@@ -374,6 +372,10 @@ nav.flex-columna > a:last-child > span:last-child{
 .rectangulo-azul{
     background-color: var(--color-primario);
     height: 3rem;
+}
+.tabla-vertical tbody > tr{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    height: 1rem;
 }
 
 .mensaje-error{
@@ -458,4 +460,34 @@ nav.flex-columna > a:last-child > span:last-child{
 }
 .boton-iconos span.material-icons{
     color: white;
+}
+.altura-2{
+    height: 20rem;
+}
+.desborde-auto{
+    overflow: auto;
+}
+.padding-all-1{
+    padding: 0.5rem;
+}
+.desborde-auto:hover.barra-personalizada::-webkit-scrollbar-thumb{
+    background-color: var(--color-f-6);
+}
+/* .desborde-auto:hover.barra-personalizada::-webkit-scrollbar-thumb:hover.barra-personalizada::-webkit-scrollbar{
+    width: 6px;
+    background-color: #eee;
+} */
+.barra-personalizada::-webkit-scrollbar{
+    width: 6px;
+}
+.desborde-auto:hover.barra-personalizada::-webkit-scrollbar{
+    background-color: #eee;
+}
+.sombra{
+    box-shadow: -0.15rem 0.15rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+.altura-x100{
+    width: 100%;
+    max-width: 100%;
+    height: 100% !important;
 }
