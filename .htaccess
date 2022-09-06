@@ -4,7 +4,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.php [NC,L,QSA]
 # Redicionamiento ya que este archivo contiene datos sensible del sistema
-Redirect /config/.env /error-404
+#Redirect /config/ /error-404
 # Este redirecionamiento sirve para que no puedan acceder de forma directa a los archivos
 # .php que puede ejecutarse para realizar acciones indivudales y falle el sistema
 # RedirectMatch "\.php$" "/error-404"

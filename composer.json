@@ -5,8 +5,7 @@
     "require": {
         "dompdf/dompdf": "2.0.0",
         "symfony/dotenv": "6.0.x-dev",
-        "firebase/php-jwt": "dev-main",
-        "basemkhirat/elasticsearch": "dev-master"
+        "firebase/php-jwt": "dev-main"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "4.0.x-dev",
