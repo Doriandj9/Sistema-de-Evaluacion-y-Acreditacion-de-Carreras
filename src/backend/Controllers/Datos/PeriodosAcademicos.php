@@ -14,7 +14,7 @@ class PeriodosAcademicos implements Controller
     }
     public function vista($variables = []): array
     {
-        $periodosAcademicos = $this->modeloPeriodoAcademico->select();
+        $periodosAcademicos = $this->modeloPeriodoAcademico->select(true,'id');
         $variables['periodoAcademico'] = $periodosAcademicos;
         return [
             'title' => '',
