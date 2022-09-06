@@ -3,7 +3,7 @@
         'name' => 'software/seac',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'd503548f2edc44d51504a874500c340f08a94cf3',
+        'reference' => '64c4b92554424bc320cba63a9a0fb90b15875fcc',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -145,7 +145,7 @@
         'nikic/php-parser' => array(
             'pretty_version' => '4.x-dev',
             'version' => '4.9999999.9999999.9999999-dev',
-            'reference' => '2d589921f23d869846a52c541247e0bafca61ab3',
+            'reference' => '0ef6c55a3f47f89d7a374e6f835197a0b5fcf900',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nikic/php-parser',
             'aliases' => array(),
@@ -192,7 +192,7 @@
         'phpunit/php-code-coverage' => array(
             'pretty_version' => '9.2.x-dev',
             'version' => '9.2.9999999.9999999-dev',
-            'reference' => '2593003befdcc10db5e213f9f28814f5aa8ac073',
+            'reference' => 'e2223ebc1cc53b605503701c448f26d84a51d5d2',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/php-code-coverage',
             'aliases' => array(),
@@ -237,7 +237,7 @@
         'phpunit/phpunit' => array(
             'pretty_version' => '9.5.x-dev',
             'version' => '9.5.9999999.9999999-dev',
-            'reference' => '20019eeca504912e7126eaa330e75ba06c560075',
+            'reference' => 'f7cae484eea6097891dfc175db3398c7fd1f940d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
@@ -415,9 +415,9 @@
             'dev_requirement' => true,
         ),
         'sebastian/type' => array(
-            'pretty_version' => '3.0.x-dev',
-            'version' => '3.0.9999999.9999999-dev',
-            'reference' => 'afad3e987736f63bc54d7c923f0c1ebf247e8618',
+            'pretty_version' => '3.1.x-dev',
+            'version' => '3.1.9999999.9999999-dev',
+            'reference' => 'a0f3e755c775fdc960cd5552e046a860c82dd9f9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sebastian/type',
             'aliases' => array(),
@@ -435,7 +435,7 @@
         'software/seac' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'd503548f2edc44d51504a874500c340f08a94cf3',
+            'reference' => '64c4b92554424bc320cba63a9a0fb90b15875fcc',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
