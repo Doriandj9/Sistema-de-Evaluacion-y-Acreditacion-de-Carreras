@@ -55,21 +55,38 @@ class Coordinador implements Controller
         // al ingresar un usuario coordinador que previamente haya estado ingresado
         // en el sistema simplemente salte la exepcion y actualiza las fechas de inicio y final
         try {
+            $docenteCarrera = $this->usuarioDocenteModelo->selectFromColumn(
+                'id_docentes',
+                $datos_docentes_usuario['id_docentes']
+            );
+            if($docenteCarrera){
+                $carrera = $docenteCarrera[0]->id_carrera;
+                if($datos_docentes_usuario['id_carrera'] !== $carrera){
+                    throw new \PDOException('Error: El usuario no puede ser coordinador de otra carrera');
+                }else{
+                    unset($datos_docentes_usuario['id_docentes']);
+                    $this->usuarioDocenteModelo->update(
+                        $datos_docentes_usuario['id_usuarios'],
+                        $datos_docentes_usuario
+                    );
+                    Http::responseJson(json_encode(
+                        ['ident' => 1,
+                        'result' => 'El docente anteriormente ya fue coordinador, se actualizaron las fechas',
+                        'error' => ''
+                        ]
+                    ));
+                }
+            }
             $this->usuarioDocenteModelo->insert($datos_docentes_usuario);
             $this->docenteModelo->update($_POST['coordinador'], $dato_docente_clave);// aqui se actualiza la clave
-            Http::responseJson(json_encode(
+            Http::responseJson(json_encode(// en la table docente en la columna clave
                 ['ident' => 1, 'result' => 'Se ingreso correctamente el usuario coordinador', 'error' => '']
             ));
         } catch (\PDOException $e) {
-            unset($datos_docentes_usuario['id_docentes']);
-            $this->usuarioDocenteModelo->update(
-                $datos_docentes_usuario['id_usuarios'],
-                $datos_docentes_usuario
-            );
             Http::responseJson(json_encode(
-                ['ident' => 1,
-                 'result' => 'El docente anteriormente ya fue coordinador, se actualizaron las fechas',
-                 'error' => ''
+                ['ident' => 0,
+                'result' => '',
+                'error' => $e->getMessage()
                 ]
             ));
         }
