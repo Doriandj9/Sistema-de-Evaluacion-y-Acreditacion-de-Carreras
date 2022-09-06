@@ -94,7 +94,7 @@ abstract class DatabaseTable extends Coneccion
     {
         $consulta = 'SELECT * FROM ' . $this->table;
         if($orden && $columna !== null){
-            $consulta .= 'ORDER BY ' . $columna;
+            $consulta .= ' ORDER BY ' . $columna;
         }
         $resultado = $this->runQuery($consulta);
         return $resultado->fetchAll(\PDO::FETCH_CLASS, $this->className, $this->arguments);
