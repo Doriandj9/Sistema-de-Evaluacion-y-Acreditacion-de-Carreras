@@ -37,7 +37,7 @@
     flex-grow: 1;
 }
 .contenedor-contenido-vistas{
-    width: 90%;
+    width: 95%;
     min-height: 95%;
     margin: auto;
 }
@@ -268,7 +268,7 @@
  .input-personalizado-login select  option{
     background-color: var(--color-primario);
     color: white;
-    
+
  }
 /*----------------------PADDINGS -----------------------------------*/
 .padding-izquierdo-1{
@@ -450,7 +450,7 @@ nav.flex-columna > a:last-child > span:last-child{
 }
  .tabla.tabla-vertical thead > .titulo-tablas th:first-child div > span:first-child{
     font-size: calc(0.975rem + 0.875rem);
-} 
+}
 .boton-iconos{
     display: flex;
     align-items: center;
@@ -472,17 +472,31 @@ nav.flex-columna > a:last-child > span:last-child{
 }
 .desborde-auto:hover.barra-personalizada::-webkit-scrollbar-thumb{
     background-color: var(--color-f-6);
+    border-radius: 20px;
 }
 /* .desborde-auto:hover.barra-personalizada::-webkit-scrollbar-thumb:hover.barra-personalizada::-webkit-scrollbar{
     width: 6px;
     background-color: #eee;
 } */
+/*----------------Barrar personalizada para navegadores basados en el motor webkit----------------*/
 .barra-personalizada::-webkit-scrollbar{
     width: 6px;
 }
 .desborde-auto:hover.barra-personalizada::-webkit-scrollbar{
     background-color: #eee;
 }
+/*-------------------------------------------------------------------------------------------------*/
+/*----------------Barrar personalizada para navegadores basados en el motor mozilla----------------*/
+.barra-personalizada{
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+.desborde-auto:hover.barra-personalizada{
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-f-6) #eee;
+}
+/*-------------------------------------------------------------------------------------------------*/
+
 .sombra{
     box-shadow: -0.15rem 0.15rem 0.5rem rgba(0, 0, 0, 0.5);
 }
