@@ -54,7 +54,7 @@ class Docente extends DatabaseTable
     public function getUsuarioCompleto()
     {
         //Es una consulta que permite que saber que usuario quiere ingresar con su permisos
-        $consulta = 'SELECT permisos,id_docentes,correo,carrera FROM (SELECT permisos,docentes.id as id_docentes,
+        $consulta = 'SELECT permisos,id_docentes,correo,carrera,estado FROM (SELECT permisos,docentes.id as id_docentes,estado,
         docentes.correo as correo, carreras.nombre as carrera FROM docentes INNER JOIN usuarios_docente ON docentes.id =
         usuarios_docente.id_docentes INNER JOIN usuarios ON usuarios_docente.id_usuarios = usuarios.id 
         INNER JOIN carreras on carreras.id = usuarios_docente.id_carrera)as uno WHERE  correo = :correo';

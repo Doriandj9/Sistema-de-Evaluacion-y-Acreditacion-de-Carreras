@@ -1,8 +1,8 @@
 <div class="centrado-linea">
     <h2 class="text-center">Seleción de Coordinador</h2>
-
+<div class="desborde-auto barra-personalizada padding-all-1 ">
     <form>
-        <table class="tabla tabla-vertical contenedor-x100 margin-arriba-2 centrado-linea">
+        <table class="tabla tabla-vertical contenedor-x100 sombra centrado-linea">
             <thead>
                 <tr>
                     <th>Carreras</th>
@@ -53,5 +53,5 @@
             </tbody>
         </table>
     </form>
-    
+</div>
 </div>

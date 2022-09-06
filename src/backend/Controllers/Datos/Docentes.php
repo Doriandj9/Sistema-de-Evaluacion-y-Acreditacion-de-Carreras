@@ -24,7 +24,7 @@ class Docentes implements Controller
             $docentes = $this->carreras->getDatosDocentes($_GET['carrera']);
         } else {
             Http::responseJson(json_encode(
-                ['ident' => 0,'error' => 'Error no se encontro ninguna carrera']
+                ['ident' => 0,'error' => 'Error no se encontro ningun id de carrera']
             ));
         }
         return [

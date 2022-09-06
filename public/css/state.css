@@ -21,3 +21,15 @@
 .is-activo-item-menu > span:last-child{
     background-color: var(--color-secundario) !important;
 }
+.is-cargando-contenido{
+    animation: 0.8s cargandoContenido infinite alternate ease-in-out;
+}
+
+@keyframes cargandoContenido {
+    0%{
+        background-color: #eee;
+    }
+    100%{
+        background-color: #ccc;
+    }
+}
