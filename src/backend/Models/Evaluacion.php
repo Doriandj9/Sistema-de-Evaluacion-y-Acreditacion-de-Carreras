@@ -4,17 +4,9 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
-class Evaluacion extends DatabaseTable
-{
-    public $id;
-    public $nota;
+use Illuminate\Database\Eloquent\Model;
 
-    public function __construct()
-    {
-        parent::__construct(
-            'evaluacion',
-            'id',
-            'App\backend\Models\Evaluacion'
-        );
-    }
+class Evaluacion extends Model
+{
+    public const TABLE = 'evaluacion';
 }

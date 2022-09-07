@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class PeriodoAcademico extends Model
 {
+    public const TABLE = 'periodo_academicos';
 }

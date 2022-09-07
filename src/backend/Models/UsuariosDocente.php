@@ -4,16 +4,9 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
-class UsuariosDocente extends DatabaseTable
+use Illuminate\Database\Eloquent\Model;
+
+class UsuariosDocente extends Model
 {
-
-
-    public function __construct()
-    {
-        parent::__construct(
-            'usuarios_docente',
-            'id_usuarios',
-            'App\backend\Models\UsuariosDocente'
-        );
-    }
+    public const TABLE = 'usuarios_docente';
 }

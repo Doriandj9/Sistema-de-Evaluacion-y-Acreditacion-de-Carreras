@@ -4,18 +4,9 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
-class ElementoFundamental extends DatabaseTable
-{
-    public $id;
-    public $descripcion;
-    public $id_estandar;
+use Illuminate\Database\Eloquent\Model;
 
-    public function __construct()
-    {
-        parent::__construct(
-            'elemento_fundamental',
-            'id',
-            'App\backend\Models\ElementoFundamental'
-        );
-    }
+class ElementoFundamental extends Model
+{
+    public const TABLE = 'elemento_fundamental';
 }
