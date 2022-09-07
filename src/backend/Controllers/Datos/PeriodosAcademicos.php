@@ -2,19 +2,14 @@
 
 namespace App\backend\Controllers\Datos;
 
+use App\backend\Application\Utilidades\DB;
 use App\backend\Controllers\Controller;
-use App\backend\Models\PeriodoAcademico;
 
 class PeriodosAcademicos implements Controller
 {
-    private PeriodoAcademico $modeloPeriodoAcademico;
-    public function __construct()
-    {
-        $this->modeloPeriodoAcademico = new PeriodoAcademico;   
-    }
     public function vista($variables = []): array
     {
-        $periodosAcademicos = $this->modeloPeriodoAcademico->select(true,'id');
+        $periodosAcademicos = DB::table('periodo_academicos')->get();
         $variables['periodoAcademico'] = $periodosAcademicos;
         return [
             'title' => '',

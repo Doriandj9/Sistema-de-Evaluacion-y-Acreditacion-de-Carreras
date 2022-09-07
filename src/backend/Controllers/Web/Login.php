@@ -21,7 +21,6 @@ class Login implements Controller
     public function vista($variables = []): array
     {
         if (isset($_SESSION['email'])) {
-            $usuario = $this->autentificacion->getUsuario();
             $redirecionarHacia = [
                 Docente::ADMIN => function () {
                     Http::redirect('/admin');
@@ -40,7 +39,7 @@ class Login implements Controller
                 }
             ];
             try {
-                $redirecionarHacia[$usuario->getUsuario($_SESSION['email'])[0]->permisos]();
+                $redirecionarHacia[Docente::getUsuario($_SESSION['email'])->permisos]();
             } catch (\ErrorException $th) {
                 throw new Error('Error no se encontro una redireccion para este usuario');
             }

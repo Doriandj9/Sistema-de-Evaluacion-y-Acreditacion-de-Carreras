@@ -15,6 +15,7 @@ export default class PeriodoAcademico {
                 }
             );
             const respuesta = await consulta.json();
+            console.log(respuesta);
             return respuesta;
         } catch (error) {
             console.error(error);
