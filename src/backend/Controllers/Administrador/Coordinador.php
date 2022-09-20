@@ -68,7 +68,8 @@ class Coordinador implements Controller
                     throw new \PDOException('Error: El usuario no puede ser coordinador de otra carrera');
                 } else {
                     $this->usuarioDocenteModelo->updateValues(
-                        Docente::COORDINADORES,                        $datos_docentes_usuario
+                        Docente::COORDINADORES,
+                        $datos_docentes_usuario
                     );
                     Http::responseJson(json_encode(
                         ['ident' => 1,
