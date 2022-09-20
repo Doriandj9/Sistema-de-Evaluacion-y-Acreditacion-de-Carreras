@@ -35,8 +35,7 @@ class PeriodoAcademico implements Controller
         ];
 
         try {
-            DB::table('periodo_academicos')
-            ->insert($datos);
+            $this->periodoAcademico->insert($datos);
             $respuesta = [
                 'result' => 1,
                 'error' => ''
