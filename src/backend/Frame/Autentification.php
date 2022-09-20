@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\backend\Frame;
 
-use App\backend\Application\Utilidades\DB;
+use App\backend\Application\Utilidades\Http;
 use App\backend\Application\Utilidades\Jwt;
 use App\backend\Models\Docente;
 
@@ -39,7 +39,17 @@ class Autentification
 
     public function verificacionCredenciales(string $email, string $clave): \stdClass|bool
     {
-        $usuario = DB::table('docentes')->where($this->email,trim($email))->first();
+        try {
+            $usuario = $this->usuarios->selectFromColumn($this->email, $email)
+            ->first();
+        } catch (\PDOException $e) {
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'error' => 'Ocurrio un error con la coneccion de la base de datos'
+                ]
+            ));
+        }
         if ($usuario && password_verify($clave, trim($usuario->{$this->clave}))) {
             session_regenerate_id();
             $_SESSION['email'] = $usuario->{$this->email};
@@ -66,9 +76,7 @@ class Autentification
             return false;
         }
 
-        $usuario = DB::table('docentes')
-        ->where($this->email,'=',$_SESSION['email'])
-        ->first();
+        $usuario = $this->usuarios->selectFromColumn($this->email, $_SESSION['email'])->first();
         if ($usuario && $_SESSION['clave'] === $usuario->{$this->clave}) {
             return $usuario;
         }
