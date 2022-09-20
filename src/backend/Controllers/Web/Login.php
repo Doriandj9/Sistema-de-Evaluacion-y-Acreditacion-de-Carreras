@@ -55,11 +55,14 @@ class Login implements Controller
     {
         $usuario = $this->autentificacion->verificacionCredenciales($_POST['email'], $_POST['password']);
         if ($usuario) {
-            $usuario->result = 1;
+            $usuario->ident = 1;
             $usuario->token = $_SESSION['token'];
             Http::responseJson(json_encode($usuario));
         } else {
-            $error = ['result' => 0];
+            $error = [
+                'ident' => 0,
+                'error' => 'El usuario ingresado / contraseña incorrectas'
+            ];
             Http::responseJson(json_encode($error));
         }
     }
