@@ -505,3 +505,44 @@ nav.flex-columna > a:last-child > span:last-child{
     max-width: 100%;
     height: 100% !important;
 }
+
+.flotante-abajo-centrado{
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+table.tabla-presentacion  thead > tr > th {
+        padding: 1rem 0.8rem;
+}
+
+table.tabla-presentacion tbody > tr > td{
+        padding: 1rem 0.8rem;
+}
+
+.contenedor-numeros-paginacion  button:hover{
+    background-color: var(--color-f-4);
+    color: white;
+}
+.contenedor-numeros-paginacion  button{
+    outline: none;
+    border-width: 0;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    color: var(--color-t-2);
+    font-weight: bold;
+    border: 1px solid rgba(51, 51, 51,0.1); /*--color-t-2 con menos intensidad;*/
+}
+.contenedor-numeros-paginacion  button:first-child{
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border: 1px solid rgba(51, 51, 51,0.1); /*--color-t-2 con menos intensidad;*/
+    border-right: transparent;
+}
+.contenedor-numeros-paginacion  button:last-child{
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border: 1px solid rgba(51, 51, 51,0.1); /*--color-t-2 con menos intensidad;*/
+    border-left: transparent;
+
+}
