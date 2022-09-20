@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class CarrerasEvidencias extends Model
+class CarrerasEvidencias extends DatabaseTable
 {
     public const TABLE = 'carreras_evidencias';
+
+    public function __construct()
+    {
+        parent::__construct(self::TABLE, 'id_periodo_academico');
+    }
 }

@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Estandar extends Model
+class Estandar extends DatabaseTable
 {
     public const TABLE = 'estandar';
+
+    public function __construct()
+    {
+        parent::__construct(self::TABLE, 'id');
+    }
 }

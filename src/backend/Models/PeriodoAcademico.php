@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class PeriodoAcademico extends Model
+class PeriodoAcademico extends DatabaseTable
 {
     public const TABLE = 'periodo_academicos';
+
+    public function __construct()
+    {
+        parent::__construct(self::TABLE, 'id');
+    }
 }

@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Evaluacion extends Model
+class Evaluacion extends DatabaseTable
 {
     public const TABLE = 'evaluacion';
+
+    public function __construct()
+    {
+        parent::__construct(self::TABLE, 'id');
+    }
 }
