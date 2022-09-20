@@ -26,7 +26,8 @@ class Coordinador implements Controller
     }
     public function vista($variables = []): array
     {
-        $carreras = DB::table('carreras')->get();
+        $carreras = $this->carrerasModelo->select();
+
         return [
             'title' => 'Ingreso de un Coordinador',
             'template' => 'administrador/agregar_coordinador.html.php',
@@ -59,16 +60,15 @@ class Coordinador implements Controller
             $docenteCarrera = $this->usuarioDocenteModelo->selectFromColumn(
                 'id_docentes',
                 $datos_docentes_usuario['id_docentes']
-            );
-            if($docenteCarrera){
-                $carrera = $docenteCarrera[0]->id_carrera;
-                if($datos_docentes_usuario['id_carrera'] !== trim($carrera)){
+            )->first();
+            if ($docenteCarrera) {
+                $carrera = $docenteCarrera->id_carrera;
+
+                if ($datos_docentes_usuario['id_carrera'] !== trim($carrera)) {
                     throw new \PDOException('Error: El usuario no puede ser coordinador de otra carrera');
-                }else{
-                    unset($datos_docentes_usuario['id_docentes']);
-                    $this->usuarioDocenteModelo->update(
-                        $datos_docentes_usuario['id_usuarios'],
-                        $datos_docentes_usuario
+                } else {
+                    $this->usuarioDocenteModelo->updateValues(
+                        Docente::COORDINADORES,                        $datos_docentes_usuario
                     );
                     Http::responseJson(json_encode(
                         ['ident' => 1,
