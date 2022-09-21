@@ -10,7 +10,7 @@ use Tests\TestCase;
 class ModeloDocenteTest extends TestCase
 {
     private $argumentos;
-    private $modelDocente;
+    private Docente $modelDocente;
 
     public function __construct()
     {
@@ -43,7 +43,7 @@ class ModeloDocenteTest extends TestCase
     public function testSelecionDocentes()
     {
         $result = $this->modelDocente->select();
-        $this->assertIsArray($result);
+        $this->assertInstanceOf('\Illuminate\Support\Collection', $result);
         $this->assertIsObject($result[0]);
         return $result;
     }
@@ -60,9 +60,9 @@ class ModeloDocenteTest extends TestCase
             'correo' => $result[0]->correo,
             'clave' => trim($result[0]->clave)
         ];
-        $this->assertIsArray($result);
+        $this->assertInstanceOf('\Illuminate\Support\Collection', $result);
         $this->assertCount(1, $result);
-        $this->assertInstanceOf(Docente::class, $result[0]);
+        $this->assertInstanceOf(\stdClass::class, $result[0]);
         $this->assertEquals($this->argumentos, $actual);
     }
     /**
@@ -71,7 +71,7 @@ class ModeloDocenteTest extends TestCase
      */
     public function testActualizarDocente()
     {
-        $result = $this->modelDocente->update($this->argumentos['id'], $this->argumentos);
+        $result = $this->modelDocente->updateValues($this->argumentos['id'], $this->argumentos);
         $this->assertTrue($result);
         return $result;
     }
@@ -81,7 +81,7 @@ class ModeloDocenteTest extends TestCase
      */
     public function testBorarDocente()
     {
-        $result = $this->modelDocente->delete($this->argumentos['id']);
+        $result = $this->modelDocente->deleteRaw($this->argumentos['id']);
         $this->assertTrue($result);
     }
 }
