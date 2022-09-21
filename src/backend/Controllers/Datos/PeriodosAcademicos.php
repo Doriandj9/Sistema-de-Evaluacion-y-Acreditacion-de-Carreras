@@ -1,20 +1,19 @@
 <?php
 
 namespace App\backend\Controllers\Datos;
-
 use App\backend\Controllers\Controller;
 use App\backend\Models\PeriodoAcademico;
 
 class PeriodosAcademicos implements Controller
 {
-    private PeriodoAcademico $modeloPeriodoAcademico;
+    private $periodosAcademicos;
     public function __construct()
     {
-        $this->modeloPeriodoAcademico = new PeriodoAcademico;   
+        $this->periodosAcademicos = new PeriodoAcademico;
     }
     public function vista($variables = []): array
     {
-        $periodosAcademicos = $this->modeloPeriodoAcademico->select(true,'id');
+        $periodosAcademicos = $this->periodosAcademicos->select(true, 'id', 'desc');
         $variables['periodoAcademico'] = $periodosAcademicos;
         return [
             'title' => '',

@@ -171,7 +171,7 @@ class Http
     /**
      * Esta funcion redirecciona una ruta
      *
-     * @param string es la ruta a redireccionars por ejemplo /inicio
+     * @param string $ruta es la ruta a redireccionars por ejemplo /inicio
      */
     public static function redirect(string $ruta)
     {
@@ -181,9 +181,11 @@ class Http
     /**
      * Esta funcion imprime un json y termina la ejecucion
      *
-     * @param string es el json string
+     * @param string $json es el json string
+     *
+     * @return void
      */
-    public static function responseJson(string $json)
+    public static function responseJson(string $json): void
     {
         http_response_code(self::STATUS_OK);
         header('Content-Type: application/json');

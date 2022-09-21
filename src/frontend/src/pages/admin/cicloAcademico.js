@@ -2,6 +2,7 @@ import { PERIODO_ACADEMICO } from "../../modulos/RegularExpresions/ConstExpres.j
 import PeriodoAcademico from "../../models/PeriodoAcademico.js";
 import Notificacion from "../../modulos/Notificacion/Notificacion.js";
 import Precarga from "../../modulos/PreCarga/precarga.js";
+import { paginacionCicloAcademico } from "../../utiles/funcionesPaginacion.js";
 
 const inputCicloAcademico = document.getElementById('ciclo-academico');
 const mensajeError = document.querySelector('.mensaje-error');
@@ -96,28 +97,11 @@ cargarPeriodosAcademicos();
 function renderPeriodosAcademicos(respuesta){
     if(respuesta.ident){
         const {periodoAcademico} = respuesta;
-        let html = '';
+
         const tbody = tablaPresentacion.querySelector('tbody');
-        periodoAcademico.forEach(periodo => {
-            html += `<tr>
-            <td>
-            ${periodo.id}
-            </td>
-            <td>
-            ${periodo.fecha_inicial}
-            </td>
-            <td>
-                ${periodo.fecha_final}
-            </td>
-            <td>
-                <button class="boton boton-enviar is-hover-boton-enviar block centrado-linea boton-iconos">
-                <span class="material-icons text-blanco">&#xe3c9;</span>
-                Editar 
-                </button>
-            </td>
-        </tr>`;
-        });
-        tbody.innerHTML = html;
+        const contendedorNumeros = document.querySelector('.contenedor-numeros-paginacion');
+        paginacionCicloAcademico(periodoAcademico,3,1,tbody,contendedorNumeros); // rederiza la tabla paginada
+
         if(finalizar) precarga.end(); // la variable finalizar la primera vez se va encontrar en falso lo cual no ejcutara
         // terminar la precarga ya que si lo hace saltara un erro por que un primer instante la variable es undefined
         // en instancias posteriores se encuentra con la clase de la precarga 

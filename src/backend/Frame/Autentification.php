@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\backend\Frame;
 
+use App\backend\Application\Utilidades\Http;
 use App\backend\Application\Utilidades\Jwt;
 use App\backend\Models\Docente;
 
-use function PHPSTORM_META\type;
+
 
 /**
  * Esta clase se encarga de verificar que el usuario
@@ -38,36 +39,46 @@ class Autentification
 
     public function verificacionCredenciales(string $email, string $clave): \stdClass|bool
     {
-        $usuario = $this->usuarios->selectFromColumn($this->email, strtolower(trim($email)));
-        if ($usuario && password_verify($clave, trim($usuario[0]->{$this->clave}))) {
+        try {
+            $usuario = $this->usuarios->selectFromColumn($this->email, $email)
+            ->first();
+        } catch (\PDOException $e) {
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'error' => 'Ocurrio un error con la coneccion de la base de datos'
+                ]
+            ));
+        }
+        if ($usuario && password_verify($clave, trim($usuario->{$this->clave}))) {
             session_regenerate_id();
-            $_SESSION['email'] = $usuario[0]->{$this->email};
-            $_SESSION['clave'] = $usuario[0]->{$this->clave};
+            $_SESSION['email'] = $usuario->{$this->email};
+            $_SESSION['clave'] = $usuario->{$this->clave};
             // Creamos un token con json web token de firebase
             // que sea unico por cada inicio de session
             date_default_timezone_set('America/Guayaquil');
             $fecha = new \DateTime();
             $datos = [
                 'tiempo' => $fecha->getTimestamp(),
-                'usuario' => $usuario[0]->{$this->email}
+                'usuario' => $usuario->{$this->email}
             ];
             $token = Jwt::crearToken($datos);
             $_SESSION['token'] = $token;
-            $usuario = $this->usuarios->getUsuario($usuario[0]->{$this->email});
-            return $usuario[0];
+            $usuario = Docente::getUsuario($email);
+            return $usuario;
         }
         return false;
     }
 
-    public function comprobacionSesion(): Docente|bool
+    public function comprobacionSesion()
     {
         if (empty($_SESSION['email'])) {
             return false;
         }
 
-        $usuario = $this->usuarios->selectFromColumn($this->email, $_SESSION['email']);
-        if ($usuario && $_SESSION['clave'] === $usuario[0]->{$this->clave}) {
-            return $usuario[0];
+        $usuario = $this->usuarios->selectFromColumn($this->email, $_SESSION['email'])->first();
+        if ($usuario && $_SESSION['clave'] === $usuario->{$this->clave}) {
+            return $usuario;
         }
     }
 

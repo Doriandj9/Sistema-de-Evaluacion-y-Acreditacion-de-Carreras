@@ -1,15 +1,20 @@
 <?php
 include __DIR__ . '/vendor/autoload.php';
+include __DIR__ . '/config/database.php';
 
 use App\backend\Application\ContentRoutes;
+use App\backend\Application\Utilidades\DB;
 use App\backend\Frame\EntryPoint;
-use Symfony\Component\Dotenv\Dotenv;
-
 
 
 $route = rtrim(ltrim(strtok($_SERVER['REQUEST_URI'],'?'),'/'),'/');
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__ . '/config/.env');
+// $usuario = DB::table('docentes')
+// ->join('usuarios_docente','docentes.id','=','usuarios_docente.id_docentes')
+// ->join('usuarios','usuarios.id','=','usuarios_docente.id_usuarios')
+// ->get()
+// ->where('correo','=','dorian@ueb.edu.ec')
+// ->first();
+// var_dump($usuario->permisos);
 try{
 
     $entryPoint = new EntryPoint($route,$_SERVER['REQUEST_METHOD'],new ContentRoutes);

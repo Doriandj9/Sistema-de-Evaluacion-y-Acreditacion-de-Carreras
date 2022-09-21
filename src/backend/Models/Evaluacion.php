@@ -4,17 +4,13 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
+
 class Evaluacion extends DatabaseTable
 {
-    public $id;
-    public $nota;
+    public const TABLE = 'evaluacion';
 
     public function __construct()
     {
-        parent::__construct(
-            'evaluacion',
-            'id',
-            'App\backend\Models\Evaluacion'
-        );
+        parent::__construct(self::TABLE, 'id');
     }
 }

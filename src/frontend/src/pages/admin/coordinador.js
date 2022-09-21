@@ -77,6 +77,8 @@ function renderRespuesta(respuesta){
         'Aceptar',
         false
     )
+   }else{
+    throw new Error(respuesta.error);
    }
 }
 

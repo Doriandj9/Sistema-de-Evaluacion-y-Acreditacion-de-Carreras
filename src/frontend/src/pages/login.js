@@ -28,9 +28,7 @@ function verificarCredenciales(e) {
 }
 
 function verificarUsuario(resultado) {
-	console.log(resultado);
-
-	if (resultado.result) {
+	if (resultado.ident) {
 		try {
             precarga.end();
             localStorage.Tok_ = resultado.token;
@@ -39,14 +37,14 @@ function verificarUsuario(resultado) {
 			console.log(e);
 		}
 	} else {
-        precarga.end();
-		new Notificacion(
-            'Error sus credenciales son incorrectas intentelo nuevamente'
-            ,'Aceptar'
-            );
-       
+		throw new Error(resultado.error)  
 	}
 }
+
 function manejarHerror(e) {
-	console.error(e);
+	precarga.end();
+	new Notificacion(
+		e,
+		'Aceptar'
+	)
 }

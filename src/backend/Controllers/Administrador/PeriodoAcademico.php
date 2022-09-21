@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\backend\Controllers\Administrador;
 
+use App\backend\Application\Utilidades\DB;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
+use App\backend\Models\Docente;
 use App\backend\Models\PeriodoAcademico as ModelsPeriodoAcademico;
 
 class PeriodoAcademico implements Controller

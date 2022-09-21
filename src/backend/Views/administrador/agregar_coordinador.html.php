@@ -20,7 +20,7 @@
                             <select name="carreras" id="carreras">
                                 <option value="none" >Presione aquí ...</option>
                                <?php foreach($carreras as $carrera): ?>
-                                    <option value="<?= $carrera->id; ?>"> <?= $carrera->nombre; ?></option>
+                                    <option value="<?= trim($carrera->id); ?>"> <?= $carrera->nombre; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

@@ -6,6 +6,8 @@ namespace App\backend\Frame;
 
 use App\backend\Application\ContentRoutes;
 use App\backend\Application\Utilidades\Http;
+use App\backend\Models\Docente as Usuario;
+
 /**
  * @author Dorian Armijos
  * @link <>
@@ -148,7 +150,7 @@ class EntryPoint
 
             if (
                 isset($restrigciones['permisos']) &&
-                !$usuario->tienePermisos($restrigciones['permisos'])
+                !Usuario::tienePermisos($restrigciones['permisos'])
                ) {
                 Http::redirect('/error-permisos');
             }
