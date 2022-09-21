@@ -42,8 +42,8 @@ export default class Docentes {
                 method:'POST',
                 body:formData
             });
-            const respuesta =  await consulta.json();
-            return respuesta;
+            const respuesta =  await consulta.json();            
+            return respuesta
         } catch (error) {
             console.error(error);
         }

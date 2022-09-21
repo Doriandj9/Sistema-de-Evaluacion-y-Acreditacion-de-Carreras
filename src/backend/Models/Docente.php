@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
-use App\backend\Application\Utilidades\Http;
+use App\backend\Application\Utilidades\DB;
 
 class Docente extends DatabaseTable
 {
-    public $id;
-    public $nombre;
-    public $correo;
-    public $clave;
+    public const TABLE = 'docentes';
     public const DOCENTES = 1;
     public const SECRETARIAS = 2;
     public const COORDINADORES = 4;
@@ -20,52 +17,34 @@ class Docente extends DatabaseTable
 
     public function __construct()
     {
-        parent::__construct(
-            'docentes',
-            'id',
-            '\App\backend\Models\Docente',
-            ['docentes','id']
-        );
+        parent::__construct(self::TABLE, 'id');
     }
 
-    public function getUsuario($correo)
+    public static function getUsuario($correo)
     {
         //Es una consulta que permite que saber que usuario quiere ingresar con su permisos
-        $consulta = 'SELECT permisos,id_docentes,correo FROM (SELECT permisos,docentes.id as id_docentes,
-        docentes.correo as correo FROM docentes INNER JOIN usuarios_docente ON docentes.id =
-        usuarios_docente.id_docentes INNER JOIN usuarios ON usuarios_docente.id_usuarios = usuarios.id
-        )as uno WHERE  correo = :correo';
-        $parametros = [
-            'correo' => $correo
-        ];
-
-        $this->className = '\stdClass';
-
-        $resultado = $this->runQuery($consulta, $parametros);
-
-        return $resultado->fetchAll(\PDO::FETCH_CLASS, $this->className, []);
+        $resultado = DB::table(self::TABLE)
+        ->join('usuarios_docente', 'docentes.id', '=', 'usuarios_docente.id_docentes')
+        ->join('usuarios', 'usuarios.id', '=', 'usuarios_docente.id_usuarios')
+        ->get(['permisos','correo'])
+        ->where('correo', '=', trim($correo))
+        ->first();
+        return $resultado;
     }
 
-    public function tienePermisos($permisos)
+    public static function tienePermisos($permisos): int // retorna 0 o 1 que se trata como verdadero o falso
     {
-        return $this->getUsuario($this->correo)[0]->permisos & $permisos;
+        return Docente::getUsuario($_SESSION['email'])->permisos & $permisos; // busqueda bit a bit
     }
 
-    public function getUsuarioCompleto()
+    public static function getUsuarioCompleto(): \Illuminate\Support\Collection
     {
         //Es una consulta que permite que saber que usuario quiere ingresar con su permisos
-        $consulta = 'SELECT permisos,id_docentes,correo,carrera,estado FROM (SELECT permisos,docentes.id as id_docentes,estado,
-        docentes.correo as correo, carreras.nombre as carrera FROM docentes INNER JOIN usuarios_docente ON docentes.id =
-        usuarios_docente.id_docentes INNER JOIN usuarios ON usuarios_docente.id_usuarios = usuarios.id 
-        INNER JOIN carreras on carreras.id = usuarios_docente.id_carrera)as uno WHERE  correo = :correo';
-        $parametros = [
-            'correo' => $this->correo
-        ];
-
-        $this->className = '\stdClass';
-
-        $resultado = $this->runQuery($consulta, $parametros);
-
-        return $resultado->fetchAll(\PDO::FETCH_CLASS, $this->className, []);
+        $resultado = DB::table(self::TABLE)
+        ->join('usuarios_docente', 'docentes.id', '=', 'usuarios_docente.id_docentes')
+        ->join('usuarios', 'usuarios_docente.id_usuarios', '=', 'usuarios.id')
+        ->join('carreras', 'carreras.id', '=', 'usuarios_docente.id_carrera')
+        ->get();
+        return $resultado;
     }
 }

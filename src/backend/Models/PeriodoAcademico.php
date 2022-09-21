@@ -4,19 +4,13 @@ declare(strict_types=1);
 
 namespace App\backend\Models;
 
+
 class PeriodoAcademico extends DatabaseTable
 {
-    public $id;
-    public $fecha_inicial;
-    public $fecha_final;
+    public const TABLE = 'periodo_academicos';
 
     public function __construct()
     {
-        parent::__construct(
-            'periodo_academico',
-            'id',
-            'App\backend\Models\PeriodoAcademico',
-            ['periodo_academico','id']
-        );
+        parent::__construct(self::TABLE, 'id');
     }
 }

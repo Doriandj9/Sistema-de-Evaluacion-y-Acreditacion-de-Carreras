@@ -25,3 +25,12 @@ span.material-icons{
     user-select: none;
     color: var(--color-primario);
 }
+
+button:active{
+    color: white;
+    background-color: var(--color-f-4);
+}
+.contenedor-numeros-paginacion button.active{
+    color: white;
+    background-color: var(--color-f-4);
+}

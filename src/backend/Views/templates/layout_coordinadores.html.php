@@ -1,3 +1,7 @@
+<?php
+
+use App\backend\Models\Docente;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,8 +32,7 @@
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe80c;</span>
                                 <span class="text-blanco text-w-medio">
-                                    <?= $usuario->getUsuarioCompleto()[0]->carrera; ?>
-
+                                <?= Docente::getUsuarioCompleto()[0]->nombre; ?> <!-- ->nombre hace referencia al nombre de la carrera -->
                                 </span>
                             </li>
                     </ul>
