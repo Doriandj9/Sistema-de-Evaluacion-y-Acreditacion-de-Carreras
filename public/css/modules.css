@@ -271,11 +271,7 @@
  .input-personalizado-login select::-ms-expand{
     display: none;
  }
- .input-personalizado-login select  option{
-    background-color: var(--color-primario);
-    color: white;
 
- }
 /*----------------------PADDINGS -----------------------------------*/
 .padding-izquierdo-1{
     padding-left: 0.5rem;
@@ -409,11 +405,11 @@ nav.flex-columna > a:last-child > span:last-child{
     border-radius: 0.5rem;
     overflow: auto;
     flex-grow: 1;
+    font-family: var(--tipografia-4);
+    font-size: var(--tamano-2-t4);
+    background-color: white !important;
 }
-.input-personalizado-login select option{
-    font-size: 0.9rem;
-    line-height: 0.9rem;
-}
+
 .raya::after{
     position: absolute;
     content: '';
@@ -514,7 +510,7 @@ nav.flex-columna > a:last-child > span:last-child{
 
 .flotante-abajo-centrado{
     position: absolute;
-    bottom: -1rem;
+    bottom: -1.25rem;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -533,7 +529,7 @@ table.tabla-presentacion tbody > tr > td{
 .contenedor-numeros-paginacion  button{
     outline: none;
     border-width: 0;
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 1rem;
     box-sizing: border-box;
     color: var(--color-t-2);
     font-weight: bold;
@@ -551,4 +547,42 @@ table.tabla-presentacion tbody > tr > td{
     border: 1px solid rgba(51, 51, 51,0.1); /*--color-t-2 con menos intensidad;*/
     border-left: transparent;
 
+}
+
+.centrado-linea, .centrado-linea::before, .centrado-linea::after{
+    box-sizing: content-box;
+}
+
+.contenedor-contenido-principal,
+.contenedor-contenido-principal::after,
+.contenedor-contenido-principal::before,
+.contenedor-contenido-vistas,
+.contenedor-contenido-vistas::after,
+.contenedor-contenido-vistas::before,
+.contenido-principal,
+.contenido-principal::after,
+.contenido-principal::before,
+.tabla,
+.cuerpo-principal,
+.cuerpo-principal::after,
+.cuerpo-principal::before,
+.contenedor-principal,
+.contenedor-principal::after,
+.contenedor-principal::before,
+.tabla::after,
+.p-relativo,
+.p-relativo::after,
+.p-relativo::before,
+.contenedor-numeros-paginacion,
+.contenedor-numeros-paginacion::after,
+.contenedor-numeros-paginacion::before,
+.barra-personalizada::after,
+.barra-personalizada::before,
+.barra-personalizada,
+form,form::after,form::before,
+.tabla::before,
+.centrado-linea,
+.centrado-linea::after,
+.centrado-linea::before {
+    box-sizing: content-box !important;
 }
