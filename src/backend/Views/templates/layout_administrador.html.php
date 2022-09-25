@@ -7,6 +7,7 @@
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/bootstrap/bootstrap-custom.css">
     <link rel="stylesheet" href="/public/css/app.css">
     <title><?= $titulo; ?></title>
 </head>
@@ -19,7 +20,7 @@
         <main class="cuerpo-principal">
             <div class="menu-lateral">
                 <div class="contenedor-informacion">
-                    <h2>Información</h2>
+                    <h4>Información</h4>
                     <ul class="flex-columna gap-flex-1">
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe7fd;</span>
@@ -32,7 +33,7 @@
                     </ul>
                 </div>
                 <div class="contenedor-navegacion">
-                    <h4 class="text-blanco borde-top text-center padding-top-2">Menú Principal</h4>
+                    <h6 class="text-blanco borde-top text-center">Menú Principal</h6>
                     <nav class="flex-columna margin-top-menos-1" id="menu-principal">
     
                         <a href="/admin" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
