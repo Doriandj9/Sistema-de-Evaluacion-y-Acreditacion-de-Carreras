@@ -20,9 +20,9 @@
     flex-direction: row;
 }
 .menu-lateral{
-    width: 18rem;
-    min-width: 18rem;
-    max-width: 18rem;
+    width: 16.5rem;
+    min-width: 16.5rem;
+    max-width: 16.5rem;
     background-color: var(--color-primario);
     border-right: 10px solid var(--color-secundario);
 }
@@ -52,8 +52,7 @@
     margin: 0;
 }
 .contenedor-navegacion{
-    resize:both;
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-family: var(--tipografia-4);
     font-size: calc(var(--tamano-t4) + 0.05rem);
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2), 0 -0.25rem 0.5rem rgba(0, 0, 0, 0.2);
