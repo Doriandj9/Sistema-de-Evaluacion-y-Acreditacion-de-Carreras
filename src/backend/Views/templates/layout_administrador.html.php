@@ -7,8 +7,8 @@
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/bootstrap/bootstrap-custom.css">
     <link rel="stylesheet" href="/public/css/app.css">
+    <link rel="stylesheet" href="/public/css/bootstrap/bootstrap-custom.css">
     <title><?= $titulo; ?></title>
 </head>
 <body>
@@ -21,7 +21,7 @@
             <div class="menu-lateral">
                 <div class="contenedor-informacion">
                     <h4>Información</h4>
-                    <ul class="flex-columna gap-flex-1">
+                    <ul class="flex-columna gap-flex-1 list-unstyled">
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe7fd;</span>
                                 <span class="text-blanco text-w-medio"><?=$usuario->nombre;?></span>
@@ -36,27 +36,27 @@
                     <h6 class="text-blanco borde-top text-center">Menú Principal</h6>
                     <nav class="flex-columna margin-top-menos-1" id="menu-principal">
     
-                        <a href="/admin" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe88a;</span>
                         <span class="text-blanco bordes-op-menu">Inicio</span>
                         </a>
-                        <a href="/admin/agregar/ciclo/academico" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin/agregar/ciclo/academico" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe02f;</span>
                         <span class="text-blanco bordes-op-menu">Periodo Académico</span>
                         </a>
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe0e0;</span>
                         <span class="text-blanco bordes-op-menu ">Ingresar Carrera / Inscripción</span>
                         </a>
-                        <a href="/admin/agregar/coordinador" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin/agregar/coordinador" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe7fe;</span>
                         <span class="text-blanco bordes-op-menu ">Ingresar Coordinador de Carrera</span>
                         </a>
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeade;</span>
                         <span class="text-blanco bordes-op-menu ">Cambiar Contraseña</span>
                         </a>
-                        <a href="/salir" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5 salir">
+                        <a href="/salir" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5 salir">
                         <span class="material-icons text-negro">&#xe9ba;</span>
                         <span class="text-blanco bordes-op-menu ">Cerrar Sesión</span>
                         </a>
