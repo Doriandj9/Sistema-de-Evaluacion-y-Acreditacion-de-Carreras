@@ -1,4 +1,5 @@
 @import url('./colores.css');
+
 .contenedor-principal{
     display: flex;
     flex-direction: column;
@@ -18,11 +19,10 @@
     display: flex;
     flex-direction: row;
 }
-
 .menu-lateral{
-    width: 16rem;
-    min-width: 16rem;
-    max-width: 16rem;
+    width: 18rem;
+    min-width: 18rem;
+    max-width: 18rem;
     background-color: var(--color-primario);
     border-right: 10px solid var(--color-secundario);
 }
@@ -33,6 +33,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .contenido-principal{
     flex-grow: 1;
 }
@@ -50,20 +51,26 @@
     font-size: var(--tamano-t2);
     margin: 0;
 }
-
 .contenedor-navegacion{
+    resize:both;
+    margin-top: 2rem;
     font-family: var(--tipografia-4);
     font-size: calc(var(--tamano-t4) + 0.05rem);
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2), 0 -0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+.contenedor-navegacion > h6{
+    padding: 0.5rem 0;
 }
 .contenedor-informacion{
     background-color: var(--color-primario);
     font-family: var(--tipografia-4);
     font-size: var(--tamano-2-t4);
 }
-.contenedor-informacion > h2 {
+.contenedor-informacion > h4 {
     color: var(--color-letras-informacion);
     text-align: center;
+    padding: 1rem 0;
+    font-weight: var(--anchor-2-t4);
 }
 .contenedor-informacion li span:last-child{
     text-align: justify;
