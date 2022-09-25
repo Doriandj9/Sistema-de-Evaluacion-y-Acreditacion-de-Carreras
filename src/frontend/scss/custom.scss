@@ -1,0 +1,33 @@
+// customizamos las variables de los colores que se usaran en el proyecto
+
+$primary: #59809C;
+$secondary: #505C6A;
+$padding-x: 0;
+.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.border-let-menu{
+    border: 5px solid $primary;
+}
+@import "../node_modules/bootstrap/scss/functions";
+
+@import "../node_modules/bootstrap/scss/variables";
+
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+
+@import "../node_modules/bootstrap/scss/containers";
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here

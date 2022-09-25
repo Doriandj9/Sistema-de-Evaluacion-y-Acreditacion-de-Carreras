@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "prettier":{
+  "prettier": {
     "arrowParens": "always",
     "bracketSameLine": false,
     "bracketSpacing": true,
@@ -24,6 +24,8 @@
   "author": "Dorian Armijos",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.2.1",
+    "bootstrap-icons": "^1.9.1",
     "moment": "^2.29.4"
   }
 }
