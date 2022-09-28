@@ -586,3 +586,14 @@ form,form::after,form::before,
 .centrado-linea::before {
     box-sizing: content-box !important;
 }
+.contenedor-alert-1{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1055;
+}
+.contenedor-alert-1 svg{
+    width: 16px;
+    height: 16px;
+}
