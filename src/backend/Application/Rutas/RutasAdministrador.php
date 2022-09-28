@@ -40,6 +40,12 @@ class RutasAdministrador implements Route
                     'action' => 'agregarPeriodoAcademico'
                 ]
             ],
+            'admin/editar/ciclo/academico' => [
+                'POST' => [
+                    'controller' => $periodoAcademico,
+                    'action' => 'editarPeriodoAcademico'
+                ]
+            ],
             'admin/agregar/coordinador' => [
                 'GET' => [
                     'controller' => $coordinador,

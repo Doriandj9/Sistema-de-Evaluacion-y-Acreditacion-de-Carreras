@@ -37,16 +37,45 @@ class PeriodoAcademico implements Controller
         try {
             $this->periodoAcademico->insert($datos);
             $respuesta = [
-                'result' => 1,
-                'error' => ''
+                'ident' => 1,
+                'mensaje' => 'Se inserto correctamente'
             ];
             Http::responseJson(json_encode($respuesta));
         } catch (\PDOException $e) {
             $respuesta = [
-                'result' => 0,
-                'error' => $e->getMessage()
+                'ident' => 0,
+                'mensaje' => $e->getMessage()
             ];
             Http::responseJson(json_encode($respuesta));
+        }
+    }
+
+    public function editarPeriodoAcademico(){
+        $dataActualizar = [
+            'fecha_inicial' => trim($_POST['fecha_inicial']),
+            'fecha_final' => trim($_POST['fecha_final']),
+            'id' => trim($_POST['id_editado'])
+        ];
+        try{
+            if($this->periodoAcademico->updateValues(trim($_POST['id']),$dataActualizar)) {
+                Http::responseJson(json_encode(
+                    [
+                        'ident' => 1,
+                        'mensaje' => 'Se actualizo correctamente'
+                    ]
+                    ));
+
+            }else{
+                throw new \PDOException('No se pudo actualizar');
+            }
+
+        }catch(\PDOException $e){
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'mensaje' => $e->getMessage()
+                ]
+                ));
         }
     }
 }
