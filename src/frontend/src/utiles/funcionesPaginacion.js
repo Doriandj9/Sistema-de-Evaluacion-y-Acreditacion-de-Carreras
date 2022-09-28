@@ -88,7 +88,7 @@ export function paginacionCicloAcademico(datos,divicionDatos,numeroActual,tbody,
               <label for="staticEmail" class="col-sm-2 col-form-label">Periodo Académico</label>
               <div class="col-sm-10">
                 <input type="hidden" name="id" value="${dato.id}">
-                <input type="text" name="id_editado" class="form-control-plaintext" id="staticEmail" value="${dato.id}">
+                <input type="text" name="id_editado" class="form-control" id="staticEmail" value="${dato.id}">
               </div>
             </div>
             <div class="mb-3 row">
