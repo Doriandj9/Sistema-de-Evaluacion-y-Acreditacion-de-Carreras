@@ -28,6 +28,12 @@ $padding-x: 0;
 @import "../node_modules/bootstrap/scss/containers";
 // Include any default variable overrides here (though functions won't be available)
 
+$custom-colors: (
+    'color-gris': #DAE0D2
+);
+
+$theme-colors: map-merge($map1: $theme-colors, $map2:$custom-colors);
+
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // Then add additional custom code here
