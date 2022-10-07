@@ -5,15 +5,23 @@
     let pathArray = path.split('/');
     path = pathArray[1];
     const controllerMain = {
-        "": function(){ 
+        '': function(){ 
             import('./../pages/login.js')
             .then()
             .catch(e => console.error('[JS002] ' + e));
          },
-        "docente": function(){
+         'opciones': function(){ 
+            import('./../pages/opciones.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));
+         },
+        'docente': function(){
                          
         },
-        "admin": function(){
+        'coordinador': function(){
+                         
+        },
+        'admin': function(){
             import('./adminController.js')
             .then()
             .catch(e => console.error('[JS002] ' + e));
