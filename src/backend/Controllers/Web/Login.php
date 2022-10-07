@@ -8,7 +8,6 @@ use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Frame\Autentification;
 use App\backend\Models\Docente;
-use Error;
 
 class Login implements Controller
 {
@@ -39,9 +38,12 @@ class Login implements Controller
                 }
             ];
             try {
-                $redirecionarHacia[Docente::getUsuario($_SESSION['email'])->permisos]();
+                if(isset($_SESSION['opciones']) && !$_SESSION['opciones']){
+                    Http::redirect('/opciones');
+                }
+                $redirecionarHacia[$_SESSION['permiso']]();
             } catch (\ErrorException $th) {
-                throw new Error('Error no se encontro una redireccion para este usuario');
+                throw new \Error('Error no se encontro una redireccion para este usuario');
             }
         }
         return [
@@ -67,6 +69,24 @@ class Login implements Controller
         }
     }
 
+    public function opcionesLuegoSession(): array
+    {
+        $usuario = $this->autentificacion->getUsuario();
+        if(!$usuario) {
+            http::redirect('/');
+        }
+        if(Docente::tienePermisos(Docente::ADMIN)){
+            http::redirect('/admin');
+        }
+        if(isset($_SESSION['opciones']) && $_SESSION['opciones']) {
+            http::redirect('/');
+        }
+        $_SESSION['opciones'] = false;
+        return [
+            'title' => 'FACULTAD DE CIENCIAS ADMINISTRATIVAS GESTION EMPRESARIAL E INFORMATICA - UEB',
+            'template' => 'ui/opciones.html.php'
+        ];
+    }
     public function cerrarSesion(): void
     {
         unset($_SESSION);
