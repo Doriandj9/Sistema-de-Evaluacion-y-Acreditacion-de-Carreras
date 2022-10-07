@@ -2,10 +2,7 @@
 .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
   padding-left: 0 !important;
   padding-right: 0 !important;
-}
-
-.border-let-menu {
-  border: 5px solid #59809C;
+  --bs-active: #000;
 }
 
 :root {
