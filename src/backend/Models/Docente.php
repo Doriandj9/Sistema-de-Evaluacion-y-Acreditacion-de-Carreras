@@ -39,9 +39,9 @@ class Docente extends DatabaseTable
         ->join('usuarios', 'usuarios.id', '=', 'usuarios_docente.id_usuarios')
         ->get(['permisos','correo'])
         ->where('correo', '=', trim($_SESSION['email']))
-        ->where('permisos','=',$permisos)
+        ->where('permisos', '=', $permisos)
         ->first();
-        if(isset($_SESSION['permiso'])){
+        if (isset($_SESSION['permiso'])) {
             return $permisos !== intval($_SESSION['permiso']) ? false : true;
         }
         return $usuario ?  true : false;
@@ -61,21 +61,21 @@ class Docente extends DatabaseTable
     public function getTodosPermisos($id):\Illuminate\Support\Collection
     {
         $resultado = DB::table(self::TABLE)
-        ->join('usuarios_docente','docentes.id', '=', 'usuarios_docente.id_docentes')
+        ->join('usuarios_docente', 'docentes.id', '=', 'usuarios_docente.id_docentes')
         ->join('usuarios', 'usuarios_docente.id_usuarios', '=', 'usuarios.id')
         ->get(['permisos','id_docentes'])
-        ->where('id_docentes','=',$id);
+        ->where('id_docentes', '=', $id);
         return $resultado;
     }
 
-    public function getCarrerasPorPermisos($id_usuarios,$id_docente) {
+    public function getCarrerasPorPermisos($id_usuarios, $id_docente)
+    {
         $resultado = DB::table(Carreras::TABLE)
-        ->join(UsuariosDocente::TABLE,UsuariosDocente::TABLE . '.id_carrera' ,'=', Carreras::TABLE . '.id')
-        ->where('id_usuarios','=',$id_usuarios)
+        ->join(UsuariosDocente::TABLE, UsuariosDocente::TABLE . '.id_carrera', '=', Carreras::TABLE . '.id')
+        ->where('id_usuarios', '=', $id_usuarios)
         ->get(['id_docentes','id_carrera','nombre']) // nombre se refiere al nombre de la carrera
-        ->where('id_docentes','=',$id_docente);
+        ->where('id_docentes', '=', $id_docente);
 
         return $resultado;
-
     }
 }

@@ -38,7 +38,7 @@ class Login implements Controller
                 }
             ];
             try {
-                if(isset($_SESSION['opciones']) && !$_SESSION['opciones']){
+                if (isset($_SESSION['opciones']) && !$_SESSION['opciones']) {
                     Http::redirect('/opciones');
                 }
                 $redirecionarHacia[$_SESSION['permiso']]();
@@ -72,13 +72,13 @@ class Login implements Controller
     public function opcionesLuegoSession(): array
     {
         $usuario = $this->autentificacion->getUsuario();
-        if(!$usuario) {
+        if (!$usuario) {
             http::redirect('/');
         }
-        if(Docente::tienePermisos(Docente::ADMIN)){
+        if (Docente::tienePermisos(Docente::ADMIN)) {
             http::redirect('/admin');
         }
-        if(isset($_SESSION['opciones']) && $_SESSION['opciones']) {
+        if (isset($_SESSION['opciones']) && $_SESSION['opciones']) {
             http::redirect('/');
         }
         $_SESSION['opciones'] = false;

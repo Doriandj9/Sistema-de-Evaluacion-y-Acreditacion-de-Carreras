@@ -7,7 +7,8 @@ use App\backend\Controllers\Controller;
 use App\backend\Models\Docente;
 
 
-class Carreras implements Controller {
+class Carreras implements Controller
+{
     private Docente $carreras;
 
     public function __construct()
@@ -30,7 +31,8 @@ class Carreras implements Controller {
         ];
     }
 
-    public function guardarOpciones() {
+    public function guardarOpciones()
+    {
         try {
             //code...
             $_SESSION['opciones'] = true;
@@ -50,6 +52,5 @@ class Carreras implements Controller {
                 ]
             ));
         }
-
     }
 }

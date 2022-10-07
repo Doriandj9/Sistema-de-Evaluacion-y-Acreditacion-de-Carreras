@@ -56,8 +56,8 @@ class Autentification
             $_SESSION['clave'] = $usuario->{$this->clave};
             $permisos = $this->usuarios->getTodosPermisos($usuario->id);
             $permisosTok = [];
-            foreach($permisos as $permiso) {
-                array_push($permisosTok,$permiso->permisos);
+            foreach ($permisos as $permiso) {
+                array_push($permisosTok, $permiso->permisos);
             }
             // Creamos un token con json web token de firebase
             // que sea unico por cada inicio de session
@@ -94,7 +94,7 @@ class Autentification
         $result = $this->comprobacionSesion();
         if ($result) {
             return $result;
-        }else {
+        } else {
             return false;
         }
     }
