@@ -29,7 +29,7 @@ class Docentes implements Controller
         }
         return [
             'title' => '',
-            'template' => 'docentes/datos.html.php',
+            'template' => 'datos/docentes.html.php',
             'variables' => [
                 'docentes' => $docentes
             ]
