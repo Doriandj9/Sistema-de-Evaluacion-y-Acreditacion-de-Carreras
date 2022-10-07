@@ -1,4 +1,5 @@
-<div class="contenedor-3 bg-color-encabezado padding-abajo-1">
+<div class="w-100 h-100 d-flex justify-content-center align-items-center">
+<div class="contenedor-3 bg-color-encabezado padding-abajo-1 mt-0">
     <form class="form form-flex-column flex-items-center gap-flex-1">
         <div class="centrado-absoluto rectangulo-azul text-blanco  flex-item-alargado bordes-r-arriba">
             Inicio de sesión
@@ -20,4 +21,5 @@
         </div>
         <button class="boton boton-enviar-login is-hover-boton-enviar">Ingresar</button>
     </form>
+</div>
 </div>
