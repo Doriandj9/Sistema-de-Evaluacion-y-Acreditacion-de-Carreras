@@ -417,7 +417,7 @@ nav.flex-columna > a:last-child > span:last-child{
     width: 23px;
     top: 0;
     right: 0;
-    transform: rotate(-135deg) translate(-10px,-10px);
+    transform: rotate(-135deg) translate(-12px,-12px);
     z-index: 1;
 }
 .posicionado-derecha-ojo{
@@ -596,4 +596,81 @@ form,form::after,form::before,
 .contenedor-alert-1 svg{
     width: 16px;
     height: 16px;
+}
+.color-active{
+    --bs-btn-active-bg: var(--color-b-2) !important;
+    --bs-btn-hover-bg: var(--color-b-2) !important;
+}
+.h-90{
+    height: 90%;
+}
+.w-60{
+    width: 60%;
+}
+.w-65{
+    width: 65%;
+}
+.bg-color-gris {
+    background-color: var(--color-f-2);
+}
+.h-p-1{
+    height: 2rem;
+}
+.cuadro-blaco-p{
+    width: 98%;
+    height: 90%;
+    background-color: white;
+
+}
+.cuadro-redondo{
+    background-color: var(--color-b-1);
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -2rem;    
+}
+.ancho1{
+    width: 5rem;
+    height: 5rem;
+}
+.img-header-options{
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+.tabla-contenido-2 {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.tabla-contenido-2 thead th{
+    background-color: var(--color-primario);
+    color: white;
+    text-align: center;
+    padding: 0.5rem 3.5rem;
+}
+.tabla-contenido-2 tbody td {
+    background-color: var(--color-f-2);
+    padding: 0.25rem;
+}
+.tabla-contenido-2 tbody td:first-child {
+    width: 60% !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.tabla-contenido-2 tbody td:last-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+}
+.contenedor-mensaje-no-autorizado {
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contenedor-mensaje-no-autorizado > img {
+    width: 8rem;
+    height: 14rem;
 }
