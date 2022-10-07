@@ -131,7 +131,7 @@ let confirm = false; // Es una bandera para enviar los datos a editar
  * se oculta el modal para no tener problemas con el nuevo renderizado del DOOM
  */
 formsEditar.forEach(form => {
-    const modal =  new bootstrap.Modal(form.querySelector('.modal'),{}); // Es un modal de bootstrap para luego cerrarlo autmaicamente en algun punto
+    const modal =  new bootstrap.Modal(form.querySelector('.modal'),{backdrop:'static'}); // Es un modal de bootstrap para luego cerrarlo autmaicamente en algun punto
     form.addEventListener('change',() => {
         confirm = true;
     });// si escucha algun cambio el furmulario activa la opcion 
@@ -143,7 +143,9 @@ formsEditar.forEach(form => {
         e.preventDefault();
         const formData = new FormData(form);
         if(confirm){ // Si es verdadera se precede a enviar los datos
-            modal.hide();
+           modal.hide();
+           document.body.querySelectorAll('.modal-backdrop.fade.show') // bug de modales resueltos con esta linea
+           .forEach(mod => mod.remove());// y esta
             precarga = new Precarga();
             precarga.run();
             finalizar = true;
