@@ -33,6 +33,12 @@ class RutasWeb implements Route
                     'action' => 'verificarInicioSesion'
                 ]
                 ],
+                'opciones' => [
+                    'GET' => [
+                        'controller' => $loginController,
+                        'action' => 'opcionesLuegoSession'
+                    ],
+                ],
             'salir' => [
                 'GET' => [
                     'controller' => $loginController,
