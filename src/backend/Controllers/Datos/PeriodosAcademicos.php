@@ -17,7 +17,7 @@ class PeriodosAcademicos implements Controller
         $variables['periodoAcademico'] = $periodosAcademicos;
         return [
             'title' => '',
-            'template' => 'administrador/datos-periodo-academico.html.php',
+            'template' => 'datos/periodo-academico.html.php',
             'variables' => $variables
         ];
     }

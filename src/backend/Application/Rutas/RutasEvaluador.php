@@ -6,6 +6,7 @@ namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Evaluador\Inicio;
 use App\backend\Frame\Route;
+use App\backend\Models\Docente;
 
 class RutasEvaluador implements Route
 {
@@ -29,6 +30,9 @@ class RutasEvaluador implements Route
 
     public function getRestrict(): array
     {
-        return [];
+        return [
+            'login' => true,
+            'permisos' => Docente::EVALUADORES
+        ];
     }
 }

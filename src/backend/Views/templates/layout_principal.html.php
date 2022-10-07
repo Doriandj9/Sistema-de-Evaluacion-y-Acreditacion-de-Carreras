@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" href="/public/css/app.css">
+    <link rel="stylesheet" href="/public/css/bootstrap/bootstrap-custom.css">
     <title><?= $titulo; ?></title>
 </head>
 <body>
@@ -16,8 +17,8 @@
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <div class="rectangulo-azul"></div>
-        <main class="cuerpo-principal centrado-absoluto">
-                    <div class="contenido-principal centrado-absoluto">
+        <main class="cuerpo-principal">
+                    <div class="contenido-principal">
                         <?= $contenido; ?>
                     </div>
         </main>

@@ -13,3 +13,10 @@ import './../../src/frontend/src/controller/mainController.js';
  * pero de forma global
  */
 import './../../src/frontend/src/utiles/funciones.js';
+
+/**
+ * Esto llama a todas las partes necesarias de bootstrap para el funcionamiento
+ * de los componentes
+ */
+import './../../src/frontend/node_modules/bootstrap/dist/js/bootstrap.min.js';
+import './../../src/frontend/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';

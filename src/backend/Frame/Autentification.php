@@ -54,13 +54,20 @@ class Autentification
             session_regenerate_id();
             $_SESSION['email'] = $usuario->{$this->email};
             $_SESSION['clave'] = $usuario->{$this->clave};
+            $permisos = $this->usuarios->getTodosPermisos($usuario->id);
+            $permisosTok = [];
+            foreach ($permisos as $permiso) {
+                array_push($permisosTok, $permiso->permisos);
+            }
             // Creamos un token con json web token de firebase
             // que sea unico por cada inicio de session
             date_default_timezone_set('America/Guayaquil');
             $fecha = new \DateTime();
             $datos = [
+                'id_usuario' => $usuario->id,
+                'usuario' => $usuario->{$this->email},
                 'tiempo' => $fecha->getTimestamp(),
-                'usuario' => $usuario->{$this->email}
+                'permisos' => $permisosTok
             ];
             $token = Jwt::crearToken($datos);
             $_SESSION['token'] = $token;
@@ -87,6 +94,8 @@ class Autentification
         $result = $this->comprobacionSesion();
         if ($result) {
             return $result;
+        } else {
+            return false;
         }
     }
 }

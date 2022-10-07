@@ -1,5 +1,5 @@
 <?php
-
+use App\backend\Models\Carreras;
 use App\backend\Models\Docente;
 ?>
 <!DOCTYPE html>
@@ -32,20 +32,24 @@ use App\backend\Models\Docente;
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe80c;</span>
                                 <span class="text-blanco text-w-medio">
-                                <?= Docente::getUsuarioCompleto()[0]->nombre; ?> <!-- ->nombre hace referencia al nombre de la carrera -->
+                                <?php
+                                $carrera = new Carreras();
+                                echo $carrera->selectFromColumn('id',$_SESSION['carrera'])->first()->nombre
+                                  ?? Docente::getUsuarioCompleto()[0]->nombre; 
+                                 ?> <!-- ->nombre hace referencia al nombre de la carrera -->
                                 </span>
                             </li>
                     </ul>
                 </div>
                 <div class="contenedor-navegacion">
                     <h4 class="text-blanco borde-top text-center padding-top-2">Menú Principal</h4>
-                    <nav class="flex-columna margin-top-menos-1">
+                    <nav class="flex-columna margin-top-menos-1" id="menu-principal">
     
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/coordinador" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe88a;</span>
                         <span class="text-blanco bordes-op-menu">Inicio</span>
                         </a>
-                        <a href="/admin/agregar/ciclo/academico" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe147;</span>
                         <span class="text-blanco bordes-op-menu">Agregar Periodo Académico</span>
                         </a>
@@ -53,7 +57,7 @@ use App\backend\Models\Docente;
                         <span class="material-icons text-negro">&#xe0e0;</span>
                         <span class="text-blanco bordes-op-menu ">Ingresar Carrera / Inscripción</span>
                         </a>
-                        <a href="/admin/agregar/coordinador" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe7fe;</span>
                         <span class="text-blanco bordes-op-menu ">Ingresar Coordinador de Carrera</span>
                         </a>

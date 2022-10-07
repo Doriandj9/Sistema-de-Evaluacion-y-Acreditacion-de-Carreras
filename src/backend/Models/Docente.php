@@ -32,9 +32,19 @@ class Docente extends DatabaseTable
         return $resultado;
     }
 
-    public static function tienePermisos($permisos): int // retorna 0 o 1 que se trata como verdadero o falso
+    public static function tienePermisos($permisos): bool // retorna 0 o 1 que se trata como verdadero o falso
     {
-        return Docente::getUsuario($_SESSION['email'])->permisos & $permisos; // busqueda bit a bit
+        $usuario = DB::table(self::TABLE)
+        ->join('usuarios_docente', 'docentes.id', '=', 'usuarios_docente.id_docentes')
+        ->join('usuarios', 'usuarios.id', '=', 'usuarios_docente.id_usuarios')
+        ->get(['permisos','correo'])
+        ->where('correo', '=', trim($_SESSION['email']))
+        ->where('permisos', '=', $permisos)
+        ->first();
+        if (isset($_SESSION['permiso'])) {
+            return $permisos !== intval($_SESSION['permiso']) ? false : true;
+        }
+        return $usuario ?  true : false;
     }
 
     public static function getUsuarioCompleto(): \Illuminate\Support\Collection
@@ -45,6 +55,27 @@ class Docente extends DatabaseTable
         ->join('usuarios', 'usuarios_docente.id_usuarios', '=', 'usuarios.id')
         ->join('carreras', 'carreras.id', '=', 'usuarios_docente.id_carrera')
         ->get();
+        return $resultado;
+    }
+
+    public function getTodosPermisos($id):\Illuminate\Support\Collection
+    {
+        $resultado = DB::table(self::TABLE)
+        ->join('usuarios_docente', 'docentes.id', '=', 'usuarios_docente.id_docentes')
+        ->join('usuarios', 'usuarios_docente.id_usuarios', '=', 'usuarios.id')
+        ->get(['permisos','id_docentes'])
+        ->where('id_docentes', '=', $id);
+        return $resultado;
+    }
+
+    public function getCarrerasPorPermisos($id_usuarios, $id_docente)
+    {
+        $resultado = DB::table(Carreras::TABLE)
+        ->join(UsuariosDocente::TABLE, UsuariosDocente::TABLE . '.id_carrera', '=', Carreras::TABLE . '.id')
+        ->where('id_usuarios', '=', $id_usuarios)
+        ->get(['id_docentes','id_carrera','nombre']) // nombre se refiere al nombre de la carrera
+        ->where('id_docentes', '=', $id_docente);
+
         return $resultado;
     }
 }
