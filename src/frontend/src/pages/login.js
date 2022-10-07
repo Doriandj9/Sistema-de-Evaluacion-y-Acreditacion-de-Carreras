@@ -11,8 +11,8 @@ const restriciones = {};
 		restriciones[usuarios.ARMINISTRADOR] = function () {
 			location.href = '/admin';
 		};
-		restriciones[usuarios.COORDINADORES] = function () {
-			location.href = '/coordinador';
+		restriciones['opciones'] = function () {
+			location.href = '/opciones';
 		}
 		
         
@@ -32,7 +32,7 @@ function verificarUsuario(resultado) {
 		try {
             precarga.end();
             localStorage.Tok_ = resultado.token;
-			restriciones[resultado.permisos]();
+			restriciones[resultado.permisos !== 16 ? 'opciones' : resultado.permisos]();
 		} catch (e) {
 			console.log(e);
 		}
