@@ -10,7 +10,7 @@ class Docente extends DatabaseTable
 {
     public const TABLE = 'docentes';
     public const DOCENTES = 1;
-    public const SECRETARIAS = 2;
+    public const DIRECTOR_PLANEAMIENTO = 2;
     public const COORDINADORES = 4;
     public const EVALUADORES = 8;
     public const ADMIN = 16;
