@@ -674,3 +674,92 @@ form,form::after,form::before,
     width: 8rem;
     height: 14rem;
 }
+.img-inicio-options-home {
+    width: 14rem;
+    height: 5rem;
+}
+.ancho-tarjetas-1 {
+    width: 20rem;
+}
+/*---------------------------Tipografias-----------------------*/
+
+.tipografia-times-1{
+    font-family: var(--tipografia-1);
+    font-size: var(--tamano-t1);
+    font-weight: var(--anchor-t1);
+}
+
+.tipografia-georgia-1{
+    font-family: var(--tipografia-2);
+    font-size: var(--tamano-t2);
+    font-weight: var(--anchor-t2);
+}
+
+.tipografia-georgia-2 {
+    font-family: var(--tipografia-2);
+    font-size: var(--tamano-2-t2);
+    font-weight: var(--anchor-t2);
+}
+
+.tipografia-new-1 {
+    font-family: var(--tipografia-3);
+    font-size: var(--tamano-t3);
+    font-weight: var(--anchor-t3);
+}
+
+.tipografia-verdana-1 {
+    font-family: var(--tipografia-4);
+    font-size: var(--tamano-t4);
+    font-weight: var(--anchor-t4);
+}
+.tipografia-verdana-2 {
+    font-family: var(--tipografia-4);
+    font-size: var(--tamano-2-t4);
+    font-weight: var(--anchor-2-t4);
+}
+.tipografia-verdana-3 {
+    font-family: var(--tipografia-4);
+    font-size: var(--tamano-2-t4);
+    font-weight: var(--anchor-t4);
+}
+.tipografia-verdana-4 {
+    font-family: var(--tipografia-4);
+    font-size: var(--tamano-t4);
+    font-weight: var(--anchor-2-t4);
+}
+
+.tipografia-sanSerif-1{
+    font-family: var(--tipografia-5);
+    font-size: var(--tamano-t5);
+    font-weight: var(--anchor-t5);
+}
+.tipografia-sanSerif-2{
+    font-family: var(--tipografia-5);
+    font-size: var(--tamano-t5);
+    font-weight: var(--anchor-2-t5);
+}
+.tipografia-sanSerif-3{
+    font-family: var(--tipografia-5);
+    font-size: var(--tamano-2-t5);
+    font-weight: var(--anchor-t5);
+}
+.tipografia-sanSerif-4{
+    font-family: var(--tipografia-5);
+    font-size: var(--tamano-2-t5);
+    font-weight: var(--anchor-2-t5);
+}
+.tipografia-sanSerif-5{
+    font-family: var(--tipografia-5);
+    font-size: var(--tamano-3-t5);
+    font-weight: var(--anchor-t5);
+}
+.tipografia-sanSerif-6{
+    font-family: var(--tipografia-5);
+    font-size: var(--tamano-3-t5);
+    font-weight: var(--anchor-2-t5);
+}
+.tipografia-Open-1 {
+    font-family: var(--tipografia-6);
+    font-size: var(--tamano-t6);
+    font-weight: var(--anchor-t6);
+}
