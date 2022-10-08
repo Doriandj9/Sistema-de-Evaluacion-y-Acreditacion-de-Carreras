@@ -6,6 +6,7 @@ namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Docente\Inicio;
 use App\backend\Frame\Route;
+use App\backend\Models\Docente;
 
 class RutasDocente implements Route
 {
@@ -36,7 +37,8 @@ class RutasDocente implements Route
     public function getRestrict(): array
     {
         return [
-            'permisossss' => ''
+            'login' => true,
+            'permisos' => Docente::DOCENTES
         ];
     }
 }
