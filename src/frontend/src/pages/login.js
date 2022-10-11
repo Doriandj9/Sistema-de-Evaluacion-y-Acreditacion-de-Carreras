@@ -13,7 +13,10 @@ const restriciones = {};
 		};
 		restriciones['opciones'] = function () {
 			location.href = '/opciones';
-		}
+		};
+		restriciones[usuarios.DIRECTOR_PLANEAMIENTO] = function () {
+			location.href = '/director-planeamiento';
+		};
 		
         
 function verificarCredenciales(e) {
@@ -32,7 +35,11 @@ function verificarUsuario(resultado) {
 		try {
             precarga.end();
             localStorage.Tok_ = resultado.token;
-			restriciones[resultado.permisos !== 16 ? 'opciones' : resultado.permisos]();
+			let refPermisos = [usuarios.ARMINISTRADOR,usuarios.DIRECTOR_PLANEAMIENTO]; // guardamos las dos referencias alos usuarios 
+			//que no deben acceder a la vista de opciones
+			restriciones[refPermisos.includes(resultado.permisos) ? //a qui condicionamos si el usuario que ingreso es admin o director
+				refPermisos[refPermisos.indexOf(resultado.permisos)] : 'opciones']();// si lo es busca el permiso en en refPermisos
+				//por otro lado si no es admin o director se redirige hacia la vista de opciones
 		} catch (e) {
 			console.log(e);
 		}

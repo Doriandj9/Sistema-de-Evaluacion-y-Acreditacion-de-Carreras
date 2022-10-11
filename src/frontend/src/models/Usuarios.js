@@ -1,6 +1,6 @@
 export default class Usuarios {
 	DOCENTES = 1;
-	SECRETARIAS = 2;
+	DIRECTOR_PLANEAMIENTO = 2;
 	COORDINADORES = 4;
 	EVALUADOR = 8;
 	ARMINISTRADOR = 16;
@@ -8,7 +8,7 @@ export default class Usuarios {
 		try {
 			const consulta = await fetch("/", { method: "POST", body: formData });
 			if (consulta.headers.get("Content-Type") !== "application/json")
-				throw new Error("Erro no esta resiviendo un JSON");
+				throw new Error("Error no esta resiviendo un JSON");
 			const resultado = await consulta.json();
 			return resultado;
 		} catch (error) {
@@ -72,7 +72,7 @@ export default class Usuarios {
             const respuesta = await consulta.json();
             return respuesta;            
         }catch(e){
-			const respuesta = {ident:0,mensaje:e}
+			const respuesta = {ident: 0,mensaje: e}
             return JSON.stringify(respuesta);
         }
     }

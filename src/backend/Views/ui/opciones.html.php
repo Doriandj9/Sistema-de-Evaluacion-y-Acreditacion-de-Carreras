@@ -3,16 +3,10 @@
         <div class="container-fluid bg-primary p-2 text-white text-center">
             Menu
         </div>
-        <button data-content-permision="2" type="button" class="btn btn-color-gris container-fluid color-active rounded-0
-        d-flex align-items-center gap-2 text-start " data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="material-icons">&#xe5c8;</span> <span class="fw-bold">Secretaría</span>  
-        </button>
-        <ul class="dropdown-menu w-100 d-none">
-        </ul>
-
+  
         <button data-content-permision="4" type="button" class="btn btn-color-gris container-fluid color-active rounded-0
         d-flex align-items-center gap-2 text-start " data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="material-icons">&#xe5c8;</span> <span class="fw-bold">Coordinador</span>  
+        <span class="material-icons">&#xe5c8;</span> <span class="fw-bold">Coordinador</span>
         </button>
         <ul class="dropdown-menu w-100 d-none">
         </ul>
