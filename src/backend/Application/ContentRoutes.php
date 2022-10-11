@@ -7,6 +7,7 @@ namespace App\backend\Application;
 use App\backend\Application\Rutas\RutasAdministrador;
 use App\backend\Application\Rutas\RutasCoordinador;
 use App\backend\Application\Rutas\RutasDatos;
+use App\backend\Application\Rutas\RutasDirectorPlaneamiento;
 use App\backend\Application\Rutas\RutasDocente;
 use App\backend\Application\Rutas\RutasEvaluador;
 use App\backend\Application\Rutas\RutasWeb;
@@ -53,7 +54,8 @@ class ContentRoutes
             'evaluador' => new RutasEvaluador,
             'coordinador' => new RutasCoordinador,
             'admin' => new RutasAdministrador,
-            'datos' => new RutasDatos
+            'datos' => new RutasDatos,
+            'director-planeamiento' => new RutasDirectorPlaneamiento
         ];
     }
 

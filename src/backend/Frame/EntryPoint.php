@@ -53,7 +53,7 @@ class EntryPoint
         'docente' => 'docente',
         'admin' => 'admin',
         'evaluador' => 'evaluador',
-        'secretaria' => 'secretaria',
+        'director-planeamiento' => 'director-planeamiento',
         'coordinador' => 'coordinador',
         'datos' => 'datos'
     ];

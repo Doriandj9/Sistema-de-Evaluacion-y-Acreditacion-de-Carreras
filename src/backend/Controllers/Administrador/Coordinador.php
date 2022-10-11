@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\backend\Controllers\Administrador;
 
-use App\backend\Application\Utilidades\DB;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
-use App\backend\Frame\Autentification;
 use App\backend\Models\Carreras;
 use App\backend\Models\Docente;
 use App\backend\Models\UsuariosDocente;
@@ -46,7 +44,8 @@ class Coordinador implements Controller
             'id_carrera' => $_POST['carreras'],
             'fecha_inicial' => $_POST['fecha_inicial'],
             'fecha_final' => $_POST['fecha_final'],
-            'estado' => 'activo'
+            'estado' => 'activo',
+            'cambio_clave' => true
         ];
         // Esta linea sirve para generar la clave encriptada del coordinador para ingresar al sistema
         // que por defecto es el mismo numero de cedula
@@ -80,7 +79,10 @@ class Coordinador implements Controller
                 }
             }
             $this->usuarioDocenteModelo->insert($datos_docentes_usuario);
-            $this->docenteModelo->update($_POST['coordinador'], $dato_docente_clave);// aqui se actualiza la clave
+            if (!$this->docenteModelo->updateValues($_POST['coordinador'], $dato_docente_clave)) {
+                // docenteModelo::updateValues aqui se actualiza la clave y regresa verdader o falso
+                throw new \PDOException('Error: No se pudo actualizar correctamente la clave del usuario');
+            }
             Http::responseJson(json_encode(// en la table docente en la columna clave
                 ['ident' => 1, 'result' => 'Se ingreso correctamente el usuario coordinador', 'error' => '']
             ));

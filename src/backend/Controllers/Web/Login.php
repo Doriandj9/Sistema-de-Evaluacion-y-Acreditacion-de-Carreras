@@ -27,8 +27,8 @@ class Login implements Controller
                 Docente::DOCENTES => function () {
                     Http::redirect('/docente');
                 },
-                Docente::SECRETARIAS => function () {
-                    Http::redirect('/secretaria');
+                Docente::DIRECTOR_PLANEAMIENTO => function () {
+                    Http::redirect('/director-planeamiento');
                 },
                 Docente::COORDINADORES => function () {
                     Http::redirect('/coordinador');
@@ -77,6 +77,9 @@ class Login implements Controller
         }
         if (Docente::tienePermisos(Docente::ADMIN)) {
             http::redirect('/admin');
+        }
+        if (Docente::tienePermisos(Docente::DIRECTOR_PLANEAMIENTO)) {
+            Http::redirect('/director-planeamiento');
         }
         if (isset($_SESSION['opciones']) && $_SESSION['opciones']) {
             http::redirect('/');

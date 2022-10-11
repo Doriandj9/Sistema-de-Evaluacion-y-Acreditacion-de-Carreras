@@ -21,6 +21,9 @@
         'coordinador': function(){
                          
         },
+        'director-planeamiento': function(){
+                         
+        },
         'admin': function(){
             import('./adminController.js')
             .then()
