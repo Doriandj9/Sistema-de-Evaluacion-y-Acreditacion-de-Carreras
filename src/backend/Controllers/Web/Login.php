@@ -78,7 +78,7 @@ class Login implements Controller
         if (Docente::tienePermisos(Docente::ADMIN)) {
             http::redirect('/admin');
         }
-        if(Docente::tienePermisos(Docente::DIRECTOR_PLANEAMIENTO)){
+        if (Docente::tienePermisos(Docente::DIRECTOR_PLANEAMIENTO)) {
             Http::redirect('/director-planeamiento');
         }
         if (isset($_SESSION['opciones']) && $_SESSION['opciones']) {

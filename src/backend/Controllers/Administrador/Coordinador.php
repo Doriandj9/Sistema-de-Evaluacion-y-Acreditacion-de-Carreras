@@ -79,7 +79,8 @@ class Coordinador implements Controller
                 }
             }
             $this->usuarioDocenteModelo->insert($datos_docentes_usuario);
-            if(!$this->docenteModelo->updateValues($_POST['coordinador'], $dato_docente_clave)) { // aqui se actualiza la clave
+            if (!$this->docenteModelo->updateValues($_POST['coordinador'], $dato_docente_clave)) {
+                // docenteModelo::updateValues aqui se actualiza la clave y regresa verdader o falso
                 throw new \PDOException('Error: No se pudo actualizar correctamente la clave del usuario');
             }
             Http::responseJson(json_encode(// en la table docente en la columna clave
