@@ -46,13 +46,15 @@ abstract class DatabaseTable extends Model
      * @param bool $orden determina si la busqueda se le aplique la clausula ORDER BY
      * @param string $columna es la columna por la cual se va a ordenar la busqueda
      * @param string $forma es si es ASC o DESC acendente o desendente
-     *
+     * @param array $columnas son las columnas que deseen que retorne
+     * 
      * @return \Illuminate\Support\Collection
      */
     public function select(
         bool $orden = false,
         string $columna = null,
-        string $forma = 'asc'
+        string $forma = 'asc',
+        array $columnas = ['*']
     ): \Illuminate\Support\Collection {
         $resultado = DB::table($this->table)
         ->select();
@@ -61,22 +63,26 @@ abstract class DatabaseTable extends Model
             ->orderBy($columna, $forma);
         }
 
-        return $resultado->get();
+        return $resultado->get($columnas);
     }
     /**
      * Lo mismo que select solo que por columnas
      *
      * @param string $columna es la comulna por la cual se buscara
      * @param string|int $valor es el valor que buscara en la columna
+     * @param array $columnas son las columnas que deseen que retorne
      *
      * @return \Illuminate\Support\Collection
      */
-    public function selectFromColumn(string $columna, string|int $valor): \Illuminate\Support\Collection
-    {
+    public function selectFromColumn(
+        string $columna,
+        string|int $valor,
+        array $columnas = ['*']
+        ): \Illuminate\Support\Collection {
         $resultado = DB::table($this->table)
         ->select()
         ->where($columna, '=', $valor)
-        ->get();
+        ->get($columnas);
         return $resultado;
     }
     /**
@@ -84,7 +90,7 @@ abstract class DatabaseTable extends Model
      *
      * @param string|int $primariKey la clave primaria
      * @param array $parametros son los parametros actualizar
-     *
+     * 
      * @return bool
      */
     public function updateValues(string|int $primaryKey, array $parametros): bool
