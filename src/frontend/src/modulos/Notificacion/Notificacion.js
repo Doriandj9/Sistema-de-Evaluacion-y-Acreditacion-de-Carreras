@@ -26,7 +26,7 @@ class Notificacion_Componente extends HTMLElement {
     }
     attributeChangedCallback(name,oldValue,newValue){
         if(name === 'mensaje'){
-            this.notificacion.querySelector('p').prepend(document.createTextNode(newValue));
+            this.notificacion.querySelector('p').innerHTML = newValue;
         }
         if(name === 'bg-color-notificacion'){
             this.notificacion.style.setProperty('--color-notification',newValue);
@@ -40,6 +40,9 @@ class Notificacion_Componente extends HTMLElement {
             this.button.style.backgroundColor = newValue;
 
         }
+        if(name === 'color-texto') {
+            this.notificacion.style.setProperty('--color-texto',newValue);
+        }
     }
 
    
@@ -49,7 +52,7 @@ class Notificacion_Componente extends HTMLElement {
 
 
 Notificacion_Componente.template = document.createElement('template');
-Notificacion_Componente.observedAttributes = ['mensaje','bg-color-notificacion','texto-boton','bg-color-boton'];
+Notificacion_Componente.observedAttributes = ['mensaje','bg-color-notificacion','texto-boton','bg-color-boton','color-texto'];
 
 fetch('/src/frontend/src/modulos/Notificacion/template.html')
 .then(res => res.text())
@@ -60,15 +63,17 @@ fetch('/src/frontend/src/modulos/Notificacion/template.html')
 
 export default class Notificacion {
     constructor(mensaje,text_button,notificacion_error = true){
-        let backgrod_color = '#D71043'
-        let backgrod_color_button = '#35598D'
+        let backgrod_color = '#f8d7da'
+        let backgrod_color_button = '#505C6A';
+        let color_texto = '#842029';
         if(!notificacion_error){
-            backgrod_color_button = 'green';
-            backgrod_color = '#35598D';
+            backgrod_color = '#cfe2ff';
+            color_texto = '#084298';
         }
         const notificacion_componente = document.createElement('notificacion-componente');
         notificacion_componente.setAttribute('mensaje',mensaje);
         notificacion_componente.setAttribute('bg-color-notificacion',backgrod_color);
+        notificacion_componente.setAttribute('color-texto',color_texto);
         notificacion_componente.setAttribute('texto-boton',text_button);
         notificacion_componente.setAttribute('bg-color-boton',backgrod_color_button);
         notificacion_componente.addEventListener('keyadd', e =>{
