@@ -85,7 +85,7 @@ class Autentification
         $usuario = $this->usuarios->selectFromColumn($this->email, $_SESSION['email'])->first();
         if ($usuario && trim($_SESSION['clave']) === trim($usuario->{$this->clave})) {
             return $usuario;
-        }else {
+        } else {
             return false;
         }
     }
