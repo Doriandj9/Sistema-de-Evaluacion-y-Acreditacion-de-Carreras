@@ -44,7 +44,7 @@ function verificarUsuario(resultado) {
 			console.log(e);
 		}
 	} else {
-		throw new Error(resultado.error)  
+		throw new Error('Usuario, email o contraseña incorrectos, intentalo nuevamente');  
 	}
 }
 
