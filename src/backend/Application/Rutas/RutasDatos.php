@@ -35,6 +35,18 @@ class RutasDatos implements Route
                     'action' => 'vista'
                 ]
                 ],
+            'datos/cambio/clave' => [
+                    'POST' => [
+                        'controller' => $docentes,
+                        'action' => 'cambioClave'
+                    ],
+                ],
+            'datos/comprobacion/clave' => [
+                    'POST' => [
+                        'controller' => $docentes,
+                        'action' => 'comprobacionClave'
+                    ],
+                ],
             'datos/opciones' => [
                 'POST' => [
                     'controller' => $carrerasController,

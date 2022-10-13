@@ -23,7 +23,9 @@ class ModeloDocenteTest extends TestCase
             'id' => '1123456789',
             'nombre' => 'Docente de Prueba',
             'correo' => 'prueba@gmail.com',
-            'clave' => '1234'
+            'clave' => '1234', // Luego tiene que encriptada con la funcion password_hash(clave,PASSWORD_DEFAULT)
+            'telefono' => '0989960552',// campo opcional
+            'cambio_clave' => true
         ];
         $this->modelDocente = new Docente;
     }
@@ -58,7 +60,9 @@ class ModeloDocenteTest extends TestCase
             'id' => $result[0]->id,
             'nombre' => $result[0]->nombre,
             'correo' => $result[0]->correo,
-            'clave' => trim($result[0]->clave)
+            'clave' => trim($result[0]->clave),
+            'telefono' => $result[0]->telefono,
+            'cambio_clave' => $result[0]->cambio_clave
         ];
         $this->assertInstanceOf('\Illuminate\Support\Collection', $result);
         $this->assertCount(1, $result);

@@ -76,4 +76,60 @@ export default class Usuarios {
             return JSON.stringify(respuesta);
         }
     }
+    /**
+	 * 
+	 * @param {int|string} id_docente es el numero de cedular.
+	 * @param {string} claveNueva es la nueva clave
+	 * @returns {Promise} JSON
+ 	*/
+	 static async sendCambioClave(id_docente,claveNueva){
+        try{
+            const formData = new FormData();
+            formData.append('id_docente',id_docente);
+            formData.append('clave',claveNueva); 
+            const headersPeticion = new Headers();
+            if(localStorage.Tok_){
+                headersPeticion.append('token_autorizacion',localStorage.Tok_);
+            }
+            const consulta = await fetch(
+                '/datos/cambio/clave',
+                {
+                    method:'POST',
+                    headers:headersPeticion,
+					body:formData
+                }
+                );
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * 
+	 * @param {string} clave es la clave que se va a comprobar
+	 * @returns {Promise} JSON
+ 	*/
+	 static async comprobacionClave(clave){
+        try{
+            const formData = new FormData();
+            formData.append('clave',clave); 
+            const headersPeticion = new Headers();
+            if(localStorage.Tok_){
+                headersPeticion.append('token_autorizacion',localStorage.Tok_);
+            }
+            const consulta = await fetch(
+                '/datos/comprobacion/clave',
+                {
+                    method:'POST',
+                    headers:headersPeticion,
+					body:formData
+                }
+                );
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e);
+        }
+    }
 }

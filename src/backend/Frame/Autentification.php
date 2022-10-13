@@ -50,7 +50,7 @@ class Autentification
                 ]
             ));
         }
-        if ($usuario && password_verify($clave, trim($usuario->{$this->clave}))) {
+        if ($usuario && password_verify($clave, trim($usuario->{$this->clave} ?? ''))) {
             session_regenerate_id();
             $_SESSION['email'] = $usuario->{$this->email};
             $_SESSION['clave'] = $usuario->{$this->clave};
@@ -72,7 +72,7 @@ class Autentification
             $token = Jwt::crearToken($datos);
             $_SESSION['token'] = $token;
             $usuario = Docente::getUsuario($email);
-            return $usuario;
+            return $usuario ?? false;
         }
         return false;
     }
@@ -82,10 +82,11 @@ class Autentification
         if (empty($_SESSION['email'])) {
             return false;
         }
-
         $usuario = $this->usuarios->selectFromColumn($this->email, $_SESSION['email'])->first();
-        if ($usuario && $_SESSION['clave'] === $usuario->{$this->clave}) {
+        if ($usuario && trim($_SESSION['clave']) === trim($usuario->{$this->clave})) {
             return $usuario;
+        }else {
+            return false;
         }
     }
 

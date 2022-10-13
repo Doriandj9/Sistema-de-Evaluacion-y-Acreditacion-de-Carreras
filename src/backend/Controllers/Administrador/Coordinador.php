@@ -44,8 +44,7 @@ class Coordinador implements Controller
             'id_carrera' => $_POST['carreras'],
             'fecha_inicial' => $_POST['fecha_inicial'],
             'fecha_final' => $_POST['fecha_final'],
-            'estado' => 'activo',
-            'cambio_clave' => true
+            'estado' => 'activo'
         ];
         // Esta linea sirve para generar la clave encriptada del coordinador para ingresar al sistema
         // que por defecto es el mismo numero de cedula
