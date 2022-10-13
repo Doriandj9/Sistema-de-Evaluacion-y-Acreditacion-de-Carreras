@@ -1,3 +1,6 @@
+<div id="requiere-cambio-clave">
+  <input type="hidden" id="cambio-clave" value="<?=$usuario->cambio_clave ?? true;?>">
+</div>
 <div class="d-flex w-100 h-100 justify-content-between mt-4">
   <div class="w-25  dropend ms-3" id="menu-opciones">
         <div class="container-fluid bg-primary p-2 text-white text-center">

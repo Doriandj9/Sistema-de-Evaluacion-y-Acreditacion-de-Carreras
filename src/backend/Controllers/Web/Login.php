@@ -35,13 +35,16 @@ class Login implements Controller
                 },
                 Docente::EVALUADORES => function () {
                     Http::redirect('/evaluador');
+                },
+                'inicio' => function () {
+                    Http::redirect('/salir');
                 }
             ];
             try {
                 if (isset($_SESSION['opciones']) && !$_SESSION['opciones']) {
                     Http::redirect('/opciones');
                 }
-                $redirecionarHacia[$_SESSION['permiso']]();
+                $redirecionarHacia[$_SESSION['permiso']??'inicio']();
             } catch (\ErrorException $th) {
                 throw new \Error('Error no se encontro una redireccion para este usuario');
             }
@@ -87,7 +90,10 @@ class Login implements Controller
         $_SESSION['opciones'] = false;
         return [
             'title' => 'FACULTAD DE CIENCIAS ADMINISTRATIVAS GESTION EMPRESARIAL E INFORMATICA - UEB',
-            'template' => 'ui/opciones.html.php'
+            'template' => 'ui/opciones.html.php',
+            'variables' => [
+                'usuario' => $usuario
+            ]
         ];
     }
     public function cerrarSesion(): void
