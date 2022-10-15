@@ -15,7 +15,7 @@ class Facultad implements Controller
     }
     public function vista($variables = []): array
     {
-        $facultades = $this->modeloFacultad->select(true,'nombre');
+        $facultades = $this->modeloFacultad->select(true, 'id');
         return [
             'title' => '',
             'template' => 'datos/facultades.html.php',

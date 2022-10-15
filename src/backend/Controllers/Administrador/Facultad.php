@@ -22,7 +22,8 @@ class Facultad implements Controller
         ];
     }
 
-    public function insertarFacultad() {
+    public function insertarFacultad()
+    {
         $data_ingreso_facultad = [
             'id' => trim($_POST['id']),
             'nombre' => trim($_POST['nombre'])
@@ -30,14 +31,14 @@ class Facultad implements Controller
 
         try {
             $result = $this->modeloFacultad->insert($data_ingreso_facultad);
-            if($result){
+            if ($result) {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 1,
                         'mensaje' => 'Se inserto correctamente la facultad'
                     ]
-                    ));
-            }else {
+                ));
+            } else {
                 throw new \PDOException('Error: Ocurrio un problema al intentar ingresar la facultad');
             }
         } catch (\PDOException $e) {
@@ -50,22 +51,23 @@ class Facultad implements Controller
         }
     }
 
-    public function editarFacultad() {
+    public function editarFacultad()
+    {
         $data_editar_facultad = [
             'id' => trim($_POST['id_editado']),
             'nombre' => trim($_POST['nombre'])
         ];
 
         try {
-            $result = $this->modeloFacultad->updateValues(trim($_POST['id']),$data_editar_facultad);
-            if($result) {
+            $result = $this->modeloFacultad->updateValues(trim($_POST['id']), $data_editar_facultad);
+            if ($result) {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 1,
                         'mensaje' => 'Se actualizo correctamente los datos de la Facultad'
                     ]
-                    ));
-            }else {
+                ));
+            } else {
                 throw new \PDOException('Error: Ocurio algo inesperado al intentar actualizar los datos');
             }
         } catch (\PDOException $e) {
@@ -74,7 +76,7 @@ class Facultad implements Controller
                     'ident' => 0,
                     'mensaje' => $e->getMessage()
                 ]
-                ));
+            ));
         }
     }
 }
