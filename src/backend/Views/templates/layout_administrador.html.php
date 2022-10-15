@@ -44,6 +44,11 @@
                         <span class="material-icons text-negro">&#xe02f;</span>
                         <span class="text-blanco bordes-op-menu">Periodo Académico</span>
                         </a>
+                        </a>
+                        <a href="/admin/agregar/facultad" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xea3e;</span>
+                        <span class="text-blanco bordes-op-menu">Facultades</span>
+                        </a>
                         <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe0e0;</span>
                         <span class="text-blanco bordes-op-menu ">Ingresar Carrera / Inscripción</span>
