@@ -6,6 +6,7 @@ namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Datos\Carreras;
 use App\backend\Controllers\Datos\Docentes;
+use App\backend\Controllers\Datos\Facultad;
 use App\backend\Controllers\Datos\PeriodosAcademicos;
 use App\backend\Frame\Route;
 
@@ -16,6 +17,7 @@ class RutasDatos implements Route
         $docentes = new Docentes;
         $periodosAcademicos = new PeriodosAcademicos;
         $carrerasController = new Carreras;
+        $facultades = new Facultad;
         return [
             'datos/docentes' => [
                 'GET' => [
@@ -45,6 +47,12 @@ class RutasDatos implements Route
                     'POST' => [
                         'controller' => $docentes,
                         'action' => 'comprobacionClave'
+                    ],
+                ],
+            'datos/facultades' => [
+                    'GET' => [
+                        'controller' => $facultades,
+                        'action' => 'vista'
                     ],
                 ],
             'datos/opciones' => [
