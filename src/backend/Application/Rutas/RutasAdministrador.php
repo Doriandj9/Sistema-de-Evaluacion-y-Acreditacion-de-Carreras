@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Administrador\Coordinador;
+use App\backend\Controllers\Administrador\Facultad;
 use App\backend\Controllers\Administrador\Inicio;
 use App\backend\Controllers\Administrador\PeriodoAcademico;
 use App\backend\Frame\Route;
@@ -17,6 +18,7 @@ class RutasAdministrador implements Route
         $inicioController = new Inicio;
         $periodoAcademico = new PeriodoAcademico;
         $coordinador = new Coordinador;
+        $facultad = new Facultad;
         return [
             'admin' => [
                 'GET' => [
@@ -44,6 +46,22 @@ class RutasAdministrador implements Route
                 'POST' => [
                     'controller' => $periodoAcademico,
                     'action' => 'editarPeriodoAcademico'
+                ]
+            ],
+            'admin/agregar/facultad' => [
+                'GET' => [
+                    'controller' => $facultad,
+                    'action' => 'vista'
+                ],
+                'POST' => [
+                    'controller' => $facultad,
+                    'action' => 'insertarFacultad'
+                ]
+            ],
+            'admin/editar/facultad' => [
+                'POST' => [
+                    'controller' => $facultad,
+                    'action' => 'editarFacultad'
                 ]
             ],
             'admin/agregar/coordinador' => [
