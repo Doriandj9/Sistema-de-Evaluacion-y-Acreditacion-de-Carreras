@@ -4,30 +4,33 @@ namespace App\backend\Controllers\Datos;
 
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
+use App\backend\Models\Carreras as ModelsCarreras;
 use App\backend\Models\Docente;
 
 
 class Carreras implements Controller
 {
-    private Docente $carreras;
+    private Docente $docente;
+    private ModelsCarreras $carreras;
 
     public function __construct()
     {
-        $this->carreras = new Docente;
+        $this->docente = new Docente;
+        $this->carreras = new ModelsCarreras;
     }
 
     public function vista($variables = []): array
     {
-        $carrerasPorUsusario = $this->carreras->getCarrerasPorPermisos(
-            $_POST['id_usuarios'],
-            $_POST['id_docente']
-        );
+        if(empty($variables)){
+            $carrerasPorUsusario = $this->docente->getCarrerasPorPermisos(
+                $_POST['id_usuarios'],
+                $_POST['id_docente']
+            );
+        }
         return [
             'title' => '',
             'template' => 'datos/carreras-por-usuario.html.php',
-            'variables' => [
-                'carreras' => $carrerasPorUsusario
-            ]
+            'variables' => $variables ?? $variables['carreras'] = $carrerasPorUsusario
         ];
     }
 
@@ -52,5 +55,41 @@ class Carreras implements Controller
                 ]
             ));
         }
+    }
+
+    public function obtenerTodasCarreras() {
+        if(isset($_GET['parametro']) && isset($_GET['valor'])){
+            if($_GET['parametro'] === 'carrera'){
+                try{
+                    $carreras = $this->carreras->selectWhitFacultad('carreras.id',$_GET['valor']);
+                    if(count($carreras) === 0){
+                        throw new \PDOException();
+                    }
+                    return $this->vista(['carreras' => $carreras]); 
+                }catch(\PDOException $e){
+                    Http::responseJson(json_encode(
+                        [
+                            'ident' => 0,
+                            'mensaje' => 'Error: No existe la carrera con el identificador <strong>'
+                            . $_GET['valor'] . '</strong>'
+                        ]
+                        ));
+                }
+                
+            }
+            if($_GET['parametro'] === 'facultad'){
+                $carreras = $this->carreras->selectWhitFacultad('id_facultad',$_GET['valor']);
+                return $this->vista(['carreras' => $carreras]); 
+            }
+
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'mensaje' => 'Error ha ingresado un parametro incorrecto'
+                ]
+                ));
+        }
+        $carreras = $this->carreras->selectWhitFacultad();
+        return $this->vista(['carreras' => $carreras]);
     }
 }
