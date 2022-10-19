@@ -13,6 +13,8 @@
         },
         "/admin/agregar/coordinador": function(){
             importacionDinamica('coordinador.js');
+        },"/admin/administrar/carreras": function(){
+            importacionDinamica('carreras.js');
         },
         "/admin": function(){
 
