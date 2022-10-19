@@ -55,6 +55,12 @@ class RutasDatos implements Route
                         'action' => 'vista'
                     ],
                 ],
+            'datos/carreras' => [
+                    'GET' => [
+                        'controller' => $carrerasController,
+                        'action' => 'obtenerTodasCarreras'
+                    ],
+                ],
             'datos/opciones' => [
                 'POST' => [
                     'controller' => $carrerasController,
