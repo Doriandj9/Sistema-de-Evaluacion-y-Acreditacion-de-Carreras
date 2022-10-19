@@ -49,9 +49,9 @@
                         <span class="material-icons text-negro">&#xea3e;</span>
                         <span class="text-blanco bordes-op-menu">Facultades</span>
                         </a>
-                        <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin/administrar/carreras" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe0e0;</span>
-                        <span class="text-blanco bordes-op-menu ">Ingresar Carrera / Inscripción</span>
+                        <span class="text-blanco bordes-op-menu ">Carreras / Habilitación</span>
                         </a>
                         <a href="/admin/agregar/coordinador" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe7fe;</span>
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="contenedor-contenido-principal">
-                    <div class="contenido-principal">
+                    <div class="contenido-principal position-relative">
                         <div class="contenedor-contenido-vistas">
                             <?= $contenido ?>
                         </div>
