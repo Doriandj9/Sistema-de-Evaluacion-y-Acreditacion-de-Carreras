@@ -7,15 +7,18 @@ namespace App\backend\Controllers\Administrador;
 use App\backend\Application\Utilidades\DB;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
+use App\backend\Models\CarrerasPeriodoAcademico;
 use App\backend\Models\Docente;
 use App\backend\Models\PeriodoAcademico as ModelsPeriodoAcademico;
 
 class PeriodoAcademico implements Controller
 {
     private $periodoAcademico;
+    private CarrerasPeriodoAcademico $carrerasPeriodoAcademico;
     public function __construct()
     {
         $this->periodoAcademico = new ModelsPeriodoAcademico;
+        $this->carrerasPeriodoAcademico = new CarrerasPeriodoAcademico;
     }
     public function vista($variables = []): array
     {
@@ -76,5 +79,38 @@ class PeriodoAcademico implements Controller
                 ]
             ));
         }
+    }
+
+    public function guardarCarrerasHabilitadas() {
+        $periodo = $_POST['periodo'];
+        $id_carreras = $_POST['ids_carreras'];
+
+        foreach($id_carreras as $carrera) {
+            $data_carreras_periodo_academico = [
+                'id_carreras' => $carrera,
+                'id_periodo_academico' => $periodo
+            ];
+            try {
+                $result = $this->carrerasPeriodoAcademico->insert($data_carreras_periodo_academico);
+                if(!$result) {
+                    throw new \PDOException('Error: Ocurrio un problema inesperado intento mas tarde.');
+                }
+            }catch(\PDOException $e) {
+                Http::responseJson(json_encode(
+                    [
+                        'ident' => 0,
+                        'mensaje' => $e->getMessage()
+                    ]
+                    ));
+                break;
+            }
+        }
+
+        Http::responseJson(json_encode(
+            [
+                'ident' => 1,
+                'mensaje' => 'Se habilito correctamente las carreras'
+            ]
+            ));
     }
 }
