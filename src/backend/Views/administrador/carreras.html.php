@@ -46,28 +46,28 @@
     </thead>
     <tbody>
                     <tr>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
                    </tr>
                    <tr>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
                    </tr>
                    <tr>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
-                    <td class="is-cargando-contenido p-4"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
                    </tr>
     </tbody>
   </table>
@@ -132,29 +132,22 @@
                                     </thead>
                                     <tbody class="tbody-h">
                                                     <tr>
-                                                    <td class="d-flex align-items-center gap-3">
-                                                        <input type="checkbox" disabled name="" id="">
-                                                        <label for="">Desabilitado</label>
-                                                    </td>
-                                                    <td class="">SOFT</td>
-                                                    <td class="">asdadasda</td>
-                                                    <td class="">asdada</td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
                                                    </tr>
                                                    <tr>
-                                                    <td class="">
-                                                        <input type="checkbox" name="" id="">
-                                                    </td>
-                                                    <td class="">SOFT</td>
-                                                    <td class="">asdada</td>
-                                                    <td class="">asdasda</td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
                                                    </tr>
                                                    <tr>
-                                                    <td class="">
-                                                        <input type="checkbox" name="" id="">
-                                                    </td>
-                                                    <td class="">SOFT</td>
-                                                    <td class="">asdada</td>
-                                                    <td class="">asdadsa</td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
+                                                    <td class="is-cargando-contenido p-4"></td>
                                                    </tr>
                                     </tbody>
                                   </table>
