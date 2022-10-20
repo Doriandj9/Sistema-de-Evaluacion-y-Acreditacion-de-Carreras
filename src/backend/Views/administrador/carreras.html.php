@@ -8,11 +8,14 @@
                             </ul>
                         </div>
                         <div class="w100" id="cambio-vistas">
-                        
+                          <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+                            <div class="spinner-border text-primary" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                            </div>
+                          </div>
                         </div>
 
 </div>
-
 <!-- Vistas  -->
 <template id="template-listar-carreras">
 <div class="w-100 d-flex justify-content-center mb-3">
