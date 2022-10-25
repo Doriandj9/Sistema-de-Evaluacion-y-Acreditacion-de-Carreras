@@ -26,11 +26,12 @@ class Carreras implements Controller
                 $_POST['id_usuarios'],
                 $_POST['id_docente']
             );
+            $variables['carreras'] = $carrerasPorUsusario;
         }
         return [
             'title' => '',
             'template' => 'datos/carreras-por-usuario.html.php',
-            'variables' => $variables ?? $variables['carreras'] = $carrerasPorUsusario
+            'variables' => $variables
         ];
     }
 
