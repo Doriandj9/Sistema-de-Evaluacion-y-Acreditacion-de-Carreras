@@ -26,6 +26,7 @@ class Carreras extends DatabaseTable
             $docentes_carreras = DB::table(self::TABLE)
             ->join('docentes_carreras', 'carreras.id', '=', 'docentes_carreras.id_carreras')
             ->join('docentes', 'docentes.id', '=', 'docentes_carreras.id_docentes')
+            ->where('carreras.id','=',$idCarrera)
             ->get();
             return $docentes_carreras;
         } else {
