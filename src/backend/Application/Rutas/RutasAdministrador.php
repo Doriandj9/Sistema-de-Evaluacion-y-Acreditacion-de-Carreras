@@ -84,6 +84,12 @@ class RutasAdministrador implements Route
                     'action' => 'editarCarrera'
                 ]
             ],
+            'admin/obtener/coordinadores' => [
+                'GET' => [
+                    'controller' => $coordinador,
+                    'action' => 'obtenerCoordinadores'
+                ]
+            ],
             'admin/carreras/periodo-academico/habilitadas' => [
                 'GET' => [
                     'controller' => $carreras,
