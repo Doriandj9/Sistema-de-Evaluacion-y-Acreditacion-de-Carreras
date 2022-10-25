@@ -73,8 +73,8 @@ class Docente extends DatabaseTable
         $resultado = DB::table(Carreras::TABLE)
         ->join(UsuariosDocente::TABLE, UsuariosDocente::TABLE . '.id_carrera', '=', Carreras::TABLE . '.id')
         ->where('id_usuarios', '=', $id_usuarios)
-        ->get(['id_docentes','id_carrera','nombre']) // nombre se refiere al nombre de la carrera
-        ->where('id_docentes', '=', $id_docente);
+        ->where('id_docentes', '=', $id_docente)
+        ->get(['id_docentes','id_carrera','nombre']); // nombre se refiere al nombre de la carrera
 
         return $resultado;
     }
