@@ -119,5 +119,16 @@ class ModeloCarreraTest extends TestCase {
         $result = $this->modeloCarrera->obtenerHabilitacionPorPeriodoAcademico('2022-2022');
         $this->assertInstanceOf(\Illuminate\Support\Collection::class,$result);
         $this->assertInstanceOf(\stdClass::class,$result[0]);
+
+        return $result;
     }
+    /**
+     * @depends testObtenerCarrerasHabilitadasONoPorPeriodoAcademico
+     * @covers App\backend\Models\Carreras::getDatosDocentes
+     */
+
+     public function testObtenerDocentesPorLaCarrera(){
+        $result = $this->modeloCarrera->getDatosDocentes('AGRO');
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$result);
+     }
 }
