@@ -24,7 +24,7 @@
                     <ul class="flex-columna gap-flex-1 list-unstyled">
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe7fd;</span>
-                                <span class="text-blanco text-w-medio"><?=$usuario->nombre;?></span>
+                                <span class="text-blanco text-w-medio"><?= preg_split('/ /',$usuario->nombre)[0]  ?> <?= preg_split('/ /',$usuario->apellido)[0]; ?></span>
                             </li>
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe80c;</span>
@@ -55,7 +55,7 @@
                         </a>
                         <a href="/admin/agregar/coordinador" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe7fe;</span>
-                        <span class="text-blanco bordes-op-menu ">Ingresar Coordinador de Carrera</span>
+                        <span class="text-blanco bordes-op-menu ">Coordinador de Carrera</span>
                         </a>
                         <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeade;</span>
