@@ -59,6 +59,17 @@
             });
 }
 
+/**
+ * 
+ * @param {*} datos Son los datos como array
+ * @param {*} divicionDatos Es el numero de elementos que desean que se presente
+ * @param {*} numeroActual Es el numero que se encuentran los datos
+ * @param {*} tbody Es el contenedor de las filas del cuerpo de la tabla
+ * @param {*} contNumeros Es el contenedor de los numeros para la selecion de paginacion
+ * @param {CallableFunction} funcionRefrescar Sirve para refrescar los botonos del tbody
+ * 
+ * @return {*} void
+ */
 export function paginacionCarrerasHabilitas(datos,divicionDatos,numeroActual,tbody,contNumeros,funcionRefrescar = null){
     const total  = datos.length;
     const fracion = divicionDatos;
