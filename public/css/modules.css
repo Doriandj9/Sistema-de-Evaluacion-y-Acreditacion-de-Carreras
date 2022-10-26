@@ -466,6 +466,9 @@ nav.flex-columna > a:last-child > span:last-child{
 .altura-2{
     height: 20rem;
 }
+.altura-1{
+    height: 16rem;
+}
 .desborde-auto{
     overflow: auto;
 }
@@ -762,4 +765,106 @@ form,form::after,form::before,
     font-family: var(--tipografia-6);
     font-size: var(--tamano-t6);
     font-weight: var(--anchor-t6);
+}
+
+.contenedor-items-menu-superior {
+    width: 100%;
+    position:absolute;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    top: 1rem;
+    left:0;
+    margin: 0;
+}
+.contenedor-items-menu-superior > ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    margin: 0;
+
+}
+.contenedor-items-menu-superior > ul > li {
+    min-width: 4rem;
+    background-color: var(--color-f-2);
+    color: var(--color-t-3);
+    border: 1px solid var(--color-b-3);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.contenedor-items-menu-superior > ul > li:hover{
+    background-color: white !important;
+    box-shadow: 0px 3px 2px var(--color-b-2) inset;
+}
+
+.carga-medio {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+.contenedor-busqueda {
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    width: 50%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px; 
+}
+.contenedor-busqueda span {
+    cursor: pointer; 
+}
+.contenedor-busqueda input {
+    border-width: 0;
+    outline: none;
+    flex-grow: 1;
+    padding: 0.25rem 0;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.filtro {
+    background-color: var(--color-primario);
+    color: white;
+    border:none;
+    outline: none;
+}
+.filtro:active {
+    outline: none;
+}
+
+.contenedor-filtro {
+    background-color: var(--color-primario);
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.contenedor-filtro > span:first-child {
+    margin-left: 0.5rem;
+}
+.hidden {
+    display: none !important;
+}
+.contenedor-busqueda select {
+    border-width: 0;
+    outline: none;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.contenedor-habilitacion{
+    position: relative;
+}
+.contenedor-habilitacion::before {
+    content: '';
+    width: 8%;
+    height: 1.5rem;
+    border: 2px solid rgb(0, 0, 0,0.5);
+    position: absolute;
+    top:0;
+    left:3rem;
+    border-top-color: transparent;
+    border-right-color: transparent;
+}
+
+.tbody-h input[type="checkbox"],.contenedor-habilitacion input[type="checkbox"]  {
+   width: 1.5rem;
+   height: 1.5rem;
 }

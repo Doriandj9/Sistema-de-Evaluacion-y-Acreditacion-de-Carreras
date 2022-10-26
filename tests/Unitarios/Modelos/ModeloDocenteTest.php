@@ -22,6 +22,7 @@ class ModeloDocenteTest extends TestCase
         $this->argumentos = [
             'id' => '1123456789',
             'nombre' => 'Docente de Prueba',
+            'apellido' => 'Apellido de Prueba',
             'correo' => 'prueba@gmail.com',
             'clave' => '1234', // Luego tiene que encriptada con la funcion password_hash(clave,PASSWORD_DEFAULT)
             'telefono' => '0989960552',// campo opcional
@@ -59,6 +60,7 @@ class ModeloDocenteTest extends TestCase
         $actual = [
             'id' => $result[0]->id,
             'nombre' => $result[0]->nombre,
+            'apellido' => $result[0]->apellido,
             'correo' => $result[0]->correo,
             'clave' => trim($result[0]->clave),
             'telefono' => $result[0]->telefono,

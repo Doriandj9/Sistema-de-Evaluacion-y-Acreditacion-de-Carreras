@@ -35,15 +35,37 @@ export default class Docentes {
  * @param {FormData} formData es un formulario con los parametros para agregar un coordinador 
  * @returns {Promise} JSON
  */
-    static async sendCoordinador(formData){
+    static async sendCoordinador(formData,opcion = null){
         try {
             formData.append('tok_',localStorage.Tok_);
-            const consulta = await fetch('/admin/agregar/coordinador',{
-                method:'POST',
-                body:formData
-            });
-            const respuesta =  await consulta.json();            
+            let consulta = '';
+            if(opcion && opcion === 'manual') {
+                consulta = await fetch('/admin/agregar/coordinador?opcion=manual',{
+                    method:'POST',
+                    body:formData
+                });
+            }else {
+                consulta = await fetch('/admin/agregar/coordinador',{
+                    method:'POST',
+                    body:formData
+                });
+            }
+            const respuesta =  await consulta.json();        
             return respuesta
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    /**
+     * Obtiene todos los coordinares registrados en la DB
+     * 
+     * @returns Promise<JSON>
+     */
+    static async obtenerCoordinadores() {
+        try {
+            const consulta = await fetch('/admin/obtener/coordinadores');
+            const datos = await consulta.json();
+            return datos;
         } catch (error) {
             console.error(error);
         }

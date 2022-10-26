@@ -8,6 +8,7 @@ use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Models\Carreras;
 use App\backend\Models\Docente;
+use App\backend\Models\DocentesCarreras;
 use App\backend\Models\UsuariosDocente;
 
 class Coordinador implements Controller
@@ -15,12 +16,14 @@ class Coordinador implements Controller
     private $carrerasModelo;
     private $docenteModelo;
     private $usuarioDocenteModelo;
+    private $docentesCarrera;
 
     public function __construct()
     {
         $this->carrerasModelo = new Carreras;
         $this->docenteModelo = new Docente;
         $this->usuarioDocenteModelo = new UsuariosDocente;
+        $this->docentesCarrera = new DocentesCarreras;
     }
     public function vista($variables = []): array
     {
@@ -37,19 +40,50 @@ class Coordinador implements Controller
 
     public function agregarCoordinadorACarrera()
     {
+        $datos_docentes_usuario = [];
+        if (!isset($_GET['opcion'])) {
+            $datos_docentes_usuario = [
+                'id_usuarios' => Docente::COORDINADORES,
+                'id_docentes' => trim($_POST['coordinador']),
+                'id_carrera' => trim($_POST['carreras']),
+                'fecha_inicial' => trim($_POST['fecha_inicial']),
+                'fecha_final' => trim($_POST['fecha_final']),
+                'estado' => 'activo'
+            ];
+        }
 
-        $datos_docentes_usuario = [
-            'id_usuarios' => Docente::COORDINADORES,
-            'id_docentes' => $_POST['coordinador'],
-            'id_carrera' => $_POST['carreras'],
-            'fecha_inicial' => $_POST['fecha_inicial'],
-            'fecha_final' => $_POST['fecha_final'],
-            'estado' => 'activo'
-        ];
+        if (isset($_GET['opcion']) && $_GET['opcion'] === 'manual') {
+            $datos_insertar_docente = [
+                'id' => trim($_POST['cedula']),
+                'nombre' => trim($_POST['nombre']),
+                'apellido' => trim($_POST['apellido']),
+                'correo' => trim($_POST['correo']),
+                'telefono' => empty($_POST['telefono']) ? null : trim($_POST['telefono']),
+                'cambio_clave' => true
+            ];
+            $datos_insertar_carrera = [
+                'id_carreras' => trim($_POST['carrera_manual']),
+                'id_docentes' => trim($_POST['cedula'])
+            ];
+            $resultInsertDocente = $this->insertarDocenteYCarrera($datos_insertar_docente, $datos_insertar_carrera);
+            if (gettype($resultInsertDocente) === 'string') {
+                Http::responseJson($resultInsertDocente);
+            }
+
+            $datos_docentes_usuario = [
+                'id_usuarios' => Docente::COORDINADORES,
+                'id_docentes' => trim($_POST['cedula']),
+                'id_carrera' => trim($_POST['carrera_manual']),
+                'fecha_inicial' => trim($_POST['f_inicial']),
+                'fecha_final' => trim($_POST['f_final']),
+                'estado' => 'activo'
+            ];
+        }
+
         // Esta linea sirve para generar la clave encriptada del coordinador para ingresar al sistema
         // que por defecto es el mismo numero de cedula
         $dato_docente_clave = [
-            'clave' => password_hash($_POST['coordinador'], PASSWORD_DEFAULT)
+            'clave' => password_hash($datos_docentes_usuario['id_docentes'], PASSWORD_DEFAULT)
         ];
         // las siguientes lineas va a permitir determinar si existe un error
         // al ingresar un usuario coordinador que previamente haya estado ingresado
@@ -65,33 +99,57 @@ class Coordinador implements Controller
                 if ($datos_docentes_usuario['id_carrera'] !== trim($carrera)) {
                     throw new \PDOException('Error: El usuario no puede ser coordinador de otra carrera');
                 } else {
-                    $this->usuarioDocenteModelo->updateValues(
+                    $this->usuarioDocenteModelo->updateUsuario(
                         Docente::COORDINADORES,
+                        $datos_docentes_usuario['id_docentes'],
                         $datos_docentes_usuario
                     );
                     Http::responseJson(json_encode(
                         ['ident' => 1,
-                        'result' => 'El docente anteriormente ya fue coordinador, se actualizaron las fechas',
-                        'error' => ''
+                        'mensaje' => 'El docente anteriormente ya fue coordinador, se actualizaron las fechas'
                         ]
                     ));
                 }
             }
             $this->usuarioDocenteModelo->insert($datos_docentes_usuario);
-            if (!$this->docenteModelo->updateValues($_POST['coordinador'], $dato_docente_clave)) {
+            if (!$this->docenteModelo->updateValues($datos_docentes_usuario['id_docentes'], $dato_docente_clave)) {
                 // docenteModelo::updateValues aqui se actualiza la clave y regresa verdader o falso
                 throw new \PDOException('Error: No se pudo actualizar correctamente la clave del usuario');
             }
             Http::responseJson(json_encode(// en la table docente en la columna clave
-                ['ident' => 1, 'result' => 'Se ingreso correctamente el usuario coordinador', 'error' => '']
+                ['ident' => 1, 'mensaje' => 'Se ingreso correctamente el usuario coordinador']
             ));
         } catch (\PDOException $e) {
             Http::responseJson(json_encode(
                 ['ident' => 0,
-                'result' => '',
-                'error' => $e->getMessage()
+                'mensaje' => $e->getMessage()
                 ]
             ));
+        }
+    }
+
+    public function obtenerCoordinadores()
+    {
+        $coordinadores = $this->usuarioDocenteModelo->obtenerCoordinadores();
+
+        Http::responseJson(json_encode([
+            'ident' => 1,
+            'coordinadores' => $coordinadores
+        ]));
+    }
+
+
+    private function insertarDocenteYCarrera(array $datosDocente, $datosCarrera): bool|string
+    {
+        try {
+            $result = $this->docenteModelo->insert($datosDocente);
+            $result = $this->docentesCarrera->insert($datosCarrera);
+            return $result;
+        } catch (\PDOException $e) {
+            return json_encode([
+                'ident' => 0,
+                'mensaje' => $e->getMessage()
+            ]);
         }
     }
 }

@@ -83,7 +83,7 @@ export async function cambiarClave(id_docente,claveNueva) {
    
 }
 
-function mostarClaves(){
+export function mostarClaves(){
     const ojo = document.querySelectorAll('#eye');
     if(!ojo && ojo.length === 0) return;
     ojo.forEach( e => {

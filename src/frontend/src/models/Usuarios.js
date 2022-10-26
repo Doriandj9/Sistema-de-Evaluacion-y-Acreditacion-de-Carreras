@@ -132,4 +132,67 @@ export default class Usuarios {
 			console.log(e);
         }
     }
+    /**
+	 * 
+	 * @param {FormData} formData 
+	 * @returns Promise<JSON>
+ 	*/
+	 static async sendDirectorPlaneacion(formData){
+        try{
+            const consulta = await fetch(
+                '/admin/agregar/director-planeacion',
+                {
+                    method:'POST',
+					body:formData
+                }
+                );
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+    /**
+	 * 
+	 * @returns {Promise} JSON
+ 	*/
+	  static async obtenerDirectoresPlaneacion(){
+        try{
+            const headersPeticion = new Headers();
+            if(localStorage.Tok_){
+                headersPeticion.append('token_autorizacion',localStorage.Tok_);
+            }
+            const consulta = await fetch(
+                '/datos/directores/planeacion',
+                {
+                    method:'GET',
+                    headers:headersPeticion
+                }
+                );
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+            console.error(e);
+        }
+    }
+    /**
+	 * 
+	 * @param {FormData} formData 
+	 * @returns Promise<JSON>
+ 	*/
+	 static async actualizarDirectorPlaneacion(formData){
+        try{
+            const consulta = await fetch(
+                '/admin/actualizar/director-planeacion',
+                {
+                    method:'POST',
+					body:formData
+                }
+                );
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
 }
