@@ -13,8 +13,15 @@
         },
         "/admin/agregar/coordinador": function(){
             importacionDinamica('coordinador.js');
-        },"/admin/administrar/carreras": function(){
+        },
+        "/admin/administrar/carreras": function(){
             importacionDinamica('carreras.js');
+        },
+        "/admin/administrar/director-planeacion": function(){
+            importacionDinamica('director-planeacion.js');
+        },
+        "/admin/cambio/clave": function(){
+            importacionDinamica('cambio-clave.js');
         },
         "/admin": function(){
 
