@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\backend\Models;
 
 use App\backend\Application\Utilidades\DB;
+use Illuminate\Support\Collection;
 
 class UsuariosDocente extends DatabaseTable
 {
@@ -61,4 +62,42 @@ class UsuariosDocente extends DatabaseTable
 
         return $coordinadores;
     }
+    /**
+     * Obtiene un usuario en particular
+     * 
+     * @param string $column1
+     * @param string $column2
+     * @param string|int $valor1
+     * @param string|int $valor2
+     * 
+     * @return \Illuminate\Support\Collection $usuarios
+     */
+    public function selectFromColumnsUsuarios(
+        string $column1,
+        string $column2,
+        string|int $valor1,
+        string|int $valor2
+     ): \Illuminate\Support\Collection {
+        $usuarios = DB::table(self::TABLE)
+        ->where($column1,'=',$valor1)
+        ->where($column2,'=',$valor2)
+        ->get();
+
+        return $usuarios;
+     }
+     /**
+     * Obtiene a los usuarios directores del departamento de planeamiento
+     * con los datos de un docente
+     * 
+     * @return \Illuminate\Support\Collection $usuarios
+     */
+    public function selectDirectoresPlaneamiento(): \Illuminate\Support\Collection {
+        $usuarios = DB::table(self::TABLE)
+        ->join('docentes','docentes.id','=',self::TABLE . '.id_docentes')
+        ->select('id_usuarios','id_docentes','nombre','apellido','fecha_inicial','fecha_final','estado','correo','telefono')
+        ->where('id_usuarios','=',Docente::DIRECTOR_PLANEAMIENTO)
+        ->get();
+
+        return $usuarios;
+     }
 }
