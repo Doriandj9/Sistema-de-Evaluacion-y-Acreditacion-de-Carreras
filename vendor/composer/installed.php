@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'software/seac',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => '64c4b92554424bc320cba63a9a0fb90b15875fcc',
+        'pretty_version' => 'dev-develop',
+        'version' => 'dev-develop',
+        'reference' => '4cb62df90dd47d90c3b82fc6db4533924410937e',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'doctrine/inflector' => array(
             'pretty_version' => '2.1.x-dev',
             'version' => '2.1.9999999.9999999-dev',
-            'reference' => '3249de584daab089c823ddc3f8efb108cee85a10',
+            'reference' => '8d1cb761ee70411b1b854f4851bcfc6d72accb5e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/inflector',
             'aliases' => array(),
@@ -40,7 +40,7 @@
         'firebase/php-jwt' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '018dfc4e1da92ad8a1b90adc4893f476a3b41cb8',
+            'reference' => 'f7886d510050fda6d976afe3aba77e8d082f42d0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../firebase/php-jwt',
             'aliases' => array(
@@ -51,7 +51,7 @@
         'illuminate/collections' => array(
             'pretty_version' => '9.x-dev',
             'version' => '9.9999999.9999999.9999999-dev',
-            'reference' => '3bda212d2c245b3261cd9af690dfd47d9878cebf',
+            'reference' => '32e3cd051cf1d12c1e7d5f7bb5a52d0dae8b7a8b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/collections',
             'aliases' => array(),
@@ -78,7 +78,7 @@
         'illuminate/contracts' => array(
             'pretty_version' => '9.x-dev',
             'version' => '9.9999999.9999999.9999999-dev',
-            'reference' => '0d1dd1a7e947072319f2e641cc50081219606502',
+            'reference' => 'd57130115694b4f6a98d064bea31cdb09d7784f8',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/contracts',
             'aliases' => array(),
@@ -87,7 +87,7 @@
         'illuminate/database' => array(
             'pretty_version' => '9.x-dev',
             'version' => '9.9999999.9999999.9999999-dev',
-            'reference' => 'ecfa461ae92f0e941ed0e9844dd711e8aa18a6cb',
+            'reference' => 'b9656e66002406bb0483b20cf1019da0a850c02e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/database',
             'aliases' => array(),
@@ -105,7 +105,7 @@
         'illuminate/support' => array(
             'pretty_version' => '9.x-dev',
             'version' => '9.9999999.9999999.9999999-dev',
-            'reference' => '3e2458d9145fac9d73624013bdab0c4e247048dc',
+            'reference' => '8e34ad3edd3b402d631c262ceb7956362c755dbe',
             'type' => 'library',
             'install_path' => __DIR__ . '/../illuminate/support',
             'aliases' => array(),
@@ -134,7 +134,7 @@
         'nesbot/carbon' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'bffaae12e977f67a72034e2e7e1b9087d568da7d',
+            'reference' => 'bb76b610776a21c420f2d319f1c1a5f2c14fe075',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(
@@ -145,7 +145,7 @@
         'nikic/php-parser' => array(
             'pretty_version' => '4.x-dev',
             'version' => '4.9999999.9999999.9999999-dev',
-            'reference' => '0ef6c55a3f47f89d7a374e6f835197a0b5fcf900',
+            'reference' => '2f1fd784fe5560675722a1e5cbbcece5f43bf3a0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nikic/php-parser',
             'aliases' => array(),
@@ -189,10 +189,21 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'phpmailer/phpmailer' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '00b7f5162afe93f7cab105cfa9c45c8195aa92e3',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
         'phpunit/php-code-coverage' => array(
             'pretty_version' => '9.2.x-dev',
             'version' => '9.2.9999999.9999999-dev',
-            'reference' => 'e2223ebc1cc53b605503701c448f26d84a51d5d2',
+            'reference' => '74b7413e8d9788df77e296adabd7c1f6ca801a99',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/php-code-coverage',
             'aliases' => array(),
@@ -237,7 +248,7 @@
         'phpunit/phpunit' => array(
             'pretty_version' => '9.5.x-dev',
             'version' => '9.5.9999999.9999999-dev',
-            'reference' => 'f7cae484eea6097891dfc175db3398c7fd1f940d',
+            'reference' => '7847a4a920f686db261da1ccc92120800822661f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
@@ -314,9 +325,9 @@
             'dev_requirement' => true,
         ),
         'sebastian/comparator' => array(
-            'pretty_version' => '4.0.6',
-            'version' => '4.0.6.0',
-            'reference' => '55f4261989e546dc112258c7a75935a81a7ce382',
+            'pretty_version' => '4.0.x-dev',
+            'version' => '4.0.9999999.9999999-dev',
+            'reference' => 'b247957a1c8dc81a671770f74b479c0a78a818f1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sebastian/comparator',
             'aliases' => array(),
@@ -352,7 +363,7 @@
         'sebastian/exporter' => array(
             'pretty_version' => '4.0.x-dev',
             'version' => '4.0.9999999.9999999-dev',
-            'reference' => '428c31e2ea8b292aa814bc460cf28d58eba4d2ba',
+            'reference' => 'ac230ed27f0f98f597c8a2b6eb7ac563af5e5b9d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sebastian/exporter',
             'aliases' => array(),
@@ -415,9 +426,9 @@
             'dev_requirement' => true,
         ),
         'sebastian/type' => array(
-            'pretty_version' => '3.1.x-dev',
-            'version' => '3.1.9999999.9999999-dev',
-            'reference' => 'a0f3e755c775fdc960cd5552e046a860c82dd9f9',
+            'pretty_version' => '3.2.x-dev',
+            'version' => '3.2.9999999.9999999-dev',
+            'reference' => '4d34b23933f255b0822758a44272222cac593eb4',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sebastian/type',
             'aliases' => array(),
@@ -433,9 +444,9 @@
             'dev_requirement' => true,
         ),
         'software/seac' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '64c4b92554424bc320cba63a9a0fb90b15875fcc',
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
+            'reference' => '4cb62df90dd47d90c3b82fc6db4533924410937e',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -444,7 +455,7 @@
         'squizlabs/php_codesniffer' => array(
             'pretty_version' => '4.0.x-dev',
             'version' => '4.0.9999999.9999999-dev',
-            'reference' => '96f3bbe99212343f781684ff6dbdb64e7aa10fa3',
+            'reference' => '89d5f8e35d08422d5b1790e44f3ef2956a71e701',
             'type' => 'library',
             'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
             'aliases' => array(),
@@ -453,7 +464,7 @@
         'symfony/console' => array(
             'pretty_version' => '6.0.x-dev',
             'version' => '6.0.9999999.9999999-dev',
-            'reference' => '8f14753b865651c2aad107ef97475740a9b0730f',
+            'reference' => 'ca45723c3040246d684240e2aaca0770ca4b71e3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/console',
             'aliases' => array(),
@@ -535,7 +546,7 @@
         'symfony/string' => array(
             'pretty_version' => '6.0.x-dev',
             'version' => '6.0.9999999.9999999-dev',
-            'reference' => '65e99fb179e7241606377e4042cd2161f3dd1c05',
+            'reference' => '3db7da820a6e4a584b714b3933c34c6a7db4d86c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/string',
             'aliases' => array(),
@@ -544,7 +555,7 @@
         'symfony/translation' => array(
             'pretty_version' => '6.0.x-dev',
             'version' => '6.0.9999999.9999999-dev',
-            'reference' => '5e71973b4991e141271465dacf4bf9e719941424',
+            'reference' => '6f99eb179aee4652c0a7cd7c11f2a870d904330c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/translation',
             'aliases' => array(),
