@@ -3,7 +3,7 @@
         'name' => 'software/seac',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '4cb62df90dd47d90c3b82fc6db4533924410937e',
+        'reference' => '50754a2bab187ae97da4f1d50225d0789852a24f',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -446,7 +446,7 @@
         'software/seac' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '4cb62df90dd47d90c3b82fc6db4533924410937e',
+            'reference' => '50754a2bab187ae97da4f1d50225d0789852a24f',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -464,7 +464,7 @@
         'symfony/console' => array(
             'pretty_version' => '6.0.x-dev',
             'version' => '6.0.9999999.9999999-dev',
-            'reference' => 'ca45723c3040246d684240e2aaca0770ca4b71e3',
+            'reference' => 'b0b910724a0a0326b4481e4f8a30abb2dd442efb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/console',
             'aliases' => array(),
