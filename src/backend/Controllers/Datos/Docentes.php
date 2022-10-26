@@ -19,7 +19,7 @@ class Docentes implements Controller
     {
         $this->docentes = new Docente;
         $this->carreras = new Carreras;
-        $this->autentificacion = new Autentification('correo','clave',$this->docentes);
+        $this->autentificacion = new Autentification('correo', 'clave', $this->docentes);
     }
     public function vista($variables = []): array
     {
@@ -38,14 +38,15 @@ class Docentes implements Controller
             ]
         ];
     }
-    public function cambioClave() {
-        $clave =  password_hash(trim($_POST['clave']),PASSWORD_DEFAULT);
+    public function cambioClave()
+    {
+        $clave =  password_hash(trim($_POST['clave']), PASSWORD_DEFAULT);
         $data_cambio_clave = [
             'clave' => $clave,
             'cambio_clave' => false
         ];
         try {
-            $this->docentes->updateValues($_POST['id_docente'],$data_cambio_clave);
+            $this->docentes->updateValues($_POST['id_docente'], $data_cambio_clave);
             $_SESSION['clave'] = $clave;
             Http::responseJson(json_encode([
                 'ident' => 1,
@@ -57,25 +58,26 @@ class Docentes implements Controller
                     'ident' => 0,
                     'mensaje' => 'Error: ' . $e->getMessage()
                 ]
-                ));
+            ));
         }
     }
-    public function comprobacionClave() {
+    public function comprobacionClave()
+    {
         $usuario = $this->autentificacion->getUsuario();
-        if($usuario && password_verify(trim($_POST['clave']),trim($usuario->clave))){
+        if ($usuario && password_verify(trim($_POST['clave']), trim($usuario->clave))) {
             Http::responseJson(json_encode(
                 [
                     'ident' => 1,
                     'mensaje' => 'Las claves cionciden correctamente'
                 ]
-                ));
-        }else {
+            ));
+        } else {
             Http::responseJson(json_encode(
                 [
                     'ident' => 0,
                     'mensaje' => 'Error: La clave es incorrecta'
                 ]
-                ));
+            ));
         }
     }
 }

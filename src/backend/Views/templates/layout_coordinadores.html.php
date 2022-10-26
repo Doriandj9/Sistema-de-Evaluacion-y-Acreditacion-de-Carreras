@@ -27,7 +27,7 @@ use App\backend\Models\Docente;
                     <ul class="flex-columna gap-flex-1">
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe7fd;</span>
-                                <span class="text-blanco text-w-medio"><?= $usuario->nombre; ?></span>
+                                <span class="text-blanco text-w-medio"><?= $usuario->nombre; $usuario->apellido; ?></span>
                             </li>
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe80c;</span>

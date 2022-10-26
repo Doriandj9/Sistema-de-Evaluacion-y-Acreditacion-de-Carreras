@@ -5,9 +5,7 @@ export default class PeriodoAcademico {
     /**
      * Esta funcion obtiene los datos de un periodo academico por medio de una solitud fecth
      * 
-     * @param {FormData} formData Es el formulario que se va a enviar
-     * 
-     * @returns {Promise} Promise
+     * @returns {Promise<JSON>} `Promise<JSON>`
      */
     static async  getDatos(){
         try {
@@ -54,6 +52,22 @@ export default class PeriodoAcademico {
     static async editarDatos(formData){
         try {
             const peticion = await fetch('/admin/editar/ciclo/academico',{method:'POST',body:formData})
+            const respuesta = await peticion.json();
+            return respuesta;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    /**
+     * Esta funcion actualiza los datos de un periodo academico por medio de una solitud fecth
+     * 
+     * @param {FormData} formData Es el formulario que se va a enviar
+     * 
+     * @returns {Promise} Promise
+     */
+     static async habilitarCarreras(formData){
+        try {
+            const peticion = await fetch('/admin/carreras/periodo-academico/habilitadas',{method:'POST',body:formData})
             const respuesta = await peticion.json();
             return respuesta;
         } catch (error) {

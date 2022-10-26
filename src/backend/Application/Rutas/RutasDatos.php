@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Datos\Carreras;
+use App\backend\Controllers\Datos\DirectorPlaneamiento;
 use App\backend\Controllers\Datos\Docentes;
+use App\backend\Controllers\Datos\Facultad;
 use App\backend\Controllers\Datos\PeriodosAcademicos;
 use App\backend\Frame\Route;
 
@@ -16,6 +18,8 @@ class RutasDatos implements Route
         $docentes = new Docentes;
         $periodosAcademicos = new PeriodosAcademicos;
         $carrerasController = new Carreras;
+        $facultades = new Facultad;
+        $directorPlaneamiento = new DirectorPlaneamiento;
         return [
             'datos/docentes' => [
                 'GET' => [
@@ -47,10 +51,28 @@ class RutasDatos implements Route
                         'action' => 'comprobacionClave'
                     ],
                 ],
+            'datos/facultades' => [
+                    'GET' => [
+                        'controller' => $facultades,
+                        'action' => 'vista'
+                    ],
+                ],
+            'datos/carreras' => [
+                    'GET' => [
+                        'controller' => $carrerasController,
+                        'action' => 'obtenerTodasCarreras'
+                    ],
+                ],
             'datos/opciones' => [
                 'POST' => [
                     'controller' => $carrerasController,
                     'action' => 'guardarOpciones'
+                ]
+                ],
+            'datos/directores/planeacion' => [
+                'GET' => [
+                    'controller' => $directorPlaneamiento,
+                    'action' => 'vista'
                 ]
             ]
         ];
