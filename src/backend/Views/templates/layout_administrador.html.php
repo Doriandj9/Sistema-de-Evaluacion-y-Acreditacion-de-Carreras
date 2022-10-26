@@ -61,7 +61,7 @@
                         <span class="material-icons text-negro">&#xe9b1;</span>
                         <span class="text-blanco bordes-op-menu ">Director de Planeación</span>
                         </a>
-                        <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin/cambio/clave" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeade;</span>
                         <span class="text-blanco bordes-op-menu ">Cambiar Contraseña</span>
                         </a>
