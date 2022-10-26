@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\backend\Application\Rutas;
 
+use App\backend\Controllers\Administrador\CambioClave;
 use App\backend\Controllers\Administrador\Carreras;
 use App\backend\Controllers\Administrador\Coordinador;
+use App\backend\Controllers\Administrador\DirectorPlaneamiento;
 use App\backend\Controllers\Administrador\Facultad;
 use App\backend\Controllers\Administrador\Inicio;
 use App\backend\Controllers\Administrador\PeriodoAcademico;
@@ -21,6 +23,8 @@ class RutasAdministrador implements Route
         $coordinador = new Coordinador;
         $facultad = new Facultad;
         $carreras = new Carreras;
+        $directorPlaneamiento = new DirectorPlaneamiento;
+        $cambioClave = new CambioClave;
         return [
             'admin' => [
                 'GET' => [
@@ -110,6 +114,30 @@ class RutasAdministrador implements Route
                     'action' => 'agregarCoordinadorACarrera'
                 ],
                 ],
+            'admin/administrar/director-planeacion' => [
+                'GET' => [
+                    'controller' => $directorPlaneamiento,
+                    'action' => 'vista'
+                ]
+            ],
+            'admin/agregar/director-planeacion' => [
+                'POST' => [
+                    'controller' => $directorPlaneamiento,
+                    'action' => 'insertarDirector'
+                ]
+            ],
+            'admin/actualizar/director-planeacion' => [
+                'POST' => [
+                    'controller' => $directorPlaneamiento,
+                    'action' => 'editarDirector'
+                ]
+            ],
+            'admin/cambio/clave' => [
+                'GET' => [
+                    'controller' => $cambioClave,
+                    'action' => 'vista'
+                ]
+            ],
         ];
     }
 
