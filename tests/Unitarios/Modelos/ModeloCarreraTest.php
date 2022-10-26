@@ -62,7 +62,7 @@ class ModeloCarreraTest extends TestCase {
     public function testObtenerTodasLasCarrerasConLaFacultad() {
         $carreras = $this->modeloCarrera->selectWhitFacultad();
         $this->assertInstanceOf(\Illuminate\Support\Collection::class,$carreras);
-        $this->assertCount(9,$carreras);
+        $this->assertCount(10,$carreras);
         return $carreras;
     }
     /**

@@ -34,9 +34,11 @@ class UsuariosDocentesTest extends TestCase
 
         $this->assertTrue($result);
     }
-
+    /**
+     * @covers \App\backend\Models\UsuariosDocente::obtenerCoordinadores
+     */
     public function testObtenerUsuriosCoordinadores() {
         $coordinadores = $this->usuariosDocentes->obtenerCoordinadores();
-        var_dump($coordinadores);
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$coordinadores);
     }   
 }
