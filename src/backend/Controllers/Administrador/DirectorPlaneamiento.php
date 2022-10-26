@@ -28,13 +28,14 @@ class DirectorPlaneamiento implements Controller
         ];
     }
 
-    public function insertarDirector() {
+    public function insertarDirector()
+    {
         $data_insert_docente = [
             'id' => trim($_POST['cedula']),
             'nombre' => trim($_POST['nombre']),
             'apellido' => trim($_POST['apellido']),
             'correo' => trim($_POST['correo']),
-            'clave' => password_hash(trim($_POST['cedula']),PASSWORD_DEFAULT),
+            'clave' => password_hash(trim($_POST['cedula']), PASSWORD_DEFAULT),
             'telefono' => trim($_POST['telefono']),
             'cambio_clave' => true
         ];
@@ -51,24 +52,24 @@ class DirectorPlaneamiento implements Controller
             'estado' => 'activo'
         ];
         try {
-            $docente = $this->docentes->selectFromColumn('id',$data_insert_docente['id'])->first();
-            if(!$docente){
+            $docente = $this->docentes->selectFromColumn('id', $data_insert_docente['id'])->first();
+            if (!$docente) {
                 $this->docentes->insert($data_insert_docente);
             }
-            $docenteCarrera = $this->docentesCarrera->selectFromColumn('id_carreras','TICS');
-            if(count($docenteCarrera) >= 1){
+            $docenteCarrera = $this->docentesCarrera->selectFromColumn('id_carreras', 'TICS');
+            if (count($docenteCarrera) >= 1) {
                 $insertar = true;
                 foreach ($docenteCarrera as $dcarrera) {
-                    if(trim($dcarrera->id_docentes) === $data_insert_docente_carrera['id_docentes']) {
+                    if (trim($dcarrera->id_docentes) === $data_insert_docente_carrera['id_docentes']) {
                         $insertar = false;
-                       continue;
+                        continue;
                     }
                 }
-                
-                if($insertar) {
+
+                if ($insertar) {
                     $this->docentesCarrera->insert($data_insert_docente_carrera);
                 }
-            } 
+            }
 
             $usuarioDocente = $this->usuariosDocentes->selectFromColumnsUsuarios(
                 'id_usuarios',
@@ -76,15 +77,15 @@ class DirectorPlaneamiento implements Controller
                 Docente::DIRECTOR_PLANEAMIENTO,
                 $data_insert_director['id_docentes']
             )->first();
-            if(!$usuarioDocente){
+            if (!$usuarioDocente) {
                 $this->usuariosDocentes->insert($data_insert_director);
-            }else{
+            } else {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 1,
                         'mensaje' => 'El usuario ateriormente ya fue director, por favor actualize las fechas del cargo'
                     ]
-                    ));
+                ));
             }
 
             Http::responseJson(json_encode(
@@ -92,18 +93,19 @@ class DirectorPlaneamiento implements Controller
                     'ident' => 1,
                     'mensaje' => 'Se ingreso correctamente el usuario'
                 ]
-                ));
+            ));
         } catch (\PDOException $e) {
             Http::responseJson(json_encode(
                 [
                     'ident' => 0,
                     'mensaje' => $e->getMessage()
                 ]
-                ));
+            ));
         }
     }
 
-    public function editarDirector() {
+    public function editarDirector()
+    {
         $data_edit_docente = [
             'nombre' => trim($_POST['nombre']),
             'apellido' => trim($_POST['apellido']),
@@ -115,23 +117,26 @@ class DirectorPlaneamiento implements Controller
             'fecha_final' => trim($_POST['f_final']),
         ];
         try {
-            $this->docentes->updateValues(trim($_POST['id']),$data_edit_docente);
-            $this->usuariosDocentes->updateUsuario(Docente::DIRECTOR_PLANEAMIENTO,trim($_POST['id']),$data_edit_director);
+            $this->docentes->updateValues(trim($_POST['id']), $data_edit_docente);
+            $this->usuariosDocentes->updateUsuario(
+                Docente::DIRECTOR_PLANEAMIENTO,
+                trim($_POST['id']),
+                $data_edit_director
+            );
 
             Http::responseJson(json_encode(
                 [
                     'ident' => 1,
                     'mensaje' => 'Se actualizo correctamente el usuario'
                 ]
-                ));
-
+            ));
         } catch (\PDOException $e) {
             Http::responseJson(json_encode(
                 [
                     'ident' => 0,
                     'mensaje' => $e->getMessage()
                 ]
-                ));
+            ));
         }
     }
 }

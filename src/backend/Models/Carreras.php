@@ -26,7 +26,7 @@ class Carreras extends DatabaseTable
             $docentes_carreras = DB::table(self::TABLE)
             ->join('docentes_carreras', 'carreras.id', '=', 'docentes_carreras.id_carreras')
             ->join('docentes', 'docentes.id', '=', 'docentes_carreras.id_docentes')
-            ->where('carreras.id','=',$idCarrera)
+            ->where('carreras.id', '=', $idCarrera)
             ->get();
             return $docentes_carreras;
         } else {
@@ -34,25 +34,26 @@ class Carreras extends DatabaseTable
         }
     }
 
-    public function selectWhitFacultad($action = null, $valor = null) {
+    public function selectWhitFacultad($action = null, $valor = null)
+    {
 
-        if($action && $valor) {
+        if ($action && $valor) {
             $result = DB::table(self::TABLE)
-            ->join('facultad','carreras.id_facultad','=','facultad.id')
-            ->where($action,'=',$valor)
-        ->get([
+            ->join('facultad', 'carreras.id_facultad', '=', 'facultad.id')
+            ->where($action, '=', $valor)
+            ->get([
             'carreras.id as id_carrera',
             'carreras.nombre as nombre_carrera',
             'id_facultad',
             'numero_asig',
             'total_horas_proyecto',
             'facultad.nombre as nombre_facultad'
-        ]);
-            
+            ]);
+
             return $result;
         }
         $result = DB::table(self::TABLE)
-            ->join('facultad','carreras.id_facultad','=','facultad.id')
+            ->join('facultad', 'carreras.id_facultad', '=', 'facultad.id')
             ->orderBy('carreras.id')
             ->get([
             'carreras.id as id_carrera',
@@ -69,19 +70,19 @@ class Carreras extends DatabaseTable
     {
         $carrerasPeriodoAcademico = DB::table('carreras_periodo_academico')
         ->select()
-        ->where('id_periodo_academico','=',$periodo)
+        ->where('id_periodo_academico', '=', $periodo)
         ->get();
         $carreras = $this->select();
         $memory = [];
-        foreach($carrerasPeriodoAcademico as $carrera) {
+        foreach ($carrerasPeriodoAcademico as $carrera) {
             $memory[trim($carrera->id_carreras)] = 'activo';
         }
 
-        foreach($carreras as $key => $carrier){
-            if(array_key_exists(trim($carrier->id),$memory)){
+        foreach ($carreras as $key => $carrier) {
+            if (array_key_exists(trim($carrier->id), $memory)) {
                 $carreras[$key]->opcion = $memory[trim($carrier->id)];
                 $carreras[$key]->periodo = trim($periodo);
-            }else {
+            } else {
                 $carreras[$key]->opcion = 'inactivo';
                 $carreras[$key]->periodo = '';
             }

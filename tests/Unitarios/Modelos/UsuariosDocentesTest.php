@@ -27,18 +27,20 @@ class UsuariosDocentesTest extends TestCase
     /**
      * @covers \App\backend\Models\UsuariosDocente::updateUsuario
      */
-    public function testActualizarFechasDeUnCoordinador() {
+    public function testActualizarFechasDeUnCoordinador()
+    {
         $id_usuario = Docente::COORDINADORES;
         $id_docente = '0250186664';
-        $result = $this->usuariosDocentes->updateUsuario($id_usuario,$id_docente,$this->datosActualizar);
+        $result = $this->usuariosDocentes->updateUsuario($id_usuario, $id_docente, $this->datosActualizar);
 
         $this->assertTrue($result);
     }
     /**
      * @covers \App\backend\Models\UsuariosDocente::obtenerCoordinadores
      */
-    public function testObtenerUsuriosCoordinadores() {
+    public function testObtenerUsuriosCoordinadores()
+    {
         $coordinadores = $this->usuariosDocentes->obtenerCoordinadores();
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$coordinadores);
-    }   
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $coordinadores);
+    }
 }

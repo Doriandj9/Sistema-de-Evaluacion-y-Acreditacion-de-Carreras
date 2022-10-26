@@ -41,7 +41,7 @@ class Coordinador implements Controller
     public function agregarCoordinadorACarrera()
     {
         $datos_docentes_usuario = [];
-        if(!isset($_GET['opcion'])){
+        if (!isset($_GET['opcion'])) {
             $datos_docentes_usuario = [
                 'id_usuarios' => Docente::COORDINADORES,
                 'id_docentes' => trim($_POST['coordinador']),
@@ -52,21 +52,21 @@ class Coordinador implements Controller
             ];
         }
 
-        if(isset($_GET['opcion']) && $_GET['opcion'] === 'manual') {
+        if (isset($_GET['opcion']) && $_GET['opcion'] === 'manual') {
             $datos_insertar_docente = [
                 'id' => trim($_POST['cedula']),
                 'nombre' => trim($_POST['nombre']),
                 'apellido' => trim($_POST['apellido']),
                 'correo' => trim($_POST['correo']),
                 'telefono' => empty($_POST['telefono']) ? null : trim($_POST['telefono']),
-                'cambio_clave' => true 
+                'cambio_clave' => true
             ];
             $datos_insertar_carrera = [
                 'id_carreras' => trim($_POST['carrera_manual']),
                 'id_docentes' => trim($_POST['cedula'])
             ];
-            $resultInsertDocente = $this->insertarDocenteYCarrera($datos_insertar_docente,$datos_insertar_carrera);
-            if(gettype($resultInsertDocente) === 'string'){
+            $resultInsertDocente = $this->insertarDocenteYCarrera($datos_insertar_docente, $datos_insertar_carrera);
+            if (gettype($resultInsertDocente) === 'string') {
                 Http::responseJson($resultInsertDocente);
             }
 
@@ -78,7 +78,6 @@ class Coordinador implements Controller
                 'fecha_final' => trim($_POST['f_final']),
                 'estado' => 'activo'
             ];
-
         }
 
         // Esta linea sirve para generar la clave encriptada del coordinador para ingresar al sistema
@@ -123,13 +122,14 @@ class Coordinador implements Controller
         } catch (\PDOException $e) {
             Http::responseJson(json_encode(
                 ['ident' => 0,
-                'mensaje' => $e->getMessage() 
+                'mensaje' => $e->getMessage()
                 ]
             ));
         }
     }
 
-    public function obtenerCoordinadores() {
+    public function obtenerCoordinadores()
+    {
         $coordinadores = $this->usuarioDocenteModelo->obtenerCoordinadores();
 
         Http::responseJson(json_encode([
@@ -140,17 +140,16 @@ class Coordinador implements Controller
 
 
     private function insertarDocenteYCarrera(array $datosDocente, $datosCarrera): bool|string
-     {
-        try{
+    {
+        try {
             $result = $this->docenteModelo->insert($datosDocente);
             $result = $this->docentesCarrera->insert($datosCarrera);
             return $result;
-        }catch(\PDOException $e) {
+        } catch (\PDOException $e) {
             return json_encode([
                 'ident' => 0,
                 'mensaje' => $e->getMessage()
             ]);
-        } 
+        }
     }
-
 }

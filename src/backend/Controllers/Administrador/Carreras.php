@@ -22,7 +22,8 @@ class Carreras implements Controller
         ];
     }
 
-    public function insertarCarrera() {
+    public function insertarCarrera()
+    {
         $data_insert_carrera = [
             'id' => strtoupper(trim($_POST['id'])),
             'nombre' => trim($_POST['nombre']),
@@ -31,84 +32,84 @@ class Carreras implements Controller
             'id_facultad' => trim($_POST['facultad'])
         ];
 
-        try{
+        try {
             $result = $this->carreras->insert($data_insert_carrera);
-            if($result) {
+            if ($result) {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 1,
                         'mensaje' => 'Se inserto correctamente la carrera'
                     ]
-                    ));
-            }else {
+                ));
+            } else {
                 throw new \PDOException('Error: Ocurrio un evento inesperado, intentelo mas tarde');
             }
-        }catch(\PDOException $e) {
+        } catch (\PDOException $e) {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 0,
                         'mensaje' => $e->getMessage()
                     ]
-                    ));
+                ));
         }
     }
 
-    public function editarCarrera() {
+    public function editarCarrera()
+    {
         $data_edit_carrera = [
             'id' => strtoupper(trim($_POST['id_editado'])),
             'nombre' => trim($_POST['nombre']),
             'numero_asig' => intval(trim($_POST['numero_asig'])),
             'total_horas_proyecto' => intval(trim($_POST['horas_proyecto']))
         ];
-        try{
+        try {
             $result = $this->carreras->updateValues(trim($_POST['id']), $data_edit_carrera);
-            if($result) {
+            if ($result) {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 1,
                         'mensaje' => 'Se Actualizo correctamente la carrera'
                     ]
-                    ));
-            }else {
+                ));
+            } else {
                 throw new \PDOException('Error: Ocurrio un evento inesperado, intentelo mas tarde');
             }
-        }catch(\PDOException $e) {
+        } catch (\PDOException $e) {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 0,
                         'mensaje' => $e->getMessage()
                     ]
-                    ));
+                ));
         }
     }
 
-    public function obtenerCarrerasHabilitadas() {
-        if(isset($_GET['periodo'])){
-            try{
+    public function obtenerCarrerasHabilitadas()
+    {
+        if (isset($_GET['periodo'])) {
+            try {
                 $carreras = $this->carreras->obtenerHabilitacionPorPeriodoAcademico(trim($_GET['periodo']));
                 Http::responseJson(json_encode(
                     [
                         'ident' => 1,
                         'carreras' => $carreras
                     ]
-                    ));
-            }catch(\PDOException $e) {
+                ));
+            } catch (\PDOException $e) {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 0,
                         'mensaje' => $e->getMessage()
                     ]
-                    ));
+                ));
             }
-
-        }else {
+        } else {
             Http::responseJson(json_encode(
                 [
                     'ident' => 0,
                     'mensaje' => 'Error: No ha enviado el parametro periodo'
                 ]
-                ));
+            ));
         }
-
     }
 }

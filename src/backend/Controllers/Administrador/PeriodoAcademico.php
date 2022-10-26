@@ -81,27 +81,28 @@ class PeriodoAcademico implements Controller
         }
     }
 
-    public function guardarCarrerasHabilitadas() {
+    public function guardarCarrerasHabilitadas()
+    {
         $periodo = $_POST['periodo'];
         $id_carreras = $_POST['ids_carreras'];
 
-        foreach($id_carreras as $carrera) {
+        foreach ($id_carreras as $carrera) {
             $data_carreras_periodo_academico = [
                 'id_carreras' => $carrera,
                 'id_periodo_academico' => $periodo
             ];
             try {
                 $result = $this->carrerasPeriodoAcademico->insert($data_carreras_periodo_academico);
-                if(!$result) {
+                if (!$result) {
                     throw new \PDOException('Error: Ocurrio un problema inesperado intento mas tarde.');
                 }
-            }catch(\PDOException $e) {
+            } catch (\PDOException $e) {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 0,
                         'mensaje' => $e->getMessage()
                     ]
-                    ));
+                ));
                 break;
             }
         }
@@ -111,6 +112,6 @@ class PeriodoAcademico implements Controller
                 'ident' => 1,
                 'mensaje' => 'Se habilito correctamente las carreras'
             ]
-            ));
+        ));
     }
 }
