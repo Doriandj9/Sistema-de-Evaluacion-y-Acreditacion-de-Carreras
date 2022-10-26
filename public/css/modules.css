@@ -466,6 +466,9 @@ nav.flex-columna > a:last-child > span:last-child{
 .altura-2{
     height: 20rem;
 }
+.altura-1{
+    height: 16rem;
+}
 .desborde-auto{
     overflow: auto;
 }
