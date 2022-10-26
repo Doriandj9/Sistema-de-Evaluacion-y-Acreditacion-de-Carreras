@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Datos\Carreras;
+use App\backend\Controllers\Datos\DirectorPlaneamiento;
 use App\backend\Controllers\Datos\Docentes;
 use App\backend\Controllers\Datos\Facultad;
 use App\backend\Controllers\Datos\PeriodosAcademicos;
@@ -18,6 +19,7 @@ class RutasDatos implements Route
         $periodosAcademicos = new PeriodosAcademicos;
         $carrerasController = new Carreras;
         $facultades = new Facultad;
+        $directorPlaneamiento = new DirectorPlaneamiento;
         return [
             'datos/docentes' => [
                 'GET' => [
@@ -65,6 +67,12 @@ class RutasDatos implements Route
                 'POST' => [
                     'controller' => $carrerasController,
                     'action' => 'guardarOpciones'
+                ]
+                ],
+            'datos/directores/planeacion' => [
+                'GET' => [
+                    'controller' => $directorPlaneamiento,
+                    'action' => 'vista'
                 ]
             ]
         ];
