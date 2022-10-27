@@ -14,14 +14,8 @@ class EmailTest extends TestCase
     {
         $html = EnviarEmail::html(
             null,
-            'Coordinador de la Carrera de Software',
-            'Usted ha sido notificado para utilizar
-            el sistema SEAC que tiene apertura en la carrera de Software en la fecha  
-            inicial 26/10/2022 hasta el 10/03/2023.<br>
-            El usuario para el ingreso es su correo institucional y su controseña provicional
-            es el numero de su cédula, se le recomienda cambiar la clave para una mayor seguridad.<br>',
-            true,
-            'http://localhost/'
+            'Test',
+            'Este es un correo de prueba'
         );
         $this->assertIsString($html);
         return $html;
@@ -33,10 +27,10 @@ class EmailTest extends TestCase
     public function testEnviarCorreoElectronico($cuerpo)
     {
         $result = EnviarEmail::enviar(
-            'Dorian Armijos',
+            'Correo de Prueba',
             'dorian9armijos@gmail.com',
             'darmijos@mailes.ueb.edu.ec',
-            'Habilitado para usar la plataforma SEAC',
+            'Notificado',
             $cuerpo
         );
 
