@@ -14,6 +14,7 @@ class Docente extends DatabaseTable
     public const COORDINADORES = 4;
     public const EVALUADORES = 8;
     public const ADMIN = 16;
+    private UsuariosDocente $usuarioDocente;
 
     public function __construct()
     {
@@ -74,8 +75,67 @@ class Docente extends DatabaseTable
         ->join(UsuariosDocente::TABLE, UsuariosDocente::TABLE . '.id_carrera', '=', Carreras::TABLE . '.id')
         ->where('id_usuarios', '=', $id_usuarios)
         ->where('id_docentes', '=', $id_docente)
-        ->get(['id_docentes','id_carrera','nombre']); // nombre se refiere al nombre de la carrera
+        ->orderBy('id_docentes')
+        ->get(['id_docentes','id_usuarios','id_carrera','nombre','fecha_inicial','fecha_final','estado']); // nombre se refiere al nombre de la carrera
+        $respuesta = $this->verificacionEstado($resultado);
+        return empty($respuesta[1]) ? $respuesta[0]: $respuesta;
+    }
 
-        return $resultado;
+    public function verificacionEstado(\Illuminate\Support\Collection $carreras): array
+    {
+        //definimos el tiempo de zona en guayaquil
+        date_default_timezone_set('America/Guayaquil');
+        $fecha_actual = new \DateTime('now');
+        $this->usuarioDocente = new UsuariosDocente;
+        $errores = [];
+        foreach($carreras as $key => $carrera) {
+            $fecha_i =  new \DateTime($carrera->fecha_inicial);
+            $fecha_f =  new \DateTime($carrera->fecha_final);
+            $data_update = [
+                'estado' => 'inactivo'
+            ];
+
+            if($this->hasInterval($fecha_i,$fecha_f,$fecha_actual)){
+                $data_update['estado'] = 'activo';
+                $carreras[$key]->estado = 'activo';
+            }else{
+                $carreras[$key]->estado = 'inactivo';
+            }
+
+            try{
+                $this->usuarioDocente->updateUsuario($carrera->id_usuarios,$carrera->id_docentes,$data_update);
+            }catch(\PDOException $e){
+                array_push($errores,[
+                    'id_docentes' => $carrera->id_docentes,
+                    'mensaje' => 'Ocurrio un error al intentar actualizar el estado',
+                    'error' => $e->getMessage()
+                ]);
+            }
+        }
+
+        return [$carreras,$errores];
+    }
+    /**
+     * Este metodo estatico permite verificar si una fecha en especifo se encentra dentro de un rango de fechas
+     *
+     * @param DateTime $start Es el intervalo inicial
+     * @param DateTime $end Es el intervalo final
+     * @param DateTime $date Es la fecha a comprobar si se encuentra en ese intervalo de $start a $end
+     * @return bool
+     */
+
+    private function hasInterval(
+        \DateTime $start,
+        \DateTime $end,
+        \DateTime $date
+    ): bool
+    {
+        $start = new \DateTime($start->format('Y-m-d'));
+        $end = new \DateTime($end->format('Y-m-d'));
+        $date = new  \DateTime($date->format('Y-m-d'));
+        $startInterval = $start->getTimestamp();
+        $endInterval = $end->getTimestamp();
+
+        return $date->getTimestamp() >= $startInterval && $date->getTimestamp() <= $endInterval;
     }
 }
