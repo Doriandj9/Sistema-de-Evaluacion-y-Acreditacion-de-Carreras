@@ -26,7 +26,7 @@ class EnviarEmail {
         );
         try {
             //Configuracion del servidor
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->SMTPDebug = 0;
             $mail->isSMTP();
             $mail->Host = $_ENV['HOST_MAIL'];
             $mail->SMTPAuth = true;
@@ -58,5 +58,28 @@ class EnviarEmail {
             return $respuesta;
         }
         
+    }
+
+    static public  function html(
+        string $html = null,
+        string $titulo='Titulo Predeterminado',
+        string $mensaje = 'No hay mensaje',
+        bool $redireccion = false,
+        string $dir = ''
+        ) {
+        if($html){
+            return $html;
+        }
+
+        $htmlTemplate = file_get_contents('./public/templates/mail.html');
+        $htmlTemplate = str_replace('%titulo%',$titulo,$htmlTemplate);
+        $htmlTemplate = str_replace('%mensaje%',$mensaje,$htmlTemplate);
+
+        if($redireccion) {
+            $htmlTemplate = str_replace('% hidden %',' ',$htmlTemplate);
+            $htmlTemplate = str_replace('%dir%',$dir,$htmlTemplate);
+        }
+
+        return $htmlTemplate;
     }
 }
