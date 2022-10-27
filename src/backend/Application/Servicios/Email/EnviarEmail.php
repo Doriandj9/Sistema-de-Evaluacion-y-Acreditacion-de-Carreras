@@ -76,7 +76,7 @@ class EnviarEmail
         $htmlTemplate = str_replace('%mensaje%', $mensaje, $htmlTemplate);
 
         if ($redireccion) {
-            $htmlTemplate = str_replace('% hidden %', ' ', $htmlTemplate);
+            $htmlTemplate = str_replace('none;', ' block;', $htmlTemplate);
             $htmlTemplate = str_replace('%dir%', $dir, $htmlTemplate);
         }
 
