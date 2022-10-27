@@ -6,9 +6,10 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-class EnviarEmail {
+class EnviarEmail
+{
 
-    static public function enviar(
+    public static function enviar(
         string $cargo,
         string $emailEmisor,
         string $emailReceptor,
@@ -36,7 +37,7 @@ class EnviarEmail {
             $mail->Port = intval($_ENV['MAIL_PUERTO']);
 
             //destinatario
-            $mail->setFrom($emailEmisor ?? $_ENV['MAIL_DIRECCION'],$cargo);
+            $mail->setFrom($emailEmisor ?? $_ENV['MAIL_DIRECCION'], $cargo);
             $mail->addAddress($emailReceptor);
 
             //contenido
@@ -57,27 +58,26 @@ class EnviarEmail {
             $respuesta->mensaje = $e->errorMessage();
             return $respuesta;
         }
-        
     }
 
-    static public  function html(
+    public static function html(
         string $html = null,
-        string $titulo='Titulo Predeterminado',
+        string $titulo = 'Titulo Predeterminado',
         string $mensaje = 'No hay mensaje',
         bool $redireccion = false,
         string $dir = ''
-        ) {
-        if($html){
+    ) {
+        if ($html) {
             return $html;
         }
 
         $htmlTemplate = file_get_contents('./public/templates/mail.html');
-        $htmlTemplate = str_replace('%titulo%',$titulo,$htmlTemplate);
-        $htmlTemplate = str_replace('%mensaje%',$mensaje,$htmlTemplate);
+        $htmlTemplate = str_replace('%titulo%', $titulo, $htmlTemplate);
+        $htmlTemplate = str_replace('%mensaje%', $mensaje, $htmlTemplate);
 
-        if($redireccion) {
-            $htmlTemplate = str_replace('% hidden %',' ',$htmlTemplate);
-            $htmlTemplate = str_replace('%dir%',$dir,$htmlTemplate);
+        if ($redireccion) {
+            $htmlTemplate = str_replace('% hidden %', ' ', $htmlTemplate);
+            $htmlTemplate = str_replace('%dir%', $dir, $htmlTemplate);
         }
 
         return $htmlTemplate;

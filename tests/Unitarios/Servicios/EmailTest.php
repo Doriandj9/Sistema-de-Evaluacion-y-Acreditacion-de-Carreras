@@ -24,13 +24,14 @@ class EmailTest extends TestCase
             'http://localhost/'
         );
         $this->assertIsString($html);
-       return $html;
+        return $html;
     }
     /**
      * @depends testHtmlRenderEmail
      * @covers App\backend\Application\Servicios\Email\EnviarEmail::enviar
      */
-    public function testEnviarCorreoElectronico($cuerpo) {
+    public function testEnviarCorreoElectronico($cuerpo)
+    {
         $result = EnviarEmail::enviar(
             'Dorian Armijos',
             'dorian9armijos@gmail.com',
