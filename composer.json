@@ -6,7 +6,8 @@
         "dompdf/dompdf": "2.0.0",
         "symfony/dotenv": "6.0.x-dev",
         "firebase/php-jwt": "dev-main",
-        "illuminate/database": "9.x-dev"
+        "illuminate/database": "9.x-dev",
+        "phpmailer/phpmailer": "dev-master"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "4.0.x-dev",

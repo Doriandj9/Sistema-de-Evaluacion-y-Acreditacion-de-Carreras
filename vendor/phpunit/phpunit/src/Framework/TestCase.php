@@ -91,11 +91,11 @@ use PHPUnit\Framework\MockObject\Stub\ReturnStub;
 use PHPUnit\Framework\MockObject\Stub\ReturnValueMap as ReturnValueMapStub;
 use PHPUnit\Runner\BaseTestRunner;
 use PHPUnit\Runner\PhptTestCase;
+use PHPUnit\Util\Cloner;
 use PHPUnit\Util\Exception as UtilException;
 use PHPUnit\Util\GlobalState;
 use PHPUnit\Util\PHP\AbstractPhpProcess;
 use PHPUnit\Util\Test as TestUtil;
-use PHPUnit\Util\Type;
 use Prophecy\Exception\Prediction\PredictionException;
 use Prophecy\Prophecy\MethodProphecy;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -1970,6 +1970,8 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * @throws \Prophecy\Exception\Doubler\InterfaceNotFoundException
      *
      * @psalm-param class-string|null $classOrInterface
+     *
+     * @deprecated https://github.com/sebastianbergmann/phpunit/issues/4141
      */
     protected function prophesize(?string $classOrInterface = null): ObjectProphecy
     {
@@ -2453,9 +2455,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
         } else {
             foreach ($testArguments as $testArgument) {
                 if ($testArgument instanceof MockObject) {
-                    if (Type::isCloneable($testArgument)) {
-                        $testArgument = clone $testArgument;
-                    }
+                    $testArgument = Cloner::clone($testArgument);
 
                     $this->registerMockObject($testArgument);
                 } elseif (is_array($testArgument) && !in_array($testArgument, $visited, true)) {
