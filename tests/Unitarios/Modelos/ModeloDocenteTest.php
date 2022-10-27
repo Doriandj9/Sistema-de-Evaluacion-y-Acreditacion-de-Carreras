@@ -89,15 +89,16 @@ class ModeloDocenteTest extends TestCase
     {
         $result = $this->modelDocente->deleteRaw($this->argumentos['id']);
         $this->assertTrue($result);
-        
+
         return $result;
     }
     /**
      * @depends testBorarDocente
      * @covers App\backend\Models\Docente::getCarrerasPorPermisos
      */
-    public function testobtenerCarrerasPorUsuario(){
-        $carrreras = $this->modelDocente->getCarrerasPorPermisos(Docente::COORDINADORES,'0250186663');
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$carrreras);
+    public function testobtenerCarrerasPorUsuario()
+    {
+        $carrreras = $this->modelDocente->getCarrerasPorPermisos(Docente::COORDINADORES, '0250186663');
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $carrreras);
     }
 }

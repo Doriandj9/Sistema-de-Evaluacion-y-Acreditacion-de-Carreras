@@ -75,8 +75,8 @@ class Docente extends DatabaseTable
         ->join(UsuariosDocente::TABLE, UsuariosDocente::TABLE . '.id_carrera', '=', Carreras::TABLE . '.id')
         ->where('id_usuarios', '=', $id_usuarios)
         ->where('id_docentes', '=', $id_docente)
-        ->orderBy('id_docentes')
-        ->get(['id_docentes','id_usuarios','id_carrera','nombre','fecha_inicial','fecha_final','estado']); // nombre se refiere al nombre de la carrera
+        ->orderBy('id_docentes')// nombre se refiere al nombre de la carrera
+        ->get(['id_docentes','id_usuarios','id_carrera','nombre','fecha_inicial','fecha_final','estado']);
         $respuesta = $this->verificacionEstado($resultado);
         return empty($respuesta[1]) ? $respuesta[0]: $respuesta;
     }
@@ -88,24 +88,24 @@ class Docente extends DatabaseTable
         $fecha_actual = new \DateTime('now');
         $this->usuarioDocente = new UsuariosDocente;
         $errores = [];
-        foreach($carreras as $key => $carrera) {
+        foreach ($carreras as $key => $carrera) {
             $fecha_i =  new \DateTime($carrera->fecha_inicial);
             $fecha_f =  new \DateTime($carrera->fecha_final);
             $data_update = [
                 'estado' => 'inactivo'
             ];
 
-            if($this->hasInterval($fecha_i,$fecha_f,$fecha_actual)){
+            if ($this->hasInterval($fecha_i, $fecha_f, $fecha_actual)) {
                 $data_update['estado'] = 'activo';
                 $carreras[$key]->estado = 'activo';
-            }else{
+            } else {
                 $carreras[$key]->estado = 'inactivo';
             }
 
-            try{
-                $this->usuarioDocente->updateUsuario($carrera->id_usuarios,$carrera->id_docentes,$data_update);
-            }catch(\PDOException $e){
-                array_push($errores,[
+            try {
+                $this->usuarioDocente->updateUsuario($carrera->id_usuarios, $carrera->id_docentes, $data_update);
+            } catch (\PDOException $e) {
+                array_push($errores, [
                     'id_docentes' => $carrera->id_docentes,
                     'mensaje' => 'Ocurrio un error al intentar actualizar el estado',
                     'error' => $e->getMessage()
@@ -128,8 +128,7 @@ class Docente extends DatabaseTable
         \DateTime $start,
         \DateTime $end,
         \DateTime $date
-    ): bool
-    {
+    ): bool {
         $start = new \DateTime($start->format('Y-m-d'));
         $end = new \DateTime($end->format('Y-m-d'));
         $date = new  \DateTime($date->format('Y-m-d'));
