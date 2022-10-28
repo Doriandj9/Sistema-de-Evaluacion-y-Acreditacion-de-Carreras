@@ -44,14 +44,14 @@ function verificarUsuario(resultado) {
 			console.log(e);
 		}
 	} else {
-		throw new Error('Usuario, email o contraseña incorrectos, intentalo nuevamente');  
+		throw new Error(resultado.error);  
 	}
 }
 
 function manejarHerror(e) {
 	precarga.end();
 	new Notificacion(
-		e,
+		e.toString().substring(7),
 		'Aceptar'
 	)
 }
