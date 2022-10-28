@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\backend\Controllers\Web;
 
 use App\backend\Application\Utilidades\Http;
+use App\backend\Application\Utilidades\Jwt;
 use App\backend\Controllers\Controller;
 use App\backend\Frame\Autentification;
 use App\backend\Models\Docente;
+use App\backend\Models\UsuariosDocente;
 
 class Login implements Controller
 {
@@ -62,11 +64,53 @@ class Login implements Controller
         if ($usuario) {
             $usuario->ident = 1;
             $usuario->token = $_SESSION['token'];
+            $tokenDecode = Jwt::decodificadorToken($usuario->token);
+            if (count(array_filter($tokenDecode->permisos, function ($permiso) {
+                return $permiso === Docente::ADMIN;
+            })) >= 1) {
+                $usuarioDocenteModelo = new UsuariosDocente;
+                $docenteModelo = new Docente;
+                $usuarioD = $usuarioDocenteModelo->selectFromColumnsUsuarios(
+                    'id_usuarios',
+                    'id_docentes',
+                    Docente::ADMIN,
+                    $tokenDecode->id_usuario
+                );
+                // actualizamos el estado en activo o inactivo
+                list($verificado, $errores) = $docenteModelo->verificacionEstado($usuarioD);
+
+                $usuario->estado = $verificado[0]->estado;
+            }
+            if (count(array_filter($tokenDecode->permisos, function ($permiso) {
+                return $permiso === Docente::DIRECTOR_PLANEAMIENTO;
+            })) >= 1) {
+                $usuarioDocenteModelo = new UsuariosDocente;
+                $docenteModelo = new Docente;
+                $usuarioD = $usuarioDocenteModelo->selectFromColumnsUsuarios(
+                    'id_usuarios',
+                    'id_docentes',
+                    Docente::DIRECTOR_PLANEAMIENTO,
+                    $tokenDecode->id_usuario
+                );
+                // actualizamos el estado en activo o inactivo
+                list($verificado, $errores) = $docenteModelo->verificacionEstado($usuarioD);
+
+                $usuario->estado = $verificado[0]->estado;
+            }
+            if (isset($usuario->estado) && $usuario->estado !== 'activo') {
+                $error = [
+                    'ident' => 0,
+                    'error' => 'El usuario ingresado se encuentra inactivo, 
+                    por favor comuniquese con el administrador del sistema'
+                ];
+                Http::responseJson(json_encode($error));
+            }
+
             Http::responseJson(json_encode($usuario));
         } else {
             $error = [
                 'ident' => 0,
-                'error' => 'El usuario ingresado / contraseña incorrectas'
+                'error' => 'Usuario, email o contraseña incorrectos, intentalo nuevamente'
             ];
             Http::responseJson(json_encode($error));
         }

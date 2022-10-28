@@ -180,7 +180,10 @@ function renderCarreras(resultado){
                 trs += `<tr>
                 <td class="text-center">${carrera.nombre}</td>
                 <td class="text-center  d-flex justify-content-center">
-                <button data-content-id="${carrera.id_carrera.trim()}" title="Ingresar al Sistema SEAC" class="boton boton-enviar is-hover-boton-enviar d-flex align-items-center gap-2">
+                <button ${carrera.estado !== 'activo' ? 'disabled title="Consulte con el administrador o coorinador de carrera"' :
+                 'title="Ingresar al Sistema SEAC"'} 
+                 data-content-id="${carrera.estado !== 'activo' ? '' : carrera.id_carrera.trim()}"  
+                 class="boton boton-enviar is-hover-boton-enviar d-flex align-items-center gap-2 ${carrera.estado !== 'activo' ? 'desactivado' : ''} ">
                 <span class="material-icons text-white">&#xeb38;</span>
                 <span class="">Ingresar</span>
                 </button>
@@ -220,6 +223,7 @@ function redirecionamientoUsuario(){
 
 function redirecion(e,boton) {
     e.preventDefault();
+    if(!boton.hasAttribute('data-content-id') || boton.getAttribute('data-content-id') === '') return;
     const id_carrera = boton.dataset.contentId;
     Usuarios.sendOpciones(usuarioRedirecion,id_carrera)
     .then(renderRespuesta)

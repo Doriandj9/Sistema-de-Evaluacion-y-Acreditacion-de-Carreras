@@ -868,3 +868,8 @@ form,form::after,form::before,
    width: 1.5rem;
    height: 1.5rem;
 }
+
+.desactivado {
+    background-color: rgb(194, 193, 193) !important;
+    color: white !important;
+}
