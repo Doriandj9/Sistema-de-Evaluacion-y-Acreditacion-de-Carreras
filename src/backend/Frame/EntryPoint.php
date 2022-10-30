@@ -69,9 +69,9 @@ class EntryPoint
         $this->configIndicatorRoute();
     }
     /**
-     * Esta funcion verifica que la ruta si se encuentra en
-     * mayusculas se diriga hacia la misma ruta en minusculas
-     * para que el motor de busqueda le trate como que la ruta
+     * Esta función verifica que la ruta si se encuentra en
+     * mayúsculas se dirija hacia la misma ruta en minúsculas
+     * para que el motor de búsqueda le trate como que la ruta
      * pertenece al mismo dominio
      *
      * @return void
@@ -85,10 +85,10 @@ class EntryPoint
     }
 
     /**
-     * Esta duncion se encarga de separar la ruta padre de las hijas
-     * por ejmplo la ruta admin/inicio separada para saber que ruta padre es
-     * quedaria admin y esa ruta se busca en el contenedor de rutas
-     * y se obtine las rutas del admin
+     * Esta función se encarga de separar la ruta padre de las hijas
+     * por ejemplo la ruta admin/inicio separada para saber que ruta padre es
+     * quedaría admin y esa ruta se busca en el contenedor de rutas
+     * y se obtiene las rutas del admin
      *
      * @return void
      */
@@ -105,7 +105,7 @@ class EntryPoint
         return ob_get_clean();
     }
     /**
-     * Esta funcion imprime como tal las vistas y pone en
+     * Esta función imprime como tal las vistas y pone en
      * funcionamiento al sistema
      *
      * @return void
@@ -114,7 +114,7 @@ class EntryPoint
     {
         /**
          * Se busca si la ruta que llega es una ruta padre para agregar a la variable $parentRoute
-         * caso contrario que siga con la ruta que envio el cliente
+         * caso contrario que siga con la ruta que envió el cliente
          */
         if (empty($this->indicatorRoute) && isset(self::REFERENCES_PARENT_ROUTES[$this->route])) {
             $parentRoute = $this->contentRoutes->getRoutes(self::REFERENCES_PARENT_ROUTES[$this->route]);
@@ -190,7 +190,7 @@ class EntryPoint
                 $contenido =  $this->loadTemplate($fragmentoHTML);
             }
 
-            echo $this->loadTemplate(
+            $this->renderView(
                 'templates/'. $template,
                 [
                     'titulo' => $titulo,
@@ -202,5 +202,15 @@ class EntryPoint
             http_response_code(Http::STATUS_NOT_FOUND);
             Http::redirect('/error-404');
         }
+    }
+    /**
+     * Esta funcion renderiza las vistas
+     * 
+     * @param string $view son los templates a renderizarse
+     * @param array $variables son las variables que se imprimen el template
+     */
+    private function renderView(string $view, array $variables): void
+    {
+        echo $this->loadTemplate($view,$variables);
     }
 }
