@@ -12,7 +12,7 @@ use App\backend\Models\Docente;
 
 /**
  * Esta clase se encarga de verificar que el usuario
- * existe dentro de la base de datos y tipio bien su
+ * existe dentro de la base de datos y tipo bien su
  * contraseña
  *
  * @author Dorian Armijos
@@ -46,7 +46,7 @@ class Autentification
             Http::responseJson(json_encode(
                 [
                     'ident' => 0,
-                    'error' => 'Ocurrio un error con la coneccion de la base de datos'
+                    'error' => 'Ocurrió un error con la conexión de la base de datos'
                 ]
             ));
         }
@@ -60,7 +60,7 @@ class Autentification
                 array_push($permisosTok, $permiso->permisos);
             }
             // Creamos un token con json web token de firebase
-            // que sea unico por cada inicio de session
+            // que sea único por cada inicio de session
             date_default_timezone_set('America/Guayaquil');
             $fecha = new \DateTime();
             $datos = [
