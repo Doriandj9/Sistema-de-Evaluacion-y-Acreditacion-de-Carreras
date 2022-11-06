@@ -14,6 +14,7 @@ $capsule->addConnection([
     'database' => $_ENV['DBNAME'],
     'username' => $_ENV['DBUSER'],
     'password' => $_ENV['PASSDATABASE'],
+    'port' => $_ENV['PORTDB'],
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',
