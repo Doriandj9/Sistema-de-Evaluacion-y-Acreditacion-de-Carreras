@@ -46,7 +46,7 @@ class Autentification
             Http::responseJson(json_encode(
                 [
                     'ident' => 0,
-                    'error' => 'Ocurrió un error con la conexión de la base de datos'
+                    'error' => $e->getMessage()
                 ]
             ));
         }
