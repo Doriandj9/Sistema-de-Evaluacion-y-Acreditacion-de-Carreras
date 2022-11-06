@@ -8,4 +8,6 @@ La manera mas facil de utilizar los iconos de bootstrap es con un svg donde lo u
 <svg class="bi" width="32" height="32" fill="currentColor"><use xlink:href="/public/assets/img/bootstrap-icons.svg#filetype-pdf"/></svg>
 ```
 
+- pruba
+
 
