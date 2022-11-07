@@ -1,24 +1,11 @@
 <IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-    Options -MultiViews -Indexes
-    </IfModule>
-    RewriteEngine on
-
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
-
-    # Send Requests To Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ /index.php [NC,L,QSA]
-    
-    # Redicionamiento ya que este archivo contiene datos sensible del sistema
-    Redirect /config/ /error-404
-    Redirect /src/backend/ /error-404
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php [NC,L,QSA]
+# Redicionamiento ya que este archivo contiene datos sensible del sistema
+Redirect /config/ /error-404
+# Este redirecionamiento sirve para que no puedan acceder de forma directa a los archivos
+# .php que puede ejecutarse para realizar acciones indivudales y falle el sistema
+# RedirectMatch "\.php$" "/error-404"
 </IfModule>
