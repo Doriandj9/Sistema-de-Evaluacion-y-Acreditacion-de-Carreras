@@ -130,6 +130,12 @@ function renderRespuesta(respuesta,form){
         'Aceptar',
         false
     )
+    new Notificacion(
+      Boolean(respuesta.identEmail) === true ? '' +  respuesta.email : 'Ocurrio un error al enviar el correo electronico <br>' 
+      + respuesta.email,
+      'Aceptar',
+      Boolean(respuesta.identEmail) === true ? false : true
+    );
     rebootInputs(form);
    }else{
     throw new Error(respuesta.mensaje);
@@ -252,14 +258,21 @@ function insertCoordinador(e,modalB,form) {
 
 
 function renderRespuesta(respuesta,form) {
+
   if(respuesta.ident) {
+    precarga.end();
      new Notificacion(
          respuesta.mensaje,
          'Aceptar',
          false
      )
+     new Notificacion(
+      Boolean(respuesta.identEmail) === true ? '' +  respuesta.email : 'Ocurrio un error al enviar el correo electronico <br>' 
+      + respuesta.email,
+      'Aceptar',
+      Boolean(respuesta.identEmail) === true ? false : true
+    );
      rebootInputs(form);
-     precarga.end();
     }else{
      throw new Error(respuesta.mensaje);
     }
