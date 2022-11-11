@@ -3,7 +3,6 @@ include __DIR__ . '/vendor/autoload.php';
 include __DIR__ . '/config/database.php';
 
 use App\backend\Application\ContentRoutes;
-use App\backend\Application\Utilidades\DB;
 use App\backend\Frame\EntryPoint;
 
 $_ENV['PROTOCOLO_RED'] = !empty($_SERVER['HTTPS']) && ('on' === $_SERVER['HTTPS']) ? 'https' : 'http';

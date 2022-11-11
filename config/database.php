@@ -3,9 +3,9 @@ require __DIR__ . './../vendor/autoload.php';
 
 use Symfony\Component\Dotenv\Dotenv;
 use Illuminate\Database\Capsule\Manager as Capsule;
-
+$dir_env = __DIR__ . '/.env';
 $dotenv = new Dotenv();
-$dotenv->load(__DIR__ . '/.env');
+$dotenv->load($dir_env ?? __DIR__ . '/../.env');
 
 $capsule = new Capsule;
 $capsule->addConnection([
@@ -14,6 +14,7 @@ $capsule->addConnection([
     'database' => $_ENV['DBNAME'],
     'username' => $_ENV['DBUSER'],
     'password' => $_ENV['PASSDATABASE'],
+    'port' => $_ENV['PORTDB'],
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',

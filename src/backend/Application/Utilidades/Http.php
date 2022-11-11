@@ -89,7 +89,7 @@ class Http
      *
      * @var int
      */
-    public const STATUS_FORBIDDEN = 401;
+    public const STATUS_FORBIDDEN = 403;
     /**
      * HTTP 404 code
      *
