@@ -19,10 +19,12 @@
                          
         },
         'coordinador': function(){
-                         
+            import('./coordinadorController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));           
         },
         'director-planeamiento': function(){
-                         
+                      
         },
         'admin': function(){
             import('./adminController.js')
