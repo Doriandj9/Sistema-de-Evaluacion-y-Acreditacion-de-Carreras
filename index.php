@@ -6,15 +6,10 @@ use App\backend\Application\ContentRoutes;
 use App\backend\Application\Utilidades\DB;
 use App\backend\Frame\EntryPoint;
 
+$_ENV['PROTOCOLO_RED'] = !empty($_SERVER['HTTPS']) && ('on' === $_SERVER['HTTPS']) ? 'https' : 'http';
 
 $route = rtrim(ltrim(strtok($_SERVER['REQUEST_URI'],'?'),'/'),'/');
-// $usuario = DB::table('docentes')
-// ->join('usuarios_docente','docentes.id','=','usuarios_docente.id_docentes')
-// ->join('usuarios','usuarios.id','=','usuarios_docente.id_usuarios')
-// ->get()
-// ->where('correo','=','dorian@ueb.edu.ec')
-// ->first();
-// var_dump($usuario->permisos);
+
 try{
 
     $entryPoint = new EntryPoint($route,$_SERVER['REQUEST_METHOD'],new ContentRoutes);
