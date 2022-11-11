@@ -43,4 +43,13 @@ class UsuariosDocentesTest extends TestCase
         $coordinadores = $this->usuariosDocentes->obtenerCoordinadores();
         $this->assertInstanceOf(\Illuminate\Support\Collection::class, $coordinadores);
     }
+    /**
+     * @covers \App\backend\Models\UsuariosDocente::whereRaw
+     */
+    public function testObtenerUsuariosConMasUnCargo() {
+        $result = UsuariosDocente::whereRaw('id_usuarios != ? and id_docentes = ?',
+         [Docente::DIRECTOR_PLANEAMIENTO,'0250186665']
+         )->get();
+        $this->assertCount(1,$result);
+    }
 }
