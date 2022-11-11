@@ -46,7 +46,7 @@ class UsuariosDocentesTest extends TestCase
     /**
      * @covers \App\backend\Models\UsuariosDocente::whereRaw
      */
-    public function testObtenerUsuariosConMasUnCargo() {
+    public function testObtenerUsuariosConMasDeUnCargo() {
         $result = UsuariosDocente::whereRaw('id_usuarios != ? and id_docentes = ?',
          [Docente::DIRECTOR_PLANEAMIENTO,'0250186665']
          )->get();
