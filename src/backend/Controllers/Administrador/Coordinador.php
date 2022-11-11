@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\backend\Controllers\Administrador;
 
+use App\backend\Application\Servicios\Email\EnviarEmail;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Models\Carreras;
@@ -93,6 +94,7 @@ class Coordinador implements Controller
                 'id_docentes',
                 $datos_docentes_usuario['id_docentes']
             )->first();
+            $mensajeRespuesta = '';
             if ($docenteCarrera) {
                 $carrera = $docenteCarrera->id_carrera;
 
@@ -104,20 +106,59 @@ class Coordinador implements Controller
                         $datos_docentes_usuario['id_docentes'],
                         $datos_docentes_usuario
                     );
-                    Http::responseJson(json_encode(
-                        ['ident' => 1,
-                        'mensaje' => 'El docente anteriormente ya fue coordinador, se actualizaron las fechas'
-                        ]
-                    ));
+                    $mensajeRespuesta = 'El docente anteriormente ya fue coordinador, 
+                    se actualizaron las fechas del cargo';
                 }
+            }else {
+                $this->usuarioDocenteModelo->insert($datos_docentes_usuario);
             }
-            $this->usuarioDocenteModelo->insert($datos_docentes_usuario);
             if (!$this->docenteModelo->updateValues($datos_docentes_usuario['id_docentes'], $dato_docente_clave)) {
                 // docenteModelo::updateValues aqui se actualiza la clave y regresa verdader o falso
                 throw new \PDOException('Error: No se pudo actualizar correctamente la clave del usuario');
             }
+            // Si no se actualizo las fechas se ingresa el coordinador
+            $mensajeRespuesta = $mensajeRespuesta === '' ? 'Se ingreso correctamente el usuario coordinador' :
+            $mensajeRespuesta;
+
+            // Si no exitio ningun error enviamos una notificacion al docente que es coordinador
+            $carrera = $this->carrerasModelo->selectFromColumn('id',$datos_docentes_usuario['id_carrera'])
+            ->first()->nombre;
+            $cooreo = $this->docenteModelo->selectFromColumn('id',$datos_docentes_usuario['id_docentes'])
+            ->first()->correo;
+            $respuestaEnvioEmail = EnviarEmail::enviar(
+                'Coordinador de la carrera ' . $carrera,
+                $_ENV['MAIL_DIRECCION'],
+                $cooreo,
+                'Sistema de Evaluación y Acreditación de Carreras',
+                EnviarEmail::html(
+                    null,
+                    'Habilitación de la plataforma',
+                    'Estimado docente se le notifica que se le a aperturado la 
+                    plataforma SEAC para el proceso de evaluación y acreditacion de carreras
+                    donde tendra acceso desde la fecha <strong>' . $datos_docentes_usuario['fecha_inicial']
+                    . '</strong>  y se le restringira el acceso al mismo desde <strong>' . 
+                    $datos_docentes_usuario['fecha_final'] . '</strong>.',
+                    true,
+                    $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
+                    // El protcolo de red si tiene ssl ser https caso contratio http
+                    // esto se encuentra definido en el /index.php 
+                    // por ultimo se concatena todo quedando algo asi https://example.com
+                )
+            );
+            // verificamos que haya existido errores al enviar el correo electronico
+            $mensajeRespuestaEmail = '';
+            if($respuestaEnvioEmail->ident) {
+                $mensajeRespuestaEmail = 'Se envio un email de notificacion al docente correctamente';
+            }
+
+            $mensajeRespuestaEmail = $mensajeRespuestaEmail !== '' ? $mensajeRespuestaEmail :
+            $respuestaEnvioEmail->mensaje;// Se envial el mensaje de error que contiene el envio
             Http::responseJson(json_encode(// en la table docente en la columna clave
-                ['ident' => 1, 'mensaje' => 'Se ingreso correctamente el usuario coordinador']
+                ['ident' => 1,
+                'mensaje' => $mensajeRespuesta,
+                'identEmail' => $respuestaEnvioEmail->ident,
+                'email' => $mensajeRespuestaEmail,
+                ]
             ));
         } catch (\PDOException $e) {
             Http::responseJson(json_encode(
