@@ -56,7 +56,7 @@ class DirectorPlaneamiento implements Controller
             if (!$docente) {
                 $this->docentes->insert($data_insert_docente);
             }
-            $docenteCarrera = $this->docentesCarrera->selectFromColumn('id_carreras', 'TICS');
+            $docenteCarrera = $this->docentesCarrera->selectFromColumn('id_carreras', $_ENV['DEFAULTCARRERA']);
             if (count($docenteCarrera) >= 1) {
                 $insertar = true;
                 foreach ($docenteCarrera as $dcarrera) {
@@ -71,11 +71,20 @@ class DirectorPlaneamiento implements Controller
                 }
             }
 
+            // comprobamos que el usuario no ocupe otro rol en el sistema
+            $usuarioSinRoles = UsuariosDocente::whereRaw('id_usuarios != ? and id_docentes = ?',
+            [Docente::DIRECTOR_PLANEAMIENTO,'0250186665']
+            )->get();
+            if(count($usuarioSinRoles) >= 1) {
+                throw new \PDOException('Error el usuario desempeña otro cargo');
+            }
+
+
             $usuarioDocente = $this->usuariosDocentes->selectFromColumnsUsuarios(
                 'id_usuarios',
                 'id_docentes',
                 Docente::DIRECTOR_PLANEAMIENTO,
-                $data_insert_director['id_docentes']
+                $data_insert_director['id_docentes']// busca por id del docente
             )->first();
             if (!$usuarioDocente) {
                 $this->usuariosDocentes->insert($data_insert_director);
@@ -83,7 +92,7 @@ class DirectorPlaneamiento implements Controller
                 Http::responseJson(json_encode(
                     [
                         'ident' => 1,
-                        'mensaje' => 'El usuario ateriormente ya fue director, por favor actualize las fechas del cargo'
+                        'mensaje' => 'El usuario ateriormente ya fue director, por favor actualize(edite) las fechas del cargo'
                     ]
                 ));
             }
