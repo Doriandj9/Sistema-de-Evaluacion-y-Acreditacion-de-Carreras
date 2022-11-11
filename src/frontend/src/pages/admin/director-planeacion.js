@@ -247,6 +247,7 @@ function renderRespuesta(respuesta) {
         new Notificacion(respuesta.mensaje,'Aceptar',false);
         rebootInputs();
     }else{
+      precarga.end();
         renderError(respuesta.mensaje);
     }
 }
