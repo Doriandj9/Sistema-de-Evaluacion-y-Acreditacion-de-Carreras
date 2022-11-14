@@ -35,6 +35,33 @@ class UsuariosDocente extends DatabaseTable
 
         return $result ? true : false;
     }
+
+    /**
+     * Actualiza un usuario con un query WHERE y AND
+     *
+     * @param int $id_usuario
+     * @param string $id_docente
+     * @param string $id_carrera
+     * @param array $datos
+     *
+     * @return bool
+     */
+    public function updateUsuarioCarrera(
+        int $id_usuario,
+        string $id_docente,
+        string $id_carrera,
+        array $datos
+        ): bool
+    {
+
+        $result = DB::table(self::TABLE)
+        ->where('id_usuarios', '=', $id_usuario)
+        ->where('id_docentes', '=', $id_docente)
+        ->where('id_carrera',$id_carrera)
+        ->update($datos);
+
+        return $result ? true : false;
+    }
     /**
      * Obtiene todos los coordinadores con sus datos de docente
      *
