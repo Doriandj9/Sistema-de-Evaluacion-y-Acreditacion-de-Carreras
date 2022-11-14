@@ -8,6 +8,9 @@
         "/coordinador/docentes": function(){
             importacionDinamica('docentes.js');
         },
+        "/coordinador/evidencias": function(){
+            importacionDinamica('evidencias.js');
+        },
         "/coordinador": function(){
 
         }
