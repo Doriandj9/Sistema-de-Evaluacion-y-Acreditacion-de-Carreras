@@ -812,7 +812,7 @@ form,form::after,form::before,
 .contenedor-busqueda span {
     cursor: pointer; 
 }
-.contenedor-busqueda input {
+.contenedor-busqueda input, select {
     border-width: 0;
     outline: none;
     flex-grow: 1;
