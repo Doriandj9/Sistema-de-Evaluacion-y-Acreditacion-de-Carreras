@@ -101,4 +101,12 @@ class ModeloDocenteTest extends TestCase
         $carrreras = $this->modelDocente->getCarrerasPorPermisos(Docente::COORDINADORES, '0250186663');
         $this->assertInstanceOf(\Illuminate\Support\Collection::class, $carrreras);
     }
+    /**
+     * @depends testobtenerCarrerasPorUsuario
+     * @covers App\backend\Models\Docente::getCarrerasPorPermisos
+     */
+    public function testObtenerDocentesDeCarrera() {
+        $docentes =  $this->modelDocente->getDocentesDeCarrera('SOFT');
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$docentes);
+    }
 }
