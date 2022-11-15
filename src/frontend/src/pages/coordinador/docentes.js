@@ -12,6 +12,7 @@ const [op1,op2] = document.querySelectorAll('#contenedor-menu-superior li');
 const htmlOp1 = document.getElementById('template-listar-docentes').innerHTML;
 const htmlOp2 = document.getElementById('template-registar-docentes').innerHTML;
 
+let precarga = null;
 MenuOpcionesSuperior.renderVistasAcciones([
     [op1,htmlOp1,accionListar,'focus'],
     [op2,htmlOp2,accionRegistrar]
@@ -86,13 +87,30 @@ function renderDatosForm(respuesta) {
 
 function registrarDocente(e,form) {
     e.preventDefault();
-    Docentes.sendDocenteACarrera(new FormData(form))
+    precarga = new Precarga();
+    precarga.run();
+    const formData = new FormData();
+    const cedula = form.querySelector('#cedula');
+    const nombres = form.querySelector('#nombres');
+    const apellidos = form.querySelector('#apellidos');
+    const correo = form.querySelector('#correo');
+    const fecha_inicial = form.querySelector('#f_i');
+    const fecha_final = form.querySelector('#f_f');
+    formData.append('cedula',cedula.value.trim())
+    formData.append('nombres',nombres.value.trim())
+    formData.append('apellidos',apellidos.value.trim())
+    formData.append('correo',correo.value.trim())
+    formData.append('f_i',fecha_inicial.value.trim())
+    formData.append('f_f',fecha_final.value.trim())
+    console.log([...formData]);
+    Docentes.sendDocenteACarrera(formData)
     .then(renderRespuesta)
     .catch(console.log)
 }
 
 
 function renderRespuesta(respuesta) {
+    precarga.end();
     if(respuesta.ident) {
         new Notificacion(respuesta.mensaje,'Aceptar',false);
         if(respuesta.identEmail) {
