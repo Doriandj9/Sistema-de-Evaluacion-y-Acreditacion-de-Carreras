@@ -25,8 +25,10 @@
         <span class="text-white">Periodo </span>
     </div>
     <div class="contenedor-busqueda w-75" id="content-busqueda">
-        <select class="w-100" name="" id="">
-            <option value="none">cargando...</option>
+        <select class="w-100" name="" id="periodos"> 
+            <?php foreach($periodos as $periodo): ?>
+                <option value="<?= $periodo->id?>"><?= $periodo->id?></option>
+              <?php endforeach; ?>
         </select>
     </div>
 </div>

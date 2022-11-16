@@ -48,6 +48,18 @@ class RutasCoordinador implements Route
                     'action' => 'registar'
                 ],
             ],
+            'coordinador/datos/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'listarEvidenciasPorPeriodo'
+                ],
+            ],
+            'coordinador/subir/evidencias' => [
+                'POST' => [
+                    'controller' => $evidencias,
+                    'action' => 'registrar'
+                ],
+            ],
         ];
     }
     public function getTemplate(): string

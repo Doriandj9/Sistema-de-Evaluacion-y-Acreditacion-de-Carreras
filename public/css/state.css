@@ -29,6 +29,9 @@
     background-color: white !important;
     box-shadow: 0px -3px 2px var(--color-b-2);
 }
+.drag-active {
+    border-color: green;   
+}
 
 @keyframes cargandoContenido {
     0%{

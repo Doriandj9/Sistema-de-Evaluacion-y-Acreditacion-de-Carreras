@@ -5,6 +5,8 @@ import Docentes from "../../models/Docentes.js";
 import alerta from "../../utiles/alertasBootstrap.js";
 import { paginacionDocentes } from "../../utiles/paginacionDocentesCarrera.js";
 import { CEDULA_REG_EXPRE, COREO_INST } from "../../modulos/RegularExpresions/ConstExpres.js";
+import Evidencias from "../../models/Evidencias.js";
+import { paginacionEvidencias } from "../../utiles/paginacionEvidencias.js";
 
 MenuOpcionesSuperior.correr();
 const contenedorVistas = document.getElementById('cambio-vistas');
@@ -12,15 +14,196 @@ const [op1,op2] = document.querySelectorAll('#contenedor-menu-superior li');
 const htmlOp1 = document.getElementById('template-listar-evidencias').innerHTML;
 const htmlOp2 = htmlOp1;
 
+let precarga = null;
+let spinner = document.createElement('div');
+spinner.classList = 'spinner-border text-dark carga-medio';
+spinner.setAttribute('role','status');
+spinner.innerHTML = `<span class="visually-hidden">Loading...</span>`;
+
+
 MenuOpcionesSuperior.renderVistasAcciones([
     [op1,htmlOp1,accionListar,'focus'],
     [op2,htmlOp2,accionRegistrar]
 ]);
 
 function accionListar() {
+    const select = document.getElementById('periodos');
+    listarEvidencias(select.value.trim());
+    buscarEvidencias(select);
+}
+function buscarEvidencias(select){
+    select.addEventListener('change',() => {
+        listarEvidencias(select.value.trim());
+    })
+}
+function listarEvidencias(periodo){
+    Evidencias.obtenerEvidencias(periodo)
+    .then(r => renderEvidencias(r,'ver'))
+    .catch(console.log)
+}
+
+
+function renderEvidencias(respuesta,opcion) {
+    if(respuesta.ident){
+        const tbody = contenedorVistas.querySelector('tbody');
+        const contenedorNumeros = contenedorVistas.querySelector('.contenedor-numeros-paginacion');
+        const busqueda = document.getElementById('busqueda');
+        const {evidencias} = respuesta;
+        paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? null: mostrarFormSubirArchivo);
+        busqueda.addEventListener('input',(function(evidencias){
+            return () => {
+            paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? null: mostrarFormSubirArchivo,'nombre_carrera',busqueda.value.trim());
+            };
+        })(evidencias))
+        opcion === 'ver' ? null: mostrarFormSubirArchivo();
+      }else{
+        spinner.remove();
+        alerta('alert-danger','Error del servidor',3000);
+      }
 
 }
 
-function accionRegistrar() {
 
+function accionRegistrar() {
+    listarEvidenciasRegistro();
+}
+
+function listarEvidenciasRegistro() {
+    const select = document.getElementById('periodos');
+    Evidencias.obtenerEvidencias(select.value.trim())
+    .then(res => renderEvidencias(res,'registro'))
+    .catch(console.log);
+}
+
+function mostrarFormSubirArchivo() {
+    const tbody = contenedorVistas.querySelector('tbody');
+    const buttons = tbody.querySelectorAll('button');
+    buttons.forEach((button,i) => {
+    button.addEventListener('click', (e) => {
+        const modal = document.createElement('div');
+        modal.classList = 'modal fade';
+        modal.id = `modalCarrera${i}`;
+        modal.setAttribute('tabindex','-1');
+        modal.setAttribute('aria-labelledby','exampleModalLabel');
+        modal.setAttribute('aria-hidden',true);
+        modal.innerHTML = `
+    <!-- Formulario -->
+        <form>
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Registro de Documentos de Información(Evidencias)</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3 row">
+                <div class="drag" id="drag">
+                    <span class="texto-transparente">Arrastre los documentos Aquí</span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h4 for="staticEmail" class="col-form-label">Selecione el tipo de documento a guradar</h4>
+                <div class="col-sm-10">
+                <label for="pdf"><img height="40"  src="/public/assets/img/icons8-pdf-50.png" alt="imagen pdf" /></label>
+                <input type="file" accept=".pdf" id="pdf" class="hidden">
+                <label for="word"><img src="/public/assets/img/icons8-microsoft-word-2019-48.png" alt="imagen word" /></label>
+                <input type="file" accept=".docx" id="word" class="hidden">
+                <label for="excel"><img src="/public/assets/img/icons8-microsoft-excel-2019-48.png" alt="imagen excel" /></label>
+                <input type="file" accept=".xlsx" id="excel" class="hidden">
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary text-white">Guardar Cambios</button>
+          </div>
+        </div>
+      </div>
+      </form>
+        `;
+    tbody.append(modal);
+    const modalBootstrap =  new bootstrap.Modal(modal,{});
+    const form = modal.querySelector('form');
+    modalBootstrap.show();
+    modal.addEventListener('hidden.bs.modal',(e) => {
+        modal.remove();
+    })
+    activarDrop();
+    const inputs = form.querySelectorAll('input[type="file"]');
+    inputs.forEach((inp) => {
+        inp.onchange = (e) => {
+            opcionEviar(e);
+        }
+    })
+    });
+});
+}
+
+    
+function opcionEviar(e){
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file',file);
+    const d = document.createElement('div');
+    const pre =e.target.previousElementSibling;
+    pre.style.position = 'relative';
+    const button = document.createElement('button');
+    button.innerHTML = ' <span class="material-icons text-white">&#xf09b;</span>';
+    button.className = 'boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center boton-centrado-flotante';
+    pre.append(button);
+    button.onclick = (e) =>{
+        e.preventDefault();
+        e.stopPropagation();
+        subirEvidencia(formData,pre);
+        button.remove();
+    }
+}
+
+function subirEvidencia(formData,obje) {
+   obje.append(spinner);
+    Evidencias.subirEvidencias(formData)
+    .then(renderRespuesta)
+    .catch(console.log)
+}
+function renderRespuesta(respuesta) {
+    spinner.remove();
+    // if(respuesta.ident){
+    //     new Notificacion(respuesta.mensaje,'Aceptar',false)
+    // }else{
+    //     new Notificacion(respuesta.mensaje,'Regresar');
+    // }
+}
+function activarDrop() {
+const drop = document.getElementById('drag');
+    drop.addEventListener('dragenter',e => {
+        e.preventDefault();
+        e.target.classList.add('drag-active');
+    })
+    drop.addEventListener('dragleave',e => {
+        e.preventDefault();
+        e.target.classList.remove('drag-active')
+    })
+    // quita el efecto del navegador para arrastrar archivos
+    drop.addEventListener('dragover',e =>{
+        e.preventDefault();
+    })
+    drop.addEventListener('drop' , e => {
+        e.preventDefault();
+        e.target.classList.remove('drag-active');
+        const file = e.dataTransfer.files[0];
+        dropArchivos(file,e.target);
+    })
+}
+
+function dropArchivos(file,target) {
+    if(file.type === 'application/pdf' ||
+        file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+        file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    ) {
+        const formData = new FormData();
+        formData.append('file',formData);
+        subirEvidencia(formData,target);
+    }else{
+        alerta('alert-danger','No se permite subir otro tipo de archivo que no sea pdf,word o excel',7000);
+    }
 }
