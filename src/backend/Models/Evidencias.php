@@ -87,6 +87,10 @@ class Evidencias extends DatabaseTable
     string_agg(componente_elemento_fundamental.id_componente::text ,\'---\') as id_componente, 
     string_agg(componente_elemento_fundamental.descripcion ,\'---\') as descripcion_componente,
     string_agg(evidencias.nombre ,\'---\') as nombre_evidencias, 
+    string_agg(carreras_evidencias.cod_evidencia ,\'---\') as cod_evidencias,
+	string_agg(carreras_evidencias.fecha_inicial::text ,\'---\') as fecha_inicial,
+	string_agg(carreras_evidencias.fecha_final::text ,\'---\') as fecha_final,
+	string_agg(carreras_evidencias.estado ,\'---\') as estado,
     evidencias.id as id_evidencias
     from evidencias inner join carreras_evidencias on
     carreras_evidencias.id_evidencias = evidencias.id inner join 
@@ -103,5 +107,19 @@ class Evidencias extends DatabaseTable
     ',[$this->carreraId,$this->periodoId,$count,$pages]);
 
     return $evidencias;
+   }
+
+   public function guardarEvidencia($carreraId,$periodoId,$evidenciaId,$datos){
+    try{
+        $result = DB::table('carreras_evidencias')
+        ->where('id_periodo_academico','=',$periodoId)
+        ->where('id_carrera','=',$carreraId)
+        ->where('cod_evidencia','=',$evidenciaId)
+        ->update($datos);
+    }catch(\PDOException $e){
+        echo $e->getMessage();
+    }
+
+    return $result ? true : false;
    }
 }

@@ -58,11 +58,63 @@ class Evidencias implements Controller
         $fileTemporal = $_FILES['file']['tmp_name'];
         $file = file_get_contents($fileTemporal);
         $fileABase64 = base64_encode($file);
-        if(ArchivosTransformar::transformarDeBase64aArchivo($fileName,$fileABase64)){
-            echo 'Se guardo Correctament';
-        }else{
-            echo 'Mal guardado';
+        $datosReferentes = [
+            'periodo' => trim($_POST['periodo']),
+            'idEvidencia' => trim($_POST['cod_evidencia']),
+            'archivoBase64' => $fileABase64
+        ];
+        $tiposArchivosGuardar = [
+            'application/pdf' => function($datos) {
+                $this->guardarArchivo('pdf',$datos);
+            },
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => function($datos) {
+                $this->guardarArchivo('word',$datos);
+            },
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => function($datos) {
+                $this->guardarArchivo('excel',$datos);
+            }
+        ];
+
+        if(!isset($tiposArchivosGuardar[$tipo])){
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'mensaje' => 'Error: No se permite el tipo de arvhivo ' . $tipo
+                 ] 
+            ));
+            }
+
+        $tiposArchivosGuardar[$tipo]($datosReferentes);
+        
+    }
+
+    private function guardarArchivo(string $tipo , array $datos) {
+        $data_guardar = [
+            $tipo => $datos['archivoBase64']
+        ];
+        try{
+            $result = $this->evidenciasModel->guardarEvidencia(
+                trim($_SESSION['carrera']) . '   ',
+                $datos['periodo'],
+                $datos['idEvidencia'],
+                $data_guardar
+            );
+            if(!$result) {
+                throw new \PDOException('Error al guardar el archivo');
+            }
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 1,
+                    'mensaje' => 'Se almaceno exitosamente el documento'
+                ]
+                ));
+        }catch(\PDOException $e) {
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'mensaje' => $e->getMessage()
+                ]
+                ));
         }
-        die;
     }
 }

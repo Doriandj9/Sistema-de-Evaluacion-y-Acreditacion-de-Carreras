@@ -73,6 +73,8 @@ function listarEvidenciasRegistro() {
     Evidencias.obtenerEvidencias(select.value.trim())
     .then(res => renderEvidencias(res,'registro'))
     .catch(console.log);
+
+    select.addEventListener('change',() => listarEvidenciasRegistro());
 }
 
 function mostrarFormSubirArchivo() {
@@ -104,18 +106,17 @@ function mostrarFormSubirArchivo() {
             <div class="mb-3">
                 <h4 for="staticEmail" class="col-form-label">Selecione el tipo de documento a guradar</h4>
                 <div class="col-sm-10">
-                <label for="pdf"><img height="40"  src="/public/assets/img/icons8-pdf-50.png" alt="imagen pdf" /></label>
+                <label for="pdf"><img class="selector" height="40"  src="/public/assets/img/icons8-pdf-50.png" alt="imagen pdf" /></label>
                 <input type="file" accept=".pdf" id="pdf" class="hidden">
-                <label for="word"><img src="/public/assets/img/icons8-microsoft-word-2019-48.png" alt="imagen word" /></label>
+                <label for="word"><img class="selector" src="/public/assets/img/icons8-microsoft-word-2019-48.png" alt="imagen word" /></label>
                 <input type="file" accept=".docx" id="word" class="hidden">
-                <label for="excel"><img src="/public/assets/img/icons8-microsoft-excel-2019-48.png" alt="imagen excel" /></label>
+                <label for="excel"><img class="selector" src="/public/assets/img/icons8-microsoft-excel-2019-48.png" alt="imagen excel" /></label>
                 <input type="file" accept=".xlsx" id="excel" class="hidden">
                 </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary text-white">Guardar Cambios</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           </div>
         </div>
       </div>
@@ -128,23 +129,29 @@ function mostrarFormSubirArchivo() {
     modal.addEventListener('hidden.bs.modal',(e) => {
         modal.remove();
     })
-    activarDrop();
+    activarDrop(button);
     const inputs = form.querySelectorAll('input[type="file"]');
     inputs.forEach((inp) => {
         inp.onchange = (e) => {
-            opcionEviar(e);
+
+            opcionEviar(e,button);
         }
     })
     });
 });
 }
 
-    
-function opcionEviar(e){
+/**
+ * 
+ * @param {Event} e 
+ * @param {HTMLFormElement} button 
+ */
+function opcionEviar(e,buttonEvent){
+    const select = document.getElementById('periodos');
+    const id_evidencia = buttonEvent.nextElementSibling;
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('file',file);
-    const d = document.createElement('div');
     const pre =e.target.previousElementSibling;
     pre.style.position = 'relative';
     const button = document.createElement('button');
@@ -154,6 +161,9 @@ function opcionEviar(e){
     button.onclick = (e) =>{
         e.preventDefault();
         e.stopPropagation();
+        const select = document.getElementById('periodos');
+        formData.append('periodo',select.value.trim());
+        formData.append('cod_evidencia',id_evidencia.value.trim());
         subirEvidencia(formData,pre);
         button.remove();
     }
@@ -167,13 +177,14 @@ function subirEvidencia(formData,obje) {
 }
 function renderRespuesta(respuesta) {
     spinner.remove();
-    // if(respuesta.ident){
-    //     new Notificacion(respuesta.mensaje,'Aceptar',false)
-    // }else{
-    //     new Notificacion(respuesta.mensaje,'Regresar');
-    // }
+    if(respuesta.ident){
+        alerta('alert-success',respuesta.mensaje,5000);
+    }else{
+        alerta('alert-danger',respuesta.mensaje,10000);
+    }
 }
-function activarDrop() {
+function activarDrop(button) {
+const id_evidencia = button.nextElementSibling;
 const drop = document.getElementById('drag');
     drop.addEventListener('dragenter',e => {
         e.preventDefault();
@@ -191,17 +202,20 @@ const drop = document.getElementById('drag');
         e.preventDefault();
         e.target.classList.remove('drag-active');
         const file = e.dataTransfer.files[0];
-        dropArchivos(file,e.target);
+        dropArchivos(file,e.target,id_evidencia.value);
     })
 }
 
-function dropArchivos(file,target) {
+function dropArchivos(file,target,id_evidencia) {
     if(file.type === 'application/pdf' ||
         file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
         file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     ) {
+        const select = document.getElementById('periodos');
         const formData = new FormData();
-        formData.append('file',formData);
+        formData.append('file',file);
+        formData.append('cod_evidencia',id_evidencia);
+        formData.append('periodo',select.value.trim());
         subirEvidencia(formData,target);
     }else{
         alerta('alert-danger','No se permite subir otro tipo de archivo que no sea pdf,word o excel',7000);

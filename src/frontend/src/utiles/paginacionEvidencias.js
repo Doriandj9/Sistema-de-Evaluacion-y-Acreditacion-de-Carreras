@@ -35,6 +35,9 @@
         const idcomponente = [...new Set(dato.id_componente.split('---'))];
         const descripcionComponentes = [...new Set(dato.descripcion_componente.split('---'))];
         const nombre_Evidencia = [...new Set(dato.nombre_evidencias.split('---'))];
+        const fecha_inicial = [...new Set(dato.fecha_inicial.split('---'))];
+        const fecha_final = [...new Set(dato.fecha_final.split('---'))];
+        const cod_evidencias = [...new Set(dato.cod_evidencias.split('---'))];
         html += `
         <tr>
         <td>${criterio.toString().substring(0,25)}
@@ -64,15 +67,16 @@
         <input type="hidden" value="Codigo--Nombre"/>
        <br> <span class='ver-mas'>Ver más</span>
         </td>
-        <td>${'02-22-55'}</td>
-        <td>${'02-22-55'}</td>
+        <td>${fecha_inicial.toString()}</td>
+        <td>${fecha_final.toString()}</td>
         <td>
         <button type="button" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
         >
           ${opcion === 'ver' ? ' <span class="material-icons text-white">&#xf1c5;</span>  Ver ':
-          ' <span class="material-icons text-white">&#xf09b;</span>  Subir '
+          ' <span class="material-icons text-white">&#xf09b;</span> Subir '
         } 
         </button>
+        <input type="hidden" value="${cod_evidencias.toString()}"/> 
         </td>
 
       </tr>

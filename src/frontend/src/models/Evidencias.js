@@ -25,8 +25,7 @@ export default class Evidencias {
                 method: 'POST',
                 body: formData
             });
-			const resultado = await consulta.text();
-            console.log(resultado);
+			const resultado = await consulta.json();
 			return resultado;
 		} catch (error) {
 			console.error(error);

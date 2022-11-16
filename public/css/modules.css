@@ -899,3 +899,6 @@ form,form::after,form::before,
     left: 50%;
     translate: -50% -50% !important;
 }
+.selector{
+    cursor: pointer;
+}
