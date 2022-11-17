@@ -1,10 +1,6 @@
 import MenuOpcionesSuperior from "../../modulos/MenuOpcionesSuperior/MenuOpcionesSuperior.js";
-import Notificacion from "../../modulos/Notificacion/Notificacion.js";
 import Precarga from "../../modulos/PreCarga/precarga.js";
-import Docentes from "../../models/Docentes.js";
 import alerta from "../../utiles/alertasBootstrap.js";
-import { paginacionDocentes } from "../../utiles/paginacionDocentesCarrera.js";
-import { CEDULA_REG_EXPRE, COREO_INST } from "../../modulos/RegularExpresions/ConstExpres.js";
 import Evidencias from "../../models/Evidencias.js";
 import { paginacionEvidencias } from "../../utiles/paginacionEvidencias.js";
 import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
