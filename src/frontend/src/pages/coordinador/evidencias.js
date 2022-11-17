@@ -27,14 +27,18 @@ MenuOpcionesSuperior.renderVistasAcciones([
     [op1,htmlOp1,accionListar,'focus'],
     [op2,htmlOp2,accionRegistrar]
 ]);
+
+/**---------------------------------TODO: Script de la primera opcion Listar Evidencias----------------------------------------- */
 function accionListar() {
     const select = document.getElementById('periodos');
+    localStorage.periodo = select.value.trim();
     listarEvidencias(select.value.trim());
     buscarEvidencias(select);
 }
 function buscarEvidencias(select){
     select.addEventListener('change',() => {
         listarEvidencias(select.value.trim());
+        localStorage.periodo = select.value.trim();
     })
 }
 function listarEvidencias(periodo){
@@ -68,18 +72,18 @@ function mostrarEvidencias(){
     const tbody = contenedorVistas.querySelector('tbody');
     const buttons = tbody.querySelectorAll('section');
     const select = document.querySelector('#periodos');
-
+    const periodo = select === null ? localStorage.periodo.trim() : select.value.trim();
     buttons.forEach(button => {
-        button.addEventListener('click',e => traerEvidencias(e,select));
+        button.addEventListener('click',e => traerEvidencias(button,periodo));
     })
 }
 /**
  * 
- * @param {Event} e 
+ * @param {HTMLElement} e 
  */
-function traerEvidencias(e,select) {
-    const input = e.target.nextElementSibling;
-    Evidencias.obtenerEvidenciaIndvidual(select.value,input.value)
+function traerEvidencias(e,periodo) {
+    const input = e.nextElementSibling;
+    Evidencias.obtenerEvidenciaIndvidual(periodo,input.value)
     .then(guardarBlobs)
     .catch(console.log)
     desplegarModal();
@@ -109,13 +113,17 @@ const modal = document.createElement('div');
             <div class="mb-3">
                 <h4 for="staticEmail" class="col-form-label">Selecione el tipo de documento</h4>
                 <div class="col-sm-10">
-                <label for="pdf">
+                <label class="position-relative" for="pdf">
+                <div class="spinner-border text-dark carga-medio" role="status"><span class="visually-hidden">Loading...</span></div>
                 <img class="selector" height="40" id="pdf"  src="/public/assets/img/icons8-pdf-50.png" alt="imagen pdf" />
                 </label>
-                <label for="word">
+                <label class="position-relative" for="word">
+                <div class="spinner-border text-dark carga-medio" role="status"><span class="visually-hidden">Loading...</span></div>
                 <img class="selector" id="word" src="/public/assets/img/icons8-microsoft-word-2019-48.png" alt="imagen word" />
                 </label>
-                <label for="excel"><img id="excel" class="selector" src="/public/assets/img/icons8-microsoft-excel-2019-48.png" alt="imagen excel" />
+                <label class="position-relative" for="excel">
+                <div class="spinner-border text-dark carga-medio" role="status"><span class="visually-hidden">Loading...</span></div>
+                <img id="excel" class="selector" src="/public/assets/img/icons8-microsoft-excel-2019-48.png" alt="imagen excel" />
                 </label>
                 </div>
             </div>
@@ -140,10 +148,16 @@ document.addEventListener('archivos.deplegados',e => {
     const modal = document.getElementById('presentacionViews');
     const imgs = modal.querySelectorAll('img');
     imgs.forEach(img => {
+        const beforeSpinner = img.previousElementSibling;
+        beforeSpinner.remove();
         img.addEventListener('click',e => viewFile(e,blobs));
     })
 })
-
+/**
+ * 
+ * @param {Event} e 
+ * @param {Array} blobs 
+ */
 function viewFile(e,blobs){
     const type = e.target.id;
     const refblob = {'pdf': blobs[0],'word': blobs[1],'excel': blobs[2]}
@@ -156,7 +170,15 @@ function viewFile(e,blobs){
 window.addEventListener('close.viewpdf',e =>{
             e.detail.remove();
     })
-function accionRegistrar() {
+
+
+    /**------------------------------------------ Sript de la Segunda Opcion Registrar Evidencia-------------------------------------- */
+
+
+
+
+
+    function accionRegistrar() {
     listarEvidenciasRegistro();
 }
 
