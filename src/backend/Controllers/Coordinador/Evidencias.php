@@ -3,6 +3,9 @@
 namespace App\backend\Controllers\Coordinador;
 
 use App\backend\Application\Utilidades\ArchivosTransformar;
+use App\backend\Application\Utilidades\FileExcel;
+use App\backend\Application\Utilidades\FilePDF;
+use App\backend\Application\Utilidades\FileWord;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Models\Evidencias as ModelsEvidencias;
@@ -116,5 +119,49 @@ class Evidencias implements Controller
                 ]
                 ));
         }
+    }
+   
+    public function returnWord() {
+        if(isset($_GET['periodo']) &&
+           isset($_GET['evidencia']) 
+    ) {
+        $evidencia = $this->evidenciasModel->obtenerEvidenciaUnica(
+            trim($_SESSION['carrera']),
+            trim($_GET['periodo']),
+            trim($_GET['evidencia'])
+        )->first();
+        $file = new FileWord(); 
+        $file->retornarFile($evidencia);
+    }
+    die;
+    }
+    public function returnExcel() {
+        if(isset($_GET['periodo']) &&
+           isset($_GET['evidencia']) 
+    ) {
+        $evidencia = $this->evidenciasModel->obtenerEvidenciaUnica(
+            trim($_SESSION['carrera']),
+            trim($_GET['periodo']),
+            trim($_GET['evidencia'])
+        )->first();
+        $file = new FileExcel();
+       $file->retornarFile($evidencia);
+    }
+    die;
+       
+    }
+    public function returnPDF() {  
+        if(isset($_GET['periodo']) &&
+           isset($_GET['evidencia']) 
+    ) {
+        $evidencia = $this->evidenciasModel->obtenerEvidenciaUnica(
+            trim($_SESSION['carrera']),
+            trim($_GET['periodo']),
+            trim($_GET['evidencia'])
+        )->first();
+        $file = new FilePDF();
+       $file->retornarFile($evidencia);
+    }
+    die;
     }
 }

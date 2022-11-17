@@ -31,14 +31,25 @@ export default class Evidencias {
 			console.error(error);
 		}
     }
-    static encode(str) {
-       const encodedString = btoa(str);
-        return encodedString;
-    }
-     
-    // Función para decodificar una string desde formato base64
-    static decode(str) {
-       const decodedString = atob(str);
-        console.log(decodedString);
+     /**
+     * 
+     * @param {String} periodo 
+     * @param {String} idEvidencia
+     * 
+     * @returns {Promise} Blob
+     */
+      static async obtenerEvidenciaIndvidual(periodo,idEvidencia) {
+        const archivos = ['pdf','word','excel'];
+        let files = [];
+      try {
+      for(let file of archivos){
+        const consulta = await fetch(`/coordinador/listar/${file}/evidencias?periodo=${periodo}&evidencia=${idEvidencia}`);
+        const resultado = await consulta.blob();
+        files.push(resultado);
+      }
+			return files;
+		} catch (error) {
+			console.error(error);
+		}
     }
 }

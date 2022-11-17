@@ -40,4 +40,11 @@ class EvidenciaTest extends TestCase
 
         $this->assertTrue($result);
     }
+    /**
+     * @covers App\backend\Models\Evidencias::guardarEvidencia
+     */
+    public function testObtenerUnaEvidencia(){
+        $evidencia = $this->modeloEvidencias->obtenerEvidenciaUnica('SOFT','2022-2022','1-AD-SOF 1.1.1.1');
+        $this->assertCount(1,$evidencia);
+    }
 }

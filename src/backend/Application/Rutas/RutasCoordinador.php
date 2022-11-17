@@ -60,6 +60,24 @@ class RutasCoordinador implements Route
                     'action' => 'registrar'
                 ],
             ],
+            'coordinador/listar/pdf/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'returnPDF'
+                ],
+            ],
+            'coordinador/listar/word/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'returnWord'
+                ],
+            ],
+            'coordinador/listar/excel/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'returnExcel'
+                ],
+            ],
         ];
     }
     public function getTemplate(): string

@@ -4,7 +4,7 @@
  * @param {*} mensaje es el mensaje que se mostrara en la alerta
  * @param {*} tiempo es el tiempo que durara la alerta en la vista
  */
-export default function alerta(tipoClass,mensaje,tiempo = 1000) {
+export default function alerta(tipoClass,mensaje,tiempo = 1000,zindenx=null) {
     const alerta = document.createElement('div');
     alerta.classList = 'contenedor-alert-1';
     const iconoAlertSuccess = `
@@ -48,6 +48,11 @@ export default function alerta(tipoClass,mensaje,tiempo = 1000) {
             </div>
         </div>
     `;
+
+    if(zindenx){
+        
+        alerta.style.zIndex = zindenx;
+    }
     document.body.append(alerta);
     setTimeout(() => {// Este codigo elimina la alerta automaticamene luego de 3 segundos
         alerta.remove();

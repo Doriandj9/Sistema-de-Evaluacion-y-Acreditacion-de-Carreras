@@ -122,4 +122,14 @@ class Evidencias extends DatabaseTable
 
     return $result ? true : false;
    }
+
+   public function obtenerEvidenciaUnica($carreraId,$periodoId,$evidenciaId,) {
+    $result = DB::table('carreras_evidencias')
+        ->where('id_periodo_academico','=',$periodoId)
+        ->where('id_carrera','=',$carreraId)
+        ->where('cod_evidencia','=',$evidenciaId)
+        ->get();
+
+    return $result;
+   }
 }

@@ -7,6 +7,8 @@ import { paginacionDocentes } from "../../utiles/paginacionDocentesCarrera.js";
 import { CEDULA_REG_EXPRE, COREO_INST } from "../../modulos/RegularExpresions/ConstExpres.js";
 import Evidencias from "../../models/Evidencias.js";
 import { paginacionEvidencias } from "../../utiles/paginacionEvidencias.js";
+import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
+
 
 MenuOpcionesSuperior.correr();
 const contenedorVistas = document.getElementById('cambio-vistas');
@@ -25,7 +27,6 @@ MenuOpcionesSuperior.renderVistasAcciones([
     [op1,htmlOp1,accionListar,'focus'],
     [op2,htmlOp2,accionRegistrar]
 ]);
-
 function accionListar() {
     const select = document.getElementById('periodos');
     listarEvidencias(select.value.trim());
@@ -49,13 +50,13 @@ function renderEvidencias(respuesta,opcion) {
         const contenedorNumeros = contenedorVistas.querySelector('.contenedor-numeros-paginacion');
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
-        paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? null: mostrarFormSubirArchivo);
+        paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === mostrarEvidencias ? null: mostrarFormSubirArchivo);
         busqueda.addEventListener('input',(function(evidencias){
             return () => {
-            paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? null: mostrarFormSubirArchivo,'nombre_carrera',busqueda.value.trim());
+            paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === mostrarEvidencias ? null: mostrarFormSubirArchivo,'nombre_carrera',busqueda.value.trim());
             };
         })(evidencias))
-        opcion === 'ver' ? null: mostrarFormSubirArchivo();
+        opcion === mostrarEvidencias() ? null: mostrarFormSubirArchivo();
       }else{
         spinner.remove();
         alerta('alert-danger','Error del servidor',3000);
@@ -63,7 +64,98 @@ function renderEvidencias(respuesta,opcion) {
 
 }
 
+function mostrarEvidencias(){
+    const tbody = contenedorVistas.querySelector('tbody');
+    const buttons = tbody.querySelectorAll('section');
+    const select = document.querySelector('#periodos');
 
+    buttons.forEach(button => {
+        button.addEventListener('click',e => traerEvidencias(e,select));
+    })
+}
+/**
+ * 
+ * @param {Event} e 
+ */
+function traerEvidencias(e,select) {
+    const input = e.target.nextElementSibling;
+    Evidencias.obtenerEvidenciaIndvidual(select.value,input.value)
+    .then(guardarBlobs)
+    .catch(console.log)
+    desplegarModal();
+}
+
+function guardarBlobs(blobs) {
+    document.dispatchEvent(new CustomEvent('archivos.deplegados',{detail:blobs}));
+}
+
+function desplegarModal() {
+const modal = document.createElement('div');
+        modal.classList = 'modal fade';
+        modal.id = `presentacionViews`;
+        modal.setAttribute('tabindex','-1');
+        modal.setAttribute('aria-labelledby','exampleModalLabel');
+        modal.setAttribute('aria-hidden',true);
+        modal.innerHTML = `
+    <!-- Formulario -->
+        <form>
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Visualizar o Descargar los Documentos de Información(Evidencias)</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+                <h4 for="staticEmail" class="col-form-label">Selecione el tipo de documento</h4>
+                <div class="col-sm-10">
+                <label for="pdf">
+                <img class="selector" height="40" id="pdf"  src="/public/assets/img/icons8-pdf-50.png" alt="imagen pdf" />
+                </label>
+                <label for="word">
+                <img class="selector" id="word" src="/public/assets/img/icons8-microsoft-word-2019-48.png" alt="imagen word" />
+                </label>
+                <label for="excel"><img id="excel" class="selector" src="/public/assets/img/icons8-microsoft-excel-2019-48.png" alt="imagen excel" />
+                </label>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+      </form>
+        `;
+    document.body.append(modal);
+    const modalBootstrap =  new bootstrap.Modal(modal,{});
+    modalBootstrap.show();
+    modal.addEventListener('hidden.bs.modal',(e) => {
+        modal.remove();
+    })
+}
+
+document.addEventListener('archivos.deplegados',e => {
+    const blobs = e.detail;
+    const modal = document.getElementById('presentacionViews');
+    const imgs = modal.querySelectorAll('img');
+    imgs.forEach(img => {
+        img.addEventListener('click',e => viewFile(e,blobs));
+    })
+})
+
+function viewFile(e,blobs){
+    const type = e.target.id;
+    const refblob = {'pdf': blobs[0],'word': blobs[1],'excel': blobs[2]}
+    const blob = refblob[type];
+    const view = new VisualizadorPDF();
+    view.habilitarESC();
+    view.mostrar(blob);
+
+}
+window.addEventListener('close.viewpdf',e =>{
+            e.detail.remove();
+    })
 function accionRegistrar() {
     listarEvidenciasRegistro();
 }
@@ -133,7 +225,6 @@ function mostrarFormSubirArchivo() {
     const inputs = form.querySelectorAll('input[type="file"]');
     inputs.forEach((inp) => {
         inp.onchange = (e) => {
-
             opcionEviar(e,button);
         }
     })

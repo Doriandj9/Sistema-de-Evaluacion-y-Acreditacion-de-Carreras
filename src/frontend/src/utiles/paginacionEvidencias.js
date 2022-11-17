@@ -38,6 +38,18 @@
         const fecha_inicial = [...new Set(dato.fecha_inicial.split('---'))];
         const fecha_final = [...new Set(dato.fecha_final.split('---'))];
         const cod_evidencias = [...new Set(dato.cod_evidencias.split('---'))];
+        const htmlbotonVer = `
+        <section class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
+        >
+           <span class="material-icons text-white">&#xf1c5;</span>  Ver
+        </section>
+        `;
+        const htmlbotonRegistro  = `
+        <button type="button" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
+        >
+        <span class="material-icons text-white">&#xf09b;</span> Subir 
+        </button>        
+        `;
         html += `
         <tr>
         <td>${criterio.toString().substring(0,25)}
@@ -70,12 +82,7 @@
         <td>${fecha_inicial.toString()}</td>
         <td>${fecha_final.toString()}</td>
         <td>
-        <button type="button" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
-        >
-          ${opcion === 'ver' ? ' <span class="material-icons text-white">&#xf1c5;</span>  Ver ':
-          ' <span class="material-icons text-white">&#xf09b;</span> Subir '
-        } 
-        </button>
+          ${opcion === 'ver' ? htmlbotonVer : htmlbotonRegistro} 
         <input type="hidden" value="${cod_evidencias.toString()}"/> 
         </td>
 
