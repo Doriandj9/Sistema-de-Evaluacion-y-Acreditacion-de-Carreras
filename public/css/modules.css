@@ -917,7 +917,7 @@ form,form::after,form::before,
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 9999;
+    z-index: 999995;
 }
 .alerta-visualizador{
 background-color: rgba(255, 255, 255,0.8);
@@ -929,13 +929,13 @@ position: fixed;
 top: 5rem;
 left: 50%;
 transform: translateX(-50%);
-z-index: 99995;
+z-index: 999995;
 }
 embed{
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 999;
+    z-index: 99999;
 }
 section.boton{
     cursor: pointer;

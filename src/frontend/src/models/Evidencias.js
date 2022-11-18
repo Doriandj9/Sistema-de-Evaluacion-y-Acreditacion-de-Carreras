@@ -52,4 +52,18 @@ export default class Evidencias {
 			console.error(error);
 		}
     }
+  /**
+     * 
+     * @param {String} id_evidencias 
+     * @returns {Promise}JSON
+     */
+   static async obtenerEvidenciaDetalle(id_evidencias) {
+    try {
+  const consulta = await fetch(`/coordinador/detalle/evidencias?id=${id_evidencias}`);
+  const resultado = await consulta.json();
+  return resultado;
+} catch (error) {
+  console.error(error);
+}
+}
 }

@@ -11,6 +11,9 @@
         "/coordinador/evidencias": function(){
             importacionDinamica('evidencias.js');
         },
+        "/coordinador/responsables": function(){
+            importacionDinamica('responsables.js');
+        },
         "/coordinador": function(){
 
         }

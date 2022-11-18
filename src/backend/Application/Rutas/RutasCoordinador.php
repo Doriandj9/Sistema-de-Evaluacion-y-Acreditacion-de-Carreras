@@ -7,6 +7,8 @@ namespace App\backend\Application\Rutas;
 use App\backend\Controllers\Coordinador\Docentes;
 use App\backend\Controllers\Coordinador\Evidencias;
 use App\backend\Controllers\Coordinador\Inicio;
+use App\backend\Controllers\Coordinador\Responsabilidades;
+use App\backend\Controllers\Coordinador\Responsable;
 use App\backend\Frame\Route;
 use App\backend\Models\Docente;
 
@@ -17,6 +19,7 @@ class RutasCoordinador implements Route
         $inicioController = new Inicio;
         $docentes = new Docentes;
         $evidencias = new Evidencias;
+        $responsables = new Responsable;
         return [
             'coordinador' => [
                 'GET' => [
@@ -76,6 +79,34 @@ class RutasCoordinador implements Route
                 'GET' => [
                     'controller' => $evidencias,
                     'action' => 'returnExcel'
+                ],
+            ],
+            'coordinador/responsables' => [
+                'GET' => [
+                    'controller' => $responsables,
+                    'action' => 'vista'
+                ],
+                'POST' => [
+                    'controller' => $responsables,
+                    'action' => 'registar'
+                ]
+            ],
+            'coordinador/datos/responsables' => [
+                'GET' => [
+                    'controller' => $responsables,
+                    'action' => 'listarResponsables'
+                ],
+            ],
+            'coordinador/datos/responsabilidades' => [
+                'GET' => [
+                    'controller' => $responsables,
+                    'action' => 'listarResponsabilidades'
+                ],
+            ],
+            'coordinador/detalle/evidencias' => [
+                'GET' => [
+                    'controller' => $responsables,
+                    'action' => 'detalleEvidencia'
                 ],
             ],
         ];
