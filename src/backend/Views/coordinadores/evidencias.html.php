@@ -39,7 +39,7 @@
     </div>
     <div class="contenedor-busqueda w-75" id="content-busqueda">
         <span class="material-icons">&#xe8b6;</span>
-        <input type="text" name="valor" id="busqueda" placeholder="Busque por el nombre.">
+        <input type="text" name="valor" id="busqueda" placeholder="Busque por el nombre de evidencia.">
     </div>
 </div>
 </div>

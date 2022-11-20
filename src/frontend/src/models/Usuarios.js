@@ -203,8 +203,7 @@ export default class Usuarios {
 	 static async obtenerResponsables(periodo){
         try{
             const consulta = await fetch(`/coordinador/datos/responsables?periodo=${periodo}`);
-            const respuesta = await consulta.text();
-            console.log(respuesta)
+            const respuesta = await consulta.json();
             return respuesta;            
         }catch(e){
 			console.log(e)
@@ -217,6 +216,19 @@ export default class Usuarios {
 	 static async obtenerResponsabilidades(){
         try{
             const consulta = await fetch(`/coordinador/datos/responsabilidades`);
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async registrarResponsables(formData){
+        try{
+            const consulta = await fetch(`/coordinador/responsables`,{method: 'POST',body: formData});
             const respuesta = await consulta.json();
             return respuesta;            
         }catch(e){

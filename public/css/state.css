@@ -32,7 +32,13 @@
 .drag-active {
     border-color: green;   
 }
+.no-valido {
+    border:1px solid red !important;
+}
+.es-valido {
+    border:1px solid green !important;
 
+}
 @keyframes cargandoContenido {
     0%{
         background-color: #eee;

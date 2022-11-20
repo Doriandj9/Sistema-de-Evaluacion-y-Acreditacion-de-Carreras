@@ -48,10 +48,10 @@
 <table class="table table-striped-columns w-100">
     <thead>
       <tr>
-        <th class="bg-primary text-white text-center">Criterio</th>
-        <th class="bg-primary text-white text-center">Estandar Indicador</th>
-        <th class="bg-primary text-white text-center">Elemento Fundamental</th>
-        <th class="bg-primary text-white text-center">Componente</th>
+        <th class="bg-primary text-white text-center">Cédula</th>
+        <th class="bg-primary text-white text-center">Nombre</th>
+        <th class="bg-primary text-white text-center">Correo Electronico</th>
+        <th class="bg-primary text-white text-center">Evidencias a Cargo</th>
        <!-- <th class="bg-primary text-white text-center">Documento de Información</th>
         <th class="bg-primary text-white text-center">Fecha de Habilitación </th>
         <th class="bg-primary text-white text-center">Finalización de Entrega </th>
@@ -94,6 +94,16 @@
         <option selected>Cargando...</option>
       </select>
       </div>
+      <div class="mb-2 d-flex gap-2 justify-content-between">
+      <label for="periodos">Selecione el periodo de la responsabilidad</label>
+      <div class="contenedor-busqueda w-50" id="content-busqueda">
+        <select class="w-100" name="periodo" id="periodos"> 
+            <?php foreach($periodos as $periodo): ?>
+                <option value="<?= $periodo->id?>"><?= $periodo->id?></option>
+              <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
     <div class="mb-2">
       <label for="id_carrera" class="form-label">Selecione las responsabilidades</label>
       <div class="w-100 altura-1 sombra p-2 overflow-auto d-flex flex-wrap align-items-start gap-2" id="responsabilidades">

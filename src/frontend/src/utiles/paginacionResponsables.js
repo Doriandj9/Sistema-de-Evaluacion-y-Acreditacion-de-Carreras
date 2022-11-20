@@ -27,14 +27,20 @@
     }
 
     datosPaginados.forEach((dato,i) => {
+        const nombreDocente = [...new Set(dato.nombre_docente.split('---'))];
+        const apellidoDocente = [...new Set(dato.apellido.split('---'))];
+        const correo =  [...new Set(dato.correo.split('---'))];
+        const nombreEvidencia = [...new Set(dato.nombre_evidencia.split('---'))];
+        const nombreResponsabilidad = [...new Set(dato.nombre_responsabilidad.split('---'))];
+
         html += `
         <tr>
-        <td>${dato.cedula}</td>
-        <td>${dato.nombre_docente.split(' ')[0] + ' ' + dato.apellido.split(' ')[0]}</td>
-        <td>${dato.correo}</td>
-        <td>${dato.evidencias}</td>
+        <td>${dato.id_docente}</td>
+        <td>${nombreDocente.toString().split(' ')[0] + ' ' + apellidoDocente.toString().split(' ')[0]}</td>
+        <td>${correo.toString()}</td>
+        <td>${nombreEvidencia.toString()}</td>
       </tr>
-        `;;
+        `;
     })
     
     for(let i = 1 ; i <= totalNumeros ; i++){

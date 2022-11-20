@@ -53,7 +53,7 @@ function renderEvidencias(respuesta,opcion) {
         paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === mostrarEvidencias ? null: mostrarFormSubirArchivo);
         busqueda.addEventListener('input',(function(evidencias){
             return () => {
-            paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === mostrarEvidencias ? null: mostrarFormSubirArchivo,'nombre_carrera',busqueda.value.trim());
+            paginacionEvidencias(evidencias,8,1,tbody,contenedorNumeros,opcion,opcion === mostrarEvidencias ? null: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
             };
         })(evidencias))
         opcion === mostrarEvidencias() ? null: mostrarFormSubirArchivo();
