@@ -36,12 +36,43 @@ class RutasDocente implements Route
                         'action' => 'vista'
                     ]
                     ],
+            'docente/datos/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'listarEvidenciasPorPeriodo'
+                ]
+                ],
+            'docente/subir/evidencias' => [
+                    'POST' => [
+                        'controller' => $evidencias,
+                        'action' => 'registrar'
+                    ],
+                ],
+            'docente/listar/pdf/evidencias' => [
+                    'GET' => [
+                        'controller' => $evidencias,
+                        'action' => 'returnPDF'
+                    ],
+                ],
+            'docente/listar/word/evidencias' => [
+                    'GET' => [
+                        'controller' => $evidencias,
+                        'action' => 'returnWord'
+                    ],
+                ],
+            'docente/listar/excel/evidencias' => [
+                    'GET' => [
+                        'controller' => $evidencias,
+                        'action' => 'returnExcel'
+                    ],
+                ],
             'docente/reportes' => [
                         'GET' => [
                             'controller' => $reportes,
                             'action' => 'vista'
                         ]
-                    ]
+                        ],
+            
         ];
     }
 

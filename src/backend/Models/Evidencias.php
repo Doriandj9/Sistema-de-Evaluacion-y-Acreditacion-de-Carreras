@@ -34,8 +34,6 @@ class Evidencias extends DatabaseTable
         return $colection;
 
     }
-
-
      /**
     * Chunk the results of the query.
     *
@@ -157,4 +155,69 @@ class Evidencias extends DatabaseTable
     ',[$id_evidencia]);
     return $evidencias ? $evidencias[0] : $evidencias;
    }
+
+
+    /**
+     * @param string $periodoId es el id del perio a buscar las evidencias
+     * @param string $carreraId es el id de la carrera que se van a buscar las evidencias
+     * 
+     * @return \Illuminate\Support\Collection coleccion de evidencias
+     */
+    public function obtenerEvidenciasPorPeriodoYResponsabilidades(
+        string $periodoId,
+        string $carreraId,
+        string $docenteId
+        ): \Illuminate\Support\Collection {
+        $this->periodoId = $periodoId;
+        $this->carreraId = $carreraId;
+        $evidenciaVacia = new \stdClass();
+        $collectionResult = new \Illuminate\Support\Collection();
+        $docenteEvidencia =  DB::table('usuarios_responsabilidad')
+        ->join('responsabilidad','responsabilidad.id','=','usuarios_responsabilidad.id_responsabilidad')
+        ->where('usuarios_responsabilidad.id_docentes','=',$docenteId)
+        ->where('usuarios_responsabilidad.id_carrera','=',$carreraId)
+        ->where('usuarios_responsabilidad.id_periodo_academico','=',$periodoId)
+        ->select([
+            'responsabilidad.id as id_responsabilidad',
+            'usuarios_responsabilidad.id_docentes as id_docentes',
+            'usuarios_responsabilidad.id_periodo_academico as id_periodo',
+            'usuarios_responsabilidad.id_carrera as carrera',
+            'responsabilidad.id_evidencias as id_evidencias'
+        ])
+        ->get();
+        foreach($docenteEvidencia as $docente) {
+            $evidencia = DB::select('
+                select string_agg(criterios.nombre,\'---\') as nombre_criterio, 
+                string_agg(estandar.descripcion,\'---\') as descripcion_estandar,
+                string_agg(estandar.nombre,\'---\') as descripcion_estandar, 
+                string_agg(estandar.tipo,\'---\') as tipo_estandar, 
+                string_agg(elemento_fundamental.id,\'---\') as id_elemento,
+                string_agg(elemento_fundamental.descripcion,\'---\') as descripcion_elemento, 
+                string_agg(componente_elemento_fundamental.id_componente::text ,\'---\') as id_componente, 
+                string_agg(componente_elemento_fundamental.descripcion ,\'---\') as descripcion_componente,
+                string_agg(evidencias.nombre ,\'---\') as nombre_evidencias, 
+                string_agg(carreras_evidencias.cod_evidencia ,\'---\') as cod_evidencias,
+                string_agg(carreras_evidencias.fecha_inicial::text ,\'---\') as fecha_inicial,
+                string_agg(carreras_evidencias.fecha_final::text ,\'---\') as fecha_final,
+                string_agg(carreras_evidencias.estado ,\'---\') as estado,
+                evidencias.id as id_evidencias
+                from evidencias inner join carreras_evidencias on
+                carreras_evidencias.id_evidencias = evidencias.id inner join 
+                evidencia_componente_elemento_fundamental 
+                on evidencia_componente_elemento_fundamental.id_evidencias = carreras_evidencias.id_evidencias inner join
+                componente_elemento_fundamental on 
+                componente_elemento_fundamental.id = evidencia_componente_elemento_fundamental.id_componente inner join 
+                elemento_fundamental on elemento_fundamental.id = componente_elemento_fundamental.id_elemento inner join 
+                estandar on estandar.id = elemento_fundamental.id_estandar inner join criterios 
+                on criterios.id = estandar.id_criterio where carreras_evidencias.id_carrera = ?
+                and carreras_evidencias.id_periodo_academico = ?
+                and  carreras_evidencias.id_evidencias = ?
+                GROUP BY evidencias.id
+                ',[$this->carreraId,$this->periodoId,$docente->id_evidencias]);
+
+            $collectionResult->push($evidencia[0] ?? $evidenciaVacia);
+        }
+        return $collectionResult;
+    }
+
 }
