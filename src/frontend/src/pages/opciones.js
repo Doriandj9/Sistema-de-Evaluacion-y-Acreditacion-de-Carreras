@@ -133,7 +133,7 @@ let usuarioRedirecion = null;
 const usuario = new Usuarios();
 let redirecionamientos = {};
 redirecionamientos[usuario.COORDINADORES] = function(){ location.href = '/coordinador'};
-redirecionamientos[usuario.DOCENTES] = function() {location.href = '/docentes'};
+redirecionamientos[usuario.DOCENTES] = function() {location.href = '/docente'};
 redirecionamientos[usuario.EVALUADOR] = function() {location.href = '/evaluador'};
 redirecionamientos[usuario.SECRETARIAS] = function() {location.href = '/secretaria'}; 
 let preCarga = null;
