@@ -97,7 +97,7 @@ class Evidencias implements Controller
         ];
         try{
             $result = $this->evidenciasModel->guardarEvidencia(
-                trim($_SESSION['carrera']) . '   ',
+                trim($_SESSION['carrera']),
                 $datos['periodo'],
                 $datos['idEvidencia'],
                 $data_guardar
