@@ -17,13 +17,13 @@ documentos que en el momento que genera el reporte se encuentrar guardadas en el
     <div class="contenedor-busqueda w-75" id="content-busqueda">
         <select class="w-100" name="periodo" id="periodos"> 
             <?php foreach($periodos as $periodo): ?>
-                <option value="<?= $periodo->id?>"><?= $periodo->id?></option>
+                <option value="<?=trim($periodo->id)?>"><?= $periodo->id?></option>
               <?php endforeach; ?>
         </select>
     </div>
 </div>
     <button type="submit" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1 m-auto ps-4 pe-4">
-        <span class="material-icons text-white">&#xf090;</span> Generar Reporte 
+        <span class="material-icons text-white">&#xf090;</span> Generar Reporte
     </button>
     </div>
 </form>
