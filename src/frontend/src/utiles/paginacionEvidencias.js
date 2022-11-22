@@ -74,9 +74,9 @@
        <br> <span class='ver-mas'>Ver más</span>
         </td>
         <td>
-        <strong>Codigo: </strong> <span>${dato.id_evidencias}</span> <br>
+        <strong>Codigo: </strong> <span>${cod_evidencias.toString()}</span> <br>
         <strong>Nombre: </strong>${nombre_Evidencia.toString().substring(0,40)} <br>
-        <input type="hidden" value="${dato.id_evidencias + '??' + nombre_Evidencia}"/>
+        <input type="hidden" value="${cod_evidencias.toString() + '??' + nombre_Evidencia}"/>
         <input type="hidden" value="Codigo--Nombre"/>
        <br> <span class='ver-mas'>Ver más</span>
         </td>
