@@ -54,6 +54,7 @@ class Autentification
             session_regenerate_id();
             $_SESSION['email'] = $usuario->{$this->email};
             $_SESSION['clave'] = $usuario->{$this->clave};
+            $_SESSION['ci'] = $usuario->id;
             $permisos = $this->usuarios->getTodosPermisos($usuario->id);
             $permisosTok = [];
             foreach ($permisos as $permiso) {

@@ -72,7 +72,12 @@ class RutasDocente implements Route
                             'action' => 'vista'
                         ]
                         ],
-            
+            'docente/generar/reporte' =>  [
+                'GET' => [
+                    'controller' => $reportes,
+                    'action' => 'generar'
+                ]
+                ],
         ];
     }
 
