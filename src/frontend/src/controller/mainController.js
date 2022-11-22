@@ -16,7 +16,9 @@
             .catch(e => console.error('[JS002] ' + e));
          },
         'docente': function(){
-                         
+            import('./docenteController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));        
         },
         'coordinador': function(){
             import('./coordinadorController.js')

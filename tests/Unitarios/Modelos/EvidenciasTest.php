@@ -47,4 +47,15 @@ class EvidenciaTest extends TestCase
         $evidencia = $this->modeloEvidencias->obtenerEvidenciaUnica('SOFT','2022-2022','1-AD-SOF 1.1.1.1');
         $this->assertCount(1,$evidencia);
     }
+    /**
+     * @covers App\backend\Models\Evidencias::obtenerEvidenciasPorPeriodoYResponsabilidades
+     */
+    public function testObtenerEvidenciasPorResponsabilidad(){
+        $evidencia = $this->modeloEvidencias->obtenerEvidenciasPorPeriodoYResponsabilidades(
+            '2022-2022',
+            'SOFT',
+            '0202468831'
+        );
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$evidencia);
+    }
 }
