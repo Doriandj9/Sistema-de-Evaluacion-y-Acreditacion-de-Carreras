@@ -4,6 +4,7 @@
                             <ul>
                                 <li class="is-activo-op-menu">Listar Responsables</li>
                                 <li>Registrar Responsables</li>
+                                <li>Registrar Evaluadores</li>
                             </ul>
                         </div>
                         <div class="w100" id="cambio-vistas">
@@ -98,6 +99,44 @@
       <label for="periodos">Selecione el periodo de la responsabilidad</label>
       <div class="contenedor-busqueda w-50" id="content-busqueda">
         <select class="w-100" name="periodo" id="periodos"> 
+            <?php foreach($periodos as $periodo): ?>
+                <option value="<?= $periodo->id?>"><?= $periodo->id?></option>
+              <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label for="id_carrera" class="form-label">Selecione las responsabilidades</label>
+      <div class="w-100 altura-1 sombra p-2 overflow-auto d-flex flex-wrap align-items-start gap-2" id="responsabilidades">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div id="emailHelp" class="form-text">El codigo de la carrera debe ser unico</div>
+    </div>
+    <div class="mb-2">
+      <button type="submit" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
+      <span class="material-icons text-white">&#xe03c;</span>
+      Agregar 
+      </button>
+  </form>
+</div>
+</template>
+
+<!-- TODO: Vista de registrar evaludores -->
+<template id="template-insertar-evaluadores">
+<div class="w-75">
+<form class="tipografia-times-2" id="form-insert-carreras">
+    <div class="mb-2">
+      <label for="" class="form-label">Selecione un docente evaluador</label>
+      <select class="form-select" id="docentes-evaludor" name="docente" multiple aria-label="multiple select example">
+        <option selected>Cargando...</option>
+      </select>
+      </div>
+      <div class="mb-2 d-flex gap-2 justify-content-between">
+      <label for="periodos">Selecione el periodo del cargo evaluador</label>
+      <div class="contenedor-busqueda w-50" id="content-busqueda">
+        <select class="w-100" name="periodo" id="periodos-evaluador"> 
             <?php foreach($periodos as $periodo): ?>
                 <option value="<?= $periodo->id?>"><?= $periodo->id?></option>
               <?php endforeach; ?>

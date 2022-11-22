@@ -10,9 +10,11 @@ import Notificacion from "../../modulos/Notificacion/Notificacion.js";
 
 MenuOpcionesSuperior.correr();
 const contenedorVistas = document.getElementById('cambio-vistas');
-const [op1,op2] = document.querySelectorAll('#contenedor-menu-superior li');
+const [op1,op2,op3] = document.querySelectorAll('#contenedor-menu-superior li');
 const htmlOp1 = document.getElementById('template-listar-responsables').innerHTML;
 const htmlOp2 = document.getElementById('template-insertar-responsables').innerHTML;
+const htmlOp3 = document.getElementById('template-insertar-evaluadores').innerHTML;
+
 
 let precarga = null;
 let spinner = document.createElement('div');
@@ -23,13 +25,19 @@ spinner.innerHTML = `<span class="visually-hidden">Loading...</span>`;
 
 MenuOpcionesSuperior.renderVistasAcciones([
     [op1,htmlOp1,accionListar,'focus'],
-    [op2,htmlOp2,accionRegistrar]
+    [op2,htmlOp2,accionRegistrar],
+    [op3, htmlOp3]
 ]);
 
 /**----------------------------------------------TODO: Listar Responsables------------------------------------------ */
 function accionListar(){
     contenedorVistas.prepend(spinner);
     const select  = document.getElementById('periodos');
+    select.addEventListener('change',() => {
+        Usuarios.obtenerResponsables(select.value.trim())
+        .then(renderResponsables)
+        .catch(console.log)
+    });
     Usuarios.obtenerResponsables(select.value.trim())
     .then(renderResponsables)
     .catch(console.log)
@@ -289,3 +297,7 @@ function reiniciarDatosForm(){
     })
 
 }
+
+
+/**------------------------------------TODO: Actiones para registrar Evaludores--------------------------------- */
+
