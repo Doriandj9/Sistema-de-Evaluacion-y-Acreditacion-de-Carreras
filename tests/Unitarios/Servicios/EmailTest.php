@@ -24,7 +24,7 @@ class EmailTest extends TestCase
      * @depends testHtmlRenderEmail
      * @covers App\backend\Application\Servicios\Email\EnviarEmail::enviar
      */
-    public function testEnviarCorreoElectronico($cuerpo)
+    public function EnviarCorreoElectronico($cuerpo)
     {
         $result = EnviarEmail::enviar(
             'Correo de Prueba',

@@ -70,4 +70,59 @@ export default class Docentes {
             console.error(error);
         }
     }
+    /**
+     * Obtiene todos los coordinares registrados en la DB
+     * 
+     * @returns Promise<JSON>
+     */
+     static async obtenerDocentesDeCarrera() {
+        try {
+            const consulta = await fetch('/coordinador/datos/docentes/carrera');
+            const datos = await consulta.json();
+            return datos;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+      /**
+     * 
+     * @param {string} cedula es el numero de cedula del docente
+     * @returns {Promise} JSON 
+     */
+       static async  obtenerDatosDocente(cedula){
+        try{
+            const headersPeticion = new Headers();
+            if(localStorage.Tok_){
+                headersPeticion.append('token_autorizacion',localStorage.Tok_);
+            }
+            const consulta = await fetch(
+                '/datos/docente/informacion?cedula='+cedula,
+                {
+                    method:'GET',
+                    headers:headersPeticion
+                }
+                );
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+            console.error(e);
+        }
+    }
+    /**
+ * 
+ * @param {FormData} formData es un formulario con los parametros para agregar un coordinador 
+ * @returns {Promise} JSON
+ */
+     static async sendDocenteACarrera(formData){
+        try {
+            const consulta = await fetch('/coordinador/registrar/docente',{
+                    method:'POST',
+                    body:formData
+                });
+            const respuesta =  await consulta.json();       
+            return respuesta
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }
