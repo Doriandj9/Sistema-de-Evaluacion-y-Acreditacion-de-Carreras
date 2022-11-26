@@ -90,11 +90,27 @@ export default class Evidencias {
      */
    static async obtenerEvidenciaDetalle(id_evidencias) {
     try {
-  const consulta = await fetch(`/coordinador/detalle/evidencias?id=${id_evidencias}`);
-  const resultado = await consulta.json();
+    const consulta = await fetch(`/coordinador/detalle/evidencias?id=${id_evidencias}`);
+    const resultado = await consulta.json();
+    return resultado;
+  } catch (error) {
+    console.error(error);
+  }
+  }
+
+
+/**
+     * 
+     * @param {string} periodo 
+     * @returns {Promise}JSON
+     */
+ static async obtenerEvidenciasVerificar(periodo) {
+  try {
+  const consulta = await fetch(`/coordinador/listar/verificacion/evidencias?periodo=${periodo}`);
+  const resultado = await consulta.text();
   return resultado;
-} catch (error) {
+  } catch (error) {
   console.error(error);
-}
+  }
 }
 }

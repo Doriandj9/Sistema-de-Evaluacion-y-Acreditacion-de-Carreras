@@ -146,6 +146,10 @@ class Responsable implements Controller
             ));
     }
 
+    public function registarEvaluadores() {
+        
+    }
+
     public function listarResponsabilidades() {
        $responsabilidades = $this->responsabilidades->select();
        $docentes = $this->carreras->getDatosDocentes(trim($_SESSION['carrera']));
