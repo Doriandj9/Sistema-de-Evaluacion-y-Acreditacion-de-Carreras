@@ -59,14 +59,6 @@ use App\backend\Models\Docente;
                         <span class="material-icons text-negro">&#xef42;</span>
                         <span class="text-blanco bordes-op-menu">Evidencias</span>
                         </a>
-                        <a href="/coordinador/sub-evidencias" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons text-negro">&#xf071;</span>
-                        <span class="text-blanco bordes-op-menu ">Sub-Evidencias</span>
-                        </a>
-                        <a href="/coordinador/responsabilidades" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons text-negro">&#xeaaa;</span>
-                        <span class="text-blanco bordes-op-menu ">Responsabilidades</span>
-                        </a>
                         <a href="/coordinador/responsables" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe9b1;</span>
                         <span class="text-blanco bordes-op-menu ">Responsables</span>

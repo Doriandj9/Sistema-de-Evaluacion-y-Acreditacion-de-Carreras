@@ -131,18 +131,14 @@ class Evidencias extends DatabaseTable
     return $result;
    }
 
-   public function obtenrDetalleEvidencia($id_evidencia,$id_carrera) {
+   public function obtenrDetalleEvidencia($id_criterio,$id_carrera) {
     $evidencias = DB::select('
     select string_agg(criterios.nombre,\'---\') as nombre_criterio, 
     string_agg(estandar.descripcion,\'---\') as descripcion_estandar,
     string_agg(estandar.nombre,\'---\') as descripcion_estandar, 
-    string_agg(estandar.tipo,\'---\') as tipo_estandar, 
-    string_agg(elemento_fundamental.id,\'---\') as id_elemento,
-    string_agg(elemento_fundamental.descripcion,\'---\') as descripcion_elemento, 
-    string_agg(componente_elemento_fundamental.id_componente::text ,\'---\') as id_componente, 
-    string_agg(componente_elemento_fundamental.descripcion ,\'---\') as descripcion_componente,
     string_agg(evidencias.nombre ,\'---\') as nombre_evidencias, 
-    evidencias.id as id_evidencias
+    string_agg(evidencias.id ,\'---\') as id_evidencias,
+    criterios.id as id_criterio
     from evidencias  inner join 
     evidencia_componente_elemento_fundamental 
     on evidencia_componente_elemento_fundamental.id_evidencias = evidencias.id inner join
@@ -150,9 +146,9 @@ class Evidencias extends DatabaseTable
     componente_elemento_fundamental.id = evidencia_componente_elemento_fundamental.id_componente inner join 
     elemento_fundamental on elemento_fundamental.id = componente_elemento_fundamental.id_elemento inner join 
     estandar on estandar.id = elemento_fundamental.id_estandar inner join criterios 
-    on criterios.id = estandar.id_criterio where evidencias.id = ? 
-    GROUP BY evidencias.id
-    ',[$id_evidencia]);
+    on criterios.id = estandar.id_criterio where criterios.id = ?
+    GROUP BY criterios.id
+    ',[$id_criterio]);
     return $evidencias ? $evidencias[0] : $evidencias;
    }
 

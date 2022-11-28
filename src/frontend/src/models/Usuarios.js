@@ -235,4 +235,30 @@ export default class Usuarios {
 			console.log(e)
         }
     }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async registrarEvaluadores(formData){
+        try{
+            const consulta = await fetch(`/coordinador/registro/evaluadores`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async listarEvaluadoresDeCarrera(){
+        try{
+            const consulta = await fetch(`/coordinador/listar/evaluadores`);
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
 }

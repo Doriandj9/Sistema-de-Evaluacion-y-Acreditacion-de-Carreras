@@ -1,3 +1,4 @@
+<input type="hidden" value="<?= $_SESSION['carrera']?>" id="carreraID">
 <div class="w-100" style="margin-top: 5rem;">
                            
                         <div class="contenedor-items-menu-superior tipografia-times-2" id="contenedor-menu-superior">
@@ -52,7 +53,7 @@
         <th class="bg-primary text-white text-center">Cédula</th>
         <th class="bg-primary text-white text-center">Nombre</th>
         <th class="bg-primary text-white text-center">Correo Electronico</th>
-        <th class="bg-primary text-white text-center">Evidencias a Cargo</th>
+        <th class="bg-primary text-white text-center">Criterios a Cargo</th>
        <!-- <th class="bg-primary text-white text-center">Documento de Información</th>
         <th class="bg-primary text-white text-center">Fecha de Habilitación </th>
         <th class="bg-primary text-white text-center">Finalización de Entrega </th>
@@ -100,14 +101,25 @@
       <div class="contenedor-busqueda w-50" id="content-busqueda">
         <select class="w-100" name="periodo" id="periodos"> 
             <?php foreach($periodos as $periodo): ?>
-                <option value="<?= $periodo->id?>"><?= $periodo->id?></option>
+                <option data-fecha-inicial="<?= $periodo->fecha_inicial;?>" 
+                data-fecha-final="<?= $periodo->fecha_final;?>" value="<?= $periodo->id;?>">
+                <?= $periodo->id;?>
+                </option>
               <?php endforeach; ?>
         </select>
       </div>
     </div>
+    <div class="mb-2  d-flex justify-content-between">
+      <label class="form-label  w-50" for="">Selecione la fecha de ingreso de evidencias</label>
+      <input name="f_i" id="f_i" class="form-control w-50" type="date">
+    </div>
+    <div class="mb-2  d-flex justify-content-between">
+      <label class="form-label  w-50" for="">Selecione la fecha limite de ingreso de evidencias</label>
+      <input name="f_f" id="f_f" class="form-control w-50" type="date">
+    </div>
     <div class="mb-2">
       <label for="id_carrera" class="form-label">Selecione las responsabilidades</label>
-      <div class="w-100 altura-1 sombra p-2 overflow-auto d-flex flex-wrap align-items-start gap-2" id="responsabilidades">
+      <div class="w-100 h-1  sombra p-2 overflow-auto d-flex flex-wrap align-items-start gap-2" id="responsabilidades">
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -125,15 +137,69 @@
 
 <!-- TODO: Vista de registrar evaludores -->
 <template id="template-insertar-evaluadores">
-<div class="w-75">
-<form class="tipografia-times-2" id="form-insert-carreras">
-    <div class="mb-2">
-      <label for="" class="form-label">Selecione un docente evaluador</label>
-      <select class="form-select" id="docentes-evaludor" name="docente" multiple aria-label="multiple select example">
-        <option selected>Cargando...</option>
-      </select>
-      </div>
-      <div class="mb-2 d-flex gap-2 justify-content-between">
+<div class="w-100">
+<table class="table table-striped-columns w-100">
+    <thead>
+    <tr class="titulo-tablas">
+                        <th colspan="5" class="bg-primary text-white">
+                            <div class="d-flex align-items-center">
+                            <span class="material-icons text-white">&#xe241;</span>
+                            <strong>Lista de Evaluadores</strong>
+                            </div>
+                        </th>
+                    </tr>
+      <tr>
+        <th class="bg-primary text-white text-center">Cédula</th>
+        <th class="bg-primary text-white text-center">Nombre</th>
+        <th class="bg-primary text-white text-center">Correo Electronico</th>
+        <th class="bg-primary text-white text-center">Fecha del Cargo</th>
+        <th class="bg-primary text-white text-center">Fecha Limite del Cargo</th>
+      </tr>
+    </thead>
+    <tbody>
+                    <tr>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+
+                   </tr>
+                   <tr>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+      
+                   </tr>
+                   <tr>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+                    <td class="is-cargando-contenido p-3"></td>
+
+                   </tr>
+    </tbody>
+  </table>
+  <div class="contenedor-numeros-paginacion d-flex justify-content-center"></div>
+</div>
+<table class="table table-striped-columns w-100 sombra m-0">
+            <thead>
+                <tr class="titulo-tablas">
+                    <th colspan="4">
+                        <div class="d-flex align-items-center gap-1">
+                        <span class="material-icons">&#xe7fe;</span>
+                        <strong>Agregar un Evaluador</strong>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+<div class="w-100 sombra p-2">
+<form class="tipografia-times-2 w-75" id="">
+<div class="mb-2 d-flex gap-2 justify-content-between">
       <label for="periodos">Selecione el periodo del cargo evaluador</label>
       <div class="contenedor-busqueda w-50" id="content-busqueda">
         <select class="w-100" name="periodo" id="periodos-evaluador"> 
@@ -144,14 +210,11 @@
       </div>
     </div>
     <div class="mb-2">
-      <label for="id_carrera" class="form-label">Selecione las responsabilidades</label>
-      <div class="w-100 altura-1 sombra p-2 overflow-auto d-flex flex-wrap align-items-start gap-2" id="responsabilidades">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+      <label for="" class="form-label">Selecione un docente evaluador</label>
+      <select class="form-select" id="docentes-evaluador" name="docente" multiple aria-label="multiple select example">
+        <option selected>Cargando...</option>
+      </select>
       </div>
-      <div id="emailHelp" class="form-text">El codigo de la carrera debe ser unico</div>
-    </div>
     <div class="mb-2">
       <button type="submit" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
       <span class="material-icons text-white">&#xe03c;</span>
