@@ -125,4 +125,21 @@ export default class Docentes {
             console.error(error);
         }
     }
+ /**
+ * 
+ * @param {FormData} formData es un formulario con los parametros para agregar un coordinador 
+ * @returns {Promise} JSON
+ */
+  static async sendVerificacionEvidencia(formData){
+    try {
+        const consulta = await fetch('/coordinador/registrar/verificacion',{
+                method:'POST',
+                body:formData
+            });
+        const respuesta =  await consulta.json();
+        return respuesta
+    } catch (error) {
+        console.error(error);
+    }
+}
 }

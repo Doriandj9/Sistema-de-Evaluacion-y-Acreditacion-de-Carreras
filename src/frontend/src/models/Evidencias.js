@@ -70,7 +70,7 @@ export default class Evidencias {
      * @returns {Promise} Blob
      */
       static async obtenerEvidenciaIndvidual(periodo,idEvidencia,ruta = 'coordinador') {
-        const archivos = ['pdf','word','excel'];
+        const archivos = ['pdf'];
         let files = [];
       try {
       for(let file of archivos){
@@ -107,7 +107,7 @@ export default class Evidencias {
  static async obtenerEvidenciasVerificar(periodo) {
   try {
   const consulta = await fetch(`/coordinador/listar/verificacion/evidencias?periodo=${periodo}`);
-  const resultado = await consulta.text();
+  const resultado = await consulta.json();
   return resultado;
   } catch (error) {
   console.error(error);

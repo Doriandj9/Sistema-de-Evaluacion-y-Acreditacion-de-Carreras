@@ -27,7 +27,16 @@
         </select>
     </div>
 </div>
-
+<div class="w-100 d-flex justify-content-center">
+    <div class="contenedor-filtro ps-2 pe-2">
+        <span class="material-icons text-white">&#xe152;</span>
+        <span class="text-white">Evidencia </span>
+    </div>
+    <div class="contenedor-busqueda w-75" id="content-busqueda">
+        <span class="material-icons">&#xe8b6;</span>
+        <input type="text" name="valor" id="busqueda" placeholder="Busque por el nombre de evidencia.">
+    </div>
+</div>
 </div>
 </div>
 
@@ -36,13 +45,9 @@
     <thead>
       <tr>
         <th class="bg-primary text-white text-center">Evidencia</th>
-        <th class="bg-primary text-white text-center">Ver</th>
+        <th class="bg-primary text-white text-center">Información</th>
         <th class="bg-primary text-white text-center">Verificar</th>
-        <th class="bg-primary text-white text-center"></th>
-        <th class="bg-primary text-white text-center">Documento de Información</th>
-        <th class="bg-primary text-white text-center">Fecha de Habilitación </th>
-        <th class="bg-primary text-white text-center">Finalización de Entrega </th>
-        <th class="bg-primary text-white text-center">Opción</th>
+        <th class="bg-primary text-white text-center">Notificar</th>
       </tr>
     </thead>
     <tbody>
@@ -51,27 +56,15 @@
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
+                   </tr>
+                   <tr>
+                   <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                    </tr>
                    <tr>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                   </tr>
-                   <tr>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
+                   <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>

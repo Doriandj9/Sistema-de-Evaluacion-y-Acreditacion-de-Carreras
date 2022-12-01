@@ -168,7 +168,7 @@ window.addEventListener('close.viewpdf',e =>{
     })
 
 
-    /**------------------------------------------ Sript de la Segunda Opcion Registrar Evidencia-------------------------------------- */
+/**------------------------------------------ Sript de la Segunda Opcion Registrar Evidencia-------------------------------------- */
 
 
 

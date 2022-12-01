@@ -133,6 +133,12 @@ class RutasCoordinador implements Route
                     'action' => 'listarEvaluadores'
                 ],
             ],
+            'coordinador/registrar/verificacion' => [
+                'POST' => [
+                    'controller' => $evidencias,
+                    'action' => 'registarVerificacion'
+                ],
+            ],
         ];
     }
     public function getTemplate(): string

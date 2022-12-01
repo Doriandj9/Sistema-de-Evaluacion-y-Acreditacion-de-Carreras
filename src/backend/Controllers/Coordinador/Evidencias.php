@@ -200,4 +200,29 @@ class Evidencias implements Controller
         ]
         ));
     }
+
+    public function registarVerificacion() {
+        $data_verificacion =  [
+            'verificada' => true,
+            'valoracion' => trim($_POST['valoracion']),
+            'comentario' => trim($_POST['comentario'])
+        ];
+        try{
+            $this->evidenciasModel->guardarEvidencia(
+                trim($_SESSION['carrera']),
+                trim($_POST['periodo']),
+                trim($_POST['id_evidencia']),
+                $data_verificacion
+            );
+            Http::responseJson(json_encode([
+                'ident' => 1,
+                'mensaje' => 'Se ingreso correctamente su verificación'
+            ]));
+        }catch(\PDOException $e) {
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => $e->getMessage()
+            ]));
+        }
+    }
 }
