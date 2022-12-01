@@ -5,9 +5,9 @@ export default class Evidencias {
      * @param {string} periodo 
      * @returns {Promise}JSON
      */
-    static async obtenerEvidencias(periodo) {
+    static async obtenerEvidencias(periodo,ruta='coordinador') {
         try {
-			const consulta = await fetch(`/coordinador/datos/evidencias?periodo=${periodo}`);
+			const consulta = await fetch(`/${ruta}/datos/evidencias?periodo=${periodo}`);
 			const resultado = await consulta.json();
 			return resultado;
 		} catch (error) {
