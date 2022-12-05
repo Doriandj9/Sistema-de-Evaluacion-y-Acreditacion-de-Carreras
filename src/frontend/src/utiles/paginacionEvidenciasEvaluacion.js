@@ -41,6 +41,7 @@ import alerta from "./alertasBootstrap.js";
         const descripcionComponentes = [...new Set(dato.descripcion_componente?.split('---'))];
         const nombre_Evidencia = [...new Set(dato.nombre_evidencias?.split('---'))];
         const cod_evidencias = [...new Set(dato.cod_evidencias?.split('---'))];
+        const id_evidencias = [...new Set(dato.id_evidencias?.split('---'))];
         html += `
         <tr>
         <td>${criterio.toString().substring(0,25)}
@@ -77,8 +78,8 @@ import alerta from "./alertasBootstrap.js";
         <input type="hidden" value="${cod_evidencias.toString()}"/> 
         </td>
         <td>
-        <button type="button" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
-        >
+        <button type="button" data-info-tipo="${tipoEstandar.toString()}" data-id-evidencia="${id_evidencias.toString()}"
+        class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
         <span class="material-icons text-white">&#xe85d;</span> Calificar 
         </button> 
         <input type="hidden" value="${cod_evidencias.toString()}"/> 

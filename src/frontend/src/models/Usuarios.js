@@ -261,4 +261,17 @@ export default class Usuarios {
 			console.log(e)
         }
     }
+    /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async registarCalificacion(formData){
+        try{
+            const consulta = await fetch(`/evaluador/registro/calificacion`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
 }

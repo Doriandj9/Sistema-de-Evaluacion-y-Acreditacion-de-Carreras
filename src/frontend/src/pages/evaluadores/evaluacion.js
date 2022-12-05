@@ -3,9 +3,12 @@ import alerta from "../../utiles/alertasBootstrap.js";
 import Evidencias from "../../models/Evidencias.js";
 import { paginacionEvidenciasEvaluacion } from "../../utiles/paginacionEvidenciasEvaluacion.js";
 import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
+import { CONTROL_MAX_MIN_CUALITATIVAS_EVIDENCIAS,CONTROL_MAX_MIN_CUANTITIVAS_EVIDENCIAS } from "../../config.js";
+import Usuarios from "../../models/Usuarios.js";
+import Notificacion from "../../modulos/Notificacion/Notificacion.js";
 
 
-
+let precarga = null;
 accionListar();
 
 /**---------------------------------TODO: Script de la primera opcion Listar Evidencias----------------------------------------- */
@@ -28,7 +31,7 @@ function listarEvidencias(periodo){
 }
 
 
-function renderEvidencias(respuesta,opcion) {
+function renderEvidencias(respuesta) {
     if(respuesta.ident){
         const tbody = document.body.querySelector('tbody');
         const contenedorNumeros = document.body.querySelector('.contenedor-numeros-paginacion');
@@ -62,19 +65,22 @@ function mostrarEvidencias(){
         });
     })
     buttonsCalificar.forEach(button => {
-        button.addEventListener('click',mostarFormCalificacion);
+        button.addEventListener('click',e => {
+            e.stopPropagation();
+            traerEvidencias(button,periodo,true);
+        });
     })
 }
 /**
  * 
- * @param {HTMLElement} e 
+ * @param {HTMLElement} button 
  */
-function traerEvidencias(e,periodo) {
-    const input = e.nextElementSibling;
+function traerEvidencias(button,periodo,opcion=null) {
+    const input = button.nextElementSibling;
     Evidencias.obtenerEvidenciaIndvidual(periodo,input.value,'evaluador')
     .then(guardarBlobs)
     .catch(console.log)
-    desplegarModal();
+    opcion !== true ? desplegarModal() : mostarFormCalificacion(button);    
 }
 
 function guardarBlobs(blobs) {
@@ -163,13 +169,27 @@ window.addEventListener('close.viewpdf',e =>{
             e.detail.remove();
     })
 /**
- * 
- * @param {Event} e 
+ * @param {HTMLButtonElement} button
  */
-function mostarFormCalificacion(e){
-    e.stopPropagation();
-    const select = document.getElementById('periodos');
-    traerEvidencias(e.target,select.value.trim());
+function mostarFormCalificacion(button){
+    const valoresCualitativas = Object.entries(CONTROL_MAX_MIN_CUALITATIVAS_EVIDENCIAS);
+    let optionsHTML = '<option value="none">Por favor selecione la opción...</option>';
+    valoresCualitativas.forEach( v => {
+        const [key,value] = v;
+        optionsHTML += `
+        <option value="${value}">${key} ➡ ${value} </option>
+        `;
+});
+    const calificacionCualitativa = `
+    <select class="form-select" aria-label="Default select example" 
+    id="cuali" name="calificacion">
+    ${optionsHTML}
+    </select>
+    `;
+    const {max,min} = CONTROL_MAX_MIN_CUANTITIVAS_EVIDENCIAS;
+    const calificacionCuantitativa = `
+    <input type="number" max="${max}" min="${min}" name="calificacion" id="cuanti"/>
+    `;
     const modal = document.createElement('div');
         modal.classList = 'modal fade';
         modal.id = `presentacionViews`;
@@ -179,10 +199,11 @@ function mostarFormCalificacion(e){
         modal.innerHTML = `
     <!-- Formulario -->
         <form>
+        <input type="hidden" name="id_evidencia" value="${button.dataset.idEvidencia}"/>
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Visualizar o Descargar los Documentos de Información(Evidencias)</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Calificar los Documentos de Información(Evidencias)</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -196,20 +217,32 @@ function mostarFormCalificacion(e){
                 </div>
             </div>
             <div class="mb-3">
-                <label for="evaluador" class="form-label">Calificado por</label>
-                <input type="text" class="form-control" id="evaluador" disabled>
+                <label for="" class="form-label">
+                La forma de evaluar el presente documento de información es de forma
+                <strong> ${button.dataset.infoTipo}</strong>  
+                </label>
+                <input type="text" value="${
+                    button.dataset.infoTipo.toUpperCase() === 'CUALITATIVO' ?
+                    'La calificación de este documento de información es cualitativa.' :
+                    'La calificación de este documento de información es cuatitativa por favor revise las formulas y asegurese de ingresar unicamente el valor en la casilla.'
+                }"
+                 class="form-control" id="" disabled>
             </div>
             <div class="mb-3">
-                <label for="calificacion" class="form-label">Calificación</label>
-                <input type="text" class="form-control" id="calificacion" disabled>
+                <label for="calificacion" class="form-label">${button.dataset.infoTipo.toUpperCase() === 'CUALITATIVO' ?
+                'Selecione calificación de las opciones propuestas.' : 'Ingrese la calificación.'}</label>
+                ${button.dataset.infoTipo.toUpperCase() === 'CUALITATIVO' ? calificacionCualitativa :
+                calificacionCuantitativa}
             </div>
             <div class="mb-3">
-                <label for="comentario" class="form-label">Comentario</label>
-                <input type="text" class="form-control" id="comentario" disabled>
+                <label for="observacion" class="form-label">Observación</label>
+                <textarea name="observacion" class="form-control" style="resize:none;" autocapitalize="on" cols="48" rows="5"
+                  placeholder="Aa"></textarea>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary text-white">Guardar Calificación</button>
           </div>
         </div>
       </div>
@@ -221,4 +254,54 @@ function mostarFormCalificacion(e){
     modal.addEventListener('hidden.bs.modal',(e) => {
         modal.remove();
     })
+
+   const form = modal.querySelector('form');
+   form.addEventListener('submit',e => verificacionDatos(e,modalBootstrap));
+}
+
+
+function verificacionDatos(e,modalB) {
+    e.preventDefault();
+    const cuanti = e.target.querySelector('#cuanti');
+    const cuali = e.target.querySelector('#cuali');
+    if(cuanti) {
+        const {max,min} = CONTROL_MAX_MIN_CUANTITIVAS_EVIDENCIAS;
+        if(!(Number(cuanti.value) >= min && Number(cuanti.value) <= max)){
+            alerta('alert-warning',`El valor de la calificación no debe ser menor a
+            <strong>${min}</strong> y mayor a <strong>${max}.</strong>
+            `,3500);
+            cuanti.classList.add('is-invalid');
+            return;
+        }
+    }
+    if(cuali) {
+        if(cuali.value === 'none'){
+            alerta('alert-warning','Debe selecionar un valor valido para continuar.',3500);
+            cuali.classList.add('is-invalid');
+            return;
+        }
+    }
+    envioDatos(e.target,modalB);
+}
+
+function envioDatos(form,modalBootstrap) {
+    modalBootstrap.hide();
+    const periodos = document.getElementById('periodos');
+    precarga = new Precarga();
+    precarga.run();
+    const formData = new FormData(form);
+    formData.append('periodo',periodos.value.trim())
+    Usuarios.registarCalificacion(formData)
+    .then(renderRespuesta)
+    .catch(console.log);
+}
+
+
+function renderRespuesta(respuesta) {
+    precarga.end();
+    if(respuesta.ident) {
+        new Notificacion(respuesta.mensaje,'Aceptar',false);
+    }else {
+        new Notificacion(respuesta.mensaje,'Regresar');
+    }
 }

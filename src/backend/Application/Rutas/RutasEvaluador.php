@@ -40,6 +40,13 @@ class RutasEvaluador implements Route
                     'action' => 'returnPDF'
                 ],
             ],
+            'evaluador/registro/calificacion' => [
+                'POST' => [
+                    'controller' => $evidencias,
+                    'action' => 'registroCalificacion'
+                ],
+            ],
+            
         ];
     }
 
