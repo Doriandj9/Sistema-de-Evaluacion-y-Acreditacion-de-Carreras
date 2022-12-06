@@ -178,7 +178,7 @@ class Evidencias extends DatabaseTable
             'usuarios_responsabilidad.id_docentes as id_docentes',
             'usuarios_responsabilidad.id_periodo_academico as id_periodo',
             'usuarios_responsabilidad.id_carrera as carrera',
-            'responsabilidad.id_evidencias as id_evidencias'
+            'responsabilidad.id_criterio as id_criterio'
         ])
         ->get();
         foreach($docenteEvidencia as $docente) {
@@ -207,11 +207,11 @@ class Evidencias extends DatabaseTable
                 estandar on estandar.id = elemento_fundamental.id_estandar inner join criterios 
                 on criterios.id = estandar.id_criterio where carreras_evidencias.id_carrera = ?
                 and carreras_evidencias.id_periodo_academico = ?
-                and  carreras_evidencias.id_evidencias = ?
+                and criterios.id = ?
                 GROUP BY evidencias.id
-                ',[$this->carreraId,$this->periodoId,$docente->id_evidencias]);
+                ',[$this->carreraId,$this->periodoId,$docente->id_criterio]);
 
-            $collectionResult->push($evidencia[0] ?? $evidenciaVacia);
+            $collectionResult->push(...$evidencia);
         }
         return $collectionResult;
     }
