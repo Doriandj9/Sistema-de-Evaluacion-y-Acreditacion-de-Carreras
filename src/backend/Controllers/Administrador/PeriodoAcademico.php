@@ -4,21 +4,29 @@ declare(strict_types=1);
 
 namespace App\backend\Controllers\Administrador;
 
-use App\backend\Application\Utilidades\DB;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
+use App\backend\Models\Carreras;
+use App\backend\Models\CarrerasEvidencias;
 use App\backend\Models\CarrerasPeriodoAcademico;
-use App\backend\Models\Docente;
+use App\backend\Models\Evidencias;
 use App\backend\Models\PeriodoAcademico as ModelsPeriodoAcademico;
+
 
 class PeriodoAcademico implements Controller
 {
     private $periodoAcademico;
     private CarrerasPeriodoAcademico $carrerasPeriodoAcademico;
+    private Evidencias $evidencias;
+    private CarrerasEvidencias $carrerasEvidencias;
+    private Carreras $carreras;
     public function __construct()
     {
         $this->periodoAcademico = new ModelsPeriodoAcademico;
         $this->carrerasPeriodoAcademico = new CarrerasPeriodoAcademico;
+        $this->evidencias = new Evidencias;
+        $this->carreras = new Carreras;
+        $this->carrerasEvidencias = new CarrerasEvidencias;
     }
     public function vista($variables = []): array
     {
@@ -107,11 +115,36 @@ class PeriodoAcademico implements Controller
             }
         }
 
+        $this->habilitarEvidenciasACarreras($id_carreras,$periodo);
         Http::responseJson(json_encode(
             [
                 'ident' => 1,
                 'mensaje' => 'Se habilito correctamente las carreras'
             ]
         ));
+    }
+
+    private function habilitarEvidenciasACarreras(array $carreras, string $id_periodo) {
+        $evidencias  = $this->evidencias->select();
+        $carrerasEvidenciasData = [];
+        foreach($carreras as $carrera) {
+            $facultad = $this->carreras->selectFromColumn('id',$carrera,['id_facultad'])->first();
+            foreach($evidencias as $evidencia){
+                $data_carreras_evidencias = [
+                    'id_periodo_academico' => $id_periodo,
+                    'id_evidencias' => $evidencia->id,
+                    'id_carrera' => $carrera,
+                    'cod_evidencia' => $facultad->id_facultad . '-' .$carrera . ' ' .  $evidencia->id
+                ];
+                array_push($carrerasEvidenciasData,$data_carreras_evidencias);
+            }
+            
+        }
+        $this->carrerasEvidencias->insertMasivo($carrerasEvidenciasData,[
+            'id_periodo_academico',
+            'id_evidencias',
+            'id_carrera',
+            'cod_evidencia'
+        ]);
     }
 }

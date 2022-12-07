@@ -9,6 +9,7 @@ use App\backend\Application\Utilidades\DB;
 class CarrerasEvidencias extends DatabaseTable
 {
     public const TABLE = 'carreras_evidencias';
+    public $timestamps = false;
 
     public function __construct()
     {
@@ -28,5 +29,26 @@ class CarrerasEvidencias extends DatabaseTable
         ->get();
 
         return $evidencias;
+    }
+    /**
+     * @param array<array> $datos
+     */
+    public function insertMasivo(array $datos,array $columnas){
+        $queryMasive = 'INSERT INTO carreras_evidencias(';
+        foreach($columnas as $columna) {
+            $queryMasive .=  $columna . ',';
+        }
+        $queryMasive = rtrim($queryMasive,',');
+        $queryMasive .= ')VALUES(';
+        foreach($datos as $dato) {
+            foreach($dato as $valor){
+                $queryMasive .= '\'' . $valor .'\'' . ',';
+            }
+        $queryMasive = rtrim($queryMasive,',');
+        $queryMasive .= '),(';
+        } 
+        $queryMasive = rtrim($queryMasive,',(');
+        $queryMasive .= ';';
+        DB::statement($queryMasive);
     }
 }
