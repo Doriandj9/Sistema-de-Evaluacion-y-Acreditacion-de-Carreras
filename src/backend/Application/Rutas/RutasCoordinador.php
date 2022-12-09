@@ -109,6 +109,36 @@ class RutasCoordinador implements Route
                     'action' => 'detalleEvidencia'
                 ],
             ],
+            'coordinador/verificacion/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'verificacion'
+                ],
+            ],
+            'coordinador/listar/verificacion/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'evidenciasPorPeriodoVerificar'
+                ],
+            ],
+            'coordinador/registro/evaluadores' => [
+                'POST' => [
+                    'controller' => $responsables,
+                    'action' => 'registarEvaluadores'
+                ],
+            ],
+            'coordinador/listar/evaluadores' => [
+                'GET' => [
+                    'controller' => $responsables,
+                    'action' => 'listarEvaluadores'
+                ],
+            ],
+            'coordinador/registrar/verificacion' => [
+                'POST' => [
+                    'controller' => $evidencias,
+                    'action' => 'registarVerificacion'
+                ],
+            ],
         ];
     }
     public function getTemplate(): string

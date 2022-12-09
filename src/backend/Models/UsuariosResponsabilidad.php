@@ -15,23 +15,22 @@ class UsuariosResponsabilidad extends DatabaseTable
     }
 
     public function obtenerResponsables($id_carrera,$periodo) {
-        $responsables = DB::select('select
-                string_agg(usuarios_responsabilidad.id_carrera,\'---\') as id_carrera,
-                string_agg(responsabilidad.id::text,\'---\') as id_responsabilidad, 
-                string_agg(responsabilidad.nombre,\'---\') as nombre_responsabilidad, 
-                string_agg(docentes.nombre,\'---\') as nombre_docente, 
-                string_agg(docentes.apellido ,\'---\')as apellido, 
-                string_agg(docentes.correo ,\'---\') as correo, 
-                string_agg(evidencias.nombre ,\'---\') as nombre_evidencia,
-                docentes.id as id_docente
-                from usuarios_responsabilidad inner join responsabilidad on
-                responsabilidad.id = usuarios_responsabilidad.id_responsabilidad inner join 
-                evidencias on evidencias.id = responsabilidad.id_evidencias inner join 
-                docentes on docentes.id = usuarios_responsabilidad.id_docentes
-                where id_carrera = ? and
-                id_periodo_academico = ?
-                GROUP BY docentes.id'
-        ,[$id_carrera, $periodo]);
+        $responsables = DB::select(
+         'select
+        string_agg(docentes.apellido,\'---\') as apellido,
+        string_agg(docentes.correo,\'---\') as correo,
+        string_agg(criterios.nombre,\'---\') as nombre_criterio,
+        string_agg(docentes.id,\'---\') as id_docente, 
+        string_agg(criterios.id,\'---\') as id_criterio,
+        docentes.nombre as nombre_docente
+        from usuarios_responsabilidad
+        inner join responsabilidad  on responsabilidad.id = usuarios_responsabilidad.id_responsabilidad
+        inner join criterios on criterios.id = responsabilidad.id_criterio
+        inner join docentes on docentes.id = usuarios_responsabilidad.id_docentes
+        where usuarios_responsabilidad.id_carrera = ? and
+        usuarios_responsabilidad.id_periodo_academico = ?
+        GROUP BY docentes.nombre',
+    [$id_carrera,$periodo]);
         $collection = new Collection($responsables);
         return $collection;
     }

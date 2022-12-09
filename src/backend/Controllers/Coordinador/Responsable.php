@@ -82,15 +82,14 @@ class Responsable implements Controller
             [Docente::DOCENTES,trim($_SESSION['carrera']),$id_docente]
         )->get()->count();
         if($docente <= 0){
-            $periodo = $this->periodo->selectFromColumn('id',trim($_POST['periodo']))->first();
             $correo = $this->docentes->selectFromColumn('id',$id_docente)->first()->correo;
             $carrera = $this->carreras->selectFromColumn('id',trim($_SESSION['carrera']))->first()->nombre;
             $datos_usuarios_docentes = [
                 'id_usuarios' => Docente::DOCENTES,
                 'id_docentes' => $id_docente,
                 'id_carrera' => trim($_SESSION['carrera']),
-                'fecha_inicial' => $periodo->fecha_inicial,
-                'fecha_final' => $periodo->fecha_final,
+                'fecha_inicial' => trim($_POST['f_i']),
+                'fecha_final' => trim($_POST['f_f']),
                 'estado' => 'activo'
             ];
             try{
@@ -106,10 +105,40 @@ class Responsable implements Controller
            $respuestEmail = EmailMensajes::docentes(
             $_ENV['MAIL_DIRECCION'],
             $correo,
-            [$carrera,$periodo->fecha_inicial,$periodo->fecha_final],
+            [$carrera,trim($_POST['f_i']),trim($_POST['f_f'])],
             true,
             $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
            );
+        }else {
+            $correo = $this->docentes->selectFromColumn('id',$id_docente)->first()->correo;
+            $carrera = $this->carreras->selectFromColumn('id',trim($_SESSION['carrera']))->first()->nombre;
+            $datos_usuarios_docentes = [
+                'fecha_inicial' => trim($_POST['f_i']),
+                'fecha_final' => trim($_POST['f_f']),
+                'estado' => 'activo'
+            ];
+            try{
+                $this->usuariosDocente->updateUsuarioCarrera(
+                    Docente::DOCENTES,
+                    $id_docente,
+                    trim($_SESSION['carrera']),
+                    $datos_usuarios_docentes
+                );
+            }catch(\PDOException $e) {
+                Http::responseJson(json_encode(
+                    [
+                        'ident' => 0,
+                        'errores' => $e->getMessage()
+                    ]
+                    ));
+            }
+            $respuestEmail = EmailMensajes::docentes(
+                $_ENV['MAIL_DIRECCION'],
+                $correo,
+                [$carrera,trim($_POST['f_i']),trim($_POST['f_f'])],
+                true,
+                $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
+               );
         }
 
         foreach($responsabilidades as $responsabilidad){
@@ -126,7 +155,6 @@ class Responsable implements Controller
                 array_push($errores,$e->getMessage());
             }
         }
-
         if(count($errores) >= 1){
             Http::responseJson(json_encode(
                 [
@@ -144,6 +172,70 @@ class Responsable implements Controller
                 'email' => $responsabilidad->mensaje ?? 'No es necesario enviar correo'
             ]
             ));
+    }
+
+    public function registarEvaluadores() {
+        $periodo = $this->periodo->selectFromColumn('id',trim($_POST['periodo']))->first();
+        $data_evaluadores = [
+            'id_usuarios' => Docente::EVALUADORES,
+            'id_docentes' => trim($_POST['docente']),
+            'id_carrera' => trim($_SESSION['carrera']),
+            'fecha_inicial' => $periodo->fecha_inicial,
+            'fecha_final' => $periodo->fecha_final,
+            'estado' => 'activo'
+        ];
+        $usuarioEvaludor = UsuariosDocente::where('id_usuarios',Docente::EVALUADORES)
+        ->where('id_docentes',trim($_POST['docente']))
+        ->where('id_carrera',trim($_SESSION['carrera']))
+        ->get();
+        $docente = $this->docentes->selectFromColumn('id',trim($_POST['docente']))->first();
+        $carrera = $this->carreras->selectFromColumn('id',trim($_SESSION['carrera']))->first();
+        $respuestEmail = new \stdClass;
+        if($usuarioEvaludor->count() >= 1){
+            try{
+                $this->usuariosDocente->updateUsuarioCompleto(
+                    Docente::EVALUADORES,
+                    trim($_POST['docente']),
+                    trim($_SESSION['carrera']),
+                    [
+                        'fecha_inicial' => $periodo->fecha_inicial,
+                        'fecha_final' => $periodo->fecha_final
+                    ]
+                );
+            }catch(\PDOException $e) {
+                Http::responseJson(json_encode(
+                    [
+                        'ident' => 0,
+                        'mensaje' => $e->getMessage()
+                    ]
+                    ));
+            }
+        }else {
+            try{
+                $this->usuariosDocente->insert($data_evaluadores);
+            }catch(\PDOException $e) {
+                Http::responseJson(json_encode(
+                    [
+                        'ident' => 0,
+                        'mensaje' => $e->getMessage()
+                    ]
+                    ));
+            }
+        }
+        $respuestEmail = EmailMensajes::evluador(
+            $_ENV['MAIL_DIRECCION'],
+            $docente->correo,
+            [$carrera->nombre],
+            true,
+            $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
+        );
+
+        Http::responseJson(json_encode([
+            'ident' => 1,
+            'mensaje' => 'Se ingreso correctamente el evaluador',
+            'identEmail' => $respuestEmail->ident === 1 ? 1 : 0,
+            'email' => $respuestEmail->mensaje ?? 'undefined'
+        ]));
     }
 
     public function listarResponsabilidades() {
@@ -168,5 +260,13 @@ class Responsable implements Controller
                 ]
                 ));
         }
+    }
+
+    public function listarEvaluadores() {
+        $evaluadores = $this->usuariosDocente->listarEvaluadores(trim($_SESSION['carrera']));
+        Http::responseJson(json_encode([
+            'ident' => 1,
+            'evaluadores' => $evaluadores
+        ]));
     }
 }

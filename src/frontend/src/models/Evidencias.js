@@ -5,9 +5,9 @@ export default class Evidencias {
      * @param {string} periodo 
      * @returns {Promise}JSON
      */
-    static async obtenerEvidencias(periodo) {
+    static async obtenerEvidencias(periodo,ruta='coordinador') {
         try {
-			const consulta = await fetch(`/coordinador/datos/evidencias?periodo=${periodo}`);
+			const consulta = await fetch(`/${ruta}/datos/evidencias?periodo=${periodo}`);
 			const resultado = await consulta.json();
 			return resultado;
 		} catch (error) {
@@ -70,7 +70,7 @@ export default class Evidencias {
      * @returns {Promise} Blob
      */
       static async obtenerEvidenciaIndvidual(periodo,idEvidencia,ruta = 'coordinador') {
-        const archivos = ['pdf','word','excel'];
+        const archivos = ['pdf'];
         let files = [];
       try {
       for(let file of archivos){
@@ -90,11 +90,27 @@ export default class Evidencias {
      */
    static async obtenerEvidenciaDetalle(id_evidencias) {
     try {
-  const consulta = await fetch(`/coordinador/detalle/evidencias?id=${id_evidencias}`);
+    const consulta = await fetch(`/coordinador/detalle/evidencias?id=${id_evidencias}`);
+    const resultado = await consulta.json();
+    return resultado;
+  } catch (error) {
+    console.error(error);
+  }
+  }
+
+
+/**
+     * 
+     * @param {string} periodo 
+     * @returns {Promise}JSON
+     */
+ static async obtenerEvidenciasVerificar(periodo) {
+  try {
+  const consulta = await fetch(`/coordinador/listar/verificacion/evidencias?periodo=${periodo}`);
   const resultado = await consulta.json();
   return resultado;
-} catch (error) {
+  } catch (error) {
   console.error(error);
-}
+  }
 }
 }

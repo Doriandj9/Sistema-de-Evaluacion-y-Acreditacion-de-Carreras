@@ -25,6 +25,11 @@
             .then()
             .catch(e => console.error('[JS002] ' + e));           
         },
+        'evaluador': function(){
+            import('./evaluadorController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));           
+        },
         'director-planeamiento': function(){
                       
         },

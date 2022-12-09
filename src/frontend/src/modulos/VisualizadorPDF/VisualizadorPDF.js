@@ -17,7 +17,6 @@ export default class VisualizadorPDF {
         const urlObjet = URL.createObjectURL(archivo);
         this.embed.src = urlObjet;
         window.addEventListener('keydown',e => {
-            e.preventDefault();
             if(e.key === 'Escape') {
                 window.dispatchEvent(new CustomEvent('viewpdf',{detail:true}));
             }

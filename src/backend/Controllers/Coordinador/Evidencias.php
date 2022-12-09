@@ -8,6 +8,7 @@ use App\backend\Application\Utilidades\FilePDF;
 use App\backend\Application\Utilidades\FileWord;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
+use App\backend\Models\CarrerasEvidencias;
 use App\backend\Models\Evidencias as ModelsEvidencias;
 use App\backend\Models\PeriodoAcademico;
 
@@ -15,11 +16,13 @@ class Evidencias implements Controller
 {
     private PeriodoAcademico $periodoAcademico;
     private ModelsEvidencias $evidenciasModel;
+    private CarrerasEvidencias $carrerasEvidencias;
 
     public function __construct()
     {
         $this->periodoAcademico = new PeriodoAcademico;
         $this->evidenciasModel = new ModelsEvidencias;
+        $this->carrerasEvidencias = new CarrerasEvidencias;
     }
     public function vista($variables = []): array
     {
@@ -163,5 +166,63 @@ class Evidencias implements Controller
        $file->retornarFile($evidencia);
     }
     die;
+    }
+
+
+    public function verificacion(){
+        $periodos = $this->periodoAcademico->select(true,'id','desc');
+        return [
+            'title' => 'Verificación de Evidencias',
+            'template' => 'coordinadores/verificacion-evidencias.html.php',
+            'variables' => [
+                'periodos' => $periodos
+            ]
+        ];
+    }
+
+    public function evidenciasPorPeriodoVerificar(){
+        if(!isset($_GET['periodo'])){
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'mensaje' => 'Error no existe el parametro periodo en la consulta.'
+                ]
+                ));
+        }
+        $evidencias = $this->carrerasEvidencias->obtenerEvidenciasPorPeriodo(
+            trim($_GET['periodo']),
+            trim($_SESSION['carrera'])
+        );
+    Http::responseJson(json_encode(
+        [
+            'ident' => 1,
+            'evidencias' => $evidencias
+        ]
+        ));
+    }
+
+    public function registarVerificacion() {
+        $data_verificacion =  [
+            'verificada' => true,
+            'valoracion' => trim($_POST['valoracion']),
+            'comentario' => trim($_POST['comentario'])
+        ];
+        try{
+            $this->evidenciasModel->guardarEvidencia(
+                trim($_SESSION['carrera']),
+                trim($_POST['periodo']),
+                trim($_POST['id_evidencia']),
+                $data_verificacion
+            );
+            Http::responseJson(json_encode([
+                'ident' => 1,
+                'mensaje' => 'Se ingreso correctamente su verificación'
+            ]));
+        }catch(\PDOException $e) {
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => $e->getMessage()
+            ]));
+        }
     }
 }

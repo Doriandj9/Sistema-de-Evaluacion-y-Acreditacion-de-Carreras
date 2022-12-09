@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\backend\Models;
 
 use App\backend\Application\Utilidades\DB;
-use Illuminate\Support\Collection;
 
 class UsuariosDocente extends DatabaseTable
 {
@@ -137,5 +136,37 @@ class UsuariosDocente extends DatabaseTable
         ->get();
 
         return $usuarios;
+    }
+
+    public function updateUsuarioCompleto(
+        string|int $id_usuario,
+        string $id_docente,
+        string $id_carrera,
+        array $datos
+    ) {
+        $result = DB::table(self::TABLE)
+        ->where('id_usuarios','=',$id_usuario)
+        ->where('id_docentes','=',$id_docente)
+        ->where('id_carrera','=',$id_carrera)
+        ->update($datos);
+
+        return $result;
+    }
+
+    public function listarEvaluadores(string $id_carrera) {
+        $evaludores = DB::table(self::TABLE)
+        ->join('docentes','docentes.id','=','usuarios_docente.id_docentes')
+        ->where('usuarios_docente.id_usuarios','=',Docente::EVALUADORES)
+        ->where('id_carrera','=',$id_carrera)
+        ->select([
+            'docentes.id as id_docente',
+            'docentes.nombre as nombre_docente',
+            'docentes.apellido as apellido',
+            'docentes.correo as correo',
+            'fecha_inicial',
+            'fecha_final'
+        ])->get();
+    
+        return $evaludores;
     }
 }

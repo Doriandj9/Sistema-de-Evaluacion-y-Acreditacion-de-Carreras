@@ -11,7 +11,7 @@
  * 
  * @return {*} void
  */
- export function paginacionResponsables(datos,divicionDatos,numeroActual,tbody,contNumeros,funcionRefrescar = null,columnaBusqueda = null,valor=null){
+ export function paginacionEvaludoresCarrera(datos,divicionDatos,numeroActual,tbody,contNumeros,funcionRefrescar = null,columnaBusqueda = null,valor=null){
     const total  = datos.length;
     const fracion = divicionDatos;
     const totalNumeros = Math.ceil((total / fracion));
@@ -27,17 +27,13 @@
     }
 
     datosPaginados.forEach((dato,i) => {
-        const nombreDocente = [...new Set(dato.nombre_docente.split('---'))];
-        const idDocente = [...new Set(dato.id_docente.split('---'))];
-        const apellidoDocente = [...new Set(dato.apellido.split('---'))];
-        const correo =  [...new Set(dato.correo.split('---'))];
-        const nombreCriterio = [...new Set(dato.nombre_criterio.split('---'))];
         html += `
         <tr>
-        <td>${idDocente.toString()}</td>
-        <td>${nombreDocente.toString().split(' ')[0] + ' ' + apellidoDocente.toString().split(' ')[0]}</td>
-        <td>${correo.toString()}</td>
-        <td>${nombreCriterio.toString()}</td>
+        <td>${dato.id_docente}</td>
+        <td>${dato.nombre_docente.split(' ')[0] + ' ' + dato.apellido.split(' ')[0]}</td>
+        <td>${dato.correo}</td>
+        <td>${dato.fecha_inicial}</td>
+        <td>${dato.fecha_final}</td>
       </tr>
         `;
     })
@@ -47,7 +43,7 @@
         button.textContent = i;
         if(i === comparacion) button.classList.add('active'); // Si el numero actual es igual que el del boton ese
         button.addEventListener('click',() => { // boton esta selecionado 
-                 paginacionResponsables(datos,divicionDatos,i,tbody,contNumeros,funcionRefrescar);
+                 paginacionEvaludoresCarrera(datos,divicionDatos,i,tbody,contNumeros,funcionRefrescar);
                  if(funcionRefrescar) funcionRefrescar();
             }
         );

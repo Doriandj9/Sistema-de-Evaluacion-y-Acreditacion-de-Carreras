@@ -940,3 +940,7 @@ embed{
 section.boton{
     cursor: pointer;
 }
+
+.h-1 {
+    height: calc((1rem * 8) - 12px);
+}

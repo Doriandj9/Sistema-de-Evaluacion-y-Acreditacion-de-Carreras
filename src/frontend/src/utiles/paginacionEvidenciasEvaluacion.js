@@ -1,3 +1,5 @@
+import alerta from "./alertasBootstrap.js";
+
 /**
  * 
  * @param {*} datos Son los datos como array
@@ -11,7 +13,7 @@
  * 
  * @return {*} void
  */
- export function paginacionEvidencias(datos,divicionDatos,numeroActual,tbody,contNumeros,opcion='ver',funcionRefrescar = null,columnaBusqueda = null,valor=null){
+ export function paginacionEvidenciasEvaluacion(datos,divicionDatos,numeroActual,tbody,contNumeros,funcionRefrescar = null,columnaBusqueda = null,valor=null){
     const total  = datos.length;
     const fracion = divicionDatos;
     const totalNumeros = Math.ceil((total / fracion));
@@ -26,7 +28,9 @@
         !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
         datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
     }
-
+    if(datosPaginados.length <= 0 ){
+        alerta('alert-danger','No existe la evidencia con el identificador ' + valor);
+    } 
     datosPaginados.forEach((dato,i) => {
         const criterio = [...new Set(dato.nombre_criterio?.split('---'))];
         const descripcionEstandar = [...new Set(dato.descripcion_estandar?.split('---'))];
@@ -36,21 +40,8 @@
         const idcomponente = [...new Set(dato.id_componente?.split('---'))];
         const descripcionComponentes = [...new Set(dato.descripcion_componente?.split('---'))];
         const nombre_Evidencia = [...new Set(dato.nombre_evidencias?.split('---'))];
-        const fecha_inicial = [...new Set(dato.fecha_inicial?.split('---'))];
-        const fecha_final = [...new Set(dato.fecha_final?.split('---'))];
         const cod_evidencias = [...new Set(dato.cod_evidencias?.split('---'))];
-        const htmlbotonVer = `
-        <section class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
-        >
-           <span class="material-icons text-white">&#xf1c5;</span>  Ver
-        </section>
-        `;
-        const htmlbotonRegistro  = `
-        <button type="button" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
-        >
-        <span class="material-icons text-white">&#xf09b;</span> Subir 
-        </button>        
-        `;
+        const id_evidencias = [...new Set(dato.id_evidencias?.split('---'))];
         html += `
         <tr>
         <td>${criterio.toString().substring(0,25)}
@@ -80,18 +71,21 @@
         <input type="hidden" value="Codigo--Nombre"/>
        <br> <span class='ver-mas'>Ver más</span>
         </td>
-        <td>${fecha_inicial.toString()}</td>
-        <td>${fecha_final.toString()}</td>
         <td>
-          ${opcion === 'ver' ? htmlbotonVer : htmlbotonRegistro} 
+        <section class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
+           <span class="material-icons text-white">&#xe8f4;</span>  Ver
+        </section>
         <input type="hidden" value="${cod_evidencias.toString()}"/> 
         </td>
-
+        <td>
+        <button type="button" data-info-tipo="${tipoEstandar.toString()}" data-id-evidencia="${id_evidencias.toString()}"
+        class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
+        <span class="material-icons text-white">&#xe85d;</span> Calificar 
+        </button> 
+        <input type="hidden" value="${cod_evidencias.toString()}"/> 
+        </td>
       </tr>
         `;
-        // <td>${dato.fecha_inicial}</td>
-        // <td>${dato.fecha_final}</td>
-        // <td>${dato.estado}</td>
     })
     
     
@@ -100,7 +94,7 @@
         button.textContent = i;
         if(i === comparacion) button.classList.add('active'); // Si el numero actual es igual que el del boton ese
         button.addEventListener('click',() => { // boton esta selecionado 
-                 paginacionEvidencias(datos,divicionDatos,i,tbody,contNumeros,opcion,funcionRefrescar);
+                 paginacionEvidenciasEvaluacion(datos,divicionDatos,i,tbody,contNumeros,funcionRefrescar,columnaBusqueda,valor);
                  if(funcionRefrescar) funcionRefrescar();
             }
         );
@@ -119,8 +113,6 @@
     numerosUI.forEach(numero => {
                 contNumeros.append(numero);
             });
-    
-    
 }
 /**
  * 

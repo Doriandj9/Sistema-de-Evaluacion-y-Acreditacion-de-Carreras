@@ -41,4 +41,23 @@ class EmailMensajes {
     ) {
 
     }
+
+    public static function evluador(
+        $emailEmisor,
+        $emailReceptor,
+        $datosPlatilla = ['carrera','fecha1,fecha2'],
+        $redireccion = false,
+        $dir = ''
+    ) {
+        $file = file_get_contents('./src/backend/datos/mensajes/mensajes.json');
+        $mensajes = json_decode($file);
+        $ente =  $mensajes->correo[0]->docentes->ente;
+        $titulo =  $mensajes->correo[0]->docentes->titulo;
+        $titulo =  str_replace('?c',$datosPlatilla[0],$titulo);
+        $tituloNotifiaccion =  $mensajes->correo[0]->docentes->tituloNotificacion;
+        $mensaje = $mensajes->correo[0]->docentes->mensaje;
+        $mensaje = str_replace('?c',$datosPlatilla[0],$mensaje);
+        $html = EnviarEmail::html(null,$tituloNotifiaccion,$mensaje,$redireccion,$dir);
+        return EnviarEmail::enviar($ente, $emailEmisor, $emailReceptor,$titulo,$html);
+    }
 }

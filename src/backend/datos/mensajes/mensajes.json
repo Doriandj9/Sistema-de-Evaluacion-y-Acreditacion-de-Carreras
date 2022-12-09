@@ -8,6 +8,12 @@
                 "mensaje": "Estimado docente ud ha sido notificado para utilizar la plataforma SEAC en la carrera <strong>  ?c  </strong> se habilitado el acceso a partir de la fecha <strong> ?f1 </strong> hasta <strong> ?f2 </strong> para el ingreso al servicio debe utilizar su correo institucional y la contraseña provicional sera su numero de cédula se le recomienda cambiar la misma para brindarle una mayor seguridad"
             },
             "coordinador": {},
+            "evaluadores":{
+                "ente": "Sistema de Evaluacion y Aseguramiento de la Calidad",
+                "titulo": "Docente de la carrera ?c",
+                "tituloNotificacion": "Habilitado para usar la plataforma",
+                "mensaje": "Estimado docente ud ha sido notificado para utilizar la plataforma como evaluador resgistrado en la carrera ?c su usuario para el ingreso al sistma sera su correo electronico isntitucional y como clave temporal su numero de cédula"
+            },
             "otros": ""
         }
     ]

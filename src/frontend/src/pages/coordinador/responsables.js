@@ -7,6 +7,8 @@ import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
 import Usuarios from "../../models/Usuarios.js";
 import { paginacionResponsables } from "../../utiles/paginacionResponsables.js";
 import Notificacion from "../../modulos/Notificacion/Notificacion.js";
+import Docentes from "../../models/Docentes.js";
+import { paginacionEvaludoresCarrera } from "../../utiles/paginacionEvaludoresCarrera.js";
 
 MenuOpcionesSuperior.correr();
 const contenedorVistas = document.getElementById('cambio-vistas');
@@ -26,7 +28,7 @@ spinner.innerHTML = `<span class="visually-hidden">Loading...</span>`;
 MenuOpcionesSuperior.renderVistasAcciones([
     [op1,htmlOp1,accionListar,'focus'],
     [op2,htmlOp2,accionRegistrar],
-    [op3, htmlOp3]
+    [op3, htmlOp3,accionRegistrarEvaluadores]
 ]);
 
 /**----------------------------------------------TODO: Listar Responsables------------------------------------------ */
@@ -91,6 +93,7 @@ function renderResponsabilidades(respuesta) {
 function renderFormulario(datos) {
     const select = contenedorVistas.querySelector('#docentes');
     const contentResponsa = contenedorVistas.querySelector('#responsabilidades');
+   
     contentResponsa.innerHTML = '';
     const {docentes,responsabilidades} = datos;
     let htmlSelct = '<option selected value="none">Seleccione un docente presentado a continuación: </option>';
@@ -116,12 +119,14 @@ function renderFormulario(datos) {
             </label>
             <input class="form-check-input" name="responsabilidades[]" type="checkbox" value="${respo.id}" id="">
         </div>
-        <input type="hidden" value="${respo.id_evidencias}" />
+        <input type="hidden" value="${respo.id_criterio}" />
         `;
         div.append(detalle);
         contentResponsa.append(div);
         detalle.addEventListener('click',e => informacion(e,detalle));
     })
+
+    
 
 }
 /**
@@ -178,36 +183,18 @@ document.addEventListener('deploy.evidencia',e => {
     if(!e.detail.ident) alerta('alert-danger','Ocurrio un error intenlo mas tarde',3000);
     const {evidencia} = e.detail;
     const criterio = [...new Set(evidencia.nombre_criterio.split('---'))];
-    const idElemento = [...new Set(evidencia.id_elemento.split('---'))];
-    const descripcionElemento = [...new Set(evidencia.descripcion_elemento.split('---'))];
     const nombre_Evidencia = [...new Set(evidencia.nombre_evidencias.split('---'))];
     let html = `
     <div class="mb-3">
     <div class="row">
         <label for="staticEmail" class="col-sm-4 col-form-label">
-           <strong> Evidencia a cargo </strong>
+           <strong> Evidencias a cargo </strong>
         </label>
         <div class="col-sm-8">
           ${nombre_Evidencia.toString()}
         </div>
     </div>
-    <div id="emailHelp" class="form-text mb-3">Nota: Esta responsabilidad estará a cargo de subir esta evidencia</div>
-    <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-4 col-form-label">
-           <strong> Criterios </strong>
-        </label>
-        <div class="col-sm-8">
-           <li>${criterio.join('</li><li>')}</li>
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-4 col-form-label">
-           <strong> Elementos  </strong>
-        </label>
-        <div class="col-sm-8">
-            <strong>Nº Elementos:</strong> ${idElemento.toString()} <br>
-            <li>${descripcionElemento.join('</li><li>')}</li>
-        </div>
+    <div id="evideciaHelp" class="form-text mb-3">Nota: Esta responsabilidad estará a cargo de subir estas evidencias</div>     
     </div>
     </div>
     `;
@@ -230,6 +217,9 @@ function verificarOpciones(e) {
     const select = form.querySelector('#docentes');
     const contentResponsa = form.querySelector('#responsabilidades')
     const ckeckeds = Array.from(form.querySelectorAll('input[type=checkbox]'));
+    const periodos = contenedorVistas.querySelector('#periodos');
+    const fecha_inicial = contenedorVistas.querySelector('#f_i');
+    const fecha_final = contenedorVistas.querySelector('#f_f');
     if(select.value.trim() === 'none') {
         select.classList.add('is-invalid');
         verificarciones.select = false; 
@@ -247,7 +237,23 @@ function verificarOpciones(e) {
         contentResponsa.classList.contains('no-valido') ? contentResponsa.classList.remove('no-valido') : contentResponsa.classList.add('es-valido'); 
         verificarciones.checked = true;
     }
-    
+
+        const childresn = periodos.children;
+        const option = Array.from(childresn).filter(option => option.value === periodos.value);
+        if(option.length <= 0) return;
+        const fecha_inicial_periodo = option[0].dataset.fechaInicial.trim().split('-');
+        const f_i = fecha_inicial.value.split('-');
+        let date = new Date(`${f_i[1]}-${f_i[2]}-${f_i[0]}`);
+        let datePeriodo = new Date(`${fecha_inicial_periodo[1]}-${fecha_inicial_periodo[2]}-${fecha_inicial_periodo[0]}`);
+        if(!(date.getTime() >= datePeriodo.getTime())){
+            alerta('alert-warning','El tiempo que ingreso debe ser mayor a la fecha inicial '+
+            'del periodo academico ' + fecha_inicial_periodo.join('-'),5000);
+            return;
+        }
+        if(fecha_final.value === ''){
+            alerta('alert-warning', 'Ingrese un fecha limite que indique hasta que fecha se pueden ingresar las evidencia a cargo del docente',5000);
+            return;
+        }
     if(!Object.values(verificarciones).every(v => v)){
         alerta('alert-warning','Por favor resive que todos los campos se encuentren completados',2000);
         return;
@@ -290,7 +296,8 @@ function reiniciarDatosForm(){
     const select = form.querySelector('#docentes');
     const ckeckeds = Array.from(form.querySelectorAll('input[type=checkbox]'));
     const contentResponsa = form.querySelector('#responsabilidades')
-    select.classList.remove('is-valid');    
+    select.classList.remove('is-valid');   
+    select.value = 'none';
     contentResponsa.classList.remove('es-valido');
     ckeckeds.forEach(c => {
         c.checked = false;
@@ -301,3 +308,96 @@ function reiniciarDatosForm(){
 
 /**------------------------------------TODO: Actiones para registrar Evaludores--------------------------------- */
 
+
+function accionRegistrarEvaluadores() {
+    const inputID = document.getElementById('carreraID');
+    Docentes.getDatos(inputID.value.trim())
+    .then(renderDoncentes)
+    .catch(console.log);
+    registarEvaluadores();
+    listarEvaludores();
+}
+
+function renderDoncentes(respuesta) {
+    if(respuesta.ident){
+        const select = contenedorVistas.querySelector('#docentes-evaluador');
+        const {docentes} = respuesta;
+        let htmlSelct = '<option selected value="none">Seleccione un docente presentado a continuación: </option>';
+        docentes.forEach(docente => {
+            htmlSelct += `
+            <option value="${docente.id}">Nombre: ${docente.nombre.split(' ')[0] + docente.apellido.split(' ')[0]}
+            ➡ CI: ${docente.id}
+            </option>
+            `;
+        });
+        select.innerHTML = htmlSelct;
+    }else {
+        alerta('alert-danger','A ocurrido un error en el servidor por favor informe de este error al admnistrador del sistema',5000);
+    }
+}
+
+
+function registarEvaluadores() {
+    const form =  contenedorVistas.querySelector('form');
+    form.addEventListener('submit',e => verificarDatosEvaludor(e,form));
+}
+
+function verificarDatosEvaludor(e,form) {
+    e.preventDefault();
+    const select = form.querySelector('#docentes-evaluador');
+    if(select.value.trim() === 'none') {
+        select.classList.add('is-invalid');
+        alerta('alert-warning','Asegurese de selecionar un docente para el cargo',5000);
+        return;
+    }else{
+        select.classList.contains('is-invalid') ? select.classList.remove('is-invalid') : select.classList.add('is-valid');
+    }
+    precarga = new Precarga();
+    precarga.run();
+    Usuarios.registrarEvaluadores(new FormData(form))
+    .then(renderRespuestaEvaludores)
+    .catch(console.log);
+}
+
+
+function renderRespuestaEvaludores(respuesta) {
+    precarga.end();
+    if(respuesta.ident) {
+        new Notificacion(respuesta.mensaje,'Aceptar',false);
+        new Notificacion(
+            Boolean(respuesta.identEmail) === true ? '' +  respuesta.email : 'Ocurrio un error al enviar el correo electronico <br>' 
+            + respuesta.email,
+            'Aceptar',
+            Boolean(respuesta.identEmail) === true ? false : true
+          );
+          const form =  contenedorVistas.querySelector('form');
+          const select = form.querySelector('#docentes-evaluador');
+            select.classList.remove('is-valid');   
+            select.value = 'none';
+
+    }else {
+        new Notificacion(respuesta.mensaje,'Regresar');
+    }
+}
+
+
+function listarEvaludores() {
+    Usuarios.listarEvaluadoresDeCarrera()
+    .then(renderListaEvaludores)
+    .catch(console.log)
+}
+
+function renderListaEvaludores(respuesta) {
+    if(respuesta.ident) {
+        const tbody = contenedorVistas.querySelector('tbody');
+        const contenedorNumeros = contenedorVistas.querySelector('.contenedor-numeros-paginacion');
+        const busqueda = document.getElementById('busqueda');
+        const {evaluadores} = respuesta;
+        paginacionEvaludoresCarrera(evaluadores,3,1,tbody,contenedorNumeros);
+        busqueda.addEventListener('input',(function(evaluadores){
+            return () => {
+            paginacionEvaludoresCarrera(evaluadores,3,1,tbody,contenedorNumeros,null,'nombre_docente',busqueda.value.trim());
+            };
+        })(evaluadores))
+    }
+}
