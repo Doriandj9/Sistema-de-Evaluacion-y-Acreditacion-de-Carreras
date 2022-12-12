@@ -57,55 +57,80 @@ function accionRegistrar() {
 
 function consultarDatos(e) {
     const valorCedula = e.target.value.trim();
+    if(verificarCedula(valorCedula)){
     Docentes.obtenerDatosDocente(valorCedula)
     .then(renderDatosForm)
     .catch(console.log);
+    if(e.target.classList.contains('is-invalid')){
+        e.target.classList.remove('is-invalid');
+    }
+    }else{
+        e.target.classList.add('is-invalid');
+    }
+    
+}
+
+function verificarCedula(cedula){
+    if(CEDULA_REG_EXPRE.test(cedula)) return true;
+    return false;
 }
 
 function renderDatosForm(respuesta) {
     const form = document.getElementById('form-insert');
-    const cedula = form.querySelector('#cedula');
+    const telefono = form.querySelector('#telefono');
     const nombres = form.querySelector('#nombres');
     const apellidos = form.querySelector('#apellidos');
     const correo = form.querySelector('#correo');
     if(respuesta.ident) {
         const {docente} = respuesta;
-        cedula.setAttribute('disabled','');
         nombres.value = docente.nombre;
         apellidos.value = docente.apellido;
         correo.value = docente.correo;
+        telefono.value = docente.telefono;
         nombres.setAttribute('disabled','');
         apellidos.setAttribute('disabled','');
         correo.setAttribute('disabled','');
+        telefono.setAttribute('disabled','');
     } else {
         alerta('alert-warning',
         'No existe este doncente registrado en la base datos, si lo registra asegurese de ingresar los datos correctos del docente',
         10000
         )
+        nombres.removeAttribute('disabled');
+        apellidos.removeAttribute('disabled');
+        correo.removeAttribute('disabled');
+        telefono.removeAttribute('disabled');
+        nombres.value = '';
+        apellidos.value = '';
+        correo.value = '';
+        telefono.value = '';
     }
 }
 
 function registrarDocente(e,form) {
     e.preventDefault();
     precarga = new Precarga();
-    precarga.run();
     const formData = new FormData();
     const cedula = form.querySelector('#cedula');
     const nombres = form.querySelector('#nombres');
     const apellidos = form.querySelector('#apellidos');
     const correo = form.querySelector('#correo');
-    const fecha_inicial = form.querySelector('#f_i');
-    const fecha_final = form.querySelector('#f_f');
+    const periodo = form.querySelector('#periodos');
     formData.append('cedula',cedula.value.trim())
     formData.append('nombres',nombres.value.trim())
     formData.append('apellidos',apellidos.value.trim())
     formData.append('correo',correo.value.trim())
-    formData.append('f_i',fecha_inicial.value.trim())
-    formData.append('f_f',fecha_final.value.trim())
-    console.log([...formData]);
-    Docentes.sendDocenteACarrera(formData)
-    .then(renderRespuesta)
-    .catch(console.log)
+    formData.append('periodo',periodo.value.trim())
+    const verificacion = [nombres,apellidos,correo];
+    if(verificacion.every(i => i.value.trim() !== '')){
+        precarga.run();
+        Docentes.sendDocenteACarrera(formData)
+        .then(renderRespuesta)
+        .catch(console.log)
+    }else {
+        alerta('alert-warning','Por favor, ingrese todos los campos para continuar');
+    }
+    
 }
 
 

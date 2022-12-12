@@ -3,11 +3,13 @@
 namespace App\backend\Controllers\Coordinador;
 
 use App\backend\Application\Servicios\Email\EnviarEmail;
+use App\backend\Application\Utilidades\EmailMensajes;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Models\Carreras;
 use App\backend\Models\Docente;
 use App\backend\Models\DocentesCarreras;
+use App\backend\Models\PeriodoAcademico;
 use App\backend\Models\UsuariosDocente;
 
 class Docentes implements Controller
@@ -16,20 +18,25 @@ class Docentes implements Controller
     private Docente $docentes;
     private DocentesCarreras $docentesCarreras;
     private UsuariosDocente $usuariosDocentes;
+    private PeriodoAcademico $periodo;
     public function __construct()
     {
         $this->carreras = new Carreras;
         $this->docentes = new Docente;
         $this->docentesCarreras = new DocentesCarreras;
         $this->usuariosDocentes = new UsuariosDocente;
+        $this->periodo = new PeriodoAcademico;
 
     }
 
     public function vista($variables = []): array
     {
+        $periodos = $this->periodo->select(true,'id','desc');
+        $variables['periodos'] = $periodos;
         return [
             'title' => 'Administracióm de Docentes',
-            'template' => 'coordinadores/docentes.html.php'
+            'template' => 'coordinadores/docentes.html.php',
+            'variables' => $variables
         ];
     }
 
@@ -53,12 +60,15 @@ class Docentes implements Controller
     }
 
     public function registar() {
+        $periodo = $this->periodo->selectFromColumn('id',trim($_POST['periodo']))->first();
+        $fecha_inicial = $periodo->fecha_inicial;
+        $fecha_final = $periodo->fecha_final;
         $datos_usuarios_docentes = [
             'id_usuarios' => Docente::DOCENTES,
             'id_docentes' => trim($_POST['cedula']),
             'id_carrera' => trim($_SESSION['carrera']),
-            'fecha_inicial' => trim($_POST['f_i']),
-            'fecha_final' => trim($_POST['f_f']),
+            'fecha_inicial' => $fecha_inicial,
+            'fecha_final' => $fecha_final,
             'estado' => 'activo'
         ];
         $datos_docentes = [
@@ -86,32 +96,21 @@ class Docentes implements Controller
                     trim($_POST['cedula']),
                     $_SESSION['carrera'],
                     [
-                        'fecha_inicial' => trim($_POST['f_i']),
-                        'fecha_final' => trim($_POST['f_f']),
+                        'fecha_inicial' => $fecha_inicial,
+                        'fecha_final' => $fecha_final,
                         'estado' => 'activo'
                     ]
                 );
                 $carrera = $this->carreras->selectFromColumn('id',trim($_SESSION['carrera']))->first()->nombre;
-                $respuestaEmail = EnviarEmail::enviar(
-                    'Docente de la carrera ' . $carrera,
+                $respuestaEmail = EmailMensajes::docentes(
                     $_ENV['MAIL_DIRECCION'],
                     trim($_POST['correo']),
-                    'Sistema de Evaluacion y Acreditacion de Carreras',
-                    EnviarEmail::html(
-                        null,
-                        'Habilitado para usar el sistema',
-                        'Estimado docente ud ha sido notificado para utilizar la plataforma SEAC 
-                        en la carrera <strong>' . $carrera . '</strong> se habilitado el acceso a partir
-                        de la fecha <strong>' . $_POST['f_i'] . '</strong> hasta <strong>' . $_POST['f_f']
-                        . '</strong> para el ingreso al servicio debe utilizar su correo institucional y 
-                        la contraseña provicional sera su numero de cédula se le recomienda cambiar la misma
-                        para brindarle una mayor seguridad',
-                        true,
-                        $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
-                    // El protcolo de red si tiene ssl ser https caso contratio http
-                    // esto se encuentra definido en el /index.php 
-                    // por ultimo se concatena todo quedando algo asi https://example.com  
-                    )
+                    [$carrera,$fecha_inicial,$fecha_final],
+                    true,
+                    $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
+                        // El protcolo de red si tiene ssl ser https caso contratio http
+                        // esto se encuentra definido en el /index.php 
+                        // por ultimo se concatena todo quedando algo asi https://example.com  
                 );
                 Http::responseJson(json_encode(
                     [
@@ -164,26 +163,15 @@ class Docentes implements Controller
         try{
             $this->usuariosDocentes->insert($datos_usuarios_docentes);
             $carrera = $this->carreras->selectFromColumn('id',trim($_SESSION['carrera']))->first()->nombre;
-                $respuestaEmail = EnviarEmail::enviar(
-                    'Docente de la carrera ' . $carrera,
+                $respuestaEmail = EmailMensajes::docentes(
                     $_ENV['MAIL_DIRECCION'],
                     trim($_POST['correo']),
-                    'Sistema de Evaluacion y Acreditacion de Carreras',
-                    EnviarEmail::html(
-                        null,
-                        'Habilitado para usar el sistema',
-                        'Estimado docente ud ha sido notificado para utilizar la plataforma SEAC 
-                        en la carrera <strong>' . $carrera . '</strong> se habilitado el acceso a partir
-                        de la fecha <strong>' . $_POST['f_i'] . '</strong> hasta <strong>' . $_POST['f_f']
-                        . '</strong> para el ingreso al servicio debe utilizar su correo institucional y 
-                        la contraseña provicional sera su numero de cédula se le recomienda cambiar la misma
-                        para brindarle una mayor seguridad',
-                        true,
-                        $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
-                    // El protcolo de red si tiene ssl ser https caso contratio http
-                    // esto se encuentra definido en el /index.php 
-                    // por ultimo se concatena todo quedando algo asi https://example.com  
-                    )
+                    [$carrera,$fecha_inicial,$fecha_final],
+                    true,
+                    $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
+                        // El protcolo de red si tiene ssl ser https caso contratio http
+                        // esto se encuentra definido en el /index.php 
+                        // por ultimo se concatena todo quedando algo asi https://example.com  
                 );
             Http::responseJson(json_encode(
                 [
