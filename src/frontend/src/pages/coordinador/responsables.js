@@ -1,9 +1,7 @@
 import MenuOpcionesSuperior from "../../modulos/MenuOpcionesSuperior/MenuOpcionesSuperior.js";
-import Precarga from "../../modulos/PreCarga/precarga.js";
+import Precarga from "../../modulos/PreCarga/Precarga.js";
 import alerta from "../../utiles/alertasBootstrap.js";
 import Evidencias from "../../models/Evidencias.js";
-import { paginacionEvidencias } from "../../utiles/paginacionEvidencias.js";
-import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
 import Usuarios from "../../models/Usuarios.js";
 import { paginacionResponsables } from "../../utiles/paginacionResponsables.js";
 import Notificacion from "../../modulos/Notificacion/Notificacion.js";

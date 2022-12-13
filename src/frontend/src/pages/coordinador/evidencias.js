@@ -1,5 +1,5 @@
 import MenuOpcionesSuperior from "../../modulos/MenuOpcionesSuperior/MenuOpcionesSuperior.js";
-import Precarga from "../../modulos/PreCarga/precarga.js";
+import Precarga from "../../modulos/PreCarga/Precarga.js";
 import alerta from "../../utiles/alertasBootstrap.js";
 import Evidencias from "../../models/Evidencias.js";
 import { paginacionEvidencias } from "../../utiles/paginacionEvidencias.js";

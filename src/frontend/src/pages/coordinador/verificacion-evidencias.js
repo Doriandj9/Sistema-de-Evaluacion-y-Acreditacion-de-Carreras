@@ -3,7 +3,7 @@ import { paginacionEvidenciasVerificacion } from "../../utiles/paginacionEvidenc
 import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
 import alerta from "../../utiles/alertasBootstrap.js";
 import Docentes from "../../models/Docentes.js";
-import Precarga from "../../modulos/PreCarga/precarga.js";
+import Precarga from "../../modulos/PreCarga/Precarga.js";
 import Notificacion from "../../modulos/Notificacion/Notificacion.js";
 
 
