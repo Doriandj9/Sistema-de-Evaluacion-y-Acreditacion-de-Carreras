@@ -195,4 +195,83 @@ export default class Usuarios {
 			console.log(e)
         }
     }
+    /**
+	 * 
+	 * @param {String} periodo 
+	 * @returns Promise<JSON>
+ 	*/
+	 static async obtenerResponsables(periodo){
+        try{
+            const consulta = await fetch(`/coordinador/datos/responsables?periodo=${periodo}`);
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * 
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async obtenerResponsabilidades(){
+        try{
+            const consulta = await fetch(`/coordinador/datos/responsabilidades`);
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async registrarResponsables(formData){
+        try{
+            const consulta = await fetch(`/coordinador/responsables`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async registrarEvaluadores(formData){
+        try{
+            const consulta = await fetch(`/coordinador/registro/evaluadores`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async listarEvaluadoresDeCarrera(){
+        try{
+            const consulta = await fetch(`/coordinador/listar/evaluadores`);
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+    /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async registarCalificacion(formData){
+        try{
+            const consulta = await fetch(`/evaluador/registro/calificacion`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
 }

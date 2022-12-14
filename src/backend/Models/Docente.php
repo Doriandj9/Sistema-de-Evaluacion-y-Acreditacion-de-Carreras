@@ -20,7 +20,6 @@ class Docente extends DatabaseTable
     {
         parent::__construct(self::TABLE, 'id');
     }
-
     public static function getUsuario($correo)
     {
         //Es una consulta que permite que saber que usuario quiere ingresar con su permisos
@@ -30,6 +29,19 @@ class Docente extends DatabaseTable
         ->get(['permisos','correo'])
         ->where('correo', '=', trim($correo))
         ->first();
+        return $resultado;
+    }
+
+    public function getDocentesDeCarrera($id_carrera){
+        $resultado = DB::table(self::TABLE)
+        ->join('usuarios_docente','usuarios_docente.id_docentes','=','docentes.id')
+        ->where('id_usuarios','=',self::DOCENTES)
+        ->where('id_carrera','=',$id_carrera)
+        ->get([
+            'id_docentes','id_usuarios','nombre','apellido','correo','telefono',
+            'fecha_inicial','fecha_final','estado'
+        ]);
+
         return $resultado;
     }
 

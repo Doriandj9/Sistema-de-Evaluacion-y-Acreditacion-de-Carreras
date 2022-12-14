@@ -7,6 +7,7 @@ namespace App\backend\Frame;
 use App\backend\Application\ContentRoutes;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Models\Docente as Usuario;
+use App\backend\Views\VistaRapida;
 
 /**
  * @author Dorian Armijos
@@ -133,7 +134,8 @@ class EntryPoint
             ) {
                 // Se verifica que si exite la ruta o el metodo para esa ruta
                 http_response_code(Http::STATUS_NOT_FOUND);
-                Http::redirect('/error-404');
+                // Se renderiza una vista de error
+               $this->loadError404();
             }
             if (
                 isset($restrigciones['login']) &&
@@ -143,7 +145,7 @@ class EntryPoint
                     // y si no lo esta lo redirige hacia un error de login con la cabecera
                     // no autorizado 401
                 http_response_code(Http::STATUS_UNAUTHORIZED);
-                Http::redirect('/error-login');
+                $this->loadErrorLogin();
             }
 
             $usuario = $this->contentRoutes->getAutentificacion()->getUsuario();
@@ -152,7 +154,7 @@ class EntryPoint
                 isset($restrigciones['permisos']) &&
                 !Usuario::tienePermisos($restrigciones['permisos'])
                ) {
-                Http::redirect('/error-permisos');
+                $this->loadError403();
             }
 
             if (isset($restrigciones['token_autorizacion'])) {
@@ -200,7 +202,7 @@ class EntryPoint
             );
         } else {
             http_response_code(Http::STATUS_NOT_FOUND);
-            Http::redirect('/error-404');
+            $this->loadError404();
         }
     }
     /**
@@ -212,5 +214,56 @@ class EntryPoint
     private function renderView(string $view, array $variables): void
     {
         echo $this->loadTemplate($view,$variables);
+    }
+    /**
+     * Renderiza una vista de error
+     */
+    private function loadError404() {
+        $datos = VistaRapida::error404();
+        $title = $datos['title'];
+        $templateView = $datos['template']; 
+        $contenido = $this->loadTemplate($templateView);
+        $this->renderView(
+            'templates/layout_principal.html.php',
+            [
+                'titulo'=> $title,
+                'contenido' => $contenido
+            ]
+        );
+        exit;
+    }
+    /**
+     * Renderiza una vista de error
+     */
+    private function loadError403() {
+        $datos = VistaRapida::error403();
+        $title = $datos['title'];
+        $templateView = $datos['template']; 
+        $contenido = $this->loadTemplate($templateView);
+        $this->renderView(
+            'templates/layout_principal.html.php',
+            [
+                'titulo'=> $title,
+                'contenido' => $contenido
+            ]
+        );
+        exit;
+    }
+    /**
+     * Renderiza una vista de error
+     */
+    private function loadErrorLogin() {
+        $datos = VistaRapida::errorLogin();
+        $title = $datos['title'];
+        $templateView = $datos['template']; 
+        $contenido = $this->loadTemplate($templateView);
+        $this->renderView(
+            'templates/layout_principal.html.php',
+            [
+                'titulo'=> $title,
+                'contenido' => $contenido
+            ]
+        );
+        exit;
     }
 }

@@ -42,15 +42,15 @@
                         </a>
                         <a href="/admin/agregar/ciclo/academico" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe02f;</span>
-                        <span class="text-blanco bordes-op-menu">Periodo Académico</span>
+                        <span class="text-blanco bordes-op-menu">Base de Indicadores</span>
                         </a>
                         <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe0e0;</span>
-                        <span class="text-blanco bordes-op-menu ">Ingresar Carrera / Inscripción</span>
+                        <span class="text-blanco bordes-op-menu ">Emparejamiento de Evaluadores</span>
                         </a>
                         <a href="/admin/agregar/coordinador" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe7fe;</span>
-                        <span class="text-blanco bordes-op-menu ">Ingresar Coordinador de Carrera</span>
+                        <span class="text-blanco bordes-op-menu ">Reportes</span>
                         </a>
                         <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeade;</span>

@@ -1,3 +1,8 @@
 # Se ignoraran los siguientes archivos para subir al repositorio
 .phpunit.cache
 SACI/
+config/.env
+src/backend/datos/archivos
+prueba.php
+main.js
+index.html

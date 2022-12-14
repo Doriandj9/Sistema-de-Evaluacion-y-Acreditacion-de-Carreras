@@ -22,4 +22,10 @@ class TestCase extends FrameworkTestCase
         parent::__construct();
         include __DIR__ . '/../config/database.php';
     }
+    /**
+     * @covers \Tests\TestCase::testPrueba
+     */
+    public function testPrueba() {
+        $this->assertTrue(true);
+    }
 }

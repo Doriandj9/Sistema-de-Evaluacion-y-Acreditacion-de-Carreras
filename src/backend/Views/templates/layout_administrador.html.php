@@ -35,11 +35,6 @@
                 <div class="contenedor-navegacion">
                     <h6 class="text-blanco borde-top text-center">Menú Principal</h6>
                     <nav class="flex-columna margin-top-menos-1" id="menu-principal">
-    
-                        <a href="/admin" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons text-negro">&#xe88a;</span>
-                        <span class="text-blanco bordes-op-menu">Inicio</span>
-                        </a>
                         <a href="/admin/agregar/ciclo/academico" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe02f;</span>
                         <span class="text-blanco bordes-op-menu">Periodo Académico</span>
@@ -60,6 +55,14 @@
                         <a href="/admin/administrar/director-planeacion" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe9b1;</span>
                         <span class="text-blanco bordes-op-menu ">Director de Planeación</span>
+                        </a>
+                        <a href="/admin/administrar/director-planeacion" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xf233;</span>
+                        <span class="text-blanco bordes-op-menu ">Datos Docentes</span>
+                        </a>
+                        <a href="/admin/administrar/director-planeacion" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xe1db;</span>
+                        <span class="text-blanco bordes-op-menu ">Respaldos</span>
                         </a>
                         <a href="/admin/cambio/clave" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeade;</span>

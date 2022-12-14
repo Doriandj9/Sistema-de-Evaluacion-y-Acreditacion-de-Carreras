@@ -1,5 +1,5 @@
 import Facultad from "../../models/Facultad.js";
-import Precarga from "../../modulos/PreCarga/precarga.js";
+import Precarga from "./../../modulos/PreCarga/Precarga.js"
 import { paginacionFacultades } from "../../utiles/funcionesPaginacionFacultades.js";
 import Notificacion from "../../modulos/Notificacion/Notificacion.js";
 const tablaPresentacion = document.getElementById('tabla-presentacion');

@@ -80,4 +80,32 @@ class Docentes implements Controller
             ));
         }
     }
+
+    public function obtenerDocenteDatos() {
+        if(!isset($_GET['cedula'])){
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'mensaje' => 'Error: No tiene el parametro cedula en el peticion'
+                ]
+                ));
+        }
+
+        $docente = $this->docentes->selectFromColumn('id',trim($_GET['cedula']))->first();
+        if(!$docente) {
+            Http::responseJson(json_encode(
+                [
+                    'ident' => 0,
+                    'mensaje' => 'Error: No existe el docente con la cedula ' . $_GET['cedula']
+                ]
+                ));
+        }
+
+        Http::responseJson(json_encode(
+            [
+                'ident' => 1,
+                'docente' => $docente 
+            ]
+            ));
+    }
 }

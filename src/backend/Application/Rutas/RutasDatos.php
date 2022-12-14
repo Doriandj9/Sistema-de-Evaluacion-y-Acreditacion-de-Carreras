@@ -74,6 +74,12 @@ class RutasDatos implements Route
                     'controller' => $directorPlaneamiento,
                     'action' => 'vista'
                 ]
+                ],
+            'datos/docente/informacion' => [
+                'GET' => [
+                    'controller' => $docentes,
+                    'action' => 'obtenerDocenteDatos'
+                ]
             ]
         ];
     }
