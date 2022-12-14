@@ -1,6 +1,6 @@
 import MenuOpcionesSuperior from "../../modulos/MenuOpcionesSuperior/MenuOpcionesSuperior.js";
 import Notificacion from "../../modulos/Notificacion/Notificacion.js";
-import Precarga from "../../modulos/PreCarga/precarga.js";
+import Precarga from "./../../modulos/PreCarga/Precarga.js";
 import Docentes from "../../models/Docentes.js";
 import alerta from "../../utiles/alertasBootstrap.js";
 import { paginacionCoordinadores } from "../../utiles/funcionPaginacionCoordinadores.js";

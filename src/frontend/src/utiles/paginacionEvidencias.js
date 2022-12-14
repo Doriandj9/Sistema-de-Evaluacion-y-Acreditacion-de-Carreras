@@ -56,29 +56,29 @@
         <td>${criterio.toString().substring(0,25)}
         <input type="hidden" value="${criterio.join('--')}"/>
         <input type="hidden" value="Criterios"/>
-       <br> <span class='ver-mas'>Ver más</span>
+       <span class='ver-mas'>Ver más</span>
         </td>
         <td>${descripcionEstandar.toString().substring(0,25)}
             <input type="hidden" value="${descripcionEstandar.join('--')}"/>
             <input type="hidden" value="Estandares o Indicador"/>
-           <br> <span class='ver-mas'>Ver más</span>
+           <span class='ver-mas'>Ver más</span>
         </td>
         <td>${idElemento + '<br>' + descripcionElemento.toString().substring(0,25)}
         <input type="hidden" value="${idElemento.join('--') + '??' + descripcionElemento.join('--')}"/>
         <input type="hidden" value="Elemento Fundamental--Descripción"/>
-       <br> <span class='ver-mas'>Ver más</span>
+       <span class='ver-mas'>Ver más</span>
         </td>
         <td>${idcomponente + '<br>' + descripcionComponentes.toString().substring(0,25) }
         <input type="hidden" value="${idcomponente.join('--') + '??' + descripcionComponentes.join('--')}"/>
         <input type="hidden" value="Componente--Descripción"/>
-       <br> <span class='ver-mas'>Ver más</span>
+       <span class='ver-mas'>Ver más</span>
         </td>
         <td>
         <strong>Codigo: </strong> <span>${cod_evidencias.toString()}</span> <br>
         <strong>Nombre: </strong>${nombre_Evidencia.toString().substring(0,40)} <br>
         <input type="hidden" value="${cod_evidencias.toString() + '??' + nombre_Evidencia}"/>
         <input type="hidden" value="Codigo--Nombre"/>
-       <br> <span class='ver-mas'>Ver más</span>
+       <span class='ver-mas'>Ver más</span>
         </td>
         <td>${fecha_inicial.toString()}</td>
         <td>${fecha_final.toString()}</td>
@@ -155,9 +155,7 @@ function presentancionLarga (tds) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary text-white">Guardar Cambios</button>
               </div>
-            
             </div>
           </div>
           </form>

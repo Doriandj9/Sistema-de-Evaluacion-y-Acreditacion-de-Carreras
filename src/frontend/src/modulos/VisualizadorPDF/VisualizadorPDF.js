@@ -1,4 +1,4 @@
-import alerta from './../../utiles/alertasBootstrap.js';
+import alerta from "../../utiles/alertasBootstrap.js";
 
 export default class VisualizadorPDF {
     embed;
@@ -14,6 +14,10 @@ export default class VisualizadorPDF {
      */
     mostrar(archivo) {
         if(typeof archivo === 'blob') throw Error('No suminstro un archivo blob');
+        if(archivo.size <= 100){
+            alerta('alert-danger','Lo sentimos, no existe el archivo.',5000);
+           return;
+        }
         const urlObjet = URL.createObjectURL(archivo);
         this.embed.src = urlObjet;
         window.addEventListener('keydown',e => {
@@ -24,11 +28,10 @@ export default class VisualizadorPDF {
         window.dispatchEvent(new CustomEvent('viewpdf',{detail:false}));
         document.body.prepend(this.embed);
         // creamos la x para salir
-
         this.div = document.createElement('div');
         this.div.title = 'Salir del Visualizador';
         this.div.className = 'salir-vista';
-        this.div.textContent = 'X';
+        this.div.textContent = 'Salir de la visualización ❌.';
         this.div.addEventListener('click',e => {
             this.div.remove();
             window.dispatchEvent(new CustomEvent('viewpdf',{detail:true}));

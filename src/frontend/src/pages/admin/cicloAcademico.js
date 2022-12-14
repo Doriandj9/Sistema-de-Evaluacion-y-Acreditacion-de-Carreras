@@ -1,7 +1,7 @@
 import { PERIODO_ACADEMICO } from "../../modulos/RegularExpresions/ConstExpres.js";
 import PeriodoAcademico from "../../models/PeriodoAcademico.js";
 import Notificacion from "../../modulos/Notificacion/Notificacion.js";
-import Precarga from "../../modulos/PreCarga/precarga.js";
+import Precarga from "./../../modulos/PreCarga/Precarga.js";
 import { paginacionCicloAcademico } from "../../utiles/funcionesPaginacion.js";
 
 const inputCicloAcademico = document.getElementById('ciclo-academico');

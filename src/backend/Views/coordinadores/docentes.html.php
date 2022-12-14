@@ -95,18 +95,23 @@
         <input type="email"  name="correo" class="form-control" id="correo" aria-describedby="emailHelp">
       <div id="emailHelp" class="form-text">El correo debe contener ueb o mailes</div>
       </div>
-      <!-- <div class="mb-2">
+      <div class="mb-2">
       <label for="telefono" class="form-label">Ingrese el número telefonico</label>
-      <input type="text" class="form-control" name="telefono" id="telefono">
-    </div> -->
-      <div class="mb-2 d-flex gap-2 w-75 align-items-center">
-        <label for="f_i" class="form-label w-50 d-block">Ingrese la fecha de inicio del cargo</label>
-        <input type="date" name="f_i" class="form-control w-50 d-block" id="f_i">
+      <input placeholder="Opcional ..." type="text" class="form-control" name="telefono" id="telefono">
+    </div>
+    <div class="mb-2 d-flex gap-2 justify-content-between">
+      <label for="periodos">Selecione el periodo vigente</label>
+      <div class="contenedor-busqueda w-50" id="content-busqueda">
+        <select class="w-100" name="periodo" id="periodos"> 
+            <?php foreach($periodos as $periodo): ?>
+                <option data-fecha-inicial="<?= $periodo->fecha_inicial;?>" 
+                data-fecha-final="<?= $periodo->fecha_final;?>" value="<?= $periodo->id;?>">
+                <?= $periodo->id;?>
+                </option>
+              <?php endforeach; ?>
+        </select>
       </div>
-      <div class="mb-2 d-flex gap-2 w-75 align-items-center">
-        <label for="f_f" class="form-label w-50 d-block">Ingrese la fecha de finalización del cargo</label>
-        <input type="date" name="f_f" class="form-control d-block w-50" id="f_f">
-      </div>
+    </div>
       <button type="submit" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
       <span class="material-icons text-white">&#xe03c;</span>
       Agregar 
