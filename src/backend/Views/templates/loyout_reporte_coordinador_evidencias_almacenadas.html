@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>%title%</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 2rem;
+        box-sizing: border-box;
+      }
+      header {
+        display: flex;
+        font-family: Arial, Helvetica, sans-serif;
+        align-items: center;
+      }
+      header img {
+        display: block;
+        width: 100px;
+        height: 100px;
+      }
+      header h1,
+      h2 {
+        text-align: center;
+      }
+      header h1 {
+        font-size: 1.37rem;
+        margin: 0;
+      }
+      header h2 {
+        font-weight: normal;
+        margin: 0.05rem 0;
+        font-size: 1rem;
+      }
+      header div {
+        margin-top: 0;
+        flex-grow: 1;
+      }
+      .lineas {
+        width: 100%;
+        border-top: 1px solid black;
+      }
+      .uno {
+        outline: none;
+        margin-bottom: 1.1rem;
+      }
+      .dos {
+        border-top-width: 2px;
+        margin-bottom: 2rem;
+      }
+      table {
+        width: 90%;
+        margin: auto;
+        border-collapse: collapse;
+      }
+      table th {
+        text-align: start;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+      }
+      tbody td {
+        border: 1px solid #2525;
+        padding: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3FOVhHa3C_fkUQV1KoW1WmVsTmU6SA1qbC25Efj5JVgKA0o8z-zWJJntZusd0RJfb4LU&usqp=CAU"
+        alt="logo"
+      />
+      <div>
+        <h1>UNIVERSIDAD ESTATAL DE BOLÍVAR</h1>
+        <h2>REPORTE DE REGISTRO DE DOCUMENTOS DE INFORMACIÓN ALMACENADAS.</h2>
+        <h2>CARRERA %carrera%</h2>
+      </div>
+    </header>
+    <div class="lineas uno"></div>
+    <div class="lineas dos"></div>
+    <main>
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre de la evidencia</th>
+              <th>Fecha de registro</th>
+              <th>Estado</th>
+              <th>Verificación</th>
+            </tr>
+          </thead>
+          <tbody>
+            %content-tbody%
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>
