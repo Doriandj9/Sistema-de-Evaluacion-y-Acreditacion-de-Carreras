@@ -1,12 +1,18 @@
+<?php
+use App\backend\Models\Carreras;
+use App\backend\Models\Docente;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" href="/public/css/app.css">
+    <link rel="stylesheet" href="/public/css/bootstrap/bootstrap-custom.css">
     <title><?= $titulo; ?></title>
 </head>
 <body>
@@ -18,53 +24,72 @@
         <main class="cuerpo-principal">
             <div class="menu-lateral">
                 <div class="contenedor-informacion">
-                    <h2>Información</h2>
-                    <ul class="flex-columna gap-flex-1">
+                    <h4>Información</h4>
+                    <ul class="flex-columna gap-flex-1 list-unstyled">
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
-                                <span class="material-icons-outlined">&#xe7fd;</span>
-                                <span class="text-blanco text-w-medio">Dennis Celleri</span>
+                                <span class="material-icons">&#xe7fd;</span>
+                                <span class="text-blanco text-w-medio"><?= preg_split('/ /',$usuario->nombre)[0]  ?> <?= preg_split('/ /',$usuario->apellido)[0]; ?></span>
                             </li>
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
-                                <span class="material-icons-outlined">&#xe80c;</span>
-                                <span class="text-blanco text-w-medio"> Software</span>
+                                <span class="material-icons">&#xe80c;</span>
+                                <span class="text-blanco text-w-medio">
+                                <?php
+                                $carrera = new Carreras();
+                                echo $carrera->selectFromColumn('id',$_SESSION['carrera'])->first()->nombre
+                                  ?? Docente::getUsuarioCompleto()[0]->nombre; 
+                                 ?> <!-- ->nombre hace referencia al nombre de la carrera -->
+                                </span>
                             </li>
                     </ul>
                 </div>
                 <div class="contenedor-navegacion">
-                    <h4 class="text-blanco borde-top text-center padding-top-2">Menú Principal</h4>
-                    <nav class="flex-columna margin-top-menos-1">
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons-outlined text-negro">&#xe80c;</span>
-                        <span class="text-blanco bordes-op-menu">Inicio</span>
+                    <h6 class="text-blanco borde-top text-center">Menú Principal</h6>
+                    <nav class="flex-columna margin-top-menos-1" id="menu-principal">
+    
+                        <a href="/docente/evidencias" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xef42;</span>
+                        <span class="text-blanco bordes-op-menu">Evidencias</span>
                         </a>
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons-outlined text-negro">&#xe80c;</span>
-                        <span class="text-blanco bordes-op-menu sin-borde-top">Inicio</span>
+                        <a href="/docente/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xe415;</span>
+                        <span class="text-blanco bordes-op-menu ">Reportes</span>
                         </a>
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons-outlined text-negro">&#xe80c;</span>
-                        <span class="text-blanco bordes-op-menu sin-borde-top">Inicio</span>
+                        <a href="/coordinador/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xe7f4;</span>
+                        <span class="text-blanco bordes-op-menu ">Notificaciones</span>
                         </a>
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons-outlined text-negro">&#xe80c;</span>
-                        <span class="text-blanco bordes-op-menu sin-borde-top">Inicio</span>
+                        <a href="/docente/cambio/clave" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xeade;</span>
+                        <span class="text-blanco bordes-op-menu ">Cambiar Contraseña</span>
                         </a>
-                        <a href="/" class="flex-linea l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons-outlined text-negro">&#xe80c;</span>
-                        <span class="text-blanco bordes-op-menu sin-borde-top">Inicio</span>
+                        <a href="/salir" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5 salir">
+                        <span class="material-icons text-negro">&#xe9ba;</span>
+                        <span class="text-blanco bordes-op-menu ">Cerrar Sesión</span>
                         </a>
+                        
+                        
                     </nav>
                 </div>
             </div>
             <div class="contenedor-contenido-principal">
-                    <div class="contenido-principal">
-                        <?= $contenido ?>
+                    <div class="contenido-principal position-relative">
+                        <div class="contenedor-contenido-vistas">
+                            <?= $contenido ?>
+                        </div>
                     </div>
                     <footer class="footer-principal">
+                    <div class="text-center margin-arriba-1">
+                <img src="/public/assets/img/creative-commons.png" width="100" height="15" alt="creative commons">
+            </div>
+            <p class="text-center text-blanco margin-arriba-1">
+            Esta obra está bajo una Licencia Creative Commons Atribución
+             - No Comercial - Sin Obras Derivadas 3.0 Ecuador This site is powered by Carrera de Software
+            </p>
                     </footer>
             </div>
         </main>
     </div>
+    <script src="/src/frontend/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/public/js/app.js" type="module"></script>
 </body>
 </html>

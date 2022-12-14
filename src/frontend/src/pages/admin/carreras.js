@@ -1,4 +1,4 @@
-import Precarga from "../../modulos/PreCarga/precarga.js";
+import Precarga from "./../../modulos/PreCarga/Precarga.js";
 import MenuOpcionesSuperior from "../../modulos/MenuOpcionesSuperior/MenuOpcionesSuperior.js";
 import Carreras from "../../models/Carreras.js";
 import alerta from "../../utiles/alertasBootstrap.js";

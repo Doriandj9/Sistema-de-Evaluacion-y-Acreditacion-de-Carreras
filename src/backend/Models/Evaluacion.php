@@ -8,6 +8,7 @@ namespace App\backend\Models;
 class Evaluacion extends DatabaseTable
 {
     public const TABLE = 'evaluacion';
+    public $timestamps = false;
 
     public function __construct()
     {

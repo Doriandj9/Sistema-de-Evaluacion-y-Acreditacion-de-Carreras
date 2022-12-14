@@ -1,6 +1,6 @@
 import Usuarios from "../models/Usuarios.js";
 import Notificacion from "../modulos/Notificacion/Notificacion.js";
-import Precarga from "../modulos/PreCarga/precarga.js";
+import Precarga from "../modulos/PreCarga/Precarga.js";
 const form = document.forms[0];
 const usuarios = new Usuarios();
 let precarga = undefined;

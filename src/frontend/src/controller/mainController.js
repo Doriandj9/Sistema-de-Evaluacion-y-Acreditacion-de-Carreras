@@ -16,13 +16,22 @@
             .catch(e => console.error('[JS002] ' + e));
          },
         'docente': function(){
-                         
+            import('./docenteController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));        
         },
         'coordinador': function(){
-                         
+            import('./coordinadorController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));           
+        },
+        'evaluador': function(){
+            import('./evaluadorController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));           
         },
         'director-planeamiento': function(){
-                         
+                      
         },
         'admin': function(){
             import('./adminController.js')

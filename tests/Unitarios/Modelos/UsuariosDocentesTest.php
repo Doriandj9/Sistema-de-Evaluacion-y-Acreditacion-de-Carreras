@@ -52,4 +52,17 @@ class UsuariosDocentesTest extends TestCase
          )->get();
         $this->assertCount(1,$result);
     }
+    /**
+     * @covers \App\backend\Models\UsuariosDocente::updateUsuarioCarrera
+     */
+    public function testActualizarFechasYEstadoDeDocente() {
+        $result = $this->usuariosDocentes->updateUsuarioCarrera(
+            Docente::COORDINADORES,
+            '0202468831',
+            'SOFT',
+            $this->datosActualizar
+        );
+
+        $this->assertTrue($result);
+    }
 }
