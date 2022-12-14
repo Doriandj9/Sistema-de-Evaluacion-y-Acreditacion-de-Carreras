@@ -95,8 +95,11 @@ class Evidencias implements Controller
     }
 
     private function guardarArchivo(string $tipo , array $datos) {
+        date_default_timezone_set('America/Guayaquil');
+        $fecha_registro = new \DateTime();
         $data_guardar = [
-            $tipo => $datos['archivoBase64']
+            $tipo => $datos['archivoBase64'],
+            'fecha_registro' => $fecha_registro->format('Y-m-d')
         ];
         try{
             $result = $this->evidenciasModel->guardarEvidencia(

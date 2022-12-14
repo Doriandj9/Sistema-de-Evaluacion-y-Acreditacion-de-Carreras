@@ -31,7 +31,7 @@ export default class VisualizadorPDF {
         this.div = document.createElement('div');
         this.div.title = 'Salir del Visualizador';
         this.div.className = 'salir-vista';
-        this.div.textContent = 'Salir de la vizualización ❌.';
+        this.div.textContent = 'Salir de la visualización ❌.';
         this.div.addEventListener('click',e => {
             this.div.remove();
             window.dispatchEvent(new CustomEvent('viewpdf',{detail:true}));
