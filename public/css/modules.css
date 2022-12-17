@@ -7,7 +7,7 @@
 }
 
 .encabezado-principal{
-    height: 4rem;
+    height: 11vh;
     background-color: var(--color-encabezado);
 }
 .encabezado-principal img{
@@ -15,27 +15,32 @@
     height: 4rem;
 }
 .cuerpo-principal{
-    flex-grow: 1;
+    height: 89vh;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 .menu-lateral{
-    width: 16.5rem;
-    min-width: 16.5rem;
-    max-width: 16.5rem;
+    width: 18.5vw;
+    min-width: 18.5vw;
+    max-width: 18.5vw;
     background-color: var(--color-primario);
     border-right: 10px solid var(--color-secundario);
+    overflow: auto;
 }
 
 .contenedor-contenido-principal{
-    flex-grow: 1;
+    width: 82vw;
     background-color: white;
     display: flex;
     flex-direction: column;
+    max-height: 100%;
+    overflow: auto;
 }
 
 .contenido-principal{
     flex-grow: 1;
+    width: 100%;
 }
 .contenedor-contenido-vistas{
     width: 95%;
@@ -476,7 +481,7 @@ nav.flex-columna > a:last-child > span:last-child{
     padding: 0.5rem;
 }
 .desborde-auto:hover.barra-personalizada::-webkit-scrollbar-thumb{
-    background-color: var(--color-f-6);
+    background-color: var(--color-b-2);
     border-radius: 20px;
 }
 /* .desborde-auto:hover.barra-personalizada::-webkit-scrollbar-thumb:hover.barra-personalizada::-webkit-scrollbar{
@@ -498,7 +503,7 @@ nav.flex-columna > a:last-child > span:last-child{
 }
 .desborde-auto:hover.barra-personalizada{
     scrollbar-width: thin;
-    scrollbar-color: var(--color-f-6) #eee;
+    scrollbar-color: var(--color-b-2) #eee;
 }
 /*-------------------------------------------------------------------------------------------------*/
 

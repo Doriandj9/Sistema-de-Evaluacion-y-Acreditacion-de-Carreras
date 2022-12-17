@@ -18,7 +18,7 @@
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <main class="cuerpo-principal">
-            <div class="menu-lateral">
+            <div class="menu-lateral barra-personalizada desborde-auto">
                 <div class="contenedor-informacion">
                     <h4>Información</h4>
                     <ul class="flex-columna gap-flex-1 list-unstyled">
