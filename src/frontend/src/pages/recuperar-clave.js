@@ -29,7 +29,14 @@ function enviarDatos(e){
 function renderRespuesta(respuesta) {
     precarga.end();
     if(respuesta.ident) {
-        new Notificacion(respuesta.mensaje,'Aceptar',false);
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <p class="text-justificado tipografia-times-1 ps-4 pe-4 pt-2">
+            ${respuesta.mensaje} <br>
+            <a class="text-primary text-decoration-underline d-block text-center" href="/">Regresar</a>
+            <p>
+        `;
+        form.replaceWith(div);
     }else{
         new Notificacion(respuesta.mensaje,'Regresar');
     }

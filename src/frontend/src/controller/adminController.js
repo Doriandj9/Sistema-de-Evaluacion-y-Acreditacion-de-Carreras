@@ -24,7 +24,7 @@
             importacionDinamica('cambio-clave.js');
         },
         "/admin": function(){
-
+            importacionDinamica('inicio.js');
         }
     };
     try{

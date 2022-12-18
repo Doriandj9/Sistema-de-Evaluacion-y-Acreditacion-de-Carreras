@@ -173,8 +173,15 @@ class Login implements Controller
         }
         $html = EnviarEmail::html(null,
         'Contraseña Temporal',
-        'Estimado docente, su contraseña temporal es <strong>' . $pwd .
-        '</strong> , la misma que debe ser cambiada una vez que ingrese al sistema.'
+        '<p style="color:#000;">Estimado docente,<br>
+        Una vez que ingrese al sistema se le pedirá que cambie la
+        contraseña por medidas de seguridad.<br>
+        Su contraseña temporal es: <strong>' . $pwd .
+        '</strong>
+        </p>
+        <p>Saludos,<br>
+        Universidad Estatal de Bolívar.</p>
+        '
         );
         $respE = EnviarEmail::enviar(
             'Docente',

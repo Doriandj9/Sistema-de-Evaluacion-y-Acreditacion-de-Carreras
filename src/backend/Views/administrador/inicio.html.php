@@ -1,3 +1,6 @@
+<div id="requiere-cambio-clave">
+  <input type="hidden" id="cambio-clave" value="<?=$usuario->cambio_clave ?? true;?>">
+</div>
 <div class="d-flex w-100 h-100 justify-content-center mt-4">
   <div class="w-100 h-90 me-3 d-flex justify-content-center align-items-end">
       <div class="cuadro-blaco-p mb-2 d-flex flex-column">

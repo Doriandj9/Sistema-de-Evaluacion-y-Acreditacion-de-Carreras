@@ -14,7 +14,8 @@
         <span class="material-icons">&#xe7fd;</span>
         <input placeholder="Número de Cédula" type="text" name="cedula">
         </div>
-        <button class="boton boton-enviar-login is-hover-boton-enviar">Ingresar</button>
+        <button class="boton boton-enviar-login is-hover-boton-enviar">Enviar</button>
+        <a class="text-primary text-decoration-underline" href="/">Regresar</a>
     </form>
 </div>
 </div>
