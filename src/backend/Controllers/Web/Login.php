@@ -157,7 +157,8 @@ class Login implements Controller
                 'mensaje' => 'Error, no existe el usuario con la cédula ' . $cedula
             ]));
         }
-        $pwdTem = password_hash(uniqid('Seac'),PASSWORD_DEFAULT);
+        $pwd = uniqid('Seac');
+        $pwdTem = password_hash($pwd,PASSWORD_DEFAULT);
         $data_clave_temporal = [
             'clave' => $pwdTem,
             'cambio_clave' => true
@@ -172,7 +173,7 @@ class Login implements Controller
         }
         $html = EnviarEmail::html(null,
         'Contraseña Temporal',
-        'Estimado docente, su contraseña temporal es <strong>' . $pwdTem .
+        'Estimado docente, su contraseña temporal es <strong>' . $pwd .
         '</strong> , la misma que debe ser cambiada una vez que ingrese al sistema.'
         );
         $respE = EnviarEmail::enviar(

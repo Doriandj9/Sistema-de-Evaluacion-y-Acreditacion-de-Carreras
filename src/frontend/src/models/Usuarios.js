@@ -274,4 +274,17 @@ export default class Usuarios {
 			console.log(e)
         }
     }
+    /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async recuperarClave(formData){
+        try{
+            const consulta = await fetch(`/clave-temporal`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
 }
