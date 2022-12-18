@@ -17,7 +17,7 @@
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <div class="rectangulo-azul"></div>
-        <main class="cuerpo-principal">
+        <main class="cuerpo-principal-2">
                     <div class="contenido-principal">
                         <?= $contenido; ?>
                     </div>

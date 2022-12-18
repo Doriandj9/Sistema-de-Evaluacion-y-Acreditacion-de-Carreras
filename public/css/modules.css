@@ -20,6 +20,12 @@
     flex-direction: row;
     overflow: hidden;
 }
+.cuerpo-principal-2{
+    height: 75vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
 .menu-lateral{
     width: 18.5vw;
     min-width: 18.5vw;
@@ -529,7 +535,9 @@ table.tabla-presentacion  thead > tr > th {
 table.tabla-presentacion tbody > tr > td{
         padding: 1rem 0.8rem;
 }
-
+.contenedor-numeros-paginacion{
+    margin-bottom: 1rem;
+}
 .contenedor-numeros-paginacion  button:hover{
     background-color: var(--color-f-4);
     color: white;

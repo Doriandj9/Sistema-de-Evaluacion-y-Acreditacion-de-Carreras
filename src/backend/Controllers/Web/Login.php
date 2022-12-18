@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\backend\Controllers\Web;
 
+use App\backend\Application\Servicios\Email\EnviarEmail;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Application\Utilidades\Jwt;
 use App\backend\Controllers\Controller;
@@ -139,6 +140,61 @@ class Login implements Controller
                 'usuario' => $usuario
             ]
         ];
+    }
+    public function recuperarClave() {
+        return [
+            'title' => 'Recuperar Contraseña',
+            'template' => 'ui/recuperar-clave.html.php'
+        ];
+    }
+    public function enviarClaveTemporalCorreo() {
+        $cedula = $_POST['cedula'];
+        $usuarioTable = new Docente;
+        $usuario = $usuarioTable->selectFromColumn('id',$cedula)->first();
+        if(!$usuario) {
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => 'Error, no existe el usuario con la cédula ' . $cedula
+            ]));
+        }
+        $pwdTem = password_hash(uniqid('Seac'),PASSWORD_DEFAULT);
+        $data_clave_temporal = [
+            'clave' => $pwdTem,
+            'cambio_clave' => true
+        ];
+        try{
+            $usuarioTable->updateValues($usuario->id,$data_clave_temporal);
+        }catch(\PDOException $e) {
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => $e->getMessage()
+            ]));
+        }
+        $html = EnviarEmail::html(null,
+        'Contraseña Temporal',
+        'Estimado docente, su contraseña temporal es <strong>' . $pwdTem .
+        '</strong> , la misma que debe ser cambiada una vez que ingrese al sistema.'
+        );
+        $respE = EnviarEmail::enviar(
+            'Docente',
+            $_ENV['MAIL_DIRECCION'],
+            $usuario->correo,
+            'Recuperar la Clave',
+            $html
+        );
+        if(!$respE->ident){
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => $respE->mensaje
+            ]));
+        }
+
+        Http::responseJson(json_encode([
+            'ident' => 1,
+            'mensaje' => 'Acabamos de enviar una contraseña temporal a tu correo electrónico para que
+            puedas acceder a tu cuenta. Por favor, verifica tu bandeja de entrada y sigue las instrucciones 
+            para establecer una contraseña segura y única.'
+        ]));
     }
     public function cerrarSesion(): void
     {

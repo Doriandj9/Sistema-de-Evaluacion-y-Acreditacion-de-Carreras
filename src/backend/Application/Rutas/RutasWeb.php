@@ -39,6 +39,18 @@ class RutasWeb implements Route
                         'action' => 'opcionesLuegoSession'
                     ],
                 ],
+            'recuperar-clave' => [
+                    'GET' => [
+                        'controller' => $loginController,
+                        'action' => 'recuperarClave'
+                    ],
+                ],
+            'clave-temporal' => [
+                    'POST' => [
+                        'controller' => $loginController,
+                        'action' => 'enviarClaveTemporalCorreo'
+                    ],
+                ],
             'salir' => [
                 'GET' => [
                     'controller' => $loginController,

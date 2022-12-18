@@ -37,6 +37,11 @@
             import('./adminController.js')
             .then()
             .catch(e => console.error('[JS002] ' + e));
+        },
+        'recuperar-clave':  function(){
+            import('./../pages/recuperar-clave.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));
         }
     };
     try{
