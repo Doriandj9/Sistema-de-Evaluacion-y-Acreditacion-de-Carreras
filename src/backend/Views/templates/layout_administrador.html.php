@@ -56,11 +56,11 @@
                         <span class="material-icons text-negro">&#xe9b1;</span>
                         <span class="text-blanco bordes-op-menu ">Director de Planeación</span>
                         </a>
-                        <a href="/admin/administrar/director-planeacion" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin/actualizar/docentes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xf233;</span>
                         <span class="text-blanco bordes-op-menu ">Datos Docentes</span>
                         </a>
-                        <a href="/admin/administrar/director-planeacion" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin/respaldo/db" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe1db;</span>
                         <span class="text-blanco bordes-op-menu ">Respaldos</span>
                         </a>

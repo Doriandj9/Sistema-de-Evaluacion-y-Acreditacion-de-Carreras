@@ -22,6 +22,8 @@
         },
         "/admin/cambio/clave": function(){
             importacionDinamica('cambio-clave.js');
+        },"/admin/actualizar/docentes": function(){
+            importacionDinamica('docentes.js');
         },
         "/admin": function(){
             importacionDinamica('inicio.js');

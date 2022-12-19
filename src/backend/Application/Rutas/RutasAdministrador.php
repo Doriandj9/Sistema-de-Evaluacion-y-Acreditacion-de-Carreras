@@ -8,9 +8,11 @@ use App\backend\Controllers\Administrador\CambioClave;
 use App\backend\Controllers\Administrador\Carreras;
 use App\backend\Controllers\Administrador\Coordinador;
 use App\backend\Controllers\Administrador\DirectorPlaneamiento;
+use App\backend\Controllers\Administrador\Docentes;
 use App\backend\Controllers\Administrador\Facultad;
 use App\backend\Controllers\Administrador\Inicio;
 use App\backend\Controllers\Administrador\PeriodoAcademico;
+use App\backend\Controllers\Administrador\Respaldos;
 use App\backend\Frame\Route;
 use App\backend\Models\Docente;
 
@@ -25,6 +27,8 @@ class RutasAdministrador implements Route
         $carreras = new Carreras;
         $directorPlaneamiento = new DirectorPlaneamiento;
         $cambioClave = new CambioClave;
+        $docentes = new Docentes;
+        $respaldos = new Respaldos;
         return [
             'admin' => [
                 'GET' => [
@@ -132,6 +136,28 @@ class RutasAdministrador implements Route
                     'action' => 'editarDirector'
                 ]
             ],
+            'admin/actualizar/docentes' => [
+                'GET' => [
+                    'controller' => $docentes,
+                    'action' => 'vista'
+                ]
+                ],
+            'admin/actualizar/docentes/csv' => [
+                    'POST' => [
+                        'controller' => $docentes,
+                        'action' => 'actualizarDatos'
+                    ]
+                    ],
+            'admin/respaldo/db' => [
+                        'GET' => [
+                            'controller' => $respaldos,
+                            'action' => 'vista'
+                        ],
+                        'POST' => [
+                            'controller' => $respaldos,
+                            'action' => 'generar'
+                        ]
+                        ],
             'admin/cambio/clave' => [
                 'GET' => [
                     'controller' => $cambioClave,

@@ -287,4 +287,18 @@ export default class Usuarios {
 			console.log(e)
         }
     }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async actualizarDocentes(formData){
+        try{
+            const consulta = await fetch(`/admin/actualizar/docentes/csv`,{method: 'POST',body: formData});
+            const respuesta = await consulta.text();
+            console.log(respuesta);
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
 }
