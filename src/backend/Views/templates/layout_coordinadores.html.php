@@ -102,6 +102,7 @@ use App\backend\Models\Docente;
         </main>
     </div>
     <script src="/src/frontend/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.4/bowser.min.js"></script>
     <script src="/public/js/app.js" type="module"></script>
 </body>
 </html>

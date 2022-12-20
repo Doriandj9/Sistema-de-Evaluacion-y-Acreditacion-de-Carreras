@@ -243,6 +243,11 @@ function verificarOpciones(e) {
         const f_i = fecha_inicial.value.split('-');
         let date = new Date(`${f_i[1]}-${f_i[2]}-${f_i[0]}`);
         let datePeriodo = new Date(`${fecha_inicial_periodo[1]}-${fecha_inicial_periodo[2]}-${fecha_inicial_periodo[0]}`);
+        if(bowser.name.includes('Firefox')){
+           date = new Date(option[0].dataset.fechaInicial.trim().replace(/-/g,'/'));
+           datePeriodo = new Date(`${fecha_inicial_periodo[0]}/${fecha_inicial_periodo[1]}/${fecha_inicial_periodo[2]}`);
+
+        }
         if(!(date.getTime() >= datePeriodo.getTime())){
             alerta('alert-warning','El tiempo que ingreso debe ser mayor a la fecha inicial '+
             'del periodo academico ' + fecha_inicial_periodo.join('-'),5000);

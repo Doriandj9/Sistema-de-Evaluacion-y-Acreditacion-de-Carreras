@@ -124,7 +124,6 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <div id="emailHelp" class="form-text">El codigo de la carrera debe ser unico</div>
     </div>
     <div class="mb-2">
       <button type="submit" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
