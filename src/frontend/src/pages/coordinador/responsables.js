@@ -41,6 +41,7 @@ function accionListar(){
     Usuarios.obtenerResponsables(select.value.trim())
     .then(renderResponsables)
     .catch(console.log)
+    perdirReporte();
 }
 
 /**
@@ -63,6 +64,17 @@ function renderResponsables(respuesta) {
     }
 }
 
+function perdirReporte (){
+    const select  = document.getElementById('periodos');
+    reporte();
+    function reporte(){
+        const dir = document.getElementById('reporte-responsables');
+        let hrefR = dir.dataset.dir;
+        hrefR += '?periodo=' + select.value.trim();
+        dir.href = hrefR;
+    }
+    select.addEventListener('change',reporte);
+}
 
 
 
@@ -394,13 +406,7 @@ function renderListaEvaludores(respuesta) {
     if(respuesta.ident) {
         const tbody = contenedorVistas.querySelector('tbody');
         const contenedorNumeros = contenedorVistas.querySelector('.contenedor-numeros-paginacion');
-        const busqueda = document.getElementById('busqueda');
         const {evaluadores} = respuesta;
         paginacionEvaludoresCarrera(evaluadores,3,1,tbody,contenedorNumeros);
-        busqueda.addEventListener('input',(function(evaluadores){
-            return () => {
-            paginacionEvaludoresCarrera(evaluadores,3,1,tbody,contenedorNumeros,null,'nombre_docente',busqueda.value.trim());
-            };
-        })(evaluadores))
     }
 }

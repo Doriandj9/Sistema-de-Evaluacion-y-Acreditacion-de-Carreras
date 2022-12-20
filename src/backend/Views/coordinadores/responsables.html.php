@@ -45,6 +45,11 @@
     </div>
 </div>
 </div>
+<div class="reporte-responsables text-center">
+  <img class="selector" height="40" id="pdf"  src="/public/assets/img/icons8-pdf-50.png" alt="imagen pdf" />
+  <a data-dir= "/coordinador/reporte/responsables" href="" class="d-block tipografia-times-2 text-primary text-decoration-underline"
+  id="reporte-responsables">Consultar Reporte</a>
+</div>
 </div>
 <div class="w-100">
 <table class="table table-striped-columns w-100">
@@ -53,10 +58,11 @@
         <th class="bg-primary text-white text-center">Cédula</th>
         <th class="bg-primary text-white text-center">Nombre</th>
         <th class="bg-primary text-white text-center">Correo Electronico</th>
-        <th class="bg-primary text-white text-center">Criterios a Cargo</th>
-       <!-- <th class="bg-primary text-white text-center">Documento de Información</th>
         <th class="bg-primary text-white text-center">Fecha de Habilitación </th>
         <th class="bg-primary text-white text-center">Finalización de Entrega </th>
+        <th class="bg-primary text-white text-center">Criterios a Cargo</th>
+       <!-- <th class="bg-primary text-white text-center">Documento de Información</th>
+        
         <th class="bg-primary text-white text-center">Opción</th> -->
       </tr>
     </thead>
@@ -66,15 +72,20 @@
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
                    </tr>
                    <tr>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
-                   
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
                    </tr>
                    <tr>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>

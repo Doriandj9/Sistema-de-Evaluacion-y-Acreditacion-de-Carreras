@@ -32,11 +32,15 @@
         const apellidoDocente = [...new Set(dato.apellido.split('---'))];
         const correo =  [...new Set(dato.correo.split('---'))];
         const nombreCriterio = [...new Set(dato.nombre_criterio.split('---'))];
+        const f_i = [...new Set(dato.fecha_inicial.split('---'))];
+        const f_f = [...new Set(dato.fecha_final.split('---'))];
         html += `
         <tr>
         <td>${idDocente.toString()}</td>
         <td>${nombreDocente.toString().split(' ')[0] + ' ' + apellidoDocente.toString().split(' ')[0]}</td>
         <td>${correo.toString()}</td>
+        <td>${f_i.toString()}</td>
+        <td>${f_f.toString()}</td>
         <td>${nombreCriterio.toString()}</td>
       </tr>
         `;

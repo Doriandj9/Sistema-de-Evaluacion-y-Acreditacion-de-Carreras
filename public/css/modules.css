@@ -996,3 +996,8 @@ section.boton{
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
 }
+.reporte-responsables{
+    position: absolute;
+    top: 7rem;
+    right: 0.5rem;
+}

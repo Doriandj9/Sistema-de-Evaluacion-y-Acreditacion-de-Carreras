@@ -99,6 +99,12 @@ class RutasCoordinador implements Route
                     'action' => 'listarResponsables'
                 ],
             ],
+            'coordinador/reporte/responsables' =>  [
+                'GET' => [
+                    'controller' => $responsables,
+                    'action' => 'reporte'
+                ]
+                ],
             'coordinador/datos/responsabilidades' => [
                 'GET' => [
                     'controller' => $responsables,

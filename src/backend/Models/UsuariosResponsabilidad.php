@@ -22,6 +22,10 @@ class UsuariosResponsabilidad extends DatabaseTable
         string_agg(criterios.nombre,\'---\') as nombre_criterio,
         string_agg(docentes.id,\'---\') as id_docente, 
         string_agg(criterios.id,\'---\') as id_criterio,
+        string_agg(usuarios_responsabilidad.fecha_inicial::text,\'---\')
+                 as fecha_inicial,
+                string_agg(usuarios_responsabilidad.fecha_final::text,\'---\') 
+                as fecha_final,
         docentes.nombre as nombre_docente
         from usuarios_responsabilidad
         inner join responsabilidad  on responsabilidad.id = usuarios_responsabilidad.id_responsabilidad
