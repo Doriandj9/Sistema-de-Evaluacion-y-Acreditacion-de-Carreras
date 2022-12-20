@@ -47,6 +47,7 @@
 .contenido-principal{
     flex-grow: 1;
     width: 100%;
+    overflow: auto;
 }
 .contenedor-contenido-vistas{
     width: 95%;

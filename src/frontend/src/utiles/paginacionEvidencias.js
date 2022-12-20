@@ -8,10 +8,11 @@
  * @param {CallableFunction} funcionRefrescar Sirve para refrescar los botonos del tbody
  * @param {string} columnaBusqueda Es la columna que va servir para buscar las coindencias dentro de los datos
  * @param {string} valor Es el coincidencia que a buscar en la columna
+ * @param {null|boolean} paginar Se usa para la busqueda para que busque en todo el array
  * 
  * @return {*} void
  */
- export function paginacionEvidencias(datos,divicionDatos,numeroActual,tbody,contNumeros,opcion='ver',funcionRefrescar = null,columnaBusqueda = null,valor=null){
+ export function paginacionEvidencias(datos,divicionDatos,numeroActual,tbody,contNumeros,opcion='ver',funcionRefrescar = null,columnaBusqueda = null,valor=null,paginar=null){
     const total  = datos.length;
     const fracion = divicionDatos;
     const totalNumeros = Math.ceil((total / fracion));
@@ -19,18 +20,19 @@
     let numerosUI = []; // Son los numeros en botones para darles click y realize la paginacion
     let inicio = (numeroActual - 1) * divicionDatos; 
     let fin = inicio + divicionDatos;
-    let datosPaginados = datos.slice(inicio,fin);
+    let datosPaginados = paginar === true ? datos :  datos.slice(inicio,fin);
     let html = '';
     if(columnaBusqueda && valor){
         if(!Object.keys(datos[0]).includes(columnaBusqueda) ||
         !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
         datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
     }
-
     datosPaginados.forEach((dato,i) => {
         const criterio = [...new Set(dato.nombre_criterio?.split('---'))];
         const descripcionEstandar = [...new Set(dato.descripcion_estandar?.split('---'))];
         const tipoEstandar = [...new Set(dato.tipo_estandar?.split('---'))];
+        const estado = [...new Set(dato.estado?.split('---'))];
+        const verificado = [...new Set(dato.verificado?.split('---'))];
         const idElemento = [...new Set(dato.id_elemento?.split('---'))];
         const descripcionElemento = [...new Set(dato.descripcion_elemento?.split('---'))];
         const idcomponente = [...new Set(dato.id_componente?.split('---'))];
@@ -46,7 +48,10 @@
         </section>
         `;
         const htmlbotonRegistro  = `
-        <button type="button" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
+        <button type="button" ${verificado.toString().trim() != 'true' ? '' : 'disabled' } 
+        title="${verificado.toString().trim() != 'true' ? 'Ingresar un archivo' : 'No puede volver a ingresar un archivo ya verificado.' }"
+         class="boton boton-enviar is-hover-boton-enviar ${verificado.toString().trim() != 'true' ? '' : 'desactivado' }
+          p-2 d-flex aling-items-center gap-flex-1"
         >
         <span class="material-icons text-white">&#xf09b;</span> Subir 
         </button>        
@@ -82,6 +87,10 @@
         </td>
         <td>${fecha_inicial.toString()}</td>
         <td>${fecha_final.toString()}</td>
+        <td id="estado">
+            <span><strong>Almacenado: ${estado.toString().trim() !== 'Almacenado' ? 'NO' : 'SI' } </strong> </span><br>
+            <span><strong>Verificada: ${verificado.toString().trim() != 'true' ? 'NO' : 'SI' } </strong> </span>
+        </td>
         <td>
           ${opcion === 'ver' ? htmlbotonVer : htmlbotonRegistro} 
         <input type="hidden" value="${cod_evidencias.toString()}"/> 
@@ -100,7 +109,7 @@
         button.textContent = i;
         if(i === comparacion) button.classList.add('active'); // Si el numero actual es igual que el del boton ese
         button.addEventListener('click',() => { // boton esta selecionado 
-                 paginacionEvidencias(datos,divicionDatos,i,tbody,contNumeros,opcion,funcionRefrescar);
+                 paginacionEvidencias(datos,divicionDatos,i,tbody,contNumeros,opcion,funcionRefrescar,columnaBusqueda,valor);
                  if(funcionRefrescar) funcionRefrescar();
             }
         );
