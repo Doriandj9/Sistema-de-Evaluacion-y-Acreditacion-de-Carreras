@@ -1,3 +1,5 @@
+import Notificacion from "../modulos/Notificacion/Notificacion.js";
+
 /**
  * 
  * @param {*} datos Son los datos como array
@@ -34,21 +36,40 @@
             </td>
             <td>
             <button type="button" class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
-            >
-            <span class="material-icons text-white">&#xe88e;</span> Info
-            </button> 
-            </td>
-            <td>
-            <button type="button" class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
               data-id-evidencia="${dato.cod_evidencias}">
-              <span class="material-icons text-white">&#xe9aa;</span> Verificar  
+              <span class="material-icons text-white">&#xe8f4;</span> Ver  
             </button> 
             </td>
+            <td class="tipografia-times-1 contenedor-radios">
+            <form>
+            <div class="d-flex gap-2">
+              <div class="text-center">
+              <input class="form-check-input sombra" value="0" type="radio" name="valoracion">
+                <label class="d-block">
+                  No corresponde
+                </label>
+              </div>
+              <div class="text-center">
+              <input class="form-check-input sombra" value="50" type="radio" name="valoracion">
+                <label class="d-block">
+                  Parcialmente
+                </label>
+              </div>
+              <div class="text-center">
+              <input class="form-check-input sombra" value="100" type="radio" name="valoracion">
+                <label class="d-block">
+                  Corresponde
+                </label>
+              </div>
+            </div>
+            </form>
+            </td>
             <td>
-            <button type="button" class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
-        >
-        <span class="material-icons text-white">&#xe85a;</span> Notificar 
-        </button> 
+            <button type="button" data-responsable="${dato.responsable}" data-id-evidencia="${dato.cod_evidencias}"
+            class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
+            >
+            <span class="material-icons text-white">&#xe161;</span> Guardar 
+            </button> 
             </td>
       </tr>
         `;
@@ -84,55 +105,11 @@
  */
 function particionButones (trs) {
     trs.forEach(tr =>  {
-        const [butonInfo,butonVer,butonNot] = tr.querySelectorAll('button'); 
-        accionButonInfo(butonInfo);
+        const [butonVer,butonNot] = tr.querySelectorAll('button'); 
+        // accionButonInfo(butonInfo);
         accionButonVerificacion(butonVer);
         accionButonNotificacion(butonNot);
     })
-
-    // Array.from(tds).flat().forEach((td,i) => {
-    //     const modal = document.createElement('div');
-    //     td.addEventListener('click', () => {
-    //         const [valores,titulos] = td.querySelectorAll('input');
-    //         const primerNivelValores = valores.value.split('??');
-    //         const segundoNivelValores = primerNivelValores.map(p => {
-    //             return p.split('--');
-    //         })
-    //         const primerNivelTitulos = titulos.value.split('--');
-    //         modal.classList = 'modal fade';
-    //         modal.id = `modalCarrera${i}`;
-    //         modal.setAttribute('tabindex','-1');
-    //         modal.setAttribute('aria-labelledby','exampleModalLabel');
-    //         modal.setAttribute('aria-hidden',true);
-    //         modal.innerHTML = `
-    //     <!-- Formulario -->
-    //         <form>
-    //         <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    //         <div class="modal-content">
-    //           <div class="modal-header">
-    //             <h5 class="modal-title" id="exampleModalLabel">Presentación Completa</h5>
-    //             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    //           </div>
-    //           <div class="modal-body">
-    //           ${printDatos(primerNivelTitulos,segundoNivelValores)}
-    //           </div>
-    //           <div class="modal-footer">
-    //             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-    //             <button type="submit" class="btn btn-primary text-white">Guardar Cambios</button>
-    //           </div>
-            
-    //         </div>
-    //       </div>
-    //       </form>
-    //         `;
-    //     document.body.append(modal);
-    //     const modalBootstrap =  new bootstrap.Modal(modal,{});
-    //     modalBootstrap.show();
-    //     modal.addEventListener('hidden.bs.modal',(e) => {
-    //         modal.remove();
-    //     })
-    //     })
-    // }) 
 }
 
 function printDatos(titulos,valores){
@@ -157,6 +134,47 @@ function printDatos(titulos,valores){
    return html;
 }
 
+function accionGuardar(buton) {
+  const modal = document.createElement('div');
+  buton.addEventListener('click',(e) => {
+      modal.classList = 'modal fade';
+              modal.setAttribute('tabindex','-1');
+              modal.setAttribute('aria-labelledby','exampleModalLabel');
+              modal.setAttribute('aria-hidden',true);
+              modal.innerHTML = `
+              <div class="modal-dialog modal-lg modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Escribir la notificación</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                    <label>Ingrese el mensaje que desea que le llegue al encargado del documento de información</label>
+                      <div>
+                        <textarea class="form-control" style="resize:none;" autocapitalize="sentences" cols="48" rows="5"
+                        placeholder="Aa"></textarea>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-primary text-white">Enviar</button>
+                </div>
+              
+              </div>
+            </div>
+              `;
+          document.body.append(modal);
+          const modalBootstrap =  new bootstrap.Modal(modal,{});
+          modalBootstrap.show();
+          modal.addEventListener('hidden.bs.modal',(e) => {
+              modal.remove();
+          })
+      document.dispatchEvent(new CustomEvent('display.modal.noti',{detail:modal}));
+      
+  })
+}
 
 function accionButonInfo(buton) {
 const modal = document.createElement('div');
@@ -224,54 +242,9 @@ buton.addEventListener('click',(e) => {
                         </label>
                     </div>
                 </div>
-                <div class="mb-3">
-                <label> Informe si esta de acuerdo con verificar el documento de información en caso de ser el correcto. </label>
-                      <div class="form-check">
-                      <input class="form-check-input" name="verificar" type="checkbox" value="1" id="verificacion">
-                      <label class="form-check-label tipografia-verdana-3" for="verificacion">
-                        Verificar
-                      </label>
-                    </div>
-                    <div id="emailHelp" class="form-text">Nota: Si no corresponde el documento de información envie una notificacion
-                    , en la opcion notificar.
-                    </div>
-                </div>
-                <div class="mb-3">
-                <label for="staticEmail" class="col-sm-6 col-form-label">Selecione la valoración que aporta a la carrera</label>
-                <div class="col-sm-6">
-                  <div class="d-flex gap-2 align-items-center">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="valoracion" value="25" id="">
-                        <label class="form-check-label me-3" for="valoracion">
-                          Bajo
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" value="50" type="radio" name="valoracion" id="">
-                        <label class="form-check-label me-3" for="valoracion">
-                         Medio
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" value="100" type="radio" name="valoracion" id="">
-                        <label class="form-check-label me-3" for="valoracion">
-                          Alto
-                        </label>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div class="mb-3">
-              <label>Ingrese un comentario que justifique la nota (opcional)</label>
-                <div>
-                  <textarea name="comentario" class="form-control" style="resize:none;" autocapitalize="sentences" cols="48" rows="5"
-                  placeholder="Aa"></textarea>
-                </div>
-              </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary text-white">Guardar Información</button>
               </div>
             </div>
           </div>
@@ -287,25 +260,76 @@ buton.addEventListener('click',(e) => {
 })
 }
 function accionButonNotificacion(buton) {
+  const tr = buton.parentElement.parentElement;
+  const form = tr.querySelector('form');
 const modal = document.createElement('div');
 buton.addEventListener('click',(e) => {
+  const formData = new FormData(form);
+  const valoracion = [...formData];
+  const valoraciones = {'0':'No corresponde','50':'Parcialmente','100':'Corresponde'};
+  if(valoracion.length <= 0 ){
+    new Notificacion(`Por favor, selecione una valoración como (No correponde,Parcialmente
+      Corresponde) presentados anteriormente para continuar con el proceso de verificación.`,'Regresar');
+      return;
+  }
     modal.classList = 'modal fade';
             modal.setAttribute('tabindex','-1');
             modal.setAttribute('aria-labelledby','exampleModalLabel');
             modal.setAttribute('aria-hidden',true);
             modal.innerHTML = `
+            <form>
+            <input type="hidden" value="${buton.dataset.responsable}" name="receptor">
+            <input type="hidden" value="${buton.dataset.idEvidencia}" name="id_evidencia">
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Escribir la notificación</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Cuandro de confirmación de registro de verificación</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+              <div class="mb-3">
+              <h4>Concideraciones</h4>
+              <ul class="list-circle ">
+              <li>
+              Ingrese un comentario que explique la valoración que elegiste,
+              la misma que será notificada al docente encargado de subir la fuente de información (evidencia)
+              </li>
+              <li>
+              Antes de proceder con la verificación de la fuente de información(Evidencia), 
+              es importante que revises y confirmes las opciones que has elegido. 
+              </li>
+              <li>
+              Una vez que decidas enviar los datos no podrás hacer cambios. 
+              Así que asegúrate de que todo esté correcto antes de dar el siguiente paso.
+              </li>
+              </ul>
+              </div>
+                  <div class="mb-3">
+                  <input type="hidden" name="valoracion" value="${valoracion[0][1]}">
+                  <label>La valoración que eligió anteriormente es: <strong>${valoraciones[valoracion[0][1]]}</strong></label>
+                  </div>
+                  <div class="mb-3">
+                  <label>¿Desea que vuelva a subir la fuente de información?</label>
+             </div>
+              <div class="d-flex gap-2 mb-3 contenedor-radios">
+                  <div class="text-center">
+                  <input class="form-check-input sombra" value="1" type="radio" name="verificar">
+                    <label class="d-block">
+                      SI
+                    </label>
+                  </div>
+                  <div class="text-center">
+                  <input class="form-check-input sombra" value="0" type="radio" name="verificar">
+                    <label class="d-block">
+                      NO
+                    </label>
+                  </div>
+                </div>
                   <div class="mb-3">
                   <label>Ingrese el mensaje que desea que le llegue al encargado del documento de información</label>
                     <div>
-                      <textarea class="form-control" style="resize:none;" autocapitalize="sentences" cols="48" rows="5"
-                      placeholder="Aa"></textarea>
+                      <textarea name="comentario" class="form-control" style="resize:none;" autocapitalize="sentences" cols="48" rows="5"
+                      placeholder="Aa" id="comentario-e"></textarea>
                     </div>
                   </div>
               </div>
@@ -313,9 +337,9 @@ buton.addEventListener('click',(e) => {
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary text-white">Enviar</button>
               </div>
-            
             </div>
           </div>
+          </form>
             `;
         document.body.append(modal);
         const modalBootstrap =  new bootstrap.Modal(modal,{});
@@ -323,7 +347,6 @@ buton.addEventListener('click',(e) => {
         modal.addEventListener('hidden.bs.modal',(e) => {
             modal.remove();
         })
-    document.dispatchEvent(new CustomEvent('display.modal.noti',{detail:modal}));
-    
+    document.dispatchEvent(new CustomEvent('display.modal.noti',{detail:[modal,modalBootstrap]}));
 })
 }

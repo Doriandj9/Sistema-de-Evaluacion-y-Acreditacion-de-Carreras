@@ -1001,3 +1001,7 @@ section.boton{
     top: 7rem;
     right: 0.5rem;
 }
+.contenedor-radios input[type="radio"]{
+    width: 2rem;
+    height: 2rem;
+}

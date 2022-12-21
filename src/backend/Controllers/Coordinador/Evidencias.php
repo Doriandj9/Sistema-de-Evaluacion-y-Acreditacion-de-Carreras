@@ -2,7 +2,6 @@
 
 namespace App\backend\Controllers\Coordinador;
 
-use App\backend\Application\Utilidades\ArchivosTransformar;
 use App\backend\Application\Utilidades\FileExcel;
 use App\backend\Application\Utilidades\FilePDF;
 use App\backend\Application\Utilidades\FileWord;
@@ -10,6 +9,7 @@ use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Models\CarrerasEvidencias;
 use App\backend\Models\Evidencias as ModelsEvidencias;
+use App\backend\Models\Notificaciones;
 use App\backend\Models\PeriodoAcademico;
 
 class Evidencias implements Controller
@@ -17,12 +17,15 @@ class Evidencias implements Controller
     private PeriodoAcademico $periodoAcademico;
     private ModelsEvidencias $evidenciasModel;
     private CarrerasEvidencias $carrerasEvidencias;
+    private Notificaciones $notificaciones;
 
     public function __construct()
     {
         $this->periodoAcademico = new PeriodoAcademico;
         $this->evidenciasModel = new ModelsEvidencias;
         $this->carrerasEvidencias = new CarrerasEvidencias;
+        $this->notificaciones = new Notificaciones;
+
     }
     public function vista($variables = []): array
     {
@@ -209,10 +212,20 @@ class Evidencias implements Controller
     }
 
     public function registarVerificacion() {
+        date_default_timezone_set('America/Guayaquil');
         $data_verificacion =  [
-            'verificada' => true,
+            'verificada' => trim($_POST['verificar']) === '1' ? false : true,
             'valoracion' => trim($_POST['valoracion']),
             'comentario' => trim($_POST['comentario'])
+        ];
+        $date = new \DateTime();
+        $data_notificacion = [
+            'remitente' => trim($_SESSION['ci']),
+            'receptor' => trim($_POST['receptor']),
+            'mensaje' => trim($_POST['comentario']),
+            'id_carrera' => trim($_SESSION['carrera']),
+            'fecha' => $date->format('Y-m-d H:i:s'),
+            'leido' => false
         ];
         try{
             $this->evidenciasModel->guardarEvidencia(
@@ -221,6 +234,7 @@ class Evidencias implements Controller
                 trim($_POST['id_evidencia']),
                 $data_verificacion
             );
+            $this->notificaciones->insert($data_notificacion);
             Http::responseJson(json_encode([
                 'ident' => 1,
                 'mensaje' => 'Se ingreso correctamente su verificación'

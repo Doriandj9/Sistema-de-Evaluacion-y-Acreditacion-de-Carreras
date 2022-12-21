@@ -45,9 +45,9 @@
     <thead>
       <tr>
         <th class="bg-primary text-white text-center">Evidencia</th>
-        <th class="bg-primary text-white text-center">Información</th>
-        <th class="bg-primary text-white text-center">Verificar</th>
-        <th class="bg-primary text-white text-center">Notificar</th>
+        <th class="bg-primary text-white text-center">Visualizar</th>
+        <th class="bg-primary text-white text-center">Valoración</th>
+        <th class="bg-primary text-white text-center">Opción</th>
       </tr>
     </thead>
     <tbody>

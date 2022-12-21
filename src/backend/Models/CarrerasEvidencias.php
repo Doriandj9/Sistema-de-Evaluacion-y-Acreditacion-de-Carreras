@@ -22,7 +22,8 @@ class CarrerasEvidencias extends DatabaseTable
         ->select([
             'evidencias.id as id_evidencias',
             'carreras_evidencias.cod_evidencia as cod_evidencias',
-            'evidencias.nombre as nombre_evidencia'
+            'evidencias.nombre as nombre_evidencia',
+            'carreras_evidencias.id_responsable as responsable'
         ])
         ->where('id_periodo_academico','=',$periodo)
         ->where('id_carrera',$carrera)
