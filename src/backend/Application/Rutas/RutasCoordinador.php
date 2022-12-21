@@ -7,6 +7,7 @@ namespace App\backend\Application\Rutas;
 use App\backend\Controllers\Coordinador\Docentes;
 use App\backend\Controllers\Coordinador\Evidencias;
 use App\backend\Controllers\Coordinador\Inicio;
+use App\backend\Controllers\Coordinador\Notificaciones;
 use App\backend\Controllers\Coordinador\Reportes;
 use App\backend\Controllers\Coordinador\Responsabilidades;
 use App\backend\Controllers\Coordinador\Responsable;
@@ -22,6 +23,7 @@ class RutasCoordinador implements Route
         $evidencias = new Evidencias;
         $responsables = new Responsable;
         $reportes = new Reportes;
+        $notificaciones = new Notificaciones;
         return [
             'coordinador' => [
                 'GET' => [
@@ -158,7 +160,25 @@ class RutasCoordinador implements Route
                     'controller' => $reportes,
                     'action' => 'generar'
                 ]
-            ]
+                ],
+            'coordinador/notificaciones' => [
+                'GET' => [
+                    'controller' => $notificaciones,
+                    'action' => 'vista'
+                ],
+            ],
+            'coordinador/obtener/notificaciones' => [
+                'GET' => [
+                    'controller' => $notificaciones,
+                    'action' => 'listarNotificaciones'
+                ],
+            ],
+            'coordinador/leido/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'leidoNotificacion'
+                ],
+            ],
         ];
     }
     public function getTemplate(): string

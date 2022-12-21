@@ -66,7 +66,7 @@ use App\backend\Models\Docente;
                         <span class="material-icons text-negro">&#xe415;</span>
                         <span class="text-blanco bordes-op-menu ">Reportes</span>
                         </a>
-                        <a href="/coordinador/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/coordinador/notificaciones" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe7f4;</span>
                         <span class="text-blanco bordes-op-menu ">Notificaciones</span>
                         </a>
