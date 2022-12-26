@@ -190,6 +190,12 @@ class RutasCoordinador implements Route
                     'controller' => $notificaciones,
                     'action' => 'enviarNotificacion'
                 ],
+            ],
+            'coordinador/verficar/detalle/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'evidenciaVerificacion'
+                ],
             ]
         ];
     }

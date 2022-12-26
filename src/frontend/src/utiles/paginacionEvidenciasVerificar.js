@@ -1,4 +1,6 @@
+import Evidencias from "../models/Evidencias.js";
 import Notificacion from "../modulos/Notificacion/Notificacion.js";
+import alerta from "./alertasBootstrap.js";
 
 /**
  * 
@@ -33,6 +35,9 @@ import Notificacion from "../modulos/Notificacion/Notificacion.js";
         <tr>
             <td>
             ${dato.nombre_evidencia}
+            <span data-id="${dato.id_evidencias}"
+            class="tipografia-times-1 text-decoration-underline text-primary" style="cursor:pointer;"
+            info> Detalles </span>
             </td>
             <td>
             <button type="button" class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
@@ -105,112 +110,12 @@ import Notificacion from "../modulos/Notificacion/Notificacion.js";
  */
 function particionButones (trs) {
     trs.forEach(tr =>  {
-        const [butonVer,butonNot] = tr.querySelectorAll('button'); 
-        // accionButonInfo(butonInfo);
+        const [butonVer,butonNot] = tr.querySelectorAll('button');
+        const detalles = tr.querySelector('span[info]');
+        accionVerDetalles(detalles); 
         accionButonVerificacion(butonVer);
         accionButonNotificacion(butonNot);
     })
-}
-
-function printDatos(titulos,valores){
-   let html = '';
-   if(titulos.length !== valores.length) throw new Error('No coiciden los titulos y los valores');
-   valores.forEach((v,i) => {
-    v.forEach(r => {
-        html += `
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">
-                ${titulos[i]}
-            </label>
-            <div class="col-sm-8">
-                ${r}
-            </div>
-        </div>
-        `;
-    })
-        
-   })
-
-   return html;
-}
-
-function accionGuardar(buton) {
-  const modal = document.createElement('div');
-  buton.addEventListener('click',(e) => {
-      modal.classList = 'modal fade';
-              modal.setAttribute('tabindex','-1');
-              modal.setAttribute('aria-labelledby','exampleModalLabel');
-              modal.setAttribute('aria-hidden',true);
-              modal.innerHTML = `
-              <div class="modal-dialog modal-lg modal-dialog-scrollable">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Escribir la notificación</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                    <label>Ingrese el mensaje que desea que le llegue al encargado del documento de información</label>
-                      <div>
-                        <textarea class="form-control" style="resize:none;" autocapitalize="sentences" cols="48" rows="5"
-                        placeholder="Aa"></textarea>
-                      </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" class="btn btn-primary text-white">Enviar</button>
-                </div>
-              
-              </div>
-            </div>
-              `;
-          document.body.append(modal);
-          const modalBootstrap =  new bootstrap.Modal(modal,{});
-          modalBootstrap.show();
-          modal.addEventListener('hidden.bs.modal',(e) => {
-              modal.remove();
-          })
-      document.dispatchEvent(new CustomEvent('display.modal.noti',{detail:modal}));
-      
-  })
-}
-
-function accionButonInfo(buton) {
-const modal = document.createElement('div');
-buton.addEventListener('click',(e) => {
-    modal.classList = 'modal fade';
-            modal.setAttribute('tabindex','-1');
-            modal.id = `modalInformacion}`;
-            modal.setAttribute('aria-labelledby','exampleModalLabel');
-            modal.setAttribute('aria-hidden',true);
-            modal.innerHTML = `
-        <!-- Formulario -->
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Información</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-              
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary text-white">Guardar Cambios</button>
-              </div>
-            
-            </div>
-          </div>
-            `;
-        document.body.append(modal);
-        const modalBootstrap =  new bootstrap.Modal(modal,{});
-        modalBootstrap.show();
-        modal.addEventListener('hidden.bs.modal',(e) => {
-            modal.remove();
-        })
-    document.dispatchEvent(new CustomEvent('display.modal.info',{detail:modal}));
-})
 }
 
 function accionButonVerificacion(buton) {
@@ -348,5 +253,83 @@ buton.addEventListener('click',(e) => {
             modal.remove();
         })
     document.dispatchEvent(new CustomEvent('display.modal.noti',{detail:[modal,modalBootstrap]}));
+})
+}
+
+function accionVerDetalles(buton) {
+  const modal = document.createElement('div');
+buton.addEventListener('click',(e) => {
+    modal.classList = 'modal fade';
+            modal.setAttribute('tabindex','-1');
+            modal.setAttribute('aria-labelledby','exampleModalLabel');
+            modal.setAttribute('aria-hidden',true);
+            modal.innerHTML = `
+       <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Información</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="body-modal-e">
+
+                  <div class="spinner-border text-primary" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                  </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+     </div>
+       `;
+        document.body.append(modal);
+        const modalBootstrap =  new bootstrap.Modal(modal,{});
+        modalBootstrap.show();
+        modal.addEventListener('hidden.bs.modal',(e) => {
+            modal.remove();
+        })
+    // Llamamos al evento de traida de informacion
+    Evidencias.obtenerEvidenciaVerificarDetalle(buton.dataset.id)
+    .then(respuesta => {
+      const {ident,evidencia} = respuesta;
+      if(!ident) {
+        alerta('alert-danger','Error en el servidor, intentelo mas tarde.',3500);
+        return;
+      };
+      const criterio = [...new Set(evidencia.nombre_criterio?.split('---'))];
+      const nombre = [...new Set(evidencia.nombre_evidencias?.split('---'))];
+      const elementos = [...new Set(evidencia.id_elemento?.split('---'))];
+      const estandares = [...new Set(evidencia.id_estandar?.split('---'))];
+
+
+      const bodyModal = modal.querySelector('#body-modal-e');
+      bodyModal.innerHTML = `
+      <div class="mb-3">
+        <p>
+            Este cuadro de referencia le presenta la información acerca de la evidencia que va a verificar,
+            a continuación se presenta los criterios, estándares, elementos fundamentales y el nombre de la fuente
+            de información, recuerde que para evitar la sobrecarga de información en una ventana de presentación 
+            solo se mostrará los números de los elementos fundamentales y de los estandares.
+        </p>
+    </div>
+    <div class="mb-3 d-flex" style="border-bottom: 1px solid #ccc;">
+        <label for="" class="w-50 d-block" ><strong>Nombre:</strong></label>
+        <p class="flex-grow-1">${nombre.toString()}</p>
+    </div>
+    <div class="mb-3 d-flex" style="border-bottom: 1px solid #ccc;">
+        <label for="" class="w-50 d-block"><strong>Criterios:</strong></label>
+        <p class="flex-grow-1">${criterio.toString()}</p>
+    </div>
+    <div class="mb-3 d-flex" style="border-bottom: 1px solid #ccc;">
+        <label for="" class="w-50 d-block"><strong>Elementos Fundamentales:</strong></label>
+        <p class="flex-grow-1">${elementos.toString()}</p>
+    </div>
+    <div class="mb-3 d-flex" style="border-bottom: 1px solid #ccc;">
+        <label for="" class="w-50 d-block"><strong>Estandares:</strong></label>
+        <p class="flex-grow-1">${estandares.toString()}</p>
+    </div>
+      `;
+    })
+    .catch(console.log);
 })
 }

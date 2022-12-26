@@ -113,4 +113,19 @@ export default class Evidencias {
   console.error(error);
   }
 }
+
+ /**
+     * 
+     * @param {String} id Es el id de la evidencia a buscar 
+     * @returns {Promise}JSON
+     */
+ static async obtenerEvidenciaVerificarDetalle(id) {
+  try {
+  const consulta = await fetch(`/coordinador/verficar/detalle/evidencias?id=${id}`);
+  const resultado = await consulta.json();
+  return resultado;
+} catch (error) {
+  console.error(error);
+}
+}
 }

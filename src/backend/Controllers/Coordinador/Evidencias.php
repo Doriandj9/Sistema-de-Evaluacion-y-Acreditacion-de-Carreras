@@ -246,4 +246,27 @@ class Evidencias implements Controller
             ]));
         }
     }
+
+    public function evidenciaVerificacion() {
+        if(!isset($_GET['id'])){
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => 'No existe el parametro id en la cosulta'
+            ]));
+        }
+        $id_evidencia = trim($_GET['id']);
+        try{
+            $evidencia = $this->evidenciasModel->obtenerDetalleEvidenciaVerifcacion($id_evidencia);
+            Http::responseJson(json_encode([
+                'ident' => 1,
+                'evidencia' => $evidencia
+            ]));
+        }catch(\PDOException $e) {
+            Http::responseJson(json_encode([
+                'ident' => 1,
+                'mensaje' => $e->getMessage()
+            ]));
+        }
+        
+    }
 }
