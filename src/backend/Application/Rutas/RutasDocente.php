@@ -6,6 +6,7 @@ namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Docente\Evidencias;
 use App\backend\Controllers\Docente\Inicio;
+use App\backend\Controllers\Docente\Notificaciones;
 use App\backend\Controllers\Docente\Reportes;
 use App\backend\Frame\Route;
 use App\backend\Models\Docente;
@@ -17,6 +18,7 @@ class RutasDocente implements Route
         $inicioController = new Inicio;
         $evidencias = new Evidencias;
         $reportes = new Reportes;
+        $notificaciones = new Notificaciones;
         return [
             'docente' => [
                 'GET' => [
@@ -78,6 +80,36 @@ class RutasDocente implements Route
                     'action' => 'generar'
                 ]
                 ],
+            'docente/notificaciones' =>  [
+                'GET' => [
+                    'controller' => $notificaciones,
+                    'action' => 'vista'
+                ]
+                ],
+        'docente/obtener/notificaciones' => [
+                'GET' => [
+                    'controller' => $notificaciones,
+                    'action' => 'listarNotificaciones'
+                ],
+            ],
+            'docente/leido/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'leidoNotificacion'
+                ],
+            ],
+            'docente/borrar/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'borrarNotificacion'
+                ],
+            ],
+            'docente/enviar/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'enviarNotificacion'
+                ],
+            ],
         ];
     }
 

@@ -11,7 +11,7 @@ let precarga = null;
 let datosExtraidos = null;
 listarNotificaciones();
 function listarNotificaciones () {
-    Notificaciones.obtenerNotificaciones('coordinador')
+    Notificaciones.obtenerNotificaciones('docente')
     .then(renderNotificaciones)
     .catch(console.log)
 }
@@ -78,7 +78,7 @@ function habilitarLeer() {
 }
 
 function enviarLeido(id_notificacion) {
-    Notificaciones.leidoNotificaciones(id_notificacion, 'coordinador')
+    Notificaciones.leidoNotificaciones(id_notificacion, 'docente')
     .then(console.log)
     .catch(console.log)
 }
@@ -135,7 +135,7 @@ function habilitarResponder() {
               modalBootstrap.hide();
               precarga = new Precarga();
               precarga.run();
-              Notificaciones.enviarNotificacion(new FormData(form),'coordinador')
+              Notificaciones.enviarNotificacion(new FormData(form),'docente')
               .then(renderRespuesta)
               .catch(console.log)
             })
@@ -205,13 +205,15 @@ function habilitarNoMostrar() {
             form.addEventListener('submit',e => {
               e.preventDefault();
               modalBootstrap.hide();
-              Notificaciones.borrarNotificacion(l.dataset.id)
+              Notificaciones.borrarNotificacion(l.dataset.id,'docente')
               .then(r => borrarRow(r,l))
               .catch(console.log)
             })
         })
     })
 }
+
+
 /************************ Recarga de Notificaciones *********************************** */
 
 const recargaNoti = document.querySelector('span[recargar]');

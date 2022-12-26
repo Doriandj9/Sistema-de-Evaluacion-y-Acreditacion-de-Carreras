@@ -67,7 +67,8 @@ class Evidencias implements Controller
         $datosReferentes = [
             'periodo' => trim($_POST['periodo']),
             'idEvidencia' => trim($_POST['cod_evidencia']),
-            'archivoBase64' => $fileABase64
+            'archivoBase64' => $fileABase64,
+            'nombre_archivo' => $fileName
         ];
         $tiposArchivosGuardar = [
             'application/pdf' => function($datos) {
@@ -99,7 +100,10 @@ class Evidencias implements Controller
         $fecha_registro = new \DateTime();
         $data_guardar = [
             $tipo => $datos['archivoBase64'],
-            'fecha_registro' => $fecha_registro->format('Y-m-d')
+            'fecha_registro' => $fecha_registro->format('Y-m-d'),
+            'id_responsable' => trim($_SESSION['ci']),
+            'estado' => 'Almacenado',
+            'nombre_documento' => $datos['nombre_archivo']
         ];
         try{
             $result = $this->evidenciasModel->guardarEvidencia(
