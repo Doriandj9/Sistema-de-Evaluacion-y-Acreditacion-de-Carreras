@@ -1005,3 +1005,7 @@ section.boton{
     width: 2rem;
     height: 2rem;
 }
+#estado > span {
+    display: inline-block;
+    width: 8rem;
+}

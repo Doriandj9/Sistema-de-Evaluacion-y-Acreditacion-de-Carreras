@@ -27,6 +27,7 @@
         !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
         datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
     }
+    console.log(datosPaginados);
     datosPaginados.forEach((dato,i) => {
         const criterio = [...new Set(dato.nombre_criterio?.split('---'))];
         const descripcionEstandar = [...new Set(dato.descripcion_estandar?.split('---'))];
@@ -88,8 +89,8 @@
         <td>${fecha_inicial.toString()}</td>
         <td>${fecha_final.toString()}</td>
         <td id="estado">
-            <span><strong>Almacenado: ${estado.toString().trim() !== 'Almacenado' ? 'NO' : 'SI' } </strong> </span><br>
-            <span><strong>Verificada: ${verificado.toString().trim() != 'true' ? 'NO' : 'SI' } </strong> </span>
+            <span><strong>Almacenado: <span class="text-primary"> ${estado.toString().trim() !== 'Almacenado' ? 'NO' : 'SI' } </span> </strong> </span><br>
+            <span><strong>Verificada: <span class="text-primary"> ${verificado.toString().trim() != 'true' ? 'NO' : 'SI' }</span> </strong> </span>
         </td>
         <td>
           ${opcion === 'ver' ? htmlbotonVer : htmlbotonRegistro} 
