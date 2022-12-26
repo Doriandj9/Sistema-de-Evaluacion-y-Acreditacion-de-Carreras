@@ -194,6 +194,12 @@ document.addEventListener('deploy.evidencia',e => {
     const {evidencia} = e.detail;
     const criterio = [...new Set(evidencia.nombre_criterio.split('---'))];
     const nombre_Evidencia = [...new Set(evidencia.nombre_evidencias.split('---'))];
+    let htmls = '';
+    nombre_Evidencia.forEach(name => {
+        htmls += `
+        <li>${name}</li>
+        `; 
+    });
     let html = `
     <div class="mb-3">
     <div class="row">
@@ -201,7 +207,9 @@ document.addEventListener('deploy.evidencia',e => {
            <strong> Evidencias a cargo </strong>
         </label>
         <div class="col-sm-8">
-          ${nombre_Evidencia.toString()}
+          <ul style="list-style: inside;">
+            ${htmls}
+          </ul>
         </div>
     </div>
     <div id="evideciaHelp" class="form-text mb-3">Nota: Esta responsabilidad estará a cargo de subir estas evidencias</div>     
@@ -378,6 +386,7 @@ function verificarDatosEvaludor(e,form) {
 function renderRespuestaEvaludores(respuesta) {
     precarga.end();
     if(respuesta.ident) {
+        listarEvaludores();
         new Notificacion(respuesta.mensaje,'Aceptar',false);
         new Notificacion(
             Boolean(respuesta.identEmail) === true ? '' +  respuesta.email : 'Ocurrio un error al enviar el correo electronico <br>' 
