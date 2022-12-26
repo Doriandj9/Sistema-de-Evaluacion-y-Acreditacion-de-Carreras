@@ -214,7 +214,7 @@ buton.addEventListener('click',(e) => {
                   <label>La valoración que eligió anteriormente es: <strong>${valoraciones[valoracion[0][1]]}</strong></label>
                   </div>
                   <div class="mb-3">
-                  <label>¿Desea que vuelva a subir la fuente de información?</label>
+                  <label>¿Desea que el docente vuelva a subir la fuente de información?</label>
              </div>
               <div class="d-flex gap-2 mb-3 contenedor-radios">
                   <div class="text-center">

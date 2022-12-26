@@ -28,11 +28,9 @@ function renderEvidencias(respuesta) {
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
         paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros);
-        busqueda.addEventListener('input',(function(evidencias){
-            return () => {
-            paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros,null,'nombre_evidencias',busqueda.value.trim());
-            };
-        })(evidencias))
+        busqueda.addEventListener('input',() => {
+            paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros,null,null,'nombre_evidencia',busqueda.value.trim());
+        })
       }else{
         spinner.remove();
         alerta('alert-danger','Error del servidor',3000);
