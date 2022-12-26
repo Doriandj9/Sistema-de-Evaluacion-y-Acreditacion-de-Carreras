@@ -1,3 +1,4 @@
+<input type="hidden" id="receptor-notificaciones" value="<?= $coordinador->id_docentes;?>">
 <div class="w-100" style="margin-top: 5rem;">
                            
                         <div class="contenedor-items-menu-superior tipografia-times-2" id="contenedor-menu-superior">

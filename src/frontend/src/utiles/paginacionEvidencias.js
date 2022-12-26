@@ -57,7 +57,9 @@
         </button>        
         `;
         html += `
-        <tr>
+        <tr data-nombre-evidencia="${nombre_Evidencia.toString()}"
+        data-cod-evidencia="${cod_evidencias.toString()}"
+        >
         <td>${criterio.toString().substring(0,25)}
         <input type="hidden" value="${criterio.join('--')}"/>
         <input type="hidden" value="Criterios"/>

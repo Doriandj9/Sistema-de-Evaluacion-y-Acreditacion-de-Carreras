@@ -5,6 +5,7 @@ import { paginacionEvidencias } from "../../utiles/paginacionEvidencias.js";
 import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
 import Precarga from "../../modulos/PreCarga/Precarga.js";
 import Notificacion from "./../../modulos/Notificacion/Notificacion.js"
+import Notificaciones from "../../models/Notificaciones.js";
 
 
 MenuOpcionesSuperior.correr();
@@ -291,8 +292,9 @@ function renderRespuesta(respuesta,modalBootstrap,fila) {
     precarga.end();
     if(respuesta.ident){
         const almace = fila.querySelector('#estado').querySelector('span');
-        almace.innerHTML = '<strong>Almacenado: SI </strong> ';
+        almace.innerHTML = '<strong>Almacenado: <span class="text-primary">SI</span></strong> ';
         new Notificacion(respuesta.mensaje,'Aceptar',false);
+        enviarNotificacion(fila);
     }else{
         alerta('alert-danger',respuesta.mensaje,10000);
         modalBootstrap.show();
@@ -358,3 +360,34 @@ function confirmHTML(file){
     div.innerHTML = html;
     return div;
 }
+
+function enviarNotificacion(fila) {
+    console.log(fila);
+    const nombre_evidencias = fila.dataset.nombreEvidencia;
+    const cod_evidencia = fila.dataset.codEvidencia;
+    const receptor = document.querySelector('#receptor-notificaciones');
+    const mensaje = `
+    Hola,<br>
+    Te informamos que se ha subido una nueva fuente de información a la plataforma.<br>
+    Datos.<br>
+    <strong>Nombre:</strong>${nombre_evidencias}<br>
+    <strong>Identificador:</strong>${cod_evidencia}<br> 
+    Esperamos que este archivo sea verificado y te agradecemos por utilizar nuestra plataforma.
+    `;
+    const formData = new FormData();
+    formData.append('mensaje',mensaje);
+    formData.append('receptor',receptor.value.trim());
+   Notificaciones.enviarNotificacion(formData,'docente')
+   .then(renderRespuestaNoti)
+   .catch(console.log)
+
+}
+function renderRespuestaNoti(respuesta) {
+    if(respuesta.ident) {
+      alerta('alert-success',`Se envio una notificación al coordinador 
+      informadole que registro la fuente de información 
+      en la plataforma.`,4500);
+    }else {
+        alerta('alert-warning','Ocurrio un error inesperado al enviar la notificación.');
+    }
+  }
