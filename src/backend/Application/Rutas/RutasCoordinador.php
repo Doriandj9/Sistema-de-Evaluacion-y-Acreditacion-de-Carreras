@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\backend\Application\Rutas;
 
+use App\backend\Controllers\Coordinador\CambioClave;
 use App\backend\Controllers\Coordinador\Docentes;
 use App\backend\Controllers\Coordinador\Evidencias;
 use App\backend\Controllers\Coordinador\Inicio;
@@ -24,6 +25,7 @@ class RutasCoordinador implements Route
         $responsables = new Responsable;
         $reportes = new Reportes;
         $notificaciones = new Notificaciones;
+        $cambioClave = new CambioClave;
         return [
             'coordinador' => [
                 'GET' => [
@@ -196,7 +198,13 @@ class RutasCoordinador implements Route
                     'controller' => $evidencias,
                     'action' => 'evidenciaVerificacion'
                 ],
-            ]
+            ],
+            'coordinador/cambio/clave' => [
+                'GET' => [
+                    'controller' => $cambioClave,
+                    'action' => 'vista'
+                ],
+            ],
         ];
     }
     public function getTemplate(): string

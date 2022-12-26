@@ -20,6 +20,9 @@
         "/coordinador/notificaciones": function(){
             importacionDinamica('notificaciones.js');
         },
+        "/coordinador/cambio/clave": function(){
+            importacionDinamica('cambio-clave.js');
+        },
         "/coordinador": function(){
 
         }
