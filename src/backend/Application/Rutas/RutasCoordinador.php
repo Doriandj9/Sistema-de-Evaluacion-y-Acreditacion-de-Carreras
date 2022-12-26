@@ -179,6 +179,18 @@ class RutasCoordinador implements Route
                     'action' => 'leidoNotificacion'
                 ],
             ],
+            'coordinador/borrar/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'borrarNotificacion'
+                ],
+            ],
+            'coordinador/enviar/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'enviarNotificacion'
+                ],
+            ]
         ];
     }
     public function getTemplate(): string

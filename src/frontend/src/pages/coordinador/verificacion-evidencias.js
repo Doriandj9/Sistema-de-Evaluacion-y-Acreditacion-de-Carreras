@@ -27,10 +27,10 @@ function renderEvidencias(respuesta) {
         const contenedorNumeros = document.body.querySelector('.contenedor-numeros-paginacion');
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
-        paginacionEvidenciasVerificacion(evidencias,8,1,tbody,contenedorNumeros);
+        paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros);
         busqueda.addEventListener('input',(function(evidencias){
             return () => {
-            paginacionEvidenciasVerificacion(evidencias,8,1,tbody,contenedorNumeros,null,'nombre_evidencias',busqueda.value.trim());
+            paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros,null,'nombre_evidencias',busqueda.value.trim());
             };
         })(evidencias))
       }else{

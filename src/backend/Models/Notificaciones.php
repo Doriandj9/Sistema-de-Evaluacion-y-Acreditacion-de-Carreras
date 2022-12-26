@@ -24,7 +24,8 @@ class Notificaciones extends DatabaseTable
             'notificaciones.mensaje as mensaje',
             'notificaciones.fecha as fecha',
             'notificaciones.leido as leido',
-            'notificaciones.id as id'
+            'notificaciones.id as id',
+            'notificaciones.remitente as remitente'
         ])
         ->get();
 

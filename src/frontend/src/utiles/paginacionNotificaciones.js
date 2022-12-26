@@ -37,13 +37,15 @@ export function paginacionNotificaciones(datos,divicionDatos,numeroActual,tbody,
             </div>
         </td>
         <td>
-            <button response type="button" class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
+            <button response type="button" data-id="${dato.id}" data-remitente="${dato.remitente}"
+            class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
             >
             <span class="material-icons text-white">&#xe8af;</span> Responder 
             </button> 
         </td>
         <td>
-            <button notting type="button" class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1 bg-danger"
+            <button notting type="button"  data-id="${dato.id}"
+            class="boton m-auto boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1 bg-danger"
             >
             <span class="material-icons text-white">&#xf023;</span> No Mostrar 
             </button> 
