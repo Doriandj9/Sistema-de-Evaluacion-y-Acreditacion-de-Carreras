@@ -197,6 +197,7 @@ class Evidencias extends DatabaseTable
                 string_agg(carreras_evidencias.fecha_inicial::text ,\'---\') as fecha_inicial,
                 string_agg(carreras_evidencias.fecha_final::text ,\'---\') as fecha_final,
                 string_agg(carreras_evidencias.estado ,\'---\') as estado,
+                string_agg(carreras_evidencias.verificada::text ,\'---\') as verificado,
                 evidencias.id as id_evidencias
                 from evidencias inner join carreras_evidencias on
                 carreras_evidencias.id_evidencias = evidencias.id inner join 

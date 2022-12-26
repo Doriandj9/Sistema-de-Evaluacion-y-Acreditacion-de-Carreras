@@ -27,7 +27,6 @@
         !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
         datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
     }
-    console.log(datosPaginados);
     datosPaginados.forEach((dato,i) => {
         const criterio = [...new Set(dato.nombre_criterio?.split('---'))];
         const descripcionEstandar = [...new Set(dato.descripcion_estandar?.split('---'))];

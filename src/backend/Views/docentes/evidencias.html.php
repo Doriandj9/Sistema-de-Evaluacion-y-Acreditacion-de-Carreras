@@ -55,6 +55,7 @@
         <th class="bg-primary text-white text-center">Documento de Información</th>
         <th class="bg-primary text-white text-center">Fecha de Habilitación </th>
         <th class="bg-primary text-white text-center">Finalización de Entrega </th>
+        <th class="bg-primary text-white text-center">Estado</th>
         <th class="bg-primary text-white text-center">Opción</th>
       </tr>
     </thead>
@@ -68,18 +69,21 @@
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
-                   </tr>
-                   <tr>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                    </tr>
                    <tr>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                    <td class="is-cargando-contenido p-5"></td>
+                   </tr>
+                   <tr>
+                    <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
