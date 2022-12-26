@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\backend\Application\Rutas;
 
+use App\backend\Controllers\Docente\CambioClave;
 use App\backend\Controllers\Docente\Evidencias;
 use App\backend\Controllers\Docente\Inicio;
 use App\backend\Controllers\Docente\Notificaciones;
@@ -19,6 +20,7 @@ class RutasDocente implements Route
         $evidencias = new Evidencias;
         $reportes = new Reportes;
         $notificaciones = new Notificaciones;
+        $cambioClave = new CambioClave;
         return [
             'docente' => [
                 'GET' => [
@@ -108,6 +110,12 @@ class RutasDocente implements Route
                 'POST' => [
                     'controller' => $notificaciones,
                     'action' => 'enviarNotificacion'
+                ],
+            ],
+            'docente/cambio/clave' => [
+                'GET' => [
+                    'controller' => $cambioClave,
+                    'action' => 'vista'
                 ],
             ],
         ];
