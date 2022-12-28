@@ -98,7 +98,7 @@ const form = document.getElementById('form-cambio-clave');
             }
         })
     })
-    .catch(e  => console.trace(e));
+    .catch(e  => console.trace(''));
 })();
 
 function renderError(e){
