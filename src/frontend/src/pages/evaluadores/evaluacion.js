@@ -65,12 +65,29 @@ function mostrarEvidencias(){
         });
     })
     buttonsCalificar.forEach(button => {
+        Evidencias.estaCalificadaEvidencia(periodo,button.dataset.idEvidencia)
+        .then(respuesta => habilitarButton(button,respuesta))
+        .catch(console.log)
         button.addEventListener('click',e => {
             e.stopPropagation();
             traerEvidencias(button,periodo,true);
         });
     })
 }
+function habilitarButton(button,respuesta){
+    if(respuesta.ident){
+        // button.setAttribute(respuesta.calificada === true ? '' : 'disabled','');
+        // button.classList.add(respuesta.calificada === true ? '' : 'desactivado','');  
+        if(respuesta.calificada){
+            button.setAttribute('disabled','');
+            button.setAttribute('title','No puede volver a calificar una misma fuente de información.');
+            button.classList.add('desactivado');
+        }
+    }else {
+        alerta('alert-danger','Ocurrio un error en el servidor algunos de las acciones pueden no funcionar correctamente.',3500);
+    }
+}
+
 /**
  * 
  * @param {HTMLElement} button 
@@ -80,14 +97,14 @@ function traerEvidencias(button,periodo,opcion=null) {
     Evidencias.obtenerEvidenciaIndvidual(periodo,input.value,'evaluador')
     .then(guardarBlobs)
     .catch(console.log)
-    opcion !== true ? desplegarModal() : mostarFormCalificacion(button);    
+    opcion !== true ? desplegarModal(button.dataset.idEvidencia,periodo) : mostarFormCalificacion(button);    
 }
 
 function guardarBlobs(blobs) {
     document.dispatchEvent(new CustomEvent('archivos.deplegados',{detail:blobs}));
 }
 
-function desplegarModal() {
+function desplegarModal(id,periodo) {
 const modal = document.createElement('div');
         modal.classList = 'modal fade';
         modal.id = `presentacionViews`;
@@ -100,12 +117,12 @@ const modal = document.createElement('div');
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Visualizar o Descargar los Documentos de Información(Evidencias)</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Datos de la calificación de la fuente de información(Evidencia)</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div class="mb-3">
-                <h4 for="staticEmail" class="col-form-label">Documento de información a calificar</h4>
+                <h4 for="staticEmail" class="col-form-label">Fuente de información</h4>
                 <div class="col-sm-10">
                 <label class="position-relative" for="pdf">
                 <div class="spinner-border text-dark carga-medio" role="status"><span class="visually-hidden">Loading...</span></div>
@@ -122,8 +139,9 @@ const modal = document.createElement('div');
                 <input type="text" class="form-control" id="calificacion" disabled>
             </div>
             <div class="mb-3">
-                <label for="comentario" class="form-label">Comentario</label>
-                <input type="text" class="form-control" id="comentario" disabled>
+                <label for="comentario" class="form-label">Observación</label>
+                <textarea type="text" class="form-control" id="comentario" disabled>
+                </textarea>
             </div>
           </div>
           <div class="modal-footer">
@@ -139,6 +157,24 @@ const modal = document.createElement('div');
     modal.addEventListener('hidden.bs.modal',(e) => {
         modal.remove();
     })
+    const [evaluador,calificacionIn] = modal.querySelectorAll('input[type=text]');
+    const observacion = modal.querySelector('textarea');
+    console.log(periodo,id);
+    Evidencias.obtenerCalificacionEvidencia(periodo,id)
+    .then(respuesta => {
+        if(respuesta.ident){
+            let {calificacion} = respuesta;
+            calificacion = calificacion[0];
+            console.log(calificacion);
+            evaluador.value = calificacion.nombre_docente +' '+ calificacion.apellido_docente;
+            calificacionIn.value = calificacion.calificacion;
+            observacion.value = calificacion.observacion;
+
+        }else{
+            alerta('alert-danger','No se puede mostrar la información, ocurrio un error en el servidor.',3500);
+        }
+    })
+    .catch(console.log)
 }
 
 document.addEventListener('archivos.deplegados',e => {
@@ -203,12 +239,34 @@ function mostarFormCalificacion(button){
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Calificar los Documentos de Información(Evidencias)</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Calificar las Fuentes de Información(Evidencias)</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+          
+          <div class="mb-3 tipografia-times-1" style="border-bottom: 1px solid #ccc;">
+          <h4>Concideraciones</h4>
+          <ul class="list-circle ">
+          <li>
+          Puede visualizar la fuente de información dando un click en la imagen pdf
+          que se encuentra en la parte inferior.
+          </li>
+          <li>
+          La calificación puede ser CUALITATIVO Y CUANTITATIVO correspondiente a cada evidencia,
+          se le recomienda asegurarse de ingresar correctamente la calificación.
+          </li>
+          <li>
+          La observación que ingrese estará emparejado con la calificación, si decide no ingresar ninguna 
+          observación se asumirá que la anotación es: "Sin Observaciones."
+          </li>
+          <li>
+          Por último debe estar consciente que una vez que califica la evidencia nadie más lo va a volver a calificar.
+          </li>
+          </ul>
+          </div>
+
             <div class="mb-3">
-                <h4 for="staticEmail" class="col-form-label">Documento de información a calificar</h4>
+                <h4 for="staticEmail" class="col-form-label">Visualice la fuente de información.</h4>
                 <div class="col-sm-10">
                 <label class="position-relative" for="pdf">
                 <div class="spinner-border text-dark carga-medio" role="status"><span class="visually-hidden">Loading...</span></div>
@@ -218,7 +276,7 @@ function mostarFormCalificacion(button){
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">
-                La forma de evaluar el presente documento de información es de forma
+                La forma de evaluar la presente fuente de información es de forma
                 <strong> ${button.dataset.infoTipo}</strong>  
                 </label>
                 <input type="text" value="${
@@ -230,7 +288,7 @@ function mostarFormCalificacion(button){
             </div>
             <div class="mb-3">
                 <label for="calificacion" class="form-label">${button.dataset.infoTipo.toUpperCase() === 'CUALITATIVO' ?
-                'Selecione calificación de las opciones propuestas.' : 'Ingrese la calificación.'}</label>
+                'Selecione la calificación de las opciones propuestas.' : 'Ingrese la calificación.'}</label>
                 ${button.dataset.infoTipo.toUpperCase() === 'CUALITATIVO' ? calificacionCualitativa :
                 calificacionCuantitativa}
             </div>
@@ -240,6 +298,9 @@ function mostarFormCalificacion(button){
                   placeholder="Aa"></textarea>
             </div>
           </div>
+
+
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             <button type="submit" class="btn btn-primary text-white">Guardar Calificación</button>

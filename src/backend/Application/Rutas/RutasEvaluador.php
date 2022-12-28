@@ -46,7 +46,18 @@ class RutasEvaluador implements Route
                     'action' => 'registroCalificacion'
                 ],
             ],
-            
+            'evaluador/obtener/calificacion' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'listarCalificacion'
+                ],
+            ],
+            'evaluador/ver/calificacion' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'estaCalificado'
+                ],
+            ],
         ];
     }
 

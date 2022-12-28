@@ -114,18 +114,48 @@ export default class Evidencias {
   }
 }
 
- /**
+  /**
+       * 
+       * @param {String} id Es el id de la evidencia a buscar 
+       * @returns {Promise}JSON
+       */
+  static async obtenerEvidenciaVerificarDetalle(id) {
+    try {
+    const consulta = await fetch(`/coordinador/verficar/detalle/evidencias?id=${id}`);
+    const resultado = await consulta.json();
+    return resultado;
+  } catch (error) {
+    console.error(error);
+  }
+  }
+   /**
      * 
-     * @param {String} id Es el id de la evidencia a buscar 
+     * @param {String} periodo Es el id del periodo academico
+     * @param {String} id Es id de la evidencia
      * @returns {Promise}JSON
      */
- static async obtenerEvidenciaVerificarDetalle(id) {
+ static async obtenerCalificacionEvidencia(periodo,id) {
+    try {
+    const consulta = await fetch(`/evaluador/obtener/calificacion?id=${id}&periodo=${periodo}`);
+    const resultado = await consulta.json();
+    return resultado;
+  } catch (error) {
+    console.error(error);
+  }
+  }
+  /**
+     * 
+     * @param {String} periodo Es el id del periodo academico
+     * @param {String} id Es id de la evidencia
+     * @returns {Promise}JSON
+     */
+ static async estaCalificadaEvidencia(periodo,id) {
   try {
-  const consulta = await fetch(`/coordinador/verficar/detalle/evidencias?id=${id}`);
+  const consulta = await fetch(`/evaluador/ver/calificacion?id=${id}&periodo=${periodo}`);
   const resultado = await consulta.json();
   return resultado;
-} catch (error) {
-  console.error(error);
-}
-}
+  } catch (error) {
+    console.error(error);
+  }
+  }
 }

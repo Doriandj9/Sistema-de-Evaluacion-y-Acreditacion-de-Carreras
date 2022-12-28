@@ -915,6 +915,10 @@ form,form::after,form::before,
 }
 .selector{
     cursor: pointer;
+    transition: 0.2s ease-in;
+}
+.selector:hover{
+    transform: scale(1.1);
 }
 .salir-vista{
     background-color: white;
