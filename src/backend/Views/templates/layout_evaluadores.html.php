@@ -50,11 +50,11 @@ use App\backend\Models\Docente;
                         <span class="material-icons text-negro">&#xef42;</span>
                         <span class="text-blanco bordes-op-menu">Evaluación</span>
                         </a>
-                        <a href="/docente/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/evaluador/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe415;</span>
                         <span class="text-blanco bordes-op-menu ">Reportes</span>
                         </a>
-                        <a href="/docente/cambio/clave" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/evaluador/cambio/clave" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeade;</span>
                         <span class="text-blanco bordes-op-menu ">Cambiar Contraseña</span>
                         </a>

@@ -6,6 +6,7 @@ namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Evaluador\Evidencias;
 use App\backend\Controllers\Evaluador\Inicio;
+use App\backend\Controllers\Evaluador\Reportes;
 use App\backend\Frame\Route;
 use App\backend\Models\Docente;
 
@@ -15,6 +16,7 @@ class RutasEvaluador implements Route
     {
         $inicioController = new Inicio;
         $evidencias = new Evidencias;
+        $reportes = new Reportes;
         return [
             'evaluador' => [
                 'GET' => [
@@ -58,6 +60,18 @@ class RutasEvaluador implements Route
                     'action' => 'estaCalificado'
                 ],
             ],
+            'evaluador/reportes' => [
+                'GET' => [
+                    'controller' => $reportes,
+                    'action' => 'vista'
+                ]
+                ],
+            'evaluador/obtener/reporte' => [
+                    'GET' => [
+                        'controller' => $reportes,
+                        'action' => 'generar'
+                    ]
+                    ],
         ];
     }
 
