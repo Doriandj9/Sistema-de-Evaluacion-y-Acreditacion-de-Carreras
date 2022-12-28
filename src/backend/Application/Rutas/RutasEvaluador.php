@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\backend\Application\Rutas;
 
+use App\backend\Controllers\Evaluador\CambioClave;
 use App\backend\Controllers\Evaluador\Evidencias;
 use App\backend\Controllers\Evaluador\Inicio;
 use App\backend\Controllers\Evaluador\Reportes;
@@ -17,6 +18,7 @@ class RutasEvaluador implements Route
         $inicioController = new Inicio;
         $evidencias = new Evidencias;
         $reportes = new Reportes;
+        $cambioClave = new CambioClave;
         return [
             'evaluador' => [
                 'GET' => [
@@ -72,6 +74,12 @@ class RutasEvaluador implements Route
                         'action' => 'generar'
                     ]
                     ],
+        'evaluador/cambio/clave' => [
+                'GET' => [
+                    'controller' => $cambioClave,
+                    'action' => 'vista'
+                ],
+            ],
         ];
     }
 
