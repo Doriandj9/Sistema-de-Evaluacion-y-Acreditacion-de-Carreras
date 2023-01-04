@@ -87,6 +87,7 @@ class Docente extends DatabaseTable
         ->join(UsuariosDocente::TABLE, UsuariosDocente::TABLE . '.id_carrera', '=', Carreras::TABLE . '.id')
         ->where('id_usuarios', '=', $id_usuarios)
         ->where('id_docentes', '=', $id_docente)
+        ->where('carrera','=',null)
         ->orderBy('id_docentes')// nombre se refiere al nombre de la carrera
         ->get(['id_docentes','id_usuarios','id_carrera','nombre','fecha_inicial','fecha_final','estado']);
         $respuesta = $this->verificacionEstado($resultado);
