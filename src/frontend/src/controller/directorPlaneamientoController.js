@@ -8,6 +8,9 @@
         "/director-planeamiento/base-indicadores": function(){
             importacionDinamica('base-indicadores.js');
         },
+        "/director-planeamiento/emparejamiento-evaluadores": function(){
+            importacionDinamica('emparejamiento-evaluadores.js');
+        },
         "/director-planeamiento": function(){
 
         }

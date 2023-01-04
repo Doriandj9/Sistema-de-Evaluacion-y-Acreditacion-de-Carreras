@@ -47,7 +47,7 @@ use App\backend\Models\Docente;
                         <span class="material-icons text-negro">&#xe76f;</span>
                         <span class="text-blanco bordes-op-menu">Base Indicadores</span>
                         </a>
-                        <a href="/director-planeamiento/notificaciones" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/director-planeamiento/emparejamiento-evaluadores" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeaf4;</span>
                         <span class="text-blanco bordes-op-menu ">Emparejamiento de Evaluadores</span>
                         </a>
@@ -87,6 +87,8 @@ use App\backend\Models\Docente;
         </main>
     </div>
     <script src="/src/frontend/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.4/bowser.min.js"></script>
+
     <script src="/public/js/app.js" type="module"></script>
 </body>
 </html>

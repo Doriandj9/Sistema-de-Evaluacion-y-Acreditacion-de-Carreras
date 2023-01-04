@@ -9,6 +9,7 @@ use App\backend\Application\Utilidades\DB;
 class UsuariosDocente extends DatabaseTable
 {
     public const TABLE = 'usuarios_docente';
+    public $timestamps = false;
 
     public function __construct()
     {
@@ -169,4 +170,27 @@ class UsuariosDocente extends DatabaseTable
     
         return $evaludores;
     }
+    public function listarEvaluadoresEmparejamiento() {
+        $datos = DB::select(
+            'select 
+            string_agg(docentes.nombre,\'---\') as nombre_docente, 
+            string_agg(docentes.apellido ,\'---\') as apellido,
+            string_agg(docentes.correo ,\'---\') as correo,
+            string_agg(usuarios_docente.fecha_inicial::text ,\'---\') as fecha_inicial, 
+            string_agg(usuarios_docente.fecha_final::text ,\'---\') as fecha_final, 
+            string_agg(carreras.nombre ,\'---\') as nombre_carrera,
+            string_agg(usuarios_docente.carrera ,\'---\') as carrera_perteneciente, 
+            docentes.id as id_docente
+            from usuarios_docente inner join docentes on docentes.id = 
+            usuarios_docente.id_docentes inner join carreras on carreras.id = 
+            usuarios_docente.id_carrera 
+            where usuarios_docente.id_usuarios = ? and 
+            usuarios_docente.id_carrera != ?
+            group by docentes.id 
+            '
+        ,[Docente::EVALUADORES,$_ENV['DEFAULTCARRERA']]);
+    
+        return $datos;
+    }
+    
 }
