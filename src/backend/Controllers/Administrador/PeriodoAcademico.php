@@ -134,7 +134,7 @@ class PeriodoAcademico implements Controller
                     'id_periodo_academico' => $id_periodo,
                     'id_evidencias' => $evidencia->id,
                     'id_carrera' => $carrera,
-                    'cod_evidencia' => $facultad->id_facultad . '-' .$carrera . ' ' .  $evidencia->id,
+                    'cod_evidencia' => trim($facultad->id_facultad) . '-' .trim($carrera) . ' ' . trim($evidencia->id),
                     'fecha_inicial' => $periodoVigente->fecha_inicial,
                     'fecha_final' => $periodoVigente->fecha_final
                 ];

@@ -915,7 +915,7 @@ form,form::after,form::before,
 }
 .selector{
     cursor: pointer;
-    transition: 0.2s ease-in;
+    transition: 0.2flex-wraps ease-in;
 }
 .selector:hover{
     transform: scale(1.1);
@@ -1012,4 +1012,15 @@ section.boton{
 #estado > span {
     display: inline-block;
     width: 8rem;
+}
+
+.tarjeta {
+    width: 10rem;
+    padding: 0.5rem;
+    overflow: hidden;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+}
+.tarjeta > span {
+    display: block;
+    text-align: center;
 }

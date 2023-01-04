@@ -59,3 +59,12 @@ span[recargar].carga {
         transform: rotate(180deg);
     }
 }
+.tarjeta {
+    transition: all 0.5s ease-in-out;
+}
+
+.tarjeta:hover {
+    background-color: #ccc;
+    transform: scale(1.05);
+    cursor: pointer;
+}

@@ -2,6 +2,7 @@
 
 namespace App\backend\Application\Rutas;
 
+use App\backend\Controllers\Director_Planeamiento\BaseIndicadores;
 use App\backend\Controllers\Director_Planeamiento\Inicio;
 use App\backend\Frame\Route;
 use App\backend\Models\Docente;
@@ -11,13 +12,116 @@ class RutasDirectorPlaneamiento implements Route
     public function getRoutes(): array
     {
         $inicio = new Inicio;
+        $baseIndicadores = new BaseIndicadores;
         return [
             'director-planeamiento' => [
                 'GET' => [
                     'controller' => $inicio,
                     'action' => 'vista'
                 ]
-            ]
+                ],
+            'director-planeamiento/base-indicadores' => [
+                'GET' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'vista'
+                ]
+                ],
+            'director-planeamiento/obtener/criterios' => [
+                'GET' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'listarCriterios'
+                ]
+                ],
+            'director-planeamiento/editar/criterios' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'editarCriterios'
+                ]
+                ],
+            'director-planeamiento/insertar/criterios' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'insertarCriterios'
+                ]
+                ],
+            'director-planeamiento/obtener/estandares' => [
+                'GET' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'listarEstandares'
+                ]
+                ],
+            'director-planeamiento/editar/estandares' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'editarEstandares'
+                ]
+                ],
+            'director-planeamiento/insertar/estandares' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'insertarEstandares'
+                ]
+                ],
+            'director-planeamiento/obtener/elementos-fundamentales' => [
+                'GET' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'listarElementosFundamentales'
+                ]
+                ],
+            'director-planeamiento/editar/elementos-fundamentales' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'editarElementosFundamentales'
+                ]
+                ],
+            'director-planeamiento/insertar/elementos-fundamentales' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'insertarElementosFundamentales'
+                ]
+                ],
+            'director-planeamiento/editar/componentes-elementos-fundamentales' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'editarComponentes'
+                ]
+                ],
+            'director-planeamiento/obtener/componentes-elementos-fundamentales' => [
+                'GET' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'listarComponentes'
+                ]
+                ],
+            'director-planeamiento/insertar/componentes-elementos-fundamentales' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'insertarComponentes'
+                ]
+                ],
+            'director-planeamiento/obtener/evidencias' => [
+                'GET' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'listarEvidencias'
+                ]
+                ],
+            'director-planeamiento/editar/evidencias' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'editarEvidencias'
+                ]
+                ],
+            'director-planeamiento/obtener/componentes-elementos-fundamentales-evidencias' => [
+                'GET' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'obtenerDatosEvidencias'
+                ]
+                ],
+            'director-planeamiento/insertar/evidencias' => [
+                'POST' => [
+                    'controller' => $baseIndicadores,
+                    'action' => 'insertarEvidencias'
+                ]
+                ],
         ];
     }
     public function getTemplate(): string
@@ -28,7 +132,7 @@ class RutasDirectorPlaneamiento implements Route
     {
         return [
             'login' => true,
-            // 'permisos' => Docente::DIRECTOR_PLANEAMIENTO
+            'permisos' => Docente::DIRECTOR_PLANEAMIENTO
         ];
     }
 }

@@ -31,7 +31,9 @@
             .catch(e => console.error('[JS002] ' + e));           
         },
         'director-planeamiento': function(){
-                      
+            import('./directorPlaneamientoController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));          
         },
         'admin': function(){
             import('./adminController.js')
