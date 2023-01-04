@@ -1034,11 +1034,11 @@ function renderEvidencias(respuesta) {
     const contenedorNumeros = contenedorVistas.querySelector('.contenedor-numeros-paginacion');
     const busqueda = document.getElementById('busqueda');
     const {evidencias} = respuesta;
-    paginacionEvidencias(evidencias,3,1,tbody,contenedorNumeros);
+    paginacionEvidencias(evidencias,3,1,tbody,contenedorNumeros,accionRefrescarEvidencias);
     busqueda.addEventListener('input',(function(evidencias){
-        return () => {
-        paginacionEvidencias(evidencias,3,1,tbody,contenedorNumeros,accionRefrescarEvidencias,'nombre_evidencias',busqueda.value.trim());
-          accionRefrescarEvidencias();
+      return () => {
+        paginacionEvidencias(evidencias,3,1,tbody,contenedorNumeros,accionRefrescarEvidencias,'nombre_evidencias',busqueda.value.trim(),true);
+        accionRefrescarEvidencias();
       };
     })(evidencias))
     accionRefrescarEvidencias();  
