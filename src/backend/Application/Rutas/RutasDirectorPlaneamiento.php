@@ -5,6 +5,7 @@ namespace App\backend\Application\Rutas;
 use App\backend\Controllers\Director_Planeamiento\BaseIndicadores;
 use App\backend\Controllers\Director_Planeamiento\Evaluadores;
 use App\backend\Controllers\Director_Planeamiento\Inicio;
+use App\backend\Controllers\Director_Planeamiento\Reportes;
 use App\backend\Frame\Route;
 use App\backend\Models\Docente;
 
@@ -15,6 +16,7 @@ class RutasDirectorPlaneamiento implements Route
         $inicio = new Inicio;
         $baseIndicadores = new BaseIndicadores;
         $emparejamiento = new Evaluadores;
+        $reportes = new Reportes;
         return [
             'director-planeamiento' => [
                 'GET' => [
@@ -140,6 +142,18 @@ class RutasDirectorPlaneamiento implements Route
                 'POST' => [
                     'controller' => $emparejamiento,
                     'action' => 'registro'
+                ]
+                ],
+            'director-planeamiento/reportes' => [
+                'GET' => [
+                    'controller' => $reportes,
+                    'action' => 'vista'
+                ]
+                ],
+            'director-planeamiento/obtener/reporte' => [
+                'GET' => [
+                    'controller' => $reportes,
+                    'action' => 'generar'
                 ]
                 ],
         ];

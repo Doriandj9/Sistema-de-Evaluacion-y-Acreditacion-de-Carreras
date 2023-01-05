@@ -251,4 +251,42 @@ class Reportes {
         ->get();
         return $datos;
     }
+
+    /**
+     * @param string $carrera es el id de la carrera
+     * @param string $periodo es el id del periodo academico
+     * 
+     */
+    public function obtenerDatosReporteEvaluacionCarrera($carrera,$periodo) {
+        $datos = DB::table('evaluacion')
+        ->join(
+            'evidencias_evaluacion',
+            'evidencias_evaluacion.id_evaluacion',
+            '=',
+            'evaluacion.id'
+        )->join(
+            'evaluacion_docentes',
+            'evaluacion_docentes.id_evaluacion',
+            '=',
+            'evaluacion.id'
+        )->join(
+            'docentes',
+            'docentes.id',
+            'evaluacion_docentes.id_docente'
+        )->join(
+            'evidencias','evidencias.id',
+            '=','evidencias_evaluacion.id_evidencia'
+        )
+        ->where('evidencias_evaluacion.id_carrera','=',$carrera)
+        ->where('evidencias_evaluacion.id_periodo','=',$periodo)
+        ->select([
+            'docentes.nombre as nombre_docente',
+            'docentes.apellido as apellido_docente',
+            'evaluacion.nota as calificacion',
+            'evaluacion.observacion as observacion',
+            'evidencias.nombre as nombre_evidencia'
+        ])
+        ->get();
+        return $datos;
+    }
 }
