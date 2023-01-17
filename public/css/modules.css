@@ -1024,3 +1024,8 @@ section.boton{
     display: block;
     text-align: center;
 }
+.terminal {
+    padding: 0.5rem;
+    background-color: rgb(22, 21, 21);
+    color: rgb(190, 124, 0);
+}

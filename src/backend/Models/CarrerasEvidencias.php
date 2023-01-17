@@ -33,6 +33,7 @@ class CarrerasEvidencias extends DatabaseTable
     }
     /**
      * @param array<array> $datos
+     * @param array $columnas 
      */
     public function insertMasivo(array $datos,array $columnas){
         $queryMasive = 'INSERT INTO carreras_evidencias(';

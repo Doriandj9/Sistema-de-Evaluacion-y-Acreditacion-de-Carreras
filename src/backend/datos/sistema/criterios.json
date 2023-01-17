@@ -1,0 +1,25 @@
+{
+    "criterios":
+    [
+        {
+          "codigo": "1",
+          "nombre":"PERTINENCIA" 
+        },
+        {
+            "codigo": "2",
+            "nombre": "ORGANIZACION Y RR"
+        },
+        {
+            "codigo": "3",
+            "nombre": "PROFESORES"
+        },
+        {
+            "codigo": "4",
+            "nombre": "CURRICULO"
+        },
+        {
+            "codigo": "5",
+            "nombre": "ESTUDIANTES"
+        }
+    ]
+}

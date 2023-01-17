@@ -4,9 +4,18 @@ namespace App\backend\Controllers\Administrador;
 
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
+use App\backend\Models\Docente;
 
 class Docentes implements Controller
 {
+
+    private Docente $docentes;
+    
+    public function __construct()
+    {
+        $this->docentes = new Docente;
+    }
+
     public function vista($variables = []): array
     {
         return [
@@ -22,37 +31,50 @@ class Docentes implements Controller
          * archivo mientras que los valores son los nombres de las columnas de la 
          * tabla docentes
          */
-        $columnas = ['name' => 'nombre','lastname' => 'apellido','cedula' => 'id',
-        'email' => 'correo','phone' => 'telefono'];
-        $keys = array_keys($columnas);
+        
         $arcTem = $_FILES['file']['tmp_name'];
         $arcCont = file_get_contents($arcTem);
         $lineas = preg_split('/\n/',$arcCont);
-        $primeraLinea = $lineas[0]; 
-        if(!$this->everyDatos($columnas,$primeraLinea)){
-            $mensaje = 'Error, asegurese de que el archivo contenga las columnas necesarias
-            para actualizar los datos:';
-            foreach($keys as $key){
-                $mensaje .= "$key, ";
+        $primeraLinea = preg_split('/,/',$lineas[0]);
+        $datosDocentes = [];
+        unset($lineas[0]);
+        foreach($lineas as $linea) {
+            $datos = preg_split('/,/',$linea);
+            $docente = [];
+            for($i = 0 ; $i <= count($primeraLinea) - 1; $i++){
+                $docente[trim($primeraLinea[$i])] = empty($datos[$i]) ? null : $datos[$i];
             }
-            $mensaje = rtrim($mensaje,', ');
-            Http::responseJson(json_encode([
-                'ident' => 0,
-                'mensaje' => $mensaje 
-            ]));
+            array_push($datosDocentes,$docente);
         }
         
-        die;
-    }
-    
-    private function everyDatos($datos,$linea) {
-
-        foreach($datos as $indice => $dato){
-            if(!str_contains($linea,$indice)){
+        $datosDocentes = array_filter($datosDocentes, function($docente) {
+            if(!$docente['ci_doc']){
                 return false;
             }
-        }
 
-        return true;
+            return true;
+        });
+        $errores = [];
+        foreach($datosDocentes as $docente){
+        try{
+            $datoDocente = [
+                //'id' => $docente['ci_doc'],
+                'nombre' => mb_substr($docente['nombres_doc'],0),
+                'apellido' => mb_substr($docente['apellidos_doc'],0),
+                'correo' => $docente['nick'],
+                'telefono' => $docente['celular'],
+                //'cambio_clave' => true,
+                //'clave' => password_hash($docente['ci_doc'],PASSWORD_DEFAULT)
+            ];
+            $this->docentes->updateValues($docente['ci_doc'], $datoDocente);
+        }catch(\PDOException $e) {
+           array_push($errores,$e->errorInfo);
+        }
+    }
+    Http::responseJson(json_encode([
+        'ident' => 1,
+        'mensaje' => 'Tarea realizada correctamente.',
+        'errores' => $errores
+    ]));  
     }
 }

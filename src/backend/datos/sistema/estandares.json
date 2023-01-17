@@ -1,0 +1,138 @@
+{
+    "estandares":[
+        {
+            "id": 1,
+            "descripcion":"La misión y visión de la carrera son consistentes con la misión y visión institucional; están claramente definidas en cuanto a sus propósitos y objetivos, y guían efectivamente la planificación y ejecución de las actividades académicas.",
+            "id_criterio":"1",
+            "nombre":"MISIÓN Y VISIÓN",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 2,
+            "descripcion":"La unidad académica que integra la carrera dispone de una planificación que establece objetivos y propósitos coherentes con la misión y visión de la carrera, con el marco institucional y con estudios del estado actual y su prospectiva; además, el proceso de planificación considera la participación de actores relevantes de la comunidad académica y de la institución para su construcción y la evaluación de los resultados esperados.",
+            "id_criterio":"1",
+            "nombre":"ESTUDIOS PROSPECTIVOS Y PLANIFICACIÓN",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 3,
+            "descripcion":"La gestión del aseguramiento interno de la calidad en la carrera está enfocada en el logro de los resultados de aprendizaje esperados para los estudiantes, es coherente con las políticas institucionales de aseguramiento de la calidad, y es un insumo fundamental para garantizar La mejora continua a través de mecanismos como la autoevaluación.",
+            "id_criterio":"1",
+            "nombre":"GESTIÓN DEL ASEGURAMIENTO INTERNO DE LA CALIDAD",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 4,
+            "descripcion":"La carrera participa en los programas y proyectos institucionales de vinculación con la sociedad relacionados con sus dominios académicos de manera coherente con su misión, visión, objetivos, estrategias y resultados esperados en la docencia e investigación.",
+            "id_criterio":"1",
+            "nombre":"Programas / Proyectos de Vinculación con la sociedad",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 5,
+            "descripcion":"La carrera ha definido y organizado los procesos académicos que contribuyen a la calidad de la educación, dispone de mecanismos de monitoreo y evaluación de sus resultados, y ha establecido funciones y actores responsables considerando un marco normativo interno, los objetivos estratégicos de la carrera y los derechos estudiantiles y de la planta académica.",
+            "id_criterio":"2",
+            "nombre":"COORDINACIÓN DE PROCESOS ACADÉMICOS",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 6,
+            "descripcion":"El sistema de seguimiento a graduados incluye actores claves del contexto profesional y/o académico relacionado con la carrera; provee resultados que se utilizan en la implementación de planes de acción para el mejoramiento y la inserción laboral de graduados.",
+            "id_criterio":"2",
+            "nombre":"SEGUIMIENTO AGRADUADOS",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 7,
+            "descripcion":"La carrera ha definido e implementa políticas y procedimientos para la admisión de estudiantes, considerando parámetros académicos adecuados y respetando el principio de igualdad de oportunidades.",
+            "id_criterio":"2",
+            "nombre":"POLÍTICAS DE ADMISIÓN Y NIVELACIÓN",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 8,
+            "descripcion":"La carrera aplica políticas y mecanismos académicos para la titulación de estudiantes, acordes a los tipos de titulación definidos para la carrera, y consistentes con las líneas de investigación asociadas a la carrera, así como sus objetivos, misión y visión.",
+            "id_criterio":"2",
+            "nombre":"POLÍTICAS DE TITULACIÓN",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 9,
+            "descripcion":"La carrera garantiza la disponibilidad, acceso e incorporación de los recursos bibliográficos pertinentes, en las actividades de docencia e investigación de profesores y estudiantes, en función del plan de estudios, las líneas de investigación asociadas a la carrera, sus objetivos, misión y visión.",
+            "id_criterio":"2",
+            "nombre":"RECURSOS BIBLIOGRÁFICOS",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 10,
+            "descripcion":"La carrera demuestra que el entorno virtual de aprendizaje que utiliza para los procesos educativos y académicos, es consistente con los resultados de aprendizaje esperados, y permite el desarrollo de actividades pedagógicas y la implementación del modelo educativo propuesto por la institución.",
+            "id_criterio":"2",
+            "nombre":"ENTORNOS VIRTUALES DE APRENDIZAJE",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 11,
+            "descripcion":"Los profesores que participan de actividades docentes en la carrera forman parte de grupos activos de investigación organizados en líneas de investigación relacionadas con el campo o las áreas de conocimiento de la carrera y con sus principios declarado: misión, visión y objetivos.",
+            "id_criterio":"3",
+            "nombre":"ACTIVIDAD INVESTIGADORA DE LOS PROFESORES",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 12,
+            "descripcion":"La carrera gestiona de manera periódica los resultados del sistema de evaluación integral de los profesores conforme a la normativa vigente, para la toma de decisiones sobre la calidad del proceso educativo con la participación de los actores de la comunidad académica.",
+            "id_criterio":"3",
+            "nombre":"EVALUACIÓN INTEGRAL DEL PROFESOR",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 13,
+            "descripcion":"El perfil de egreso establece de manera clara y concreta  los resultados de aprendizaje  que alcanzarán las/los estudiantes al concluir su formación académica, en concordancia con el modelo educativo; y ha sido elaborado mediante un proceso que establece la participación de profesores de la institución de Educación Superior y pares externos, en consulta con profesionales, empleadores y graduados.",
+            "id_criterio":"4",
+            "nombre":"PERFIL DE EGRESO",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 14,
+            "descripcion":"El plan de estudios integra y articula de manera consistente los contenidos apropiados y las trayectorias de aprendizaje, y establece los lineamientos metodológicos, mecanismos y estrategias para los procesos de enseñanza aprendizaje y de evaluación estudiantil, que aseguran el logro de los resultados de aprendizaje planteados en el perfil de egreso.",
+            "id_criterio":"4",
+            "nombre":"PLAN DE ESTUDIOS",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 15,
+            "descripcion":"La carrera demuestra que la planificación micro curricular de cada asignatura cuenta con elementos constitutivos necesarios que permiten alcanzar los resultados de aprendizaje esperados a lo largo  del plan de estudios.",
+            "id_criterio":"4",
+            "nombre":"SÍLABO",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 16,
+            "descripcion":"La carrera ha definido un sistema de tutorías académicas que le permite brindar asesoría académica y orientación a sus estudiantes, con profesores de la carrera, con base en los resultados obtenidos de los procesos de evaluación y seguimiento al proceso de enseñanza-aprendizaje.",
+            "id_criterio":"4",
+            "nombre":"TUTORÍAS ACADÉMICAS",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 17,
+            "descripcion":"La evaluación del proceso de enseñanza aprendizaje garantiza el avance del aprendizaje de las/los estudiantes a lo largo del plan de estudios y se implementan a través de estrategias, mecanismos y procedimientos que permiten comprobar el logro de los resultados de aprendizaje esperados.",
+            "id_criterio":"4",
+            "nombre":"EVALUACIÓN DE LOS PROCESOS DE ENSEÑANAZA APRENDIZAJE",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 18,
+            "descripcion":"La carrera promueve la aplicación de políticas de bienestar universitario que garanticen el acceso de la comunidad académica a espacios de bienestar institucionales y servicios de bienestar universitario, considerando la normativa vigente y garantizando su articulación con las estrategias para mejorar la calidad de educación.",
+            "id_criterio":"5",
+            "nombre":"BIENESTAR UNIVERSITARIO",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 19,
+            "descripcion":"La carrera ha definido e implementado políticas, mecanismos y procedimientos que contribuyen a la inclusión y equidad en la admisión, retención y titulación de sus estudiantes, así como de la movilidad estudiantil considerando parámetros académicos y de principio de igualdad de oportunidad en el marco de un sistema institucional de becas.",
+            "id_criterio":"5",
+            "nombre":"SISTEMA DE BECAS Y APOYOS FINANCIEROS",
+            "tipo":"CUALITATIVO"
+        }
+    ]
+
+}

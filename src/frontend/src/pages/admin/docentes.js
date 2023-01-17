@@ -33,11 +33,16 @@ function renderRespuesta(respuesta) {
     precarga.end();
     const {errores,mensaje} = respuesta;
     const erroresTbody = document.getElementById('errores');
+    let html = `<tr>
+                    <td class="bg-color-gris">No se prensento ningun error al actualizar los datos de los docentes.</td>
+                </tr>`;
     if(errores.length <= 0) {
+        erroresTbody.innerHTM = html;
         new Notificacion(mensaje,'Aceptar',false);
         return;
     }
-    let html = '';
+
+    html = '';
     errores.forEach(e => {
         html += `
         <tr>

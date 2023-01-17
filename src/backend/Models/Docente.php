@@ -150,4 +150,32 @@ class Docente extends DatabaseTable
 
         return $date->getTimestamp() >= $startInterval && $date->getTimestamp() <= $endInterval;
     }
+
+      /**
+     * @param array<array> $datos
+     */
+    public function insertMasivo(array $datos){
+        $columnas = ['nombres_doc' => 'nombre','apellidos_doc' => 'apellido','ci_doc' => 'id',
+        'nick' => 'correo','celular' => 'telefono','cambio_clave' => 'cambio_clave','clave' => 'clave'];
+        $queryMasive = 'INSERT INTO docentes (';
+        foreach($columnas as $columna) {
+            $queryMasive .=  $columna . ',';
+        }
+        $queryMasive = rtrim($queryMasive,',');
+        $queryMasive .= ')VALUES(';
+        foreach($datos as $dato) {
+            $clave  = password_hash($dato['ci_doc'],PASSWORD_DEFAULT);
+            $queryMasive .= '\'' . $dato['nombres_doc'] .'\'' . ',';
+            $queryMasive .= '\'' . $dato['apellidos_doc'] .'\'' . ',';
+            $queryMasive .= '\'' . $dato['ci_doc'] .'\'' . ',';
+            $queryMasive .= '\'' . $dato['nick'] .'\''. ',';
+            $queryMasive .= '\'' . $dato['celular'] .'\'' . ',';
+            $queryMasive .= '1::boolean,';
+            $queryMasive .= '\''. $clave .'\'';
+            $queryMasive .= '),(';
+        } 
+        $queryMasive = rtrim($queryMasive,',(');
+        $queryMasive .= ';';
+        DB::statement($queryMasive);
+    }
 }

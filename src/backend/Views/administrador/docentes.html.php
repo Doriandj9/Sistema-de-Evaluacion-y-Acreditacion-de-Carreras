@@ -1,9 +1,11 @@
-
 <h3 class="text-center">Actualizar Datos de los Docentes</h3>
 <p>
-Esta sección en particular le permite generar un reporte sobre los documentos de informacion(Evidencias) almacenas
-en su repositorio local dentro de la opción del menu de <a href="/docente/evidencias">Evidencias</a>   el cual contendra la informacion personal y los 
-documentos que en el momento que genera el reporte se encuentrar guardadas en el sistema.
+Esta sección le permitirá modificar la información de los docentes ya existentes en la base de datos,
+mediante un archivo csv extraido desde la base del SI@NET, una vez dentro de la base de datos
+puede utilizar el siguiente comando para generar el archivo <pre class="terminal tipografia-times-1">
+copy public.docente (ci_doc, nombres_doc, apellidos_doc, celular, nick) TO '/ruta/nombre_archivo.csv' DELIMITER ',' CSV HEADER QUOTE '\' ESCAPE '''';</pre>
+Una vez que se haya seleccionado el archivo csv que contendra los datos de los docentes, se podrá hacer click en el
+botón para guardar los cambios y actualizar la información de los docente en la base de datos..
 </p>
 <div class="desborde-auto barra-personalizada padding-all-1">
     <form>
