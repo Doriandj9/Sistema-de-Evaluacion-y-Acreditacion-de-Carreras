@@ -34,7 +34,7 @@ class Evidencias implements Controller
         $periodos = $this->periodo->select(true,'id','desc');
         $variables['periodos'] = $periodos;
         return [
-            'title' => 'Evalución de Documentos de Información',
+            'title' => 'Evaluación de Fuentes de Información | Evidencias',
             'template' => 'evaluadores/evaluacion.html.php',
             'variables' => $variables
         ];
@@ -118,6 +118,57 @@ class Evidencias implements Controller
             Http::responseJson(json_encode([
                 'ident' => 1,
                 'mensaje' => 'Se ingreso correctamente la calificación'
+            ]));
+        }catch(\PDOException $e) {
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => $e->getMessage()
+            ]));
+        }
+    }
+
+    public function listarCalificacion() {
+        if(!isset($_GET['periodo'])){
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => 'Error, no contiene el parametro periodo en la consulta'
+            ]));
+        }
+        try{
+            $calificacion = $this->evaluacion->obtenerCalificacion(
+                trim($_GET['id']),
+                trim($_SESSION['carrera']),
+                trim($_GET['periodo'])
+            );
+            Http::responseJson(json_encode([
+                'ident' => 1,
+                'calificacion' => $calificacion
+            ]));
+        }catch(\PDOException $e) {
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => $e->getMessage()
+            ]));
+        }
+
+    }
+
+    public function estaCalificado() {
+        if(!isset($_GET['periodo'])){
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => 'Error, no contiene el parametro periodo en la consulta'
+            ]));
+        }
+        try{
+            $calificacion = $this->evaluacion->verCalificacion(
+                trim($_GET['id']),
+                trim($_SESSION['carrera']),
+                trim($_GET['periodo'])
+            );
+            Http::responseJson(json_encode([
+                'ident' => 1,
+                'calificada' => $calificacion
             ]));
         }catch(\PDOException $e) {
             Http::responseJson(json_encode([

@@ -20,6 +20,7 @@
         <span class="material-icons visible posicionado-derecha-ojo" id="eye">&#xe8f4;</span>
         </div>
         <button class="boton boton-enviar-login is-hover-boton-enviar">Ingresar</button>
+        <a class="text-primary text-decoration-underline" href="/recuperar-clave">He olvidado mi contraseña</a>
     </form>
 </div>
 </div>

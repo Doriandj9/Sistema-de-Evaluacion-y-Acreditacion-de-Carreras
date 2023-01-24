@@ -8,6 +8,9 @@
         "/evaluador/evaluacion/documentos": function(){
             importacionDinamica('evaluacion.js');
         },
+        "/evaluador/cambio/clave": function(){
+            importacionDinamica('cambio-clave.js');
+        },
         "/docente": function(){
 
         }

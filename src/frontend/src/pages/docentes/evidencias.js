@@ -3,6 +3,9 @@ import alerta from "../../utiles/alertasBootstrap.js";
 import Evidencias from "../../models/Evidencias.js";
 import { paginacionEvidencias } from "../../utiles/paginacionEvidencias.js";
 import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
+import Precarga from "../../modulos/PreCarga/Precarga.js";
+import Notificacion from "./../../modulos/Notificacion/Notificacion.js"
+import Notificaciones from "../../models/Notificaciones.js";
 
 
 MenuOpcionesSuperior.correr();
@@ -50,10 +53,9 @@ function renderEvidencias(respuesta,opcion) {
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
         
-        paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo);
+        paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
         busqueda.addEventListener('input',(function(evidencias){
             return () => {
-                console.log(opcion)
             paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
             };
         })(evidencias))
@@ -98,8 +100,6 @@ const modal = document.createElement('div');
         modal.setAttribute('aria-labelledby','exampleModalLabel');
         modal.setAttribute('aria-hidden',true);
         modal.innerHTML = `
-    <!-- Formulario -->
-        <form>
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -108,29 +108,20 @@ const modal = document.createElement('div');
           </div>
           <div class="modal-body">
             <div class="mb-3">
-                <h4 for="staticEmail" class="col-form-label">Selecione el tipo de documento</h4>
+                <h4 for="staticEmail" class="col-form-label">Visualice el documento en PDF</h4>
                 <div class="col-sm-10">
                 <label class="position-relative" for="pdf">
                 <div class="spinner-border text-dark carga-medio" role="status"><span class="visually-hidden">Loading...</span></div>
                 <img class="selector" height="40" id="pdf"  src="/public/assets/img/icons8-pdf-50.png" alt="imagen pdf" />
                 </label>
-                <label class="position-relative" for="word">
-                <div class="spinner-border text-dark carga-medio" role="status"><span class="visually-hidden">Loading...</span></div>
-                <img class="selector" id="word" src="/public/assets/img/icons8-microsoft-word-2019-48.png" alt="imagen word" />
-                </label>
-                <label class="position-relative" for="excel">
-                <div class="spinner-border text-dark carga-medio" role="status"><span class="visually-hidden">Loading...</span></div>
-                <img id="excel" class="selector" src="/public/assets/img/icons8-microsoft-excel-2019-48.png" alt="imagen excel" />
-                </label>
                 </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
-      </form>
         `;
     document.body.append(modal);
     const modalBootstrap =  new bootstrap.Modal(modal,{});
@@ -209,20 +200,24 @@ function mostrarFormSubirArchivo() {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+          <div class="mb-3">
+          <h4>Consideraciones.</h4>
+          <ul  class="list-circle">
+              <li>Puede arrastrar el archivo dentro del recuadro azul.</li>
+              <li>También puede seleccionar un archivo del sistema dando un clic en la imagen pdf.</li>
+              <li>Asegúrese de ingresar solo documentos válidos y en formato PDF.</li>
+          </ul>
+          </div>
             <div class="mb-3 row">
                 <div class="drag" id="drag">
                     <span class="texto-transparente">Arrastre los documentos Aquí</span>
                 </div>
             </div>
             <div class="mb-3">
-                <h4 for="staticEmail" class="col-form-label">Selecione el tipo de documento a guradar</h4>
+                <h4 for="staticEmail" class="col-form-label">Haz clic en la imagen pdf esto te permitirá buscar el archivo en tu computadora y subirlo a la plataforma. </h4>
                 <div class="col-sm-10">
                 <label for="pdf"><img class="selector" height="40"  src="/public/assets/img/icons8-pdf-50.png" alt="imagen pdf" /></label>
                 <input type="file" accept=".pdf" id="pdf" class="hidden">
-                <label for="word"><img class="selector" src="/public/assets/img/icons8-microsoft-word-2019-48.png" alt="imagen word" /></label>
-                <input type="file" accept=".docx" id="word" class="hidden">
-                <label for="excel"><img class="selector" src="/public/assets/img/icons8-microsoft-excel-2019-48.png" alt="imagen excel" /></label>
-                <input type="file" accept=".xlsx" id="excel" class="hidden">
                 </div>
             </div>
           </div>
@@ -240,11 +235,12 @@ function mostrarFormSubirArchivo() {
     modal.addEventListener('hidden.bs.modal',(e) => {
         modal.remove();
     })
-    activarDrop(button);
+    let fila = button.parentElement.parentElement;
+    activarDrop(button,modal,modalBootstrap,fila);
     const inputs = form.querySelectorAll('input[type="file"]');
     inputs.forEach((inp) => {
         inp.onchange = (e) => {
-            opcionEviar(e,button);
+            opcionEviar(e,button,modal,modalBootstrap,fila);
         }
     })
     });
@@ -256,78 +252,142 @@ function mostrarFormSubirArchivo() {
  * @param {Event} e 
  * @param {HTMLFormElement} button 
  */
-function opcionEviar(e,buttonEvent){
-    const select = document.getElementById('periodos');
+function opcionEviar(e,buttonEvent,modal,modalBootstrap,fila){
     const id_evidencia = buttonEvent.nextElementSibling;
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('file',file);
     const pre =e.target.previousElementSibling;
-    pre.style.position = 'relative';
-    const button = document.createElement('button');
-    button.innerHTML = ' <span class="material-icons text-white">&#xf09b;</span>';
-    button.className = 'boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center boton-centrado-flotante';
-    pre.append(button);
-    button.onclick = (e) =>{
+    const select = document.getElementById('periodos');
+    formData.append('periodo',select.value.trim());
+    formData.append('cod_evidencia',id_evidencia.value.trim());
+    subirEvidencia(formData,pre,modal,modalBootstrap,fila);
+}
+
+function subirEvidencia(formData,obje,modal,modalBootstrap,fila) {
+    const modalContent = modal.querySelector('.modal-body');
+    const confirmacionHML = confirmHTML(formData.get('file'));
+    modalContent.append(confirmacionHML);
+    const enviaButon = confirmacionHML.querySelector('#save-pdf');
+    const verPDf = confirmacionHML.querySelector('#ver');
+    
+    enviaButon.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
-        const select = document.getElementById('periodos');
-        formData.append('periodo',select.value.trim());
-        formData.append('cod_evidencia',id_evidencia.value.trim());
-        subirEvidencia(formData,pre);
-        button.remove();
-    }
+        confirmacionHML.remove();
+        modalBootstrap.hide();
+        precarga = new Precarga();
+        precarga.run();
+        Evidencias.subirEvidenciasDocente(formData)
+        .then(res => renderRespuesta(res,modalBootstrap,fila))
+        .catch(console.log)
+    })
+    verPDf.addEventListener('click', e => {
+        const view = new VisualizadorPDF();
+        view.habilitarESC();
+        view.mostrar(formData.get('file'));
+    })
 }
-
-function subirEvidencia(formData,obje) {
-   obje.append(spinner);
-    Evidencias.subirEvidenciasDocente(formData)
-    .then(renderRespuesta)
-    .catch(console.log)
-}
-function renderRespuesta(respuesta) {
-    spinner.remove();
+function renderRespuesta(respuesta,modalBootstrap,fila) {
+    precarga.end();
     if(respuesta.ident){
-        alerta('alert-success',respuesta.mensaje,5000);
+        const almace = fila.querySelector('#estado').querySelector('span');
+        almace.innerHTML = '<strong>Almacenado: <span class="text-primary">SI</span></strong> ';
+        new Notificacion(respuesta.mensaje,'Aceptar',false);
+        enviarNotificacion(fila);
     }else{
         alerta('alert-danger',respuesta.mensaje,10000);
+        modalBootstrap.show();
     }
 }
-function activarDrop(button) {
-const id_evidencia = button.nextElementSibling;
-const drop = document.getElementById('drag');
-    drop.addEventListener('dragenter',e => {
-        e.preventDefault();
-        e.target.classList.add('drag-active');
-    })
-    drop.addEventListener('dragleave',e => {
-        e.preventDefault();
-        e.target.classList.remove('drag-active')
-    })
-    // quita el efecto del navegador para arrastrar archivos
-    drop.addEventListener('dragover',e =>{
-        e.preventDefault();
-    })
-    drop.addEventListener('drop' , e => {
-        e.preventDefault();
-        e.target.classList.remove('drag-active');
-        const file = e.dataTransfer.files[0];
-        dropArchivos(file,e.target,id_evidencia.value);
-    })
+function activarDrop(button,modal,modalBootstrap,fila) {
+    const id_evidencia = button.nextElementSibling;
+    const drop = document.getElementById('drag');
+        drop.addEventListener('dragenter',e => {
+            e.preventDefault();
+            e.target.classList.add('drag-active');
+        })
+        drop.addEventListener('dragleave',e => {
+            e.preventDefault();
+            e.target.classList.remove('drag-active')
+        })
+        // quita el efecto del navegador para arrastrar archivos
+        drop.addEventListener('dragover',e =>{
+            e.preventDefault();
+        })
+        drop.addEventListener('drop' , e => {
+            e.preventDefault();
+            e.target.classList.remove('drag-active');
+            const file = e.dataTransfer.files[0];
+            dropArchivos(file,e.target,id_evidencia.value,modal,modalBootstrap,fila);
+        })
 }
 
-function dropArchivos(file,target,id_evidencia) {
-    if(file.type === 'application/pdf' ||
-        file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-        file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    ) {
+function dropArchivos(file,target,id_evidencia,modal,modalBootstrap,fila) {
+    if(file.type === 'application/pdf') {
         const select = document.getElementById('periodos');
         const formData = new FormData();
         formData.append('file',file);
         formData.append('cod_evidencia',id_evidencia);
         formData.append('periodo',select.value.trim());
-        subirEvidencia(formData,target);
+        subirEvidencia(formData,target,modal,modalBootstrap,fila);
     }else{
-        alerta('alert-danger','No se permite subir otro tipo de archivo que no sea pdf,word o excel',7000);
+        alerta('alert-danger','No se permite subir otro tipo de archivo que no sea pdf.',5000);
     }
 }
+
+function confirmHTML(file){
+    const div = document.createElement('div');
+    div.className = 'confirmacion-envio-evidencias';
+    const html = `
+    <h5>Por favor, confirmar la subida del archivo a la plataforma.</h5>
+    <div class="mb-3 contenedor-x75">
+        <label for="" class="form-label text-center">
+            <strong>Nombre del documento</strong>
+        </label>
+        <input class="form-control" type="text" disabled value="${file.name}">
+    </div>
+    <div class="mb-3">
+       <span style="cursor: pointer;" id="ver" class="text-decoration-underline text-primary"> Visualizar </span>
+    </div>
+    <div class="mb-3">
+        <button type="button" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1"
+        id="save-pdf">
+        <span class="material-icons text-white">&#xe161;</span> Guardar
+        </button>
+      </div>
+    `;
+    div.innerHTML = html;
+    return div;
+}
+
+function enviarNotificacion(fila) {
+    console.log(fila);
+    const nombre_evidencias = fila.dataset.nombreEvidencia;
+    const cod_evidencia = fila.dataset.codEvidencia;
+    const receptor = document.querySelector('#receptor-notificaciones');
+    const mensaje = `
+    Hola,<br>
+    Te informamos que se ha subido una nueva fuente de información a la plataforma.<br>
+    Datos.<br>
+    <strong>Nombre:</strong>${nombre_evidencias}<br>
+    <strong>Identificador:</strong>${cod_evidencia}<br> 
+    Esperamos que este archivo sea verificado y te agradecemos por utilizar nuestra plataforma.
+    `;
+    const formData = new FormData();
+    formData.append('mensaje',mensaje);
+    formData.append('receptor',receptor.value.trim());
+   Notificaciones.enviarNotificacion(formData,'docente')
+   .then(renderRespuestaNoti)
+   .catch(console.log)
+
+}
+function renderRespuestaNoti(respuesta) {
+    if(respuesta.ident) {
+      alerta('alert-success',`Se envio una notificación al coordinador 
+      informadole que registro la fuente de información 
+      en la plataforma.`,4500);
+    }else {
+        alerta('alert-warning','Ocurrio un error inesperado al enviar la notificación.');
+    }
+  }

@@ -13,11 +13,11 @@
 <body>
     <div class="contenedor-principal">
         <header class="l-enlinea-flex encabezado-principal">
-            <img src="/public/assets/img/software-logo.png" alt="logo de la carrera de software">
+            <img src="/public/assets/img/ueb-logo.png" alt="logo de la carrera de la Universidad">
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <div class="rectangulo-azul"></div>
-        <main class="cuerpo-principal">
+        <main class="cuerpo-principal-2">
                     <div class="contenido-principal">
                         <?= $contenido; ?>
                     </div>

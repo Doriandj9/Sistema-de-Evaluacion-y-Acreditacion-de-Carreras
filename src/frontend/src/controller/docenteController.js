@@ -14,6 +14,12 @@
         "/docente/responsables": function(){
             importacionDinamica('responsables.js');
         },
+        "/docente/notificaciones": function(){
+            importacionDinamica('notificaciones.js');
+        },
+        "/docente/cambio/clave": function(){
+            importacionDinamica('cambio-clave.js');
+        },
         "/docente": function(){
 
         }

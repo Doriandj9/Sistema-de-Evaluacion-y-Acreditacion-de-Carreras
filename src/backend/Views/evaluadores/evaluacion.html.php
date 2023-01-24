@@ -51,7 +51,6 @@
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
                    </tr>
                    <tr>
                     <td class="is-cargando-contenido p-5"></td>
@@ -61,10 +60,8 @@
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
-                    <td class="is-cargando-contenido p-5"></td>
                    </tr>
                    <tr>
-                    <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>
                     <td class="is-cargando-contenido p-5"></td>

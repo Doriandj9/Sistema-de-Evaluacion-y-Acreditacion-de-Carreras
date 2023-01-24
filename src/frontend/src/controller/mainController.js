@@ -31,10 +31,17 @@
             .catch(e => console.error('[JS002] ' + e));           
         },
         'director-planeamiento': function(){
-                      
+            import('./directorPlaneamientoController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));          
         },
         'admin': function(){
             import('./adminController.js')
+            .then()
+            .catch(e => console.error('[JS002] ' + e));
+        },
+        'recuperar-clave':  function(){
+            import('./../pages/recuperar-clave.js')
             .then()
             .catch(e => console.error('[JS002] ' + e));
         }

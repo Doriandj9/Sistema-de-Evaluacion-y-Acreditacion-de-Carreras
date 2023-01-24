@@ -2,7 +2,6 @@
 
 namespace App\backend\Controllers\Coordinador;
 
-use App\backend\Application\Servicios\Email\EnviarEmail;
 use App\backend\Application\Utilidades\EmailMensajes;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
@@ -10,9 +9,12 @@ use App\backend\Models\Carreras;
 use App\backend\Models\Docente;
 use App\backend\Models\Evidencias;
 use App\backend\Models\PeriodoAcademico;
+use App\backend\Models\Reportes;
 use App\backend\Models\Responsabilidades;
 use App\backend\Models\UsuariosDocente;
 use App\backend\Models\UsuariosResponsabilidad;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Responsable implements Controller
 {
@@ -23,6 +25,7 @@ class Responsable implements Controller
     private Carreras $carreras;
     private UsuariosResponsabilidad $usuariosResponsabilidad;
     private UsuariosDocente $usuariosDocente;
+    private Reportes $reportes;
     public function __construct()
     {
         $this->periodo = new PeriodoAcademico;
@@ -32,6 +35,7 @@ class Responsable implements Controller
         $this->evidencias = new Evidencias;
         $this->usuariosDocente = new UsuariosDocente;
         $this->usuariosResponsabilidad = new UsuariosResponsabilidad;
+        $this->reportes = new Reportes;
     }
 
     public function vista($variables = []): array
@@ -147,7 +151,9 @@ class Responsable implements Controller
                 'id_docentes' => $id_docente,
                 'id_responsabilidad' => intval($responsabilidad),
                 'id_carrera' => trim($_SESSION['carrera']),
-                'id_periodo_academico' => trim($_POST['periodo'])
+                'id_periodo_academico' => trim($_POST['periodo']),
+                'fecha_inicial' => trim($_POST['f_i']),
+                'fecha_final' => trim($_POST['f_f']),
             ];
             try{
                 $this->usuariosResponsabilidad->insert($data_usuarios_responsabilidad);
@@ -268,5 +274,58 @@ class Responsable implements Controller
             'ident' => 1,
             'evaluadores' => $evaluadores
         ]));
+    }
+
+    public function reporte(){
+        if(!isset($_GET['periodo'])){
+        Http::redirect('/coordinador/responsables');
+        }
+
+        $responsables = $this->reportes->datosCrononogramaResponsables(
+            trim($_SESSION['carrera']),
+            trim($_GET['periodo'])
+        );
+        $this->mostrarReporte($responsables);
+    }
+
+    private function mostrarReporte($datos){
+        date_default_timezone_set('America/Guayaquil');
+        $html = file_get_contents('./src/backend/Views/templates/layout_reporte_responsables.html');
+        $body = '';
+        foreach($datos  as $dato) {
+            $cedula = array_unique(preg_split('/---/',$dato->id_docente));
+            $apellido = array_unique(preg_split('/---/',$dato->apellido));
+            $correo = array_unique(preg_split('/---/',$dato->correo));
+            $criterios = array_unique(preg_split('/---/',$dato->nombre_criterio));
+            $f_i = array_unique(preg_split('/---/',$dato->fecha_inicial));
+            $f_f = array_unique(preg_split('/---/',$dato->fecha_final));
+            $body .= '<tr>
+                <td>'. $cedula[0] .'</td>
+                <td>'. $dato->nombre_docente . ' ' . preg_split('/ /',$apellido[0])[0] .'</td>
+                <td>'. $correo[0] .'</td>
+                <td>'. implode(',',$f_i) .'</td>
+                <td>'. implode(',',$f_f) .'</td>
+                <td>'. implode(', ',$criterios) .'</td>
+                ';
+            $body .= '</tr>';
+        }
+
+        $carrera = $this->carreras->selectFromColumn('id',$_SESSION['carrera'])->first();
+        $fecha = new \DateTime(); 
+        $html = preg_replace('/%content-tbody%/',$body,$html);
+        $html = preg_replace('/%carrera%/',strtoupper($carrera->nombre),$html);
+        $html = preg_replace('/%title%/','Reporte de evidencias almacenadas',$html);
+        $html = preg_replace('/%fecha%/',$fecha->format('Y/m/d'),$html);
+        $html = preg_replace('/%hora%/',$fecha->format('H:i'),$html);
+
+        $options = new Options();
+        $options->set('isRemoteEnabled', TRUE);
+        $pdf = new Dompdf($options);
+        $pdf->setPaper('A4','landscape');
+        $pdf->loadHtml($html);
+        $pdf->render();
+        header('Content-Type: application/pdf');
+        // $pdf->stream('reporteComplet.pdf',['compress' => 1]);
+        echo $pdf->output(['compress'=>1]);
     }
 }

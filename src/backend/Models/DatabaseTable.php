@@ -107,8 +107,8 @@ abstract class DatabaseTable extends Model
     /**
      * Esta funcion elimana un dato
      *
-     * @param string|int $primariKey es el primarykey de ese dato
-     *
+     * @param string|int $primaryKey es el primarykey de ese dato
+     * 
      * @return bool
      */
     public function deleteRaw(string|int $primaryKey): bool

@@ -18,7 +18,13 @@ use App\backend\Models\Docente;
 <body>
     <div class="contenedor-principal">
         <header class="l-enlinea-flex encabezado-principal">
-            <img src="/public/assets/img/software-logo.png" alt="logo de la carrera de software">
+            <img src="/public/assets/img/<?php
+                if(trim($_SESSION['carrera']) === 'SOF'){
+                    echo 'software-logo.png';
+                }else{
+                    echo 'ueb-logo.png';
+                }
+            ?>" alt="logo de la carrera o de la Universidad">
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <main class="cuerpo-principal">
@@ -66,7 +72,7 @@ use App\backend\Models\Docente;
                         <span class="material-icons text-negro">&#xe415;</span>
                         <span class="text-blanco bordes-op-menu ">Reportes</span>
                         </a>
-                        <a href="/coordinador/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/coordinador/notificaciones" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe7f4;</span>
                         <span class="text-blanco bordes-op-menu ">Notificaciones</span>
                         </a>
@@ -102,6 +108,7 @@ use App\backend\Models\Docente;
         </main>
     </div>
     <script src="/src/frontend/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.4/bowser.min.js"></script>
     <script src="/public/js/app.js" type="module"></script>
 </body>
 </html>

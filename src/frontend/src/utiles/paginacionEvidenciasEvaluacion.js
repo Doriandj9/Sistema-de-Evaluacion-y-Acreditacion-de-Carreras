@@ -72,7 +72,7 @@ import alerta from "./alertasBootstrap.js";
        <br> <span class='ver-mas'>Ver más</span>
         </td>
         <td>
-        <section class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
+        <section data-id-evidencia="${id_evidencias.toString().trim()}" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
            <span class="material-icons text-white">&#xe8f4;</span>  Ver
         </section>
         <input type="hidden" value="${cod_evidencias.toString()}"/> 
@@ -147,7 +147,6 @@ function presentancionLarga (tds) {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary text-white">Guardar Cambios</button>
               </div>
             
             </div>

@@ -7,7 +7,7 @@
 }
 
 .encabezado-principal{
-    height: 4rem;
+    height: 11vh;
     background-color: var(--color-encabezado);
 }
 .encabezado-principal img{
@@ -15,27 +15,39 @@
     height: 4rem;
 }
 .cuerpo-principal{
-    flex-grow: 1;
+    height: 89vh;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
+}
+.cuerpo-principal-2{
+    height: 75vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
 }
 .menu-lateral{
-    width: 16.5rem;
-    min-width: 16.5rem;
-    max-width: 16.5rem;
+    width: 18.5vw;
+    min-width: 18.5vw;
+    max-width: 18.5vw;
     background-color: var(--color-primario);
     border-right: 10px solid var(--color-secundario);
+    overflow: auto;
 }
 
 .contenedor-contenido-principal{
-    flex-grow: 1;
+    width: 82vw;
     background-color: white;
     display: flex;
     flex-direction: column;
+    max-height: 100%;
+    overflow: auto;
 }
 
 .contenido-principal{
     flex-grow: 1;
+    width: 100%;
+    overflow: auto;
 }
 .contenedor-contenido-vistas{
     width: 95%;
@@ -476,7 +488,7 @@ nav.flex-columna > a:last-child > span:last-child{
     padding: 0.5rem;
 }
 .desborde-auto:hover.barra-personalizada::-webkit-scrollbar-thumb{
-    background-color: var(--color-f-6);
+    background-color: var(--color-b-2);
     border-radius: 20px;
 }
 /* .desborde-auto:hover.barra-personalizada::-webkit-scrollbar-thumb:hover.barra-personalizada::-webkit-scrollbar{
@@ -498,7 +510,7 @@ nav.flex-columna > a:last-child > span:last-child{
 }
 .desborde-auto:hover.barra-personalizada{
     scrollbar-width: thin;
-    scrollbar-color: var(--color-f-6) #eee;
+    scrollbar-color: var(--color-b-2) #eee;
 }
 /*-------------------------------------------------------------------------------------------------*/
 
@@ -524,7 +536,9 @@ table.tabla-presentacion  thead > tr > th {
 table.tabla-presentacion tbody > tr > td{
         padding: 1rem 0.8rem;
 }
-
+.contenedor-numeros-paginacion{
+    margin-bottom: 1rem;
+}
 .contenedor-numeros-paginacion  button:hover{
     background-color: var(--color-f-4);
     color: white;
@@ -614,7 +628,7 @@ form,form::after,form::before,
     width: 65%;
 }
 .bg-color-gris {
-    background-color: var(--color-f-2);
+    background-color: var(--color-f-2) !important;
 }
 .h-p-1{
     height: 2rem;
@@ -901,6 +915,10 @@ form,form::after,form::before,
 }
 .selector{
     cursor: pointer;
+    transition: 0.2flex-wraps ease-in;
+}
+.selector:hover{
+    transform: scale(1.1);
 }
 .salir-vista{
     background-color: white;
@@ -967,4 +985,47 @@ section.boton{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.contenedor-nombre-archivo {
+    display: flex;
+}
+.contenedor-nombre-archivo > span {
+    display: block;
+    width: 50%;
+    border: 1px solid black;
+    height: 100%;
+    border-right-color: transparent;
+}
+.contenedor-nombre-archivo  button {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+.reporte-responsables{
+    position: absolute;
+    top: 7rem;
+    right: 0.5rem;
+}
+.contenedor-radios input[type="radio"]{
+    width: 2rem;
+    height: 2rem;
+}
+#estado > span {
+    display: inline-block;
+    width: 8rem;
+}
+
+.tarjeta {
+    width: 10rem;
+    padding: 0.5rem;
+    overflow: hidden;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+}
+.tarjeta > span {
+    display: block;
+    text-align: center;
+}
+.terminal {
+    padding: 0.5rem;
+    background-color: rgb(22, 21, 21);
+    color: rgb(190, 124, 0);
 }

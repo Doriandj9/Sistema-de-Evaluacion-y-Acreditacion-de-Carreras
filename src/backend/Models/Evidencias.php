@@ -89,6 +89,7 @@ class Evidencias extends DatabaseTable
 	string_agg(carreras_evidencias.fecha_inicial::text ,\'---\') as fecha_inicial,
 	string_agg(carreras_evidencias.fecha_final::text ,\'---\') as fecha_final,
 	string_agg(carreras_evidencias.estado ,\'---\') as estado,
+    string_agg(carreras_evidencias.verificada::text ,\'---\') as verificado,
     evidencias.id as id_evidencias
     from evidencias inner join carreras_evidencias on
     carreras_evidencias.id_evidencias = evidencias.id inner join 
@@ -196,6 +197,7 @@ class Evidencias extends DatabaseTable
                 string_agg(carreras_evidencias.fecha_inicial::text ,\'---\') as fecha_inicial,
                 string_agg(carreras_evidencias.fecha_final::text ,\'---\') as fecha_final,
                 string_agg(carreras_evidencias.estado ,\'---\') as estado,
+                string_agg(carreras_evidencias.verificada::text ,\'---\') as verificado,
                 evidencias.id as id_evidencias
                 from evidencias inner join carreras_evidencias on
                 carreras_evidencias.id_evidencias = evidencias.id inner join 
@@ -216,6 +218,69 @@ class Evidencias extends DatabaseTable
         return $collectionResult;
     }
 
+    public function obtenerDetalleEvidenciaVerifcacion($id_evidencia) {
+        $evidencias = DB::select('
+        select string_agg(criterios.nombre,\'---\') as nombre_criterio, 
+        string_agg(estandar.descripcion,\'---\') as descripcion_estandar,
+        string_agg(estandar.nombre,\'---\') as descripcion_estandar, 
+        string_agg(estandar.tipo,\'---\') as tipo_estandar, 
+        string_agg(elemento_fundamental.id,\'---\') as id_elemento,
+        string_agg(estandar.id,\'---\') as id_estandar,
+        string_agg(elemento_fundamental.descripcion,\'---\') as descripcion_elemento, 
+        string_agg(componente_elemento_fundamental.id_componente::text ,\'---\') as id_componente, 
+        string_agg(componente_elemento_fundamental.descripcion ,\'---\') as descripcion_componente,
+        string_agg(evidencias.nombre ,\'---\') as nombre_evidencias, 
+        evidencias.id as id_evidencias
+        from evidencias  inner join 
+        evidencia_componente_elemento_fundamental 
+        on evidencia_componente_elemento_fundamental.id_evidencias = evidencias.id inner join
+        componente_elemento_fundamental on 
+        componente_elemento_fundamental.id = evidencia_componente_elemento_fundamental.id_componente inner join 
+        elemento_fundamental on elemento_fundamental.id = componente_elemento_fundamental.id_elemento inner join 
+        estandar on estandar.id = elemento_fundamental.id_estandar inner join criterios 
+        on criterios.id = estandar.id_criterio where evidencias.id = ? 
+        GROUP BY evidencias.id
+        ',[$id_evidencia]);
+        return $evidencias ? $evidencias[0] : $evidencias;
+       }
+    
+    public function obtenerConTodosDatos() {
+            $evidencias = DB::select('
+            select string_agg(criterios.nombre,\'---\') as nombre_criterio, 
+            string_agg(estandar.descripcion,\'---\') as descripcion_estandar,
+            string_agg(estandar.nombre,\'---\') as nombre_estandar,
+            string_agg(elemento_fundamental.descripcion,\'---\') as descripcion_elemento, 
+            string_agg(evidencias.nombre ,\'---\') as nombre_evidencias, 
+            string_agg(componente_elemento_fundamental.descripcion ,\'---\') as descripcion_componente,
+            evidencias.id as id_evidencias
+            from evidencias  inner join 
+            evidencia_componente_elemento_fundamental 
+            on evidencia_componente_elemento_fundamental.id_evidencias = evidencias.id inner join
+            componente_elemento_fundamental on 
+            componente_elemento_fundamental.id = evidencia_componente_elemento_fundamental.id_componente inner join 
+            elemento_fundamental on elemento_fundamental.id = componente_elemento_fundamental.id_elemento inner join 
+            estandar on estandar.id = elemento_fundamental.id_estandar inner join criterios 
+            on criterios.id = estandar.id_criterio
+            GROUP BY evidencias.id
+            ');
+            return $evidencias;
+    }
 
-       
+    public function obtenerDatosComponentesElementos() {
+        $evidencias = DB::select('
+        select string_agg(criterios.nombre,\'---\') as nombre_criterio, 
+        string_agg(estandar.descripcion,\'---\') as descripcion_estandar,
+        string_agg(estandar.nombre,\'---\') as nombre_estandar,
+        string_agg(elemento_fundamental.descripcion,\'---\') as descripcion_elemento, 
+        string_agg(componente_elemento_fundamental.descripcion ,\'---\') as descripcion_componente,
+        string_agg(elemento_fundamental.id ,\'---\') as id_elemento,
+        componente_elemento_fundamental.id as id_componente
+        from componente_elemento_fundamental inner join
+        elemento_fundamental on elemento_fundamental.id = componente_elemento_fundamental.id_elemento inner join 
+        estandar on estandar.id = elemento_fundamental.id_estandar inner join criterios 
+        on criterios.id = estandar.id_criterio
+        GROUP BY componente_elemento_fundamental.id
+        ');
+        return $evidencias;
+}
 }

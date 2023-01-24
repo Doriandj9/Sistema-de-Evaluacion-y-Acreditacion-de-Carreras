@@ -3,6 +3,7 @@
 namespace App\backend\Models;
 
 use App\backend\Application\Utilidades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class Reportes {
 
@@ -184,5 +185,108 @@ class Reportes {
         }
        
         return;
+    }
+
+    public function datosCrononogramaResponsables($id_carrera,$periodo,) {
+        $responsables = DB::select(
+            'select
+                string_agg(docentes.apellido,\'---\') as apellido,
+                string_agg(docentes.correo,\'---\') as correo,
+                string_agg(criterios.nombre,\'---\') as nombre_criterio,
+                string_agg(docentes.id,\'---\') as id_docente, 
+                string_agg(criterios.id,\'---\') as id_criterio,
+                string_agg(usuarios_responsabilidad.fecha_inicial::text,\'---\')
+                 as fecha_inicial,
+                string_agg(usuarios_responsabilidad.fecha_final::text,\'---\') 
+                as fecha_final,
+                docentes.nombre as nombre_docente
+                from usuarios_responsabilidad
+                inner join responsabilidad  on responsabilidad.id = usuarios_responsabilidad.id_responsabilidad
+                inner join criterios on criterios.id = responsabilidad.id_criterio
+                inner join docentes on docentes.id = usuarios_responsabilidad.id_docentes
+                where usuarios_responsabilidad.id_carrera = ? and
+                usuarios_responsabilidad.id_periodo_academico = ?
+                GROUP BY docentes.nombre',
+                [$id_carrera,$periodo]);
+           $collection = new Collection($responsables);
+           return $collection;
+    }
+
+    /**
+     * @param string $id_docente es el id del evaluador
+     * @param string $carrera es el id de la carrera
+     * @param string $periodo es el id del periodo academico
+     * 
+     */
+    public function obtenerDatosReporteEvaluador($id_docente,$carrera,$periodo) {
+        $datos = DB::table('evaluacion')
+        ->join(
+            'evidencias_evaluacion',
+            'evidencias_evaluacion.id_evaluacion',
+            '=',
+            'evaluacion.id'
+        )->join(
+            'evaluacion_docentes',
+            'evaluacion_docentes.id_evaluacion',
+            '=',
+            'evaluacion.id'
+        )->join(
+            'docentes',
+            'docentes.id',
+            'evaluacion_docentes.id_docente'
+        )->join(
+            'evidencias','evidencias.id',
+            '=','evidencias_evaluacion.id_evidencia'
+        )
+        ->where('evaluacion_docentes.id_docente','=',$id_docente)
+        ->where('evidencias_evaluacion.id_carrera','=',$carrera)
+        ->where('evidencias_evaluacion.id_periodo','=',$periodo)
+        ->select([
+            'docentes.nombre as nombre_docente',
+            'docentes.apellido as apellido_docente',
+            'evaluacion.nota as calificacion',
+            'evaluacion.observacion as observacion',
+            'evidencias.nombre as nombre_evidencia'
+        ])
+        ->get();
+        return $datos;
+    }
+
+    /**
+     * @param string $carrera es el id de la carrera
+     * @param string $periodo es el id del periodo academico
+     * 
+     */
+    public function obtenerDatosReporteEvaluacionCarrera($carrera,$periodo) {
+        $datos = DB::table('evaluacion')
+        ->join(
+            'evidencias_evaluacion',
+            'evidencias_evaluacion.id_evaluacion',
+            '=',
+            'evaluacion.id'
+        )->join(
+            'evaluacion_docentes',
+            'evaluacion_docentes.id_evaluacion',
+            '=',
+            'evaluacion.id'
+        )->join(
+            'docentes',
+            'docentes.id',
+            'evaluacion_docentes.id_docente'
+        )->join(
+            'evidencias','evidencias.id',
+            '=','evidencias_evaluacion.id_evidencia'
+        )
+        ->where('evidencias_evaluacion.id_carrera','=',$carrera)
+        ->where('evidencias_evaluacion.id_periodo','=',$periodo)
+        ->select([
+            'docentes.nombre as nombre_docente',
+            'docentes.apellido as apellido_docente',
+            'evaluacion.nota as calificacion',
+            'evaluacion.observacion as observacion',
+            'evidencias.nombre as nombre_evidencia'
+        ])
+        ->get();
+        return $datos;
     }
 }

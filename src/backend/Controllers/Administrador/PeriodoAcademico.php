@@ -111,7 +111,6 @@ class PeriodoAcademico implements Controller
                         'mensaje' => $e->getMessage()
                     ]
                 ));
-                break;
             }
         }
 
@@ -126,6 +125,7 @@ class PeriodoAcademico implements Controller
 
     private function habilitarEvidenciasACarreras(array $carreras, string $id_periodo) {
         $evidencias  = $this->evidencias->select();
+        $periodoVigente = $this->periodoAcademico->selectFromColumn('id',$id_periodo)->first();
         $carrerasEvidenciasData = [];
         foreach($carreras as $carrera) {
             $facultad = $this->carreras->selectFromColumn('id',$carrera,['id_facultad'])->first();
@@ -134,7 +134,9 @@ class PeriodoAcademico implements Controller
                     'id_periodo_academico' => $id_periodo,
                     'id_evidencias' => $evidencia->id,
                     'id_carrera' => $carrera,
-                    'cod_evidencia' => $facultad->id_facultad . '-' .$carrera . ' ' .  $evidencia->id
+                    'cod_evidencia' => trim($facultad->id_facultad) . '-' .trim($carrera) . ' ' . trim($evidencia->id),
+                    'fecha_inicial' => $periodoVigente->fecha_inicial,
+                    'fecha_final' => $periodoVigente->fecha_final
                 ];
                 array_push($carrerasEvidenciasData,$data_carreras_evidencias);
             }
@@ -144,7 +146,9 @@ class PeriodoAcademico implements Controller
             'id_periodo_academico',
             'id_evidencias',
             'id_carrera',
-            'cod_evidencia'
+            'cod_evidencia',
+            'fecha_inicial',
+            'fecha_final'
         ]);
     }
 }

@@ -41,6 +41,7 @@ function accionListar(){
     Usuarios.obtenerResponsables(select.value.trim())
     .then(renderResponsables)
     .catch(console.log)
+    perdirReporte();
 }
 
 /**
@@ -63,6 +64,17 @@ function renderResponsables(respuesta) {
     }
 }
 
+function perdirReporte (){
+    const select  = document.getElementById('periodos');
+    reporte();
+    function reporte(){
+        const dir = document.getElementById('reporte-responsables');
+        let hrefR = dir.dataset.dir;
+        hrefR += '?periodo=' + select.value.trim();
+        dir.href = hrefR;
+    }
+    select.addEventListener('change',reporte);
+}
 
 
 
@@ -182,6 +194,12 @@ document.addEventListener('deploy.evidencia',e => {
     const {evidencia} = e.detail;
     const criterio = [...new Set(evidencia.nombre_criterio.split('---'))];
     const nombre_Evidencia = [...new Set(evidencia.nombre_evidencias.split('---'))];
+    let htmls = '';
+    nombre_Evidencia.forEach(name => {
+        htmls += `
+        <li>${name}</li>
+        `; 
+    });
     let html = `
     <div class="mb-3">
     <div class="row">
@@ -189,7 +207,9 @@ document.addEventListener('deploy.evidencia',e => {
            <strong> Evidencias a cargo </strong>
         </label>
         <div class="col-sm-8">
-          ${nombre_Evidencia.toString()}
+          <ul style="list-style: inside;">
+            ${htmls}
+          </ul>
         </div>
     </div>
     <div id="evideciaHelp" class="form-text mb-3">Nota: Esta responsabilidad estará a cargo de subir estas evidencias</div>     
@@ -243,6 +263,11 @@ function verificarOpciones(e) {
         const f_i = fecha_inicial.value.split('-');
         let date = new Date(`${f_i[1]}-${f_i[2]}-${f_i[0]}`);
         let datePeriodo = new Date(`${fecha_inicial_periodo[1]}-${fecha_inicial_periodo[2]}-${fecha_inicial_periodo[0]}`);
+        if(bowser.name.includes('Firefox')){
+           date = new Date(option[0].dataset.fechaInicial.trim().replace(/-/g,'/'));
+           datePeriodo = new Date(`${fecha_inicial_periodo[0]}/${fecha_inicial_periodo[1]}/${fecha_inicial_periodo[2]}`);
+
+        }
         if(!(date.getTime() >= datePeriodo.getTime())){
             alerta('alert-warning','El tiempo que ingreso debe ser mayor a la fecha inicial '+
             'del periodo academico ' + fecha_inicial_periodo.join('-'),5000);
@@ -361,6 +386,7 @@ function verificarDatosEvaludor(e,form) {
 function renderRespuestaEvaludores(respuesta) {
     precarga.end();
     if(respuesta.ident) {
+        listarEvaludores();
         new Notificacion(respuesta.mensaje,'Aceptar',false);
         new Notificacion(
             Boolean(respuesta.identEmail) === true ? '' +  respuesta.email : 'Ocurrio un error al enviar el correo electronico <br>' 
@@ -389,13 +415,7 @@ function renderListaEvaludores(respuesta) {
     if(respuesta.ident) {
         const tbody = contenedorVistas.querySelector('tbody');
         const contenedorNumeros = contenedorVistas.querySelector('.contenedor-numeros-paginacion');
-        const busqueda = document.getElementById('busqueda');
         const {evaluadores} = respuesta;
         paginacionEvaludoresCarrera(evaluadores,3,1,tbody,contenedorNumeros);
-        busqueda.addEventListener('input',(function(evaluadores){
-            return () => {
-            paginacionEvaludoresCarrera(evaluadores,3,1,tbody,contenedorNumeros,null,'nombre_docente',busqueda.value.trim());
-            };
-        })(evaluadores))
     }
 }

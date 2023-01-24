@@ -10,24 +10,48 @@ use App\backend\Application\Utilidades\Http;
 use App\backend\Models\Docente;
 use App\backend\Models\Evidencias as ModelsEvidencias;
 use App\backend\Models\PeriodoAcademico;
-
+use App\backend\Models\UsuariosDocente;
 
 class Evidencias implements Controller
 {
     private PeriodoAcademico $periodoAcademico;
     private ModelsEvidencias $evidenciasModel;
     private Docente $docente;
+    private UsuariosDocente $usuarios;
     public function __construct()
     {
         $this->periodoAcademico = new PeriodoAcademico;
         $this->evidenciasModel = new ModelsEvidencias;
         $this->docente = new Docente;
+        $this->usuarios = new UsuariosDocente;
     }
 
     public function vista($variables = []): array
     {
         $periodoAcademicos = $this->periodoAcademico->select(true,'id','desc');
         $variables['periodos'] = $periodoAcademicos;
+        $coodinadores = $this->usuarios->selectFromColumnsUsuarios(
+            'id_usuarios',
+            'id_carrera',
+            Docente::COORDINADORES,
+            trim($_SESSION['carrera'])
+        );
+        list($verificacion, $errores) = $this->docente->verificacionEstado($coodinadores);
+        $activos = array_filter($verificacion->toArray(), function($dato){
+            if($dato->estado === 'activo'){
+                return true;
+            }
+
+            return false;
+        });
+        $coodinador = [];
+        foreach($activos as $activo) {
+            if($activo) {
+                array_push($coodinador,$activo);
+                continue;
+            }
+        }
+        $variables['coordinador'] = $coodinador[0];
         return [
             'title' => 'Docente - Evidencias',
             'template' => 'docentes/evidencias.html.php',
@@ -67,7 +91,8 @@ class Evidencias implements Controller
         $datosReferentes = [
             'periodo' => trim($_POST['periodo']),
             'idEvidencia' => trim($_POST['cod_evidencia']),
-            'archivoBase64' => $fileABase64
+            'archivoBase64' => $fileABase64,
+            'nombre_archivo' => $fileName
         ];
         $tiposArchivosGuardar = [
             'application/pdf' => function($datos) {
@@ -99,7 +124,10 @@ class Evidencias implements Controller
         $fecha_registro = new \DateTime();
         $data_guardar = [
             $tipo => $datos['archivoBase64'],
-            'fecha_registro' => $fecha_registro->format('Y-m-d')
+            'fecha_registro' => $fecha_registro->format('Y-m-d'),
+            'id_responsable' => trim($_SESSION['ci']),
+            'estado' => 'Almacenado',
+            'nombre_documento' => $datos['nombre_archivo']
         ];
         try{
             $result = $this->evidenciasModel->guardarEvidencia(

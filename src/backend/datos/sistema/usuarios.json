@@ -1,0 +1,29 @@
+{
+    "usuarios":[
+        {
+            "id": 1,
+            "nombre": "DOCENTES",
+            "permisos": 1
+        },
+        {
+            "id": 2,
+            "nombre": "DIRECTOR DE PLANEAMIENTO",
+            "permisos": 2
+        },
+        {
+            "id": 4,
+            "nombre": "COORDINADORES",
+            "permisos": 4
+        },
+        {
+            "id": 8,
+            "nombre": "EVALUADORES",
+            "permisos": 8
+        },
+        {
+            "id": 16,
+            "nombre": "ADMINISTRADOR",
+            "permisos": 16
+        }
+    ]
+}

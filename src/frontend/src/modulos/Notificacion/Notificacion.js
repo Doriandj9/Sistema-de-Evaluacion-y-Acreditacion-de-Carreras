@@ -43,6 +43,11 @@ class Notificacion_Componente extends HTMLElement {
         if(name === 'color-texto') {
             this.notificacion.style.setProperty('--color-texto',newValue);
         }
+        if(name === 'size') {
+            if(newValue != 'null') {
+                this.notificacion.style.width = newValue;
+            }
+        }
     }
 
    
@@ -52,7 +57,7 @@ class Notificacion_Componente extends HTMLElement {
 
 
 Notificacion_Componente.template = document.createElement('template');
-Notificacion_Componente.observedAttributes = ['mensaje','bg-color-notificacion','texto-boton','bg-color-boton','color-texto'];
+Notificacion_Componente.observedAttributes = ['mensaje','bg-color-notificacion','texto-boton','bg-color-boton','color-texto','size'];
 
 fetch('/src/frontend/src/modulos/Notificacion/template.html')
 .then(res => res.text())
@@ -76,8 +81,9 @@ export default class Notificacion {
         notificacion_componente.setAttribute('color-texto',color_texto);
         notificacion_componente.setAttribute('texto-boton',text_button);
         notificacion_componente.setAttribute('bg-color-boton',backgrod_color_button);
+        notificacion_componente.setAttribute('size',
+        mensaje.length >= 100 ? '80%':'null');
         notificacion_componente.addEventListener('keyadd', e =>{
-            console.log('1231');
             console.log(e.detail);
         })
         document.body.prepend(notificacion_componente);

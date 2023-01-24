@@ -18,7 +18,13 @@ use App\backend\Models\Docente;
 <body>
     <div class="contenedor-principal">
         <header class="l-enlinea-flex encabezado-principal">
-            <img src="/public/assets/img/software-logo.png" alt="logo de la carrera de software">
+        <img src="/public/assets/img/<?php
+                if(trim($_SESSION['carrera']) === 'SOF'){
+                    echo 'software-logo.png';
+                }else{
+                    echo 'ueb-logo.png';
+                }
+            ?>" alt="logo de la carrera o de la Universidad">
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <main class="cuerpo-principal">
@@ -50,11 +56,11 @@ use App\backend\Models\Docente;
                         <span class="material-icons text-negro">&#xef42;</span>
                         <span class="text-blanco bordes-op-menu">Evaluación</span>
                         </a>
-                        <a href="/docente/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/evaluador/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe415;</span>
                         <span class="text-blanco bordes-op-menu ">Reportes</span>
                         </a>
-                        <a href="/docente/cambio/clave" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/evaluador/cambio/clave" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeade;</span>
                         <span class="text-blanco bordes-op-menu ">Cambiar Contraseña</span>
                         </a>

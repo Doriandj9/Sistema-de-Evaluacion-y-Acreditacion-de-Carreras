@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\backend\Application\Rutas;
 
+use App\backend\Controllers\Coordinador\CambioClave;
 use App\backend\Controllers\Coordinador\Docentes;
 use App\backend\Controllers\Coordinador\Evidencias;
 use App\backend\Controllers\Coordinador\Inicio;
+use App\backend\Controllers\Coordinador\Notificaciones;
 use App\backend\Controllers\Coordinador\Reportes;
-use App\backend\Controllers\Coordinador\Responsabilidades;
 use App\backend\Controllers\Coordinador\Responsable;
 use App\backend\Frame\Route;
 use App\backend\Models\Docente;
@@ -22,6 +23,8 @@ class RutasCoordinador implements Route
         $evidencias = new Evidencias;
         $responsables = new Responsable;
         $reportes = new Reportes;
+        $notificaciones = new Notificaciones;
+        $cambioClave = new CambioClave;
         return [
             'coordinador' => [
                 'GET' => [
@@ -99,6 +102,12 @@ class RutasCoordinador implements Route
                     'action' => 'listarResponsables'
                 ],
             ],
+            'coordinador/reporte/responsables' =>  [
+                'GET' => [
+                    'controller' => $responsables,
+                    'action' => 'reporte'
+                ]
+                ],
             'coordinador/datos/responsabilidades' => [
                 'GET' => [
                     'controller' => $responsables,
@@ -152,7 +161,49 @@ class RutasCoordinador implements Route
                     'controller' => $reportes,
                     'action' => 'generar'
                 ]
-            ]
+                ],
+            'coordinador/notificaciones' => [
+                'GET' => [
+                    'controller' => $notificaciones,
+                    'action' => 'vista'
+                ],
+            ],
+            'coordinador/obtener/notificaciones' => [
+                'GET' => [
+                    'controller' => $notificaciones,
+                    'action' => 'listarNotificaciones'
+                ],
+            ],
+            'coordinador/leido/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'leidoNotificacion'
+                ],
+            ],
+            'coordinador/borrar/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'borrarNotificacion'
+                ],
+            ],
+            'coordinador/enviar/notificaciones' => [
+                'POST' => [
+                    'controller' => $notificaciones,
+                    'action' => 'enviarNotificacion'
+                ],
+            ],
+            'coordinador/verficar/detalle/evidencias' => [
+                'GET' => [
+                    'controller' => $evidencias,
+                    'action' => 'evidenciaVerificacion'
+                ],
+            ],
+            'coordinador/cambio/clave' => [
+                'GET' => [
+                    'controller' => $cambioClave,
+                    'action' => 'vista'
+                ],
+            ],
         ];
     }
     public function getTemplate(): string

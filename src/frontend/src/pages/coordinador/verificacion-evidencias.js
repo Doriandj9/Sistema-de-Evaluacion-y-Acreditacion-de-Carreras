@@ -27,12 +27,10 @@ function renderEvidencias(respuesta) {
         const contenedorNumeros = document.body.querySelector('.contenedor-numeros-paginacion');
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
-        paginacionEvidenciasVerificacion(evidencias,8,1,tbody,contenedorNumeros);
-        busqueda.addEventListener('input',(function(evidencias){
-            return () => {
-            paginacionEvidenciasVerificacion(evidencias,8,1,tbody,contenedorNumeros,null,'nombre_evidencias',busqueda.value.trim());
-            };
-        })(evidencias))
+        paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros);
+        busqueda.addEventListener('input',() => {
+            paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros,null,null,'nombre_evidencia',busqueda.value.trim());
+        })
       }else{
         spinner.remove();
         alerta('alert-danger','Error del servidor',3000);
@@ -46,7 +44,28 @@ document.addEventListener('display.modal.verf', e => {
    form.addEventListener('submit',guardarDatos);
    traerDocumento(id_evidencias);
 })
-
+document.addEventListener('display.modal.noti',(e) => {
+    const [modal,modalBootstrap] = e.detail;
+    const form = modal.querySelector('form');
+    const textarea = modal.querySelector('#comentario-e');
+    form.addEventListener('submit',(e) => {
+        e.preventDefault();
+        const opciones = form.querySelectorAll('input[type=radio]:checked');
+        if(opciones.length <= 0 ){
+            alerta('alert-danger','Por favor, indique si el docente puede volver a subir el documento de información o no es necesario.',5000);
+            return;
+        }
+        if(textarea.value.trim() === ''){
+            new Notificacion(`La fuente de información no contiene una observación,
+            se enviara al docente el siguiente mensaje: Sin obsevaciones. <br> 
+            Si esta de acuerdo, vuelva a enviar los datos.`,'Aceptar',false);
+            textarea.textContent = 'Sin obsevaciones.';
+            return;
+        }
+        modalBootstrap.hide();
+       enviarDatos(form);
+    }) 
+})
 function traerDocumento(id){
     Evidencias.obtenerEvidenciaIndvidual(periodo.value.trim(),id,'coordinador')
     .then(guardarBlobs)

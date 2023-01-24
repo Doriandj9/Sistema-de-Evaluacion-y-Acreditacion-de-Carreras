@@ -4,7 +4,7 @@ import alerta from "../../utiles/alertasBootstrap.js";
 import Evidencias from "../../models/Evidencias.js";
 import { paginacionEvidencias } from "../../utiles/paginacionEvidencias.js";
 import VisualizadorPDF from "../../modulos/VisualizadorPDF/VisualizadorPDF.js";
-
+import Notificacion from "./../../modulos/Notificacion/Notificacion.js"
 
 MenuOpcionesSuperior.correr();
 const contenedorVistas = document.getElementById('cambio-vistas');
@@ -50,13 +50,20 @@ function renderEvidencias(respuesta,opcion) {
         const contenedorNumeros = contenedorVistas.querySelector('.contenedor-numeros-paginacion');
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
-        paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === mostrarEvidencias ? null: mostrarFormSubirArchivo);
+        paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo);
         busqueda.addEventListener('input',(function(evidencias){
             return () => {
-            paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === mostrarEvidencias ? null: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
+                if(busqueda.value.trim() !== '') {
+                    paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim(),true);
+                    opcion === 'ver' ? mostrarEvidencias(): mostrarFormSubirArchivo();
+
+                }else {
+                    paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo);
+                    opcion === 'ver' ? mostrarEvidencias(): mostrarFormSubirArchivo();
+                }
             };
         })(evidencias))
-        opcion === mostrarEvidencias() ? null: mostrarFormSubirArchivo();
+        opcion === 'ver' ? mostrarEvidencias(): mostrarFormSubirArchivo();
       }else{
         spinner.remove();
         alerta('alert-danger','Error del servidor',3000);
@@ -232,11 +239,12 @@ function mostrarFormSubirArchivo() {
     modal.addEventListener('hidden.bs.modal',(e) => {
         modal.remove();
     })
-    activarDrop(button,modal);
+    let fila = button.parentElement.parentElement;
+    activarDrop(button,modal,modalBootstrap,fila);
     const inputs = form.querySelectorAll('input[type="file"]');
     inputs.forEach((inp) => {
         inp.onchange = (e) => {
-            opcionEviar(e,button,modal);
+            opcionEviar(e,button,modal,modalBootstrap,fila);
         }
     })
     });
@@ -248,7 +256,7 @@ function mostrarFormSubirArchivo() {
  * @param {Event} e 
  * @param {HTMLFormElement} button 
  */
-function opcionEviar(e,buttonEvent,modal){
+function opcionEviar(e,buttonEvent,modal,modalBootstrap,fila){
     const id_evidencia = buttonEvent.nextElementSibling;
     const file = e.target.files[0];
     const formData = new FormData();
@@ -257,7 +265,7 @@ function opcionEviar(e,buttonEvent,modal){
     const select = document.getElementById('periodos');
     formData.append('periodo',select.value.trim());
     formData.append('cod_evidencia',id_evidencia.value.trim());
-    subirEvidencia(formData,pre,modal);
+    subirEvidencia(formData,pre,modal,modalBootstrap,fila);
 }
 /**
  * 
@@ -265,7 +273,7 @@ function opcionEviar(e,buttonEvent,modal){
  * @param {*} obje 
  * @param {HTMLElement} modal 
  */
-function subirEvidencia(formData,obje,modal) {
+function subirEvidencia(formData,obje,modal,modalBootstrap,fila) {
     const modalContent = modal.querySelector('.modal-body');
     const confirmacionHML = confirmHTML(formData.get('file'));
     modalContent.append(confirmacionHML);
@@ -276,8 +284,11 @@ function subirEvidencia(formData,obje,modal) {
         e.preventDefault();
         e.stopPropagation();
         confirmacionHML.remove();
+        modalBootstrap.hide();
+        precarga = new Precarga();
+        precarga.run();
         Evidencias.subirEvidencias(formData)
-        .then(renderRespuesta)
+        .then(res => renderRespuesta(res,modalBootstrap,fila))
         .catch(console.log)
     })
     verPDf.addEventListener('click', e => {
@@ -287,15 +298,18 @@ function subirEvidencia(formData,obje,modal) {
     })
     
 }
-function renderRespuesta(respuesta) {
-    spinner.remove();
+function renderRespuesta(respuesta,modalBootstrap,fila) {
+    precarga.end();
     if(respuesta.ident){
-        alerta('alert-success',respuesta.mensaje,5000);
+        const almace = fila.querySelector('#estado').querySelector('span');
+        almace.innerHTML = '<strong>Almacenado: SI </strong> ';
+        new Notificacion(respuesta.mensaje,'Aceptar',false);
     }else{
         alerta('alert-danger',respuesta.mensaje,10000);
+        modalBootstrap.show();
     }
 }
-function activarDrop(button,modal) {
+function activarDrop(button,modal,modalBootstrap,fila) {
 const id_evidencia = button.nextElementSibling;
 const drop = document.getElementById('drag');
     drop.addEventListener('dragenter',e => {
@@ -314,18 +328,18 @@ const drop = document.getElementById('drag');
         e.preventDefault();
         e.target.classList.remove('drag-active');
         const file = e.dataTransfer.files[0];
-        dropArchivos(file,e.target,id_evidencia.value,modal);
+        dropArchivos(file,e.target,id_evidencia.value,modal,modalBootstrap,fila);
     })
 }
 
-function dropArchivos(file,target,id_evidencia,modal) {
+function dropArchivos(file,target,id_evidencia,modal,modalBootstrap,fila) {
     if(file.type === 'application/pdf') {
         const select = document.getElementById('periodos');
         const formData = new FormData();
         formData.append('file',file);
         formData.append('cod_evidencia',id_evidencia);
         formData.append('periodo',select.value.trim());
-        subirEvidencia(formData,target,modal);
+        subirEvidencia(formData,target,modal,modalBootstrap,fila);
     }else{
         alerta('alert-danger','No se permite subir otro tipo de archivo que no sea pdf.',5000);
     }

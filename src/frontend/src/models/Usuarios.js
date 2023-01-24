@@ -274,4 +274,57 @@ export default class Usuarios {
 			console.log(e)
         }
     }
+    /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async recuperarClave(formData){
+        try{
+            const consulta = await fetch(`/clave-temporal`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async actualizarDocentes(formData){
+        try{
+            const consulta = await fetch(`/admin/actualizar/docentes/csv`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+
+     /**
+	 * 
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async obtenerEvaluadores(){
+        try{
+            const consulta = await fetch(`/director-planeamiento/obtener/evaluadores`);
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
+     /**
+	 * @param {FormData} formData
+	 * @returns {Promise} <JSON>
+ 	*/
+	 static async registrarEvaluadoresACarreras(formData){
+        try{
+            const consulta = await fetch(`/director-planeamiento/registro/evaluadores`,{method: 'POST',body: formData});
+            const respuesta = await consulta.json();
+            return respuesta;            
+        }catch(e){
+			console.log(e)
+        }
+    }
 }

@@ -14,11 +14,11 @@
 <body>
     <div class="contenedor-principal">
         <header class="l-enlinea-flex encabezado-principal">
-            <img src="/public/assets/img/software-logo.png" alt="logo de la carrera de software">
+            <img src="/public/assets/img/ueb-logo.png" alt="logo de la carrera de software">
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <main class="cuerpo-principal">
-            <div class="menu-lateral">
+            <div class="menu-lateral barra-personalizada desborde-auto">
                 <div class="contenedor-informacion">
                     <h4>Información</h4>
                     <ul class="flex-columna gap-flex-1 list-unstyled">
@@ -56,11 +56,11 @@
                         <span class="material-icons text-negro">&#xe9b1;</span>
                         <span class="text-blanco bordes-op-menu ">Director de Planeación</span>
                         </a>
-                        <a href="/admin/administrar/director-planeacion" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin/actualizar/docentes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xf233;</span>
                         <span class="text-blanco bordes-op-menu ">Datos Docentes</span>
                         </a>
-                        <a href="/admin/administrar/director-planeacion" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/admin/respaldo/db" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xe1db;</span>
                         <span class="text-blanco bordes-op-menu ">Respaldos</span>
                         </a>

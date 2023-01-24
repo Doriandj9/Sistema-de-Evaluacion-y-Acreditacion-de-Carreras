@@ -1,0 +1,881 @@
+{
+    "componentes_elementos_fundamentales":[
+        {
+            "id_componente":"1",
+            "id_elemento":"1",
+            "descripcion":"La carrera responde a través de su misión, con el contexto y la planificación nacional para el desarrollo"
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"2",
+            "descripcion":"La carrera cuenta con una estructura organizacional en concordancia con su misión y visión  y con la misión y visón de la institución; y ha definido mecanismos y procedimientos que garantizan la evaluación y monitorización del impacto de la carrera en su contexto."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"3",
+            "descripcion":"El proyecto académico de la carrera se fundamenta en estudios de pertinencia vigentes considerando con claridad la necesidad de la oferta académica de la carrera y el impacto que tendrá en el contexto y en las necesidades identificadas."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"4",
+            "descripcion":"Los objetivos de la carrera son coherentes con la conformación de la planta académica, los grupos y líneas de investigación definidos, así como las demandas académico-profesionales del contexto y planificación local, regional y/o nacional."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"5",
+            "descripcion":"Las autoridades definen prioridades y toman decisiones para el desarrollo y prospectiva de la carrera, en función de la misión y objetivos; en particular, al menos sobre la declaración de principios y funciones sustantivas contemplados para la educación superior: docencia, investigación y vinculación con la sociedad."
+        },
+        {            
+            "id_componente":"1",
+            "id_elemento":"6",
+            "descripcion":"El planteamiento y análisis de estrategias, así como resultados esperados de la carrera, cuenta con la participación de actores relevantes como autoridades académicas, cuerpo académico y organizaciones profesionales públicas y/o privadas o científicas del contexto local, regional o nacional."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"7",
+            "descripcion":"Existen mecanismos y procedimientos que permiten la evaluación periódica del impacto de la carrera de su misión y visión y objetivos así como también el análisis de las necesidades del contexto laboral, académico y social."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"8",
+            "descripcion":"Las autoridades académicas de la carrera planifican, en el corto y mediano plazo para alcanzar los objetivos estratégicos, en función de la misión y la visión de la carrera y de la institución."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"9",
+            "descripcion":"Los actores relevantes involucrados en los procesos de planificación incluyen, de manera coherente con la misión y visión de la carrera, la participación de estudiantes, graduados, profesores e investigadores, empleadores, organizaciones profesionales externas a la institución, organizaciones del estado o privadas, organizaciones científicas y representantes de la industria, según corresponda."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"10",
+            "descripcion":"La planificación disponible de la carrera considera los estudios de estado actual y prospectivo que demuestran la pertinencia local, regional o nacional de la carrera, y las tendencias mundiales del área de conocimiento de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"11",
+            "descripcion":"La carrera cuenta con estrategias para la formación, captación y el fomento de la carrera profesional del personal académico, la adquisición de la infraestructura necesaria, el desarrollo de redes con instituciones nacionales o internacionales, y articula sus políticas con las instancias académicas encargadas del desarrollo, apoyo y promoción de los grupos de investigación existentes en la institución que se relacionan con la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"12",
+            "descripcion":"La planificación es construida con mecanismos, actores y procedimientos que contribuyen a alcanzar la misión y la visión de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"13",
+            "descripcion":"La unidad académica de carrera ha definido mecanismos y procesos para garantizar el logro de los resultados de aprendizaje de los estudiantes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"14",
+            "descripcion":"El aseguramiento interno de la calidad repercute en la formulación de estrategias para mejorar los procesos de enseñanza-aprendizaje a lo largo de toda la planificación académica."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"15",
+            "descripcion":"La carrera demuestra que apoya y motiva la participación efectiva de los estudiantes y profesores en los procesos de autoevaluación de la calidad, evaluación externa y acreditación, a través de mecanismos que posibilitan que sus propuestas sean tomadas en cuenta, para garantizar el logro de los resultados de aprendizaje esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"16",
+            "descripcion":"Los resultados de los procesos de autoevaluación en los que participan estudiantes son analizados e incluidos en estrategias para el mejoramiento de la carrera/unidad/institución."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"17",
+            "descripcion":"La carrera difunde y socializa los resultados de los procesos de autoevaluación y evaluación externa a la comunidad académica. y define estrategias de mejoramiento con la participación de actores clave del cuerpo académico y estudiantes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"18",
+            "descripcion":"Las autoridades académicas de la carrera demuestran que la gestión del aseguramiento interno de la calidad se sustenta en evidencia empírica, tales como: los resultados de los procesos implementados (como la autoevaluación) y los insumos disponibles en los sistemas institucionales de información."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"19",
+            "descripcion":"La carrera ha definido estrategias y demuestra apoyar y dar seguimiento a los estudiantes que deben rendir o han rendido el Examen Nacional de Evaluación de Carreras o el Examen de Habilitación para el ejercicio Profesional."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"20",
+            "descripcion":"Los proyectos de vinculación relacionados con la carrera se estructuran en función de los dominios académicos, la composición de la planta académica, las líneas de investigación, y se recogen en la planificación estratégica de la unidad académica que integra la carrera, de manera consistente con su misión y visión."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"21",
+            "descripcion":"La carrera demuestra que está en la capacidad de interrelacionar y articular los proyectos de vinculación con la sociedad con las actividades de docencia y con la investigación expresada en los diferentes proyectos y/o programas."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"22",
+            "descripcion":"Los objetivos, actividades y resultados de los proyectos de vinculación tienen un enfoque académico, demostrando el impacto que la carrera puede tener en su contexto."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"23",
+            "descripcion":"La carrera demuestra que puede evaluar si los resultados de los proyectos de vinculación con la sociedad fueron los esperados e incluyeron en la población objetivo de acuerdo a los objetivos de la vinculación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"24",
+            "descripcion":"Los proyectos de vinculación con la sociedad, en los que participan estudiantes, contribuyen al desarrollo de los resultados de aprendizaje esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"25",
+            "descripcion":"El equipo que gestiona los procesos académicos ha definido, a través de un mecanismo de participación de la comunidad académica, los procesos académicos sustantivos para garantizar la calidad de la educación superior, en el marco de una misión, visión objetivos estratégicos y resultados esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"26",
+            "descripcion":"La organización de los procesos académicos, contribuye directamente y de manera significativa, a planificar la distribución horaria de los profesores para las actividades de docencia, vinculación e investigación, de acuerdo a su tiempo de dedicación, y a alcanzar los resultados esperados de producción científica e investigación, aseguramiento interno de la calidad y considera la normativa del sistema de educación superior."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"27",
+            "descripcion":"Los procesos académicos que se gestionan en la carrera están sustentados en la autoevaluación de la calidad de la educación, en la normativa vigente y su misión y visión."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"28",
+            "descripcion":"Los procesos académicos se implementan a través de mecanismos, procedimientos y sistema acorde para alcanzar los objetivos planteados para cada proceso y en su conjunto; y se evalúan, monitorean y generan resultados empíricos que apoyan las decisiones."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"29",
+            "descripcion":"La carrera demuestra que la gestión de los procesos académicos contribuye al aseguramiento interno de la calidad de la educación en la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"30",
+            "descripcion":"El sistema de seguimiento a graduados que aplica la carrera contiene: i) instrumentos que permiten recolectar información periódica de las actividades profesionales o académicas de sus graduados; ii) mecanismos que permiten analizar los hallazgos y generar insumos de mejora; y, iii) procesos para el tratamiento de las propuestas de mejora en las que participan actores clave de la carrera, como por ejemplo, empleadores, colegios profesionales, entre otros."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"31",
+            "descripcion":"Las políticas de seguimiento a graduados de la carrera plantean el uso de los resultados de las consultas a graduados y empleadores, profesionales, actores de la academia y miembros de la sociedad para girar la toma de decisiones que influyen en la calidad de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"32",
+            "descripcion":"Las políticas de seguimiento a graduados se articulan y son consistentes con las políticas institucionales de aseguramiento de la calidad."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"33",
+            "descripcion":"La carrera recibe retroalimentación y utiliza los resultados del sistema de seguimiento a graduados para analizar las experiencias favorables durante la formación académica de los estudiantes, y los aspectos que requieren mejorar o modificar, en particular, aquellos enfocados en el perfil del egresado y el plan de estudios."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"34",
+            "descripcion":"La carrera ha definido e implementa mecanismos y canales de comunicación con estudiantes regulares y egresados para difundir los resultados del seguimiento a graduados y las estrategias relacionadas con la mejora de la calidad de la educación en la carrera, derivadas de su análisis."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"35",
+            "descripcion":"El seguimiento a graduados permite que las autoridades académicas de la carrera tomen decisiones encaminadas al mejoramiento del currículo, la efectividad en la inserción profesional y prestigio de la institución en los ámbitos académicos y profesionales."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"36",
+            "descripcion":"El seguimiento a graduados forma parte de los procesos académicos implementados por la carrera, y contribuye a determinar los aspectos que la carrera requiere mejorar para incrementar su impacto en el contexto, en aspectos tales como: empleabilidad, estudios de posgrado y prestigio de la carrera en el contexto."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"37",
+            "descripcion":"Las políticas de admisión se estructuran con base a un perfil de ingreso acorde al tipo de carrera, a los mecanismos de nivelación y preparación previa, así como en una planificación académica para las promociones de estudiantes que se admitirán."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"38",
+            "descripcion":"Los mecanismos de selección de estudiantes respetan el principio de igualdad de oportunidades y permiten el cumplimiento de los reglamentos y normativas del sistema de educación superior."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"39",
+            "descripcion":"El proceso de nivelación de estudiantes forma parte de las estrategias de la carrera para mejorar las tasas de eficiencia académica y alcanzar los resultados de aprendizaje planteados en el perfil de egreso."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"40",
+            "descripcion":"Las políticas de admisión han sido socializadas con los departamentos y unidades académicas de la institución relacionados con la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"41",
+            "descripcion":"Las políticas de titulación que implementa la carrera son consistentes con la misión, visión y objetivos de la unidad académica a la que pertenece (la carrera)."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"42",
+            "descripcion":"La carrera implementa las políticas de titulación a través de procesos ágiles y mecanismos académicos rigurosos que contribuyen a que los estudiantes alcancen los resultados de aprendizaje esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"43",
+            "descripcion":"Los tipos de titulación definidos por la carrera para sus egresados (trabajo de titulación, examen complexivo, entre otros) son coherentes con el currículo, el perfil de egreso y los mecanismos académicos del proceso de titulación implementados por la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"44",
+            "descripcion":"El proceso de revisión de trabajos de titulación está normado al interior de la institución y existen políticas y procedimientos para garantizar su implementación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"45",
+            "descripcion":"Los mecanismos de titulación incluyen: sistemas de tutorías, asignación de asesores académicos (tutores, directores, coordinadores, profesores de grupos de investigación), revisión de trabajos de titulación y seguimiento al rendimiento de egresados en- exámenes complexivos que permiten el cumplimiento de estándares académicos definidos por la carrera respecto a las opciones de titulación para los egresados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"46",
+            "descripcion":"Los mecanismos de titulación garantizan que los trabajos de titulación se relacionen con las líneas de investigación de la institución en la que participan profesores de la carrera, contribuyan al alcance de resultados de aprendizaje esperados perfil de egreso) y puedan formar parte de la producción científica de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"47",
+            "descripcion":"La carrera garantiza la disponibilidad y el acceso a los recursos bibliográficos dispuestos en la bibliografía de cada asignatura."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"48",
+            "descripcion":"La carrera genera capacitaciones periódicas a estudiantes y profesores sobre el manejo de. Bases de datos virtuales, búsquedas en la web y los sistemas bibliográficos de la institución, en particular en los procesos de inducción, titulación y participación en concursos de proyectos de investigación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"49",
+            "descripcion":"La gestión de los recursos bibliográficos permiten la disponibilidad y el acceso, física o de manera virtual; a la producción científica de los profesores, los trabajos de investigación y titulación de estudiantes, y las lecturas obligatorias y complementarias establecidas en los sílabos del plan de estudios de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"50",
+            "descripcion":"La carrera considera en sus mecanismos y procedimientos de gestión de recursos bibliográficos, la aplicación de políticas de acceso a recursos educativos abiertos, en el caso de que sea necesario, para que los estudiantes - alcancen los resultados de aprendizaje esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"51",
+            "descripcion":"Los recursos bibliográficos que la carrera plantea en los sílabos de las asignaturas son suficientes, adecuados, pertinentes y vigentes, por lo que contribuyen positivamente al proceso de aprendizaje."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"52",
+            "descripcion":"La calidad de los recursos bibliográficos es evaluada periódicamente por la carrera y sus resultados contribuyen a integrar las fuentes bibliográficas, bibliotecas físicas o digitales, en las actividades de profesores y estudiantes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"53",
+            "descripcion":"DIS: Ambientes de aprendizaje prácticos."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"54",
+            "descripcion":"Valoración obtenida por cada laboratorio, taller u otro ambiente de aprendizaje, de acuerdo al aspecto de disponibilidad, evaluado en una escala del 1 al 5."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"55",
+            "descripcion":"Q: Total de laboratorios, talleres u otros ambientes de aprendizaje evaluados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"56",
+            "descripcion":"El entorno virtual de aprendizaje (EVEA) permite que los actores involucrados en el uso de los recursos relacionados con la educación a distancia o en línea puedan aprovechar las potencialidades de la plataforma elegida."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"57",
+            "descripcion":"El EVEA está constituido por tecnologías digitales, hospedado en la red y se puede tener acceso remoto a sus contenidos a través de algún tipo de dispositivo con conexión a Internet."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"58",
+            "descripcion":"Las aplicaciones o programas informáticos que conforman el EVEA sirven de soporte para las actividades formativas de profesores y alumnos."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"59",
+            "descripcion":"El entorno virtual de aprendizaje ha sido evaluado periódicamente, reflejando que resulta útil y adecuado para los actores involucrados, profesores y estudiantes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"60",
+            "descripcion":"El EVEA permite la creación y gestión de los espacios de enseñanza y aprendizaje en la red, donde los profesores y los alumnos puedan interaccionar durante su proceso de formación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"61",
+            "descripcion":"El EVA combina herramientas de comunicación sincrónica y asincrónica para la gestión de los materiales de aprendizaje de los actores relevantes incluidos en sistemas de seguimiento y en particular, la evaluación del progreso de los estudiantes, ofreciendo soporte tecnológico desde un enfoque didáctico para optimizar distintas fases del proceso de enseñanza y aprendizaje."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"62",
+            "descripcion":"El EVA refuerza y contribuye positivamente a la interacción en la educación en modalidades a distancia o en línea; a través de los medios digitales se presentan propuestas pedagógicas que propicien el aprendizaje significativo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"63",
+            "descripcion":"AMsC: Total de asignaturas dictadas por profesores con formación de posgrado de maestría o equivalente afín a la asignatura."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"64",
+            "descripcion":"APHD: Total de asignaturas dictadas por profesores con formación de PhD o equivalente afín a la asignatura."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"65",
+            "descripcion":"TA: Total de asignaturas del currículo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"66",
+            "descripcion":"AFP: Afinidad de formación de posgrado."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"67",
+            "descripcion":"PhDE: Total de profesores con formación académica de PhD obtenida en una institución de educación superior de: i) Listado de universidades de excelencia; ii) Listado de IES para el programa de becas para doctorado (PhD) para docentes de universidades y escuelas politécnicas; o iii) listado de IES en los rankings de universidades de Latinoamérica; y que evidencias logros académicos y experiencia en investigación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"68",
+            "descripcion":"MScE: Total de profesores con formación académica de MSc, obtenida en el listado de universidades de excelencia o en IES que constan en rankings internacionales de Latinoamérica; y, que evidencian logros académicos y experiencia en investigación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"69",
+            "descripcion":"PhD: Total de profesores con formación académica de  Phd  no incluida en PhDE."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"70",
+            "descripcion":"MSc:Total de profesores con formación académica de MSc , no incluye en MScE."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"71",
+            "descripcion":"TP: Número total de profesores relacionados con la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"72",
+            "descripcion":"CCA: Composición del cuerpo académico."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"73",
+            "descripcion":"Conformación de grupos de investigación que siguen parámetros académicos definidos por la propia institución que consideran de diversidad en la formación académica y experiencia en investigación de sus integrantes, la inclusión de futuros investigadores (estudiantes de doctorado, maestrías o equivalentes y estudiantes de grado que participan en proyectos de investigación), así como la relación de los grupos con las redes de investigación que ha establecido la institución y participación de investigadores de la IES y externos."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"74",
+            "descripcion":"Los grupos de investigación contribuyen  al desarrollo de la investigación formativa y a la integración  con un currículo de la carrera y los proyectos de vinculación con la sociedad."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"75",
+            "descripcion":"Los profesores con titularidad que forman parte de los grupos activos de investigación han realizado al menos una publicación o se encuentran desarrollando un proyecto de investigación durante el último año de acuerdo a las líneas de investigación relacionadas con la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"76",
+            "descripcion":"La unidad académica que hace investigación a la que pertenece la carrera cuenta con líneas de investigación estructuradas sobre la base de grupos de investigación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"77",
+            "descripcion":"Las líneas de investigación permiten articular los resultados, proyectos y actividad investigadora del personal académico con dedicación a la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"78",
+            "descripcion":"Las líneas de investigación relacionadas con la producción  científica de los profesores con dedicación a la carrera son coherentes con el currículo de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"79",
+            "descripcion":"Las líneas de investigación relacionadas con la producción  científica de los profesores con dedicación a la carrera son coherentes con la pertinencia."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"80",
+            "descripcion":"Las líneas de investigación relacionadas con la producción  científica de los profesores con dedicación a la carrera son coherentes con el contexto local, nacional, regional o mundial."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"81",
+            "descripcion":"Las líneas de investigación relacionadas con la producción  científica de los profesores con dedicación a la carrera se articulan a los mecanismos de titulación de los estudiantes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"82",
+            "descripcion":"10. Las Líneas de investigación y políticas de gestión de los recursos para la investigación responden a los proyectos de investigación relacionados con la carrera o la unidad académica que integra la carrera y se recogen en la planificación estratégica institucional."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"83",
+            "descripcion":"PTC: Total de profesores titulares con dedicación a tiempo completo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"84",
+            "descripcion":"TP: Número total de profesores relacionados con la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"85",
+            "descripcion":"TID: Titularidad y dedicación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"86",
+            "descripcion":"1. La carrera aplica  políticas, mecanismos y procedimientos para la evaluación integral del personal académico, así como el marco normativo vigente del sistema de educación superior."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"87",
+            "descripcion":"2. La evaluación del personal académico participan actores claves como: autoridades, profesores, pares académicos y estudiantes, incluida una instancia de apoyo a la gestión de los elementos técnicos y/o tecnológicos del proceso de evaluación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"88",
+            "descripcion":"3. La carrera evidencia que la evaluación integral del cuerpo académico se aplica al menos una evaluación por periodo académico, y que se evidencie el uso de los resultados para la toma de decisiones."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"89",
+            "descripcion":"4. Los resultados de la evaluación integral docente permiten la planificación de formación docente y la actualización científica y pedagógica del personal académico."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"90",
+            "descripcion":"5. La evaluación integral del cuerpo académico se realiza de acuerdo al tiempo de dedicación (tiempo parcial, medio tiempo o tiempo completo) y a las actividades establecidas en el marco de la normativa del sistema de educación superior, docencia, investigación y gestión."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"91",
+            "descripcion":"6. Los resultados de la evaluación son utilizados para analizar, la efectividad de las actividades de docencia, los resultados son difundidos a la comunidad académica, se elaboran estrategias para mejorar el proceso de enseñanza aprendizaje, permitiendo alcanzar los resultados de aprendizaje esperados para los estudiantes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"92",
+            "descripcion":"7. La carrera demuestra el interés de difundir, con rigor y transparencia, el diseño e implementación de la evaluación integral del cuerpo académico."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"93",
+            "descripcion":"TPAC: Total de profesores que han asistido a eventos de actualización científica y pedagógica, o que han dictado ponencias en eventos científicos externos."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"94",
+            "descripcion":"TP: Número total de profesores relacionados con la carrera. "
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"95",
+            "descripcion":"ACP: actualización científica y pedagógicas."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"96",
+            "descripcion":"NPAM: Número de profesores que son autores o coautores de los artículos publicados durante el periodo de evaluación en revistas indexadas con impacto mundial."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"97",
+            "descripcion":"NSJR: Número de artículos académicos publicados por los profesores de la carrera durante el periodo de evaluación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"98",
+            "descripcion":"TP: Número total de profesores relacionados con la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"99",
+            "descripcion":"β: Factor que corrige por concentración. Se refiere al porcentaje de profesores que es deseable que realicen actividades de investigación y obtengan resultados (es decir, es mayor a cero y a lo sumo, puede ser uno). Este valor, permite definir el estándar."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"100",
+            "descripcion":"SJR¡: Índice SJR de la revista en la que ha sido publicado el artículo i-ésimo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"101",
+            "descripcion":"ɑ¡: Valor, entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al artículo ¡-ésimo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"102",
+            "descripcion":"IPAIM:  Índice de producción académica con impacto mundial."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"103",
+            "descripcion":"NPAR: Número de profesores que son autores o coautores de los artículos publicados durante el periodo de evaluación que se consideran en este indicador."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"104",
+            "descripcion":"NPAM: Número de profesores que son autores o coautores de los artículos publicados durante el periodo de evaluación en revistas indexadas con impacto mundial."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"105",
+            "descripcion":"TP: Número total de profesores relacionados con la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"106",
+            "descripcion":"NAR: Número de artículos o trabajos científicos de los profesores de la carrera, publicados o aceptados en revistas que constan en bases de datos, cuyos criterios de indexación contemplen parámetros de calidad reconocidos regionalmente."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"107",
+            "descripcion":"PR¡: Artículos o trabajos científicos del profesor i-ésimo de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"108",
+            "descripcion":"β: Factor que corrige por concentración. Se refiere al porcentaje de profesores que es deseable que realicen actividades de investigación y obtengan resultados (es decir, es mayor a cero y a lo sumo. puede ser uno). Este valor, permite definir el estándar."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"109",
+            "descripcion":"ɑ¡: Valor, entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al artículo i-ésimo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"110",
+            "descripcion":"IPAIR: Índice de producción académica con impacto regional."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"111",
+            "descripcion":"NPL: Número de profesores que son autores o coautores de libros o capítulos de libros publicados durante el periodo de evaluación que se considera en este indicador."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"112",
+            "descripcion":"β: Factor que corrige por concentración. Se refiere al porcentaje de profesores que es deseable que realicen actividades de investigación y obtengan resultados (es decir, es mayor a cero y a lo sumo, puede ser uno). Este valor permite definir el estándar."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"113",
+            "descripcion":"TP: Número total de profesores relacionados con la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"114",
+            "descripcion":"L: Número total de libros publicados por profesores de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"115",
+            "descripcion":"L¡: Libro i-ésimo publicado por profesores de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"116",
+            "descripcion":"ɑ¡: Valor entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al libro i-ésimo o capítulo de libro i-ésimo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"117",
+            "descripcion":"CL: Número total de capítulos de libros publicados por profesores de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"118",
+            "descripcion":"CL¡: Capítulo de lihro i-ésimo publicado por profesores de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"119",
+            "descripcion":"θ¡: Valor otorgado al capítulo de libro i-ésimo entre 0 y 0,5."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"120",
+            "descripcion":"LCL: Libros y/o capítulos de libros revisados por pares."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"121",
+            "descripcion":"El proceso de elaboración/actualización  del perfil de egreso considera la misión y objetivos de la carrera, el estudio de la profesión, así como los perfiles profesionales consultados; además, incluye la participación de actores relevantes  en su revisión y validación; en particular: expertos académicos externos, organizaciones científicas o profesionales y los empleadores."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"122",
+            "descripcion":"El perfil de egreso describe de manera clara y concreta los resultados de aprendizaje esperados, considerando parámetros como, al menos: los contenidos disciplinares fundamentales de la carrera, los resultados de aprendizaje genéricos, la empleabilidad de los graduados y la continuidad de estudios posteriores."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"123",
+            "descripcion":"El perfil de egreso justifica los énfasis planteados en la formación académica de sus estudiantes, tomando como referencia al estudio de la profesión a nivel nacional y mundial, así como la misión y visión de la carrera y el modelo educativo de la institución."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"124",
+            "descripcion":"El perfil de egreso está sistemáticamente relacionado con el plan de estudios y la evaluación de los resultados de aprendizaje definidos retroalimentan al currículo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"125",
+            "descripcion":"El perfil de egreso a considerado los resultados de aprendizaje en el ámbito de los dominios: teóricos (teorías, leyes, sistemas conceptuales), metodológicos (métodos, procesos y procedimientos propios de la profesión) y técnicos instrumentales (técnicas e instrumentos), de tal manera que posibiliten el desarrollo  de los resultados de aprendizaje esperados de las/los estudiantes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"126",
+            "descripcion":"El perfil de egreso incorpora las teorías y los avances del campo disciplinar, así como las necesidades del entorno identificadas en los estudios de estado actual y prospectivo."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"127",
+            "descripcion":"Existen mecanismos de difusión del perfil de egreso a la comunidad académica y a la sociedad; y el perfil de egreso orienta a los estudiantes sobre su formación académica."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"128",
+            "descripcion":"Existe un proceso de revisión/actualización del plan de estudios que consideran la participación de académicos internos y/o externos a la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"129",
+            "descripcion":"El plan de estudios esta sistemáticamente alineado con los objetivos de la carrera, las líneas de investigación vigentes, y con los resultados de aprendizaje esperados en el perfil de egreso."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"130",
+            "descripcion":"En el diseño/actualización del plan de estudios se introduce la generación del conocimiento y los resultados de investigación del personal académico, con dedicación a la carrera, a fines a las líneas de investigación correspondientes con el campo o área de conocimiento de estudio, para el desarrollo de los resultados de aprendizaje esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"131",
+            "descripcion":"El plan de estudios aborda contenidos teóricos y prácticos fundamentales, que permiten desarrollar las diferentes áreas de formación en la que está  organizado el currículo y los resultados de aprendizaje propios de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"132",
+            "descripcion":"El plan de estudios considera la secuencialidad de los contenidos con niveles de complejidad progresivos que permitan la interconexión e interdependencia entre ellos."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"133",
+            "descripcion":"Los programas de estudio de asignaturas consideran la interrelación entre la teoría, la práctica y la investigación, se evidencian en  la planificación microcurricular y  permiten alcanzar los resultados definidos en el perfil de egreso."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"134",
+            "descripcion":"Las asignaturas representadas en la malla curricular garantizan las integraciones horizontal y vertical de los resultados de aprendizaje a lo largo de todo el plan de estudios."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"135",
+            "descripcion":"El plan de estudios tiene planteamientos pedagógicos y didácticos que permite superar el dominio cognitivo y fomenta la adquisición de aprendizaje prácticos y autónomos; así como el desarrollo del análisis crítico y creativo, la reflexión y el trabajo colaborativo y en red."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"136",
+            "descripcion":"El plan de estudios considera las adaptaciones curriculares y estrategias pedagógicas que permite atender las dificultades de aprendizaje, las necesidades educativas y las necesidades educativas especiales que puedan presentar las/los estudiantes, guiadas  por principios de normalización, individualización e inclusión."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"137",
+            "descripcion":"La planificación microcurricular de las asignaturas es coherente con el plan de estudios."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"138",
+            "descripcion":"La planificación microcurricular está disponible de manera permanente para estudiantes y profesores de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"139",
+            "descripcion":"Los programas de estudio de asignaturas consideran la interrelación de la teoría, la práctica y la investigación, y se evidencian en la planificación microcurricular."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"140",
+            "descripcion":"La planificación microcurricular describe y estructura en cada una de las asignaturas del plan de estudios,  de manera clara y precisa, la contribución de los resultados de aprendizaje de la asignatura para alcanzar el perfil de egreso, los contenidos disciplinares y específicos necesarios, las metodologías de enseñanza aprendizaje, las referencias bibliográficas y materiales de consulta y los mecanismos de evaluación utilizados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"141",
+            "descripcion":"El sistema de tutorías académicas considera las funciones y responsabilidades de los actores involucrados, se retroalimenta de estrategias de acción tutorial y es consistente con la planificación académica de las/los profesores."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"142",
+            "descripcion":"La carrera aplica estrategias de acción tutorial y garantiza que durante los periodos académicos ordinarios, las/los profesores asignados a tutorías académicas, planifiquen y socialicen a las/los estudiantes el horario destinado para actividades de orientación y asesoría académica."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"143",
+            "descripcion":"Las tutorías académicas son consistentes con las estrategias definidas por la carrera para que las/los estudiantes alcancen los resultados de aprendizaje esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"144",
+            "descripcion":"Las actividades de docencia complementarias a las tutorías académicas de las/los profesores guardan una relación consistente con la planificación de las actividades de vinculación  con la sociedad e investigación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"145",
+            "descripcion":"La carrera puede evidenciar que las tutorías académicas tienen un impacto positivo en el desempeño de las/los estudiantes, a través de las evaluaciones en el proceso de enseñanza aprendizaje."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"146",
+            "descripcion":"La evaluación en el proceso de enseñanza-aprendizaje está considerada en el marco normativo de la institución, y permite implementar políticas, mecanismos y procedimientos para el seguimiento y monitorización del avance del aprendizaje de las/los estudiantes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"147",
+            "descripcion":"La evaluación a estudiantes en el proceso de aprendizaje garantiza el logro de aprendizajes significativos y refleja la utilización de estrategias pedagógicas que contribuyen a la calidad del proceso de enseñanza y aprendizaje."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"148",
+            "descripcion":"La evaluación en el proceso de enseñanza - aprendizaje permite medir el avance en los resultados de aprendizaje de acuerdo a la planificación microcurricular, y considera las competencias necesarias del cuerpo académico para evaluar el aprendizaje y los recursos utilizados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"149",
+            "descripcion":"La evaluación es guiada por principios, estándares  y mecanismos que aseguran que las evaluaciones realizadas por profesores están orientadas a medir el avance del aprendizaje de las/los estudiantes y a verificar  el logro de los resultados de aprendizaje."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"150",
+            "descripcion":" Los instrumentos, procedimientos de medición y el análisis sistémico de los resultados de las evaluaciones en el proceso de enseñanza aprendizaje son elaborados y revisados por profesores con dedicación a la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"151",
+            "descripcion":"La carrera implementa políticas para garantizar que los resultados de la evaluación en el proceso de enseñanza-aprendizaje permita establecer medidas pedagógicas y mecanismos sistemáticos en asignaturas en las que las/los estudiantes demuestren rendimientos insuficientes."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"152",
+            "descripcion":"7. La carrera gestiona la documentación sobre la evaluación del aprendizaje de las/los estudiantes, sistemáticamente, durante toda su formación académica."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"153",
+            "descripcion":"La carrera o unidad académica implementa o garantiza la implementación de las políticas de bienestar universitario para la comunidad académica y administrativa que la integra."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"154",
+            "descripcion":"La carrera garantiza que sus estudiantes acceden a los servicios de bienestar universitario de la unidad o instancia institucional corrrespondiente, y ha definido mecanismos para dar seguimiento a estudiantes en situaciones que violentan sus derechos estudiantiles."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"155",
+            "descripcion":"La unidad acaedémica o carrera demuestra definir políticas de admisión y nivelación, titulación y los mecanismos del sistema de becas considerando la participación de la unidad o instancia institucional de bienestar universitario."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"156",
+            "descripcion":"Los estudiantes de la carrera se benefician de las políticas de bienestar universitario y de los servicios de bienestar universitario, así como de los programas y/o proyectos  que ha implementado la unidad o instancia de bienestar universitario."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"157",
+            "descripcion":"El sistema de becas de la institución de educación superior se basa en una normativa interna de la institución y cuenta con actores, mecanismos y procedimientos claramente definidos."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"158",
+            "descripcion":"La asignación de becas, estipendios, descuentos o apoyos financieros se basa en un normativa interna, así como en el establecimiento y la implementación de mecanismos en los que participa la unidad o instancia institucional de binestar universitario."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"159",
+            "descripcion":"La carrera articula mecanismos y procesos con las políticas institucionales de bienestar universitario para que sus estudiantes accedan a créditos, becas, ayudas económicas y concursos para becas de movilidad estudiantil, en correspondencia con las políticas de acción afirmativa y la normativa vigente."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"160",
+            "descripcion":"La carrera cuenta con mecanismos de reconocimiento de las condiciones socioeconómicas de estudiantes, cuyos resultados se articulan a la toma de decisiones sobre la asignación de becas, estipendios y ayudas financieras."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"161",
+            "descripcion":"La carrera demuestra dar seguimiento a la periodicidad y calidad de las interacciones y definir mecanismos para el monitoreode las actividades que emitan mejorar su calidad, en términos de sus objetivos y resultados esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"162",
+            "descripcion":"La carrera cuenta con herramientas informaticas que apoyan el trabajo independiente y colaborativo de estudiantes, así como el uso de la tecnología para generar las interacciones necesarias en comunidades virtuales de aprendizaje para alcanzar los resultados de aprendizaje esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"163",
+            "descripcion":"La carrrera ha planteado estrategias y mecanismos para que las interacciones entre estudiantes y profesores en comunidades virtuales de aprendizaje, tales como: tutorías individuaes, sesiones interactivas con el uso de tecnologías, tutorías sincrónicas y actividades asincrónicas, foros, blogs  o tareas en plataformas electrónicas, que impacten positivamente en la retroalimentación del profesor al aprendizaje del estudiante."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"164",
+            "descripcion":"La carrera demuestra dar seguimiento a la periocidad y calidad de las interacciones y definir mecanismos para el monitoreo de las actividades que permitan mejorar su calidad, en términos de sus objetivos y resultados esperados."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"165",
+            "descripcion":"NE= Total de estudiantes de la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"166",
+            "descripcion":"TPC= Total de profesores con dedicación a tiempó completo a la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"167",
+            "descripcion":"TMT= Total de profesores con dedicación a medio tiempó a la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"168",
+            "descripcion":"TTP= Total de profesores con dedicación a tiempó parcial a la carrera."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"169",
+            "descripcion":"EP= Estudiantes por profesor a tiempo completo"
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"170",
+            "descripcion":"TER= Total de estudiantes de las cohortes seleccionadas que se mantienen en la carrera durante el periodo de evaluación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"171",
+            "descripcion":"TEA= Número total de estudiantes de las cohortes definidas para el cálculo de retención."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"172",
+            "descripcion":"TR= Tasa de retención."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"173",
+            "descripcion":"TT= Tasa de titulación."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"174",
+            "descripcion":"TET= Total de estudiantes de las cohortes definidas que concluyeron el proyecto de titulación o aprobaron el examen complexivo en un plazo menor o igual al plazo normativo definido."
+        },
+        {
+            "id_componente":"1",
+            "id_elemento":"175",
+            "descripcion":"TEC= Número total de estudiantes de las cohortes definidas para el cálculo de la titulación."
+        }     
+    ]
+
+    
+}

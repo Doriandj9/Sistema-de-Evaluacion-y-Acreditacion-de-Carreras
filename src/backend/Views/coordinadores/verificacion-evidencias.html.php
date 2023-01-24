@@ -2,11 +2,14 @@
     <header>
         <h3 class="text-center tipografia-times-2">Verifique el estado de las Documentos de Información</h3>
     </header>
-    <p class="text-justificado">
-        Esta sección pone a su dispocición verificar que el documento que se encuentra almacenado sea el adecuado,
-        además puede emitir una notificación explicando que el documento no lo puede validar por diferentes motivos, tambien 
-        debera calificar el documento como la aportación a la carrara como medio,bajo o alto.
-    </p>
+    <section>
+        <h4>Consideraciones</h4>
+        <ol>
+            <li>- En la opción ver usted podrá visualizar la documentación almacenada y verificar si es la adecuada o no.</li>
+            <li>- En el apartado Valoración usted podrá dar una valoración del documento almacenado.</li>
+            <li>- En la ultima opción usted podrá notificar al usuario que la documentación almacenada es incorrecta si llega a darse el caso.</li>
+        </ol>
+    </section>
 </article>
 
 <div class="w-100 d-flex justify-content-center">
@@ -45,9 +48,9 @@
     <thead>
       <tr>
         <th class="bg-primary text-white text-center">Evidencia</th>
-        <th class="bg-primary text-white text-center">Información</th>
-        <th class="bg-primary text-white text-center">Verificar</th>
-        <th class="bg-primary text-white text-center">Notificar</th>
+        <th class="bg-primary text-white text-center">Visualizar</th>
+        <th class="bg-primary text-white text-center">Valoración</th>
+        <th class="bg-primary text-white text-center">Opción</th>
       </tr>
     </thead>
     <tbody>

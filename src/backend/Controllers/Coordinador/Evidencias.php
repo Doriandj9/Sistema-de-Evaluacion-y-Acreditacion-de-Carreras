@@ -2,7 +2,6 @@
 
 namespace App\backend\Controllers\Coordinador;
 
-use App\backend\Application\Utilidades\ArchivosTransformar;
 use App\backend\Application\Utilidades\FileExcel;
 use App\backend\Application\Utilidades\FilePDF;
 use App\backend\Application\Utilidades\FileWord;
@@ -10,6 +9,7 @@ use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Models\CarrerasEvidencias;
 use App\backend\Models\Evidencias as ModelsEvidencias;
+use App\backend\Models\Notificaciones;
 use App\backend\Models\PeriodoAcademico;
 
 class Evidencias implements Controller
@@ -17,12 +17,15 @@ class Evidencias implements Controller
     private PeriodoAcademico $periodoAcademico;
     private ModelsEvidencias $evidenciasModel;
     private CarrerasEvidencias $carrerasEvidencias;
+    private Notificaciones $notificaciones;
 
     public function __construct()
     {
         $this->periodoAcademico = new PeriodoAcademico;
         $this->evidenciasModel = new ModelsEvidencias;
         $this->carrerasEvidencias = new CarrerasEvidencias;
+        $this->notificaciones = new Notificaciones;
+
     }
     public function vista($variables = []): array
     {
@@ -67,7 +70,8 @@ class Evidencias implements Controller
         $datosReferentes = [
             'periodo' => trim($_POST['periodo']),
             'idEvidencia' => trim($_POST['cod_evidencia']),
-            'archivoBase64' => $fileABase64
+            'archivoBase64' => $fileABase64,
+            'nombre_archivo' => $fileName
         ];
         $tiposArchivosGuardar = [
             'application/pdf' => function($datos) {
@@ -99,7 +103,10 @@ class Evidencias implements Controller
         $fecha_registro = new \DateTime();
         $data_guardar = [
             $tipo => $datos['archivoBase64'],
-            'fecha_registro' => $fecha_registro->format('Y-m-d')
+            'fecha_registro' => $fecha_registro->format('Y-m-d'),
+            'id_responsable' => trim($_SESSION['ci']),
+            'estado' => 'Almacenado',
+            'nombre_documento' => $datos['nombre_archivo']
         ];
         try{
             $result = $this->evidenciasModel->guardarEvidencia(
@@ -205,10 +212,20 @@ class Evidencias implements Controller
     }
 
     public function registarVerificacion() {
+        date_default_timezone_set('America/Guayaquil');
         $data_verificacion =  [
-            'verificada' => true,
+            'verificada' => trim($_POST['verificar']) === '1' ? false : true,
             'valoracion' => trim($_POST['valoracion']),
             'comentario' => trim($_POST['comentario'])
+        ];
+        $date = new \DateTime();
+        $data_notificacion = [
+            'remitente' => trim($_SESSION['ci']),
+            'receptor' => trim($_POST['receptor']),
+            'mensaje' => trim($_POST['comentario']),
+            'id_carrera' => trim($_SESSION['carrera']),
+            'fecha' => $date->format('Y-m-d H:i:s'),
+            'leido' => false
         ];
         try{
             $this->evidenciasModel->guardarEvidencia(
@@ -217,6 +234,7 @@ class Evidencias implements Controller
                 trim($_POST['id_evidencia']),
                 $data_verificacion
             );
+            $this->notificaciones->insert($data_notificacion);
             Http::responseJson(json_encode([
                 'ident' => 1,
                 'mensaje' => 'Se ingreso correctamente su verificación'
@@ -227,5 +245,28 @@ class Evidencias implements Controller
                 'mensaje' => $e->getMessage()
             ]));
         }
+    }
+
+    public function evidenciaVerificacion() {
+        if(!isset($_GET['id'])){
+            Http::responseJson(json_encode([
+                'ident' => 0,
+                'mensaje' => 'No existe el parametro id en la cosulta'
+            ]));
+        }
+        $id_evidencia = trim($_GET['id']);
+        try{
+            $evidencia = $this->evidenciasModel->obtenerDetalleEvidenciaVerifcacion($id_evidencia);
+            Http::responseJson(json_encode([
+                'ident' => 1,
+                'evidencia' => $evidencia
+            ]));
+        }catch(\PDOException $e) {
+            Http::responseJson(json_encode([
+                'ident' => 1,
+                'mensaje' => $e->getMessage()
+            ]));
+        }
+        
     }
 }

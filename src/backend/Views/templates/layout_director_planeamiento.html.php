@@ -1,3 +1,7 @@
+<?php
+use App\backend\Models\Carreras;
+use App\backend\Models\Docente;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +18,7 @@
 <body>
     <div class="contenedor-principal">
         <header class="l-enlinea-flex encabezado-principal">
-            <img src="/public/assets/img/software-logo.png" alt="logo de la carrera de software">
+            <img src="/public/assets/img/ueb-logo.png" alt="logo de la carrera de software">
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <main class="cuerpo-principal">
@@ -24,11 +28,14 @@
                     <ul class="flex-columna gap-flex-1 list-unstyled">
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe7fd;</span>
-                                <span class="text-blanco text-w-medio"><?=$usuario->nombre;?></span>
+                                <span class="text-blanco text-w-medio"><?= preg_split('/ /',$usuario->nombre)[0]  ?> <?= preg_split('/ /',$usuario->apellido)[0]; ?></span>
                             </li>
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe80c;</span>
-                                <span class="text-blanco text-w-medio">Director de Planeamiento</span>
+                                <span class="text-blanco text-w-medio">
+                                Director de Planeamiento
+                                <!-- ->nombre hace referencia al nombre de la carrera -->
+                                </span>
                             </li>
                     </ul>
                 </div>
@@ -36,23 +43,19 @@
                     <h6 class="text-blanco borde-top text-center">Menú Principal</h6>
                     <nav class="flex-columna margin-top-menos-1" id="menu-principal">
     
-                        <a href="/admin" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons text-negro">&#xe88a;</span>
-                        <span class="text-blanco bordes-op-menu">Inicio</span>
+                        <a href="/director-planeamiento/base-indicadores" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xe76f;</span>
+                        <span class="text-blanco bordes-op-menu">Base Indicadores</span>
                         </a>
-                        <a href="/admin/agregar/ciclo/academico" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons text-negro">&#xe02f;</span>
-                        <span class="text-blanco bordes-op-menu">Base de Indicadores</span>
-                        </a>
-                        <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons text-negro">&#xe0e0;</span>
+                        <a href="/director-planeamiento/emparejamiento-evaluadores" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xeaf4;</span>
                         <span class="text-blanco bordes-op-menu ">Emparejamiento de Evaluadores</span>
                         </a>
-                        <a href="/admin/agregar/coordinador" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
-                        <span class="material-icons text-negro">&#xe7fe;</span>
+                        <a href="/director-planeamiento/reportes" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <span class="material-icons text-negro">&#xe415;</span>
                         <span class="text-blanco bordes-op-menu ">Reportes</span>
                         </a>
-                        <a href="/" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
+                        <a href="/director-planeamiento/cambio/clave" class="flex-linea text-decoration-none l-enlinea-flex flex-items-center hover-op-menu gap-flex-0-5">
                         <span class="material-icons text-negro">&#xeade;</span>
                         <span class="text-blanco bordes-op-menu ">Cambiar Contraseña</span>
                         </a>
@@ -66,7 +69,7 @@
                 </div>
             </div>
             <div class="contenedor-contenido-principal">
-                    <div class="contenido-principal">
+                    <div class="contenido-principal position-relative">
                         <div class="contenedor-contenido-vistas">
                             <?= $contenido ?>
                         </div>
@@ -84,6 +87,8 @@
         </main>
     </div>
     <script src="/src/frontend/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.4/bowser.min.js"></script>
+
     <script src="/public/js/app.js" type="module"></script>
 </body>
 </html>

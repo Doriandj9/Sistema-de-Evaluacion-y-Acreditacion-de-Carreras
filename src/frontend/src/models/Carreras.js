@@ -1,5 +1,11 @@
 export default class Carreras {
-
+/**
+ * 
+ * @param {*} action es la opcion que si manda el id de la carrera obtiene la carrera | id facultad 
+ * obtiene las carreras de la facultad [los valores son: facultad y carrera]
+ * @param {*} value es el id de cada una de las acciones como el id de la carrera y el id de la facultad
+ * @returns 
+ */
     static async getCarreras(action = null, value = null) {
         try {
             const headers = new Headers();
