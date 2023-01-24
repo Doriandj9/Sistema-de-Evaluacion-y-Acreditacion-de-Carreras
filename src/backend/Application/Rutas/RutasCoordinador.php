@@ -10,7 +10,6 @@ use App\backend\Controllers\Coordinador\Evidencias;
 use App\backend\Controllers\Coordinador\Inicio;
 use App\backend\Controllers\Coordinador\Notificaciones;
 use App\backend\Controllers\Coordinador\Reportes;
-use App\backend\Controllers\Coordinador\Responsabilidades;
 use App\backend\Controllers\Coordinador\Responsable;
 use App\backend\Frame\Route;
 use App\backend\Models\Docente;

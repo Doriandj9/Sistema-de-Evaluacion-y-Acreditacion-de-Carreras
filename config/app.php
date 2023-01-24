@@ -1,6 +1,14 @@
 <?php
 
+use App\backend\Models\Carreras;
+use App\backend\Models\ComponenteElementoFundamental;
 use App\backend\Models\Criterios;
+use App\backend\Models\Docente;
+use App\backend\Models\ElementoFundamental;
+use App\backend\Models\Estandar;
+use App\backend\Models\Evidencias;
+use App\backend\Models\Facultad;
+use App\backend\Models\UsuariosDocente;
 
 include __DIR__ . '/../vendor/autoload.php';
 include __DIR__ . '/../config/database.php';
@@ -12,12 +20,12 @@ include __DIR__ . '/../config/database.php';
 =========================================================== */
 
 $data_admin = [
-    'id' => '', //Ingrese el numero de cedula
-    'nombre' => '',
-    'apellido' => '',
-    'correo' => '',
+    'id' => '0250186665', //Ingrese el numero de cedula
+    'nombre' => 'Dorian Josue',
+    'apellido' => 'Armijos Gadvay',
+    'correo' => 'dorian9armijos@gmail.com',
     'cambio_clave' => true,
-    'clave' => '', //Es una clave provisional,
+    'clave' => '12345', //Es una clave provisional,
     'telefono' => '' //opcional
 ];
 
@@ -34,7 +42,7 @@ $option = readline('[opcion]: ' . "\n");
 
 switch($option){
     case '1' : insertarDatos();
-    case '2' : insertarAdministrador();
+    case '2' : insertarAdministrador($data_admin);
     default: printDefault(); 
 }
 
@@ -47,9 +55,9 @@ switch($option){
 function insertarDatos(){
     // rutas de los archivos del sistema
     $dir_criterios = __DIR__ . '/../src/backend/datos/sistema/criterios.json';
-    $dir_estandares_indicadores = __DIR__ . '/../src/backend/datos/sistema/estandares_indicadores.json';
+    $dir_estandares_indicadores = __DIR__ . '/../src/backend/datos/sistema/estandares.json';
     $dir_elementos_fundamentales = __DIR__ . '/../src/backend/datos/sistema/elementos_fundamentales.json';
-    $dir_componentes_e_fundamentales = __DIR__ . '/../src/backend/datos/sistema/componentes_elementos.json';
+    $dir_componentes_e_fundamentales = __DIR__ . '/../src/backend/datos/sistema/componentes_elementos_fundamentales.json';
     $dir_evidencias = __DIR__ . '/../src/backend/datos/sistema/evidencias.json';
     //datos de los archivos del sistema decodificados de json
     // archivos en json
@@ -70,17 +78,47 @@ function insertarDatos(){
     $erroresElementos_Fun = [];
     $erroresComponentes_El = [];
     $erroresEvidencias = [];
+
+    // insertamos la facultad por defecto y la carrera por defecto para el administrador
+    $facultad = new Facultad;
+    $carrera = new Carreras;
+    $data_facultadad = [
+        'id' => '000-D',
+        'nombre' => $_ENV['DEFAULTFACULTAD']
+    ];
+    $data_carrera = [
+        'id' => '0-DEF',
+        'nombre' => $_ENV['DEFAULTCARRERA'],
+        'id_facultad' => $data_facultadad['id'],
+        'numero_asig' => 0,
+        'total_horas_proyecto' => 0
+
+    ];
+    try{
+        $facultad->insert($data_facultadad);
+    }catch(\PDOException $e) {
+        echo "Error al ingresar la facultad o carrera: \n";
+        echo $e->getMessage() . "\n";
+    }
+    try{
+        $carrera->insert($data_carrera);
+    }catch(\PDOException $e) {
+        echo "Error al ingresar la carrera: \n";
+        echo $e->getMessage() . "\n";
+    }
     // variable para mostrar el progreso
     $progreso = 0;
+    printProgress($progreso);
     /**
      * Inserta los datos de los criterios a la base de datos 
      * 
      */
         $ModeloCriterios = new Criterios;
         $progreso +=1;
-        foreach($criterios['criterios'] as $dato) {
+        printProgress($progreso);
+        foreach($criterios->criterios as $dato) {
             $data = [
-                'id' => $dato->id,
+                'id' => $dato->codigo,
                 'nombre' => $dato->nombre
             ];
             try{
@@ -94,13 +132,185 @@ function insertarDatos(){
         }
         
         $progreso += 20;
+        printProgress($progreso);
+        /**
+         * Insertar estandares
+         */
+        $ModeloEstandar = new Estandar;
+        $progreso +=1;
+        printProgress($progreso);
 
+        foreach($estandares_indicadores->estandares as $dato) {
+            $data = [
+                'id' => $dato->id,
+                'nombre' => $dato->nombre,
+                'descripcion' => $dato->descripcion,
+                'id_criterio' => $dato->id_criterio,
+                'tipo' => $dato->tipo
+            ];
+            try{
+                $ModeloEstandar->insert($data);
+            }catch(\PDOException $e) {
+                array_push($erroresEstandares_In,[
+                    'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                    'error' => $e->getMessage()
+                ]);
+            }
+        }
+
+        $progreso += 20;
+        printProgress($progreso);
+
+        /**
+         * Insertamos los elementos fundamentales
+         */
+        $ModeloElemento = new ElementoFundamental;
+        $progreso +=1;
+        printProgress($progreso);
+
+        foreach($elementos_fundamentales->elementos_fundamentales as $dato) {
+            $data = [
+                'id' => $dato->id,
+                'descripcion' => $dato->descripcion,
+                'id_estandar' => $dato->id_estandar,
+            ];
+            try{
+                $ModeloElemento->insert($data);
+            }catch(\PDOException $e) {
+                array_push($erroresElementos_Fun,[
+                    'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                    'error' => $e->getMessage()
+                ]);
+        }
+    }
+
+    $progreso += 20;
+    printProgress($progreso);
+
+
+    /**
+     * Insertamos los componentes 
+     */
+    $ModeloComponente = new ComponenteElementoFundamental;
+        $progreso +=1;
+        printProgress($progreso);
+
+        foreach($componentes_elemen_fun->componentes_elementos_fundamentales as $dato) {
+            $data = [
+                'id_componente' => $dato->id_componente,
+                'id_elemento' => $dato->id_elemento,
+                'descripcion' => $dato->descripcion,
+            ];
+            try{
+                $ModeloComponente->insert($data);
+            }catch(\PDOException $e) {
+                array_push($erroresComponentes_El,[
+                    'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                    'error' => $e->getMessage()
+                ]);
+        }
+    }
+    $progreso +=20;
+    /**
+     * Insertamos las evidencias 
+     */
+    $ModeloEvidencias = new Evidencias;
+        $progreso +=1;
+        printProgress($progreso);
+        foreach($evidencias->evidencias as $dato) {
+            $data = [
+                'id' => $dato->id,
+                'nombre' => $dato->nombre
+            ];
+            try{
+                $ModeloEvidencias->insert($data);
+            }catch(\PDOException $e) {
+                array_push($erroresEvidencias,[
+                    'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                    'error' => $e->getMessage()
+                ]);
+        }
+    }
+    $progreso += 15;
+    printProgress($progreso);
+    echo "Finalizado la tarea, recuento de errores: \n";
+    if(count($erroresCriterios) === 0 ){
+        echo 'Errores al ingresar criterios : 0' . "\n";
+    }else{
+        echo "Errores al ingresar criterios : \n";
+        foreach($erroresCriterios as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
+    if(count($erroresEstandares_In) === 0 ){
+        echo 'Errores al ingresar los estandares : 0' . "\n";
+    }else{
+        echo "Errores al ingresar estandares : \n";
+        foreach($erroresEstandares_In as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
+    if(count($erroresElementos_Fun) === 0 ){
+        echo 'Errores al ingresar elementos fundamentales : 0' . "\n";
+    }else{
+        echo "Errores al ingresar elementos fundamentales : \n";
+        foreach($erroresElementos_Fun as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
+    if(count($erroresComponentes_El) === 0 ){
+        echo 'Errores al ingresar los componentes de elementos fundamentales : 0' . "\n";
+    }else{
+        echo "Errores al ingresar componentes elementos fundamentales : \n";
+        foreach($erroresComponentes_El as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
+    if(count($erroresEvidencias) === 0 ){
+        echo 'Errores al ingresar las evidencias : 0' . "\n";
+    }else{
+        echo "Errores al ingresar las evidencias: \n";
+        foreach($erroresEvidencias as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
     die;
 }
 
+function printProgress($progreso) {
+    echo 'Progreso de la tarea: ' . $progreso . '%' . "\n";
+}
 /**TODO: Insertar un nuevo administrador al sistema */
-function insertarAdministrador() {
-    
+function insertarAdministrador($data_admin) {
+    date_default_timezone_set('America/Guayaquil');
+    $clave = password_hash($data_admin['clave'],PASSWORD_DEFAULT);
+    $data_admin['clave'] = $clave;
+    $modelDocente = new Docente;
+    $usuarios = new UsuariosDocente;
+    $date = new \DateTime();
+    $data_usuarios_docente = [
+        'id_usuarios' => Docente::ADMIN,
+        'id_docentes' => $data_admin['id'],
+        'id_carrera' => '0-DEF',
+        'fecha_inicial' => $date->format('Y-m-d'),
+        'fecha_final' => '2080-01-02',
+        'estado' => 'activo'
+    ];
+    try{
+        $modelDocente->insert($data_admin);
+        $usuarios->insert($data_usuarios_docente);
+        echo "\n Se ingreso el coordinador correctamente.";
+    }catch(\PDOException $e) {
+        echo 'Error, al ingresar un coordinador' . "\n";
+        echo $e->getMessage();
+    }
+
+    die;
 }
 /**TODO: Una impresion normal  */
 function printDefault() {
