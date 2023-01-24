@@ -73,7 +73,7 @@ class DirectorPlaneamiento implements Controller
 
             // comprobamos que el usuario no ocupe otro rol en el sistema
             $usuarioSinRoles = UsuariosDocente::whereRaw('id_usuarios != ? and id_docentes = ?',
-            [Docente::DIRECTOR_PLANEAMIENTO,'0250186665']
+            [Docente::DIRECTOR_PLANEAMIENTO, trim($_POST['cedula'])]
             )->get();
             if(count($usuarioSinRoles) >= 1) {
                 throw new \PDOException('Error el usuario desempeña otro cargo');
