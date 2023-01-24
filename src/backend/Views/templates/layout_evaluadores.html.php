@@ -18,7 +18,13 @@ use App\backend\Models\Docente;
 <body>
     <div class="contenedor-principal">
         <header class="l-enlinea-flex encabezado-principal">
-            <img src="/public/assets/img/software-logo.png" alt="logo de la carrera de software">
+        <img src="/public/assets/img/<?php
+                if(trim($_SESSION['carrera']) === 'SOF'){
+                    echo 'software-logo.png';
+                }else{
+                    echo 'ueb-logo.png';
+                }
+            ?>" alt="logo de la carrera o de la Universidad">
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <main class="cuerpo-principal">

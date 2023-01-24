@@ -134,7 +134,7 @@ class Login implements Controller
         }
         $_SESSION['opciones'] = false;
         return [
-            'title' => 'FACULTAD DE CIENCIAS ADMINISTRATIVAS GESTION EMPRESARIAL E INFORMATICA - UEB',
+            'title' => 'SELECCIÓN DE CARGO Y CARRERA - UEB',
             'template' => 'ui/opciones.html.php',
             'variables' => [
                 'usuario' => $usuario
