@@ -24,7 +24,13 @@ use App\backend\Models\Docente;
                 }else{
                     echo 'ueb-logo.png';
                 }
-            ?>" alt="logo de la carrera o de la Universidad">
+            ?>" 
+            <?php
+                if(trim($_SESSION['carrera']) === 'SOF'){
+                    echo 'style="width: 10rem;"';
+                }
+            ?>
+            alt="logo de la carrera o de la Universidad">
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <main class="cuerpo-principal">

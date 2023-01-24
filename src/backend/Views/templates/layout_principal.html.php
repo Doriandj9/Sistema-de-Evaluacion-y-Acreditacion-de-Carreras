@@ -13,7 +13,7 @@
 <body>
     <div class="contenedor-principal">
         <header class="l-enlinea-flex encabezado-principal">
-            <img src="/public/assets/img/ueb-logo.png" alt="logo de la carrera de la Universidad">
+            <img src="/public/assets/img/ueb-logo.png" style="width: 10rem;" alt="logo de la carrera de la UEB">
             <img src="/public/assets/img/seac-logo.png" alt="logo del sistema SEAC">
         </header>
         <div class="rectangulo-azul"></div>

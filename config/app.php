@@ -273,6 +273,7 @@ function insertarDatos(){
 
         foreach($componentes_elemen_fun->componentes_elementos_fundamentales as $dato) {
             $data = [
+                'id' => $dato->id_elemento,
                 'id_componente' => $dato->id_componente,
                 'id_elemento' => $dato->id_elemento,
                 'descripcion' => $dato->descripcion,
