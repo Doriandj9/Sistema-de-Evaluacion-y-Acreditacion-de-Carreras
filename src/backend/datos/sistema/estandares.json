@@ -39,7 +39,7 @@
             "id": 6,
             "descripcion":"El sistema de seguimiento a graduados incluye actores claves del contexto profesional y/o académico relacionado con la carrera; provee resultados que se utilizan en la implementación de planes de acción para el mejoramiento y la inserción laboral de graduados.",
             "id_criterio":"2",
-            "nombre":"SEGUIMIENTO AGRADUADOS",
+            "nombre":"SEGUIMIENTO A GRADUADOS",
             "tipo":"CUALITATIVO"
         },
         {
@@ -65,74 +65,158 @@
         },
         {
             "id": 10,
+            "descripcion":"La capacidad de los ambientes de aprendizaje y la planificación académica para llevar acabo las actividades prácticas establecidas en el currículo. Ambos parámetros se pueden medir a través de la relación numérica calculable entre la cantidad de equipos, mobiliario e insumos disponibles y el número de estudiantes que hacen uso de los ambientes de aprendizaje, de acuerdo a la planificación de las prácticas.",
+            "id_criterio":"2",
+            "nombre":"AMBIENTES DE APRENDIZAJE PRÁCTICO",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 11,
             "descripcion":"La carrera demuestra que el entorno virtual de aprendizaje que utiliza para los procesos educativos y académicos, es consistente con los resultados de aprendizaje esperados, y permite el desarrollo de actividades pedagógicas y la implementación del modelo educativo propuesto por la institución.",
             "id_criterio":"2",
             "nombre":"ENTORNOS VIRTUALES DE APRENDIZAJE",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 11,
+            "id": 12,
+            "descripcion":"Este indicador mide, en términos, número de asignaturas de la formación básica, profesional y de titulación, la finalidad entre la formación de posgrado de cada profesor y las asignaturas dictadas durante el periodo de evaluación. Es importante notar que, e1 equivale a que todas las asignaturas, en promedio, son dictadas por profesores con formación de posgrado.",
+            "id_criterio":"3",
+            "nombre":"AFINIDAD DE FORMACIÓN DE  POSTGRADO",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 13,
+            "descripcion":"Todos los profesores con dedicación a la carrera cuentan con formación de posgrado doctorado (PhD),maestría o equivalentes.",
+            "id_criterio":"3",
+            "nombre":"COMPOSICIÓN DEL CUERPO ACADÉMICO",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 14,
             "descripcion":"Los profesores que participan de actividades docentes en la carrera forman parte de grupos activos de investigación organizados en líneas de investigación relacionadas con el campo o las áreas de conocimiento de la carrera y con sus principios declarado: misión, visión y objetivos.",
             "id_criterio":"3",
-            "nombre":"ACTIVIDAD INVESTIGADORA DE LOS PROFESORES",
+            "nombre":"ACTIVIDAD INVESTIGADORA DE LOS PROFESORES ",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 12,
+            "id": 15,
+            "descripcion":"El estándar de este indicador mide en términos de porcentaje, el claustro de profesores titulares (principales, agregados o auxiliares) con dedicación a tiempo completo.",
+            "id_criterio":"3",
+            "nombre":"TITULARIDAD A TIEMPO COMPLETO",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 16,
             "descripcion":"La carrera gestiona de manera periódica los resultados del sistema de evaluación integral de los profesores conforme a la normativa vigente, para la toma de decisiones sobre la calidad del proceso educativo con la participación de los actores de la comunidad académica.",
             "id_criterio":"3",
             "nombre":"EVALUACIÓN INTEGRAL DEL PROFESOR",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 13,
+            "id": 17,
+            "descripcion":"La carrera aplica políticas y ha definido mecanismos para actualizar la práctica y la formación científica y pedagógica de sus profesores, demostrando que al menos el 50% del cuerpo académico a participado en algún evento de actualización científica y en competencias pedagógicas durante el periodo de evaluación.",
+            "id_criterio":"3",
+            "nombre":"ACTUALIZACIÓN  CIENTÍFICA Y PEDAGÓGICA",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 18,
+            "descripcion":"Se puede tomar como referencia el estándar de este indicador presente en la evaluación institucional de Universidades y Escuelas Politécnicas. Es importante tomar en cuenta que la producción científica en revistas indexadas de impacto mundial se relaciona con el área de conocimiento. Por esta razón, se define a este estándar en el conjunto de estándares específicos de calidad en cada carrera. Este indicador evalúa los resultados de investigación per ccípita corrigiendo por la focalización de profesores que publican. Esta corrección tiene co1no ohjctivo, desarrollar Ja producción sistémica de todos los profesores capacitados para el efecto, por esta razón, en concordancia con los indicadores de afinidad de formación y de grupos de investigación se encuentra publicando en revistas indexadas en bases de datos con impacto mundial.",
+            "id_criterio":"3",
+            "nombre":"Producción científica en revistas indexadas  (Producción científica en revistas indexadas de impacto mundial)",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 19,
+            "descripcion":"Se puede tomar como referencia el estándar de este indicador presente en la evaluación institucional de Universidades y Escuelas Politécnicas. Es importante tomar en cuenta que la producción científica en revistas indexadas de impacto mundial se relaciona con el área de conocimiento. Por esta razón, se define a este estándar en el conjunto de estándares específicos de calidad en cada carrera. Este indicador evalúa parte de los resultados de la investigación de la carrera, que constituyen los artículos académicos y científicos en revistas que garanticen la calidad de las publicaciones a través de requerimientos y normas de publicación, sin que necesariamente las mismas formen parte de índices de medición bibliométrica o de medición de impacto o relevancia en la comunidad científica internacional.",
+            "id_criterio":"3",
+            "nombre":"Producción científica en revistas indexadas de impacto regional",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 20,
+            "descripcion":"Se puede tomar como referencia el estándar de este indicador presente en la evaluación institucional de Universidades y Escuelas Politécnicas. Es importante tomar en cuenta que la producción científica en revistas indexadas de impacto mundial se relaciona con el área de conocimiento. Por esta razón, se define a este estándar en el conjunto de estándares específicos de calidad en cada carrera. Este indicador evalúa la producción per cápita de libros y/o capítulos de libros elaborados y publicados por los profesores de la carrera, corrigiendo, como en el caso de los indicadores de producción académica, por la concentración de profesores autores o coautores. Además, es importante distinguir que el indicador valora a los capítulos de libros con un valor de a lo sumo, 0.5; así también, se incentiva la producción académica que tenga impacto local, nacional o regional. otorgando una valoración adicional (oc) a cada libro y/o capítulo de libro considerado.",
+            "id_criterio":"3",
+            "nombre":"(Libros y/o capítulos revisados por pares)",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 21,
             "descripcion":"El perfil de egreso establece de manera clara y concreta  los resultados de aprendizaje  que alcanzarán las/los estudiantes al concluir su formación académica, en concordancia con el modelo educativo; y ha sido elaborado mediante un proceso que establece la participación de profesores de la institución de Educación Superior y pares externos, en consulta con profesionales, empleadores y graduados.",
             "id_criterio":"4",
             "nombre":"PERFIL DE EGRESO",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 14,
+            "id": 22,
             "descripcion":"El plan de estudios integra y articula de manera consistente los contenidos apropiados y las trayectorias de aprendizaje, y establece los lineamientos metodológicos, mecanismos y estrategias para los procesos de enseñanza aprendizaje y de evaluación estudiantil, que aseguran el logro de los resultados de aprendizaje planteados en el perfil de egreso.",
             "id_criterio":"4",
             "nombre":"PLAN DE ESTUDIOS",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 15,
-            "descripcion":"La carrera demuestra que la planificación micro curricular de cada asignatura cuenta con elementos constitutivos necesarios que permiten alcanzar los resultados de aprendizaje esperados a lo largo  del plan de estudios.",
+            "id": 23,
+            "descripcion":"La carrera demuestra que la planificación microcurricular de cada asignatura cuenta con elementos constitutivos necesarios que permiten alcanzar los resultados de aprendizaje esperados a lo largo  del plan de estudios.",
             "id_criterio":"4",
-            "nombre":"SÍLABO",
+            "nombre":"SILABO",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 16,
+            "id": 24,
             "descripcion":"La carrera ha definido un sistema de tutorías académicas que le permite brindar asesoría académica y orientación a sus estudiantes, con profesores de la carrera, con base en los resultados obtenidos de los procesos de evaluación y seguimiento al proceso de enseñanza-aprendizaje.",
             "id_criterio":"4",
             "nombre":"TUTORÍAS ACADÉMICAS",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 17,
+            "id": 25,
             "descripcion":"La evaluación del proceso de enseñanza aprendizaje garantiza el avance del aprendizaje de las/los estudiantes a lo largo del plan de estudios y se implementan a través de estrategias, mecanismos y procedimientos que permiten comprobar el logro de los resultados de aprendizaje esperados.",
             "id_criterio":"4",
-            "nombre":"EVALUACIÓN DE LOS PROCESOS DE ENSEÑANAZA APRENDIZAJE",
+            "nombre":"",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 18,
-            "descripcion":"La carrera promueve la aplicación de políticas de bienestar universitario que garanticen el acceso de la comunidad académica a espacios de bienestar institucionales y servicios de bienestar universitario, considerando la normativa vigente y garantizando su articulación con las estrategias para mejorar la calidad de educación.",
+            "id": 26,
+            "descripcion":"La carrera promueve la aplicación de políticas de bienetar universitario que garanticen el acceso de la comunidad académica a espacios de bienestar institucionales y servicios de bienestar universitario, considerando la normativa vigente y garantizando su articulacíon con las estrategias para mejorar la calidad de educación.",
             "id_criterio":"5",
             "nombre":"BIENESTAR UNIVERSITARIO",
             "tipo":"CUALITATIVO"
         },
         {
-            "id": 19,
-            "descripcion":"La carrera ha definido e implementado políticas, mecanismos y procedimientos que contribuyen a la inclusión y equidad en la admisión, retención y titulación de sus estudiantes, así como de la movilidad estudiantil considerando parámetros académicos y de principio de igualdad de oportunidad en el marco de un sistema institucional de becas.",
+            "id": 27,
+            "descripcion":"La carrera ha definido e implementado políticas, mecanisms y procedimientos que contribuyen a la inclusión y equidad en la admisión, retención y titulación de sus estudiantes, así como de la movilidad estudiantil considerando parámetros académicos y de principio de igualdad de oportunidad en el marco de un sistema institucional de becas.",
             "id_criterio":"5",
             "nombre":"SISTEMA DE BECAS Y APOYOS FINANCIEROS",
             "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 28,
+            "descripcion":"La carrera genera mecanismos y procedimientos que garanticen las interacciones entre profesores autoreso tutores con los estudiantes, en actividades que permitan alcanzar los resultados de aprendizaje esperados a lo largo de su trayectoria académica.",
+            "id_criterio":"5",
+            "nombre":"INTERACCIONES ESTUDIANTE - PROFESOR - CARRERAS A DISTANCIA O EN LÍNEA",
+            "tipo":"CUALITATIVO"
+        },
+        {
+            "id": 29,
+            "descripcion":"La carrera mantiene una relación de máximo 30 estudiantes por cada profesor con dedicación a tiempo completo.",
+            "id_criterio":"5",
+            "nombre":"ESTUDIANTES POR PROFESOR TC O EQUIVALENTE",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 30,
+            "descripcion":"Este indicador evalúa la relación de los estudiantes de la carrera que fueron admitidos dos años antes del período de evaluación y que se encuentraan matriculados a la fecha. La tasa de retención es el coeficiente que expresa la relación entre los estudiantes que fueron admitidos por primera vez a la carrrera, al primer período académico ordinario, dos años antes del inicio del proceso de evaluación, con los que permanecen durante el período de evaluación. Esta tasa mide la retención de estudiantes de una misma cohorte.",
+            "id_criterio":"5",
+            "nombre":"TASA DE RETENCIÓN",
+            "tipo":"CUANTITATIVO"
+        },
+        {
+            "id": 31,
+            "descripcion":"La carrera demuestra que, al menos, el 80% de los estudiantes que ingresaron en las cohortes definidas para la evaluación se titulan dentro de los plazos establecidos por la normativa. Periodo de evaluación: Las cohortes definidas en el plazo comprendido entre la duración de la carrera y el plazo normativo otorgado en el marco normativo",
+            "id_criterio":"5",
+            "nombre":"TASA DE TITULACIÓN",
+            "tipo":"CUANTITATIVO"
         }
-    ]
 
+    ]
 }

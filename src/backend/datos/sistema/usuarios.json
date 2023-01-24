@@ -2,23 +2,28 @@
     "usuarios":[
         {
             "id": 1,
-            "nombre": "DOCENTES"
+            "nombre": "DOCENTES",
+            "permisos": 1
         },
         {
             "id": 2,
-            "nombre": "DIRECTOR DE PLANEAMIENTO"
+            "nombre": "DIRECTOR DE PLANEAMIENTO",
+            "permisos": 2
         },
         {
             "id": 4,
-            "nombre": "COORDINADORES"
+            "nombre": "COORDINADORES",
+            "permisos": 4
         },
         {
             "id": 8,
-            "nombre": "EVALUADORES"
+            "nombre": "EVALUADORES",
+            "permisos": 8
         },
         {
             "id": 16,
-            "nombre": "ADMINISTRADOR"
+            "nombre": "ADMINISTRADOR",
+            "permisos": 16
         }
     ]
 }

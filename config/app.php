@@ -6,8 +6,11 @@ use App\backend\Models\Criterios;
 use App\backend\Models\Docente;
 use App\backend\Models\ElementoFundamental;
 use App\backend\Models\Estandar;
+use App\backend\Models\EvidenciaComponenteElementoFundamental;
 use App\backend\Models\Evidencias;
 use App\backend\Models\Facultad;
+use App\backend\Models\Responsabilidades;
+use App\backend\Models\Usuarios;
 use App\backend\Models\UsuariosDocente;
 
 include __DIR__ . '/../vendor/autoload.php';
@@ -59,6 +62,11 @@ function insertarDatos(){
     $dir_elementos_fundamentales = __DIR__ . '/../src/backend/datos/sistema/elementos_fundamentales.json';
     $dir_componentes_e_fundamentales = __DIR__ . '/../src/backend/datos/sistema/componentes_elementos_fundamentales.json';
     $dir_evidencias = __DIR__ . '/../src/backend/datos/sistema/evidencias.json';
+    $dir_evidencias_componentes =  __DIR__ . '/../src/backend/datos/sistema/evidencias_componentes_elementos_fundamentales.json';
+    $dir_facultades = __DIR__ . '/../src/backend/datos/sistema/facultades.json';
+    $dir_carreras = __DIR__ . '/../src/backend/datos/sistema/carreras.json';
+    $dir_usuarios = __DIR__ . '/../src/backend/datos/sistema/usuarios.json';
+    $dir_responsabilidades = __DIR__ . '/../src/backend/datos/sistema/responsabilidades.json';
     //datos de los archivos del sistema decodificados de json
     // archivos en json
     $datos_criterios = file_get_contents($dir_criterios);
@@ -66,48 +74,116 @@ function insertarDatos(){
     $datos_elementos_fun = file_get_contents($dir_elementos_fundamentales);
     $datos_componentes_el = file_get_contents($dir_componentes_e_fundamentales);
     $datos_evidencias = file_get_contents($dir_evidencias);
+    $datos_evidencias_componentes = file_get_contents($dir_evidencias_componentes);
+    $datos_facultades = file_get_contents($dir_facultades);
+    $datos_carreras = file_get_contents($dir_carreras);
+    $datos_usuarios = file_get_contents($dir_usuarios);
+    $datos_responsabilidades = file_get_contents($dir_responsabilidades);
     // datos decodificados de json
     $criterios = json_decode($datos_criterios);
     $estandares_indicadores = json_decode($datos_estandares);
     $elementos_fundamentales = json_decode($datos_elementos_fun);
     $componentes_elemen_fun = json_decode($datos_componentes_el);
     $evidencias = json_decode($datos_evidencias);
+    $evidencias_componentes = json_decode($datos_evidencias_componentes);
+    $facultades = json_decode($datos_facultades);
+    $carreras = json_decode($datos_carreras);
+    $usuarios = json_decode($datos_usuarios);
+    $responsabilidades = json_decode($datos_responsabilidades);
     //variables que contendran los errores de cada insercion ala DB
     $erroresCriterios = [];
     $erroresEstandares_In = [];
     $erroresElementos_Fun = [];
     $erroresComponentes_El = [];
     $erroresEvidencias = [];
-
-    // insertamos la facultad por defecto y la carrera por defecto para el administrador
-    $facultad = new Facultad;
-    $carrera = new Carreras;
-    $data_facultadad = [
-        'id' => '000-D',
-        'nombre' => $_ENV['DEFAULTFACULTAD']
-    ];
-    $data_carrera = [
-        'id' => '0-DEF',
-        'nombre' => $_ENV['DEFAULTCARRERA'],
-        'id_facultad' => $data_facultadad['id'],
-        'numero_asig' => 0,
-        'total_horas_proyecto' => 0
-
-    ];
-    try{
-        $facultad->insert($data_facultadad);
-    }catch(\PDOException $e) {
-        echo "Error al ingresar la facultad o carrera: \n";
-        echo $e->getMessage() . "\n";
-    }
-    try{
-        $carrera->insert($data_carrera);
-    }catch(\PDOException $e) {
-        echo "Error al ingresar la carrera: \n";
-        echo $e->getMessage() . "\n";
-    }
+    $erroresEvidenciasComponentes = [];
+    $erroresFacultades = [];
+    $erroresCarreras = [];
+    $erroresUsuarios = [];
+    $erroresResponsabilidad = [];
     // variable para mostrar el progreso
     $progreso = 0;
+    printProgress($progreso);
+    // insertamos la facultad por defecto y la carrera por defecto para el administrador
+    $facultadModelo = new Facultad;
+    $carreraModelo = new Carreras;
+    $progreso += 1;
+    printProgress($progreso);
+    foreach($facultades as $facultad){
+        $data = [
+            'id' => $facultad->id,
+            'nombre' => $facultad->nombre
+        ];
+        try{
+            $facultadModelo->insert($data);
+        }catch(\PDOException $e) {
+            array_push($erroresFacultades,[
+                'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
+    $progreso += 5;
+    printProgress($progreso);
+    foreach($carreras as $carrera) {
+        $data = [
+            'id' => $carrera->id,
+            'nombre' => $carrera->nombre,
+            'id_facultad' => $carrera->id_facultad,
+            'numero_asig' => $carrera->numero_asig,
+            'total_horas_proyecto' => $carreras->total_horas_proyecto
+    
+        ];
+        try{
+            $carreraModelo->insert($data);
+        }catch(\PDOException $e) {
+            array_push($erroresCarreras,[
+                'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+    $progreso +=1;
+    printProgress($progreso);
+    /**
+     * Insertamos los usuarios y responsabilidades
+     */
+    $usuariosModelo = new Usuarios;
+    $responsabilidadesModelo = new Responsabilidades;
+
+    foreach($usuarios as $usuario) {
+        $data = [
+            'id' => $usuario->id,
+            'descripcion' => $usuario->nombre,
+            'permisos' => $usuarios->permisos
+        ];
+
+        try{   
+            $usuariosModelo->insert($data);
+        }catch(\PDOException $e) {
+            array_push($erroresUsuarios,[
+                'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
+    foreach($responsabilidades as $responsabilidad) {
+        $data = [
+            'nombre' => $responsabilidad->nombre,
+            'id_criterio' => $responsabilidad->id_criterio
+        ];
+        try{   
+            $responsabilidadesModelo->insert($data);
+        }catch(\PDOException $e) {
+            array_push($erroresResponsabilidad,[
+                'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                'error' => $e->getMessage()
+            ]);
+        }
+    }    
+    $progreso += 10;
     printProgress($progreso);
     /**
      * Inserta los datos de los criterios a la base de datos 
@@ -131,7 +207,7 @@ function insertarDatos(){
             }
         }
         
-        $progreso += 20;
+        $progreso += 10;
         printProgress($progreso);
         /**
          * Insertar estandares
@@ -158,7 +234,7 @@ function insertarDatos(){
             }
         }
 
-        $progreso += 20;
+        $progreso += 10;
         printProgress($progreso);
 
         /**
@@ -184,7 +260,7 @@ function insertarDatos(){
         }
     }
 
-    $progreso += 20;
+    $progreso += 10;
     printProgress($progreso);
 
 
@@ -233,7 +309,71 @@ function insertarDatos(){
     }
     $progreso += 15;
     printProgress($progreso);
+
+    /**
+     * Insertar los componenetes a cada evidencia
+     */
+    $ModeloEvidenciasComponents = new EvidenciaComponenteElementoFundamental;
+        $progreso +=1;
+        printProgress($progreso);
+        foreach($evidencias_componentes->componentes_evidencias as $dato) {
+            $compont = preg_split('/-/',$dato->id_componentes);
+            foreach($compont as $com){
+                $data = [
+                    'id_evidencias' => $dato->id_evidencias,
+                    'id_componente' => $com
+                ];
+                try{
+                    $ModeloEvidenciasComponents->insert($data);
+                }catch(\PDOException $e) {
+                    array_push($erroresEvidenciasComponentes,[
+                        'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                        'error' => $e->getMessage()
+                    ]);
+                }
+            }
+
+    }
+    $progreso += 13;
+    printProgress($progreso);
+
     echo "Finalizado la tarea, recuento de errores: \n";
+    if(count($erroresFacultades) === 0 ){
+        echo 'Errores al ingresar las facultades : 0' . "\n";
+    }else{
+        echo "Errores al ingresar las facultades : \n";
+        foreach($erroresFacultades as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
+    if(count($erroresCarreras) === 0 ){
+        echo 'Errores al ingresar las carreras : 0' . "\n";
+    }else{
+        echo "Errores al ingresar las carreras : \n";
+        foreach($erroresCarreras as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
+    if(count($erroresUsuarios) === 0 ){
+        echo 'Errores al ingresar los usuarios : 0' . "\n";
+    }else{
+        echo "Errores al ingresar los usuarios : \n";
+        foreach($erroresUsuarios as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
+    if(count($erroresResponsabilidad) === 0 ){
+        echo 'Errores al ingresar las responsabilidades : 0' . "\n";
+    }else{
+        echo "Errores al ingresar las responsabilidades : \n";
+        foreach($erroresResponsabilidad as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
     if(count($erroresCriterios) === 0 ){
         echo 'Errores al ingresar criterios : 0' . "\n";
     }else{
@@ -279,6 +419,15 @@ function insertarDatos(){
             echo 'Error: ' . $e['error'].  "\n\n";
         }
     }
+    if(count($erroresEvidenciasComponentes) === 0 ){
+        echo 'Errores al emparejar las evidencias con los componentes : 0' . "\n";
+    }else{
+        echo "Errores al emparejar las evidencias con los componentes: \n";
+        foreach($erroresEvidenciasComponentes as $e) {
+            echo 'Fuente: ' . $e['fuente'] . "\n";
+            echo 'Error: ' . $e['error'].  "\n\n";
+        }
+    }
     die;
 }
 
@@ -296,7 +445,7 @@ function insertarAdministrador($data_admin) {
     $data_usuarios_docente = [
         'id_usuarios' => Docente::ADMIN,
         'id_docentes' => $data_admin['id'],
-        'id_carrera' => '0-DEF',
+        'id_carrera' => '0-TICS',
         'fecha_inicial' => $date->format('Y-m-d'),
         'fecha_final' => '2080-01-02',
         'estado' => 'activo'
@@ -309,7 +458,6 @@ function insertarAdministrador($data_admin) {
         echo 'Error, al ingresar un coordinador' . "\n";
         echo $e->getMessage();
     }
-
     die;
 }
 /**TODO: Una impresion normal  */

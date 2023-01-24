@@ -1,0 +1,28 @@
+{
+    "facultades":[
+        {
+            "id":"FCAGEI-1",
+            "nombre":"CIENCIAS ADMINISTRATIVAS, GESTIÓN EMPRESARIAL E INFORMÁTICA"
+        },
+        {
+            "id":"FCESFH",
+            "nombre":"CIENCIAS DE LA EDUCACIÓN, SOCIALES, FILOSÓFICAS Y HUMANÍSTICAS"
+        },
+        {
+            "id":"FCSSH",
+            "nombre":"CIENCIAS DE LA SALUD Y DEL SER HUMANO"
+        },
+        {
+            "id":"JCSP",
+            "nombre":"JURISPRUDENCIA, CIENCIAS SOCIALES Y POLÍTICAS"
+        },
+        {
+            "id":"FCARNA-1",
+            "nombre":"CIENCIAS AGROPECUARIAS, RECURSOS NATURALES Y DEL AMBIENTE"
+        },
+        {
+            "id":"TICS",
+            "nombre":"TICS"
+        }
+    ]
+}
