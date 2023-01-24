@@ -1,9 +1,151 @@
 {
     "carreras": [
         {
-            "id": "",
-            "nombre": "",
-            "id_facultad": ""
+            "id": "CYA-1",
+            "nombre": "CONTABILIDAD Y AUDITORÍA",
+            "id_facultad": "FCAGEI-1",
+            "numero_asig":43,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CC-1",
+            "nombre": "COMUNICACIÓN (HIBRIDA)",
+            "id_facultad": "FCAGEI-1",
+            "numero_asig":40,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CTH(-1",
+            "nombre": "TURISMO Y HOTELERIA (HIBRIDA)",
+            "id_facultad": "FCAGEI-1",
+            "numero_asig":40,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "SW-1",
+            "nombre": "SOFTWARE",
+            "id_facultad": "FCAGEI-1",
+            "numero_asig":43,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CLM-1",
+            "nombre": "MERCADOTECNIA",
+            "id_facultad": "FCAGEI-1",
+            "numero_asig":40,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CLAE-1",
+            "nombre": "ADMINISTRACIÓN DE EMPRESAS",
+            "id_facultad": "FCAGEI-1",
+            "numero_asig":40,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CEIS-1",
+            "nombre": "EMPRENDIMIENTO E INNOVACION SOCIAL",
+            "id_facultad": "FCAGEI-1",
+            "numero_asig":40,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CD(-1",
+            "nombre": "DERECHO (REDISEÑO)",
+            "id_facultad": "JCSP",
+            "numero_asig":45,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CS(R)-1",
+            "nombre": "SOCIOLOGÍA (REDISEÑO)",
+            "id_facultad": "JCSP",
+            "numero_asig":45,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CEIB-1",
+            "nombre": "EDUCACIÓN INTERCULTURAL BILINGÜE",
+            "id_facultad": "FCESFH",
+            "numero_asig":46,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CCA-2",
+            "nombre": "EDUCACIÓN INICIAL",
+            "id_facultad": "FCESFH",
+            "numero_asig":46,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CPLCE-I(-1",
+            "nombre": "PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES - INFORMÁTICA (HIBRIDA)",
+            "id_facultad": "FCESFH",
+            "numero_asig":48,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "EB",
+            "nombre": "EDUCACIÓN BÁSICA",
+            "id_facultad": "FCESFH",
+            "numero_asig":46,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CMF-2",
+            "nombre": "PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES ( MATEMÁTICAS Y FÍSICA )",
+            "id_facultad": "FCESFH",
+            "numero_asig":44,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CMV-1",
+            "nombre": "MEDICINA VETERINARIA",
+            "id_facultad": "FCARNA-1",
+            "numero_asig":47,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CA-1",
+            "nombre": "AGRONÓMIA",
+            "id_facultad": "FCARNA-1",
+            "numero_asig":45,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "AGI",
+            "nombre": "AGROINDUSTRIA",
+            "id_facultad": "FCARNA-1",
+            "numero_asig":44,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CE(-1",
+            "nombre": "ENFERMERÍA (REDISEÑO)",
+            "id_facultad": "FCSSH",
+            "numero_asig":44,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CIRD-1",
+            "nombre": "INGENIERIA EN RIESGOS DE DESASTRES",
+            "id_facultad": "FCSSH",
+            "numero_asig":44,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "CTF-1",
+            "nombre": "TERAPIA FÍSICA",
+            "id_facultad": "FCSSH",
+            "numero_asig":54,
+            "total_horas_proyecto": 0
+        },
+        {
+            "id": "0-TICS",
+            "nombre": "Tecnologías de la Información y las Comunicaciones",
+            "id_facultad": "TICS",
+            "numero_asig":0,
+            "total_horas_proyecto": 0
         }
     ]
 }
