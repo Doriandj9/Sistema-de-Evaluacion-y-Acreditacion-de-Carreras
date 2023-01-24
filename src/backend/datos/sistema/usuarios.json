@@ -1,0 +1,24 @@
+{
+    "usuarios":[
+        {
+            "id": 1,
+            "nombre": "DOCENTES"
+        },
+        {
+            "id": 2,
+            "nombre": "DIRECTOR DE PLANEAMIENTO"
+        },
+        {
+            "id": 4,
+            "nombre": "COORDINADORES"
+        },
+        {
+            "id": 8,
+            "nombre": "EVALUADORES"
+        },
+        {
+            "id": 16,
+            "nombre": "ADMINISTRADOR"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "responsabilidades":[
+        {
+            "nombre":"PERTINENCIA",
+            "id_criterio": 1
+          },
+          {
+              "nombre": "ORGANIZACION Y RR",
+              "id_criterio": 2
+          },
+          {
+              "nombre": "PROFESORES",
+              "id_criterio": 3
+          },
+          {
+              "nombre": "CURRICULO",
+              "id_criterio": 4
+          },
+          {
+              "nombre": "ESTUDIANTES",
+              "id_criterio": 5
+          }
+    ]
+}
