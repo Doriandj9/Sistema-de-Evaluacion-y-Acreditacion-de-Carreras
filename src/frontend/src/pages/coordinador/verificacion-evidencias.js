@@ -27,9 +27,9 @@ function renderEvidencias(respuesta) {
         const contenedorNumeros = document.body.querySelector('.contenedor-numeros-paginacion');
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
-        paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros);
+        paginacionEvidenciasVerificacion(evidencias,10,1,tbody,contenedorNumeros);
         busqueda.addEventListener('input',() => {
-            paginacionEvidenciasVerificacion(evidencias,3,1,tbody,contenedorNumeros,null,null,'nombre_evidencia',busqueda.value.trim());
+            paginacionEvidenciasVerificacion(evidencias,10,1,tbody,contenedorNumeros,null,null,'nombre_evidencia',busqueda.value.trim());
         })
       }else{
         spinner.remove();

@@ -109,7 +109,7 @@ function insertarDatos(){
     $carreraModelo = new Carreras;
     $progreso += 1;
     printProgress($progreso);
-    foreach($facultades as $facultad){
+    foreach($facultades->facultades as $facultad){
         $data = [
             'id' => $facultad->id,
             'nombre' => $facultad->nombre
@@ -126,13 +126,13 @@ function insertarDatos(){
 
     $progreso += 5;
     printProgress($progreso);
-    foreach($carreras as $carrera) {
+    foreach($carreras->carreras as $carrera) {
         $data = [
             'id' => $carrera->id,
             'nombre' => $carrera->nombre,
             'id_facultad' => $carrera->id_facultad,
             'numero_asig' => $carrera->numero_asig,
-            'total_horas_proyecto' => $carreras->total_horas_proyecto
+            'total_horas_proyecto' => $carrera->total_horas_proyecto
     
         ];
         try{
@@ -144,47 +144,7 @@ function insertarDatos(){
             ]);
         }
     }
-    $progreso +=1;
-    printProgress($progreso);
-    /**
-     * Insertamos los usuarios y responsabilidades
-     */
-    $usuariosModelo = new Usuarios;
-    $responsabilidadesModelo = new Responsabilidades;
-
-    foreach($usuarios as $usuario) {
-        $data = [
-            'id' => $usuario->id,
-            'descripcion' => $usuario->nombre,
-            'permisos' => $usuarios->permisos
-        ];
-
-        try{   
-            $usuariosModelo->insert($data);
-        }catch(\PDOException $e) {
-            array_push($erroresUsuarios,[
-                'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
-                'error' => $e->getMessage()
-            ]);
-        }
-    }
-
-    foreach($responsabilidades as $responsabilidad) {
-        $data = [
-            'nombre' => $responsabilidad->nombre,
-            'id_criterio' => $responsabilidad->id_criterio
-        ];
-        try{   
-            $responsabilidadesModelo->insert($data);
-        }catch(\PDOException $e) {
-            array_push($erroresResponsabilidad,[
-                'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
-                'error' => $e->getMessage()
-            ]);
-        }
-    }    
-    $progreso += 10;
-    printProgress($progreso);
+    
     /**
      * Inserta los datos de los criterios a la base de datos 
      * 
@@ -209,6 +169,48 @@ function insertarDatos(){
         
         $progreso += 10;
         printProgress($progreso);
+
+        $progreso +=1;
+    printProgress($progreso);
+    /**
+     * Insertamos los usuarios y responsabilidades
+     */
+    $usuariosModelo = new Usuarios;
+    $responsabilidadesModelo = new Responsabilidades;
+
+    foreach($usuarios->usuarios as $usuario) {
+        $data = [
+            'id' => $usuario->id,
+            'descripcion' => $usuario->nombre,
+            'permisos' => $usuario->permisos
+        ];
+
+        try{   
+            $usuariosModelo->insert($data);
+        }catch(\PDOException $e) {
+            array_push($erroresUsuarios,[
+                'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
+    foreach($responsabilidades->responsabilidades as $responsabilidad) {
+        $data = [
+            'nombre' => $responsabilidad->nombre,
+            'id_criterio' => $responsabilidad->id_criterio
+        ];
+        try{   
+            $responsabilidadesModelo->insert($data);
+        }catch(\PDOException $e) {
+            array_push($erroresResponsabilidad,[
+                'fuente' => json_encode($data,JSON_UNESCAPED_UNICODE),
+                'error' => $e->getMessage()
+            ]);
+        }
+    }    
+    $progreso += 10;
+    printProgress($progreso);
         /**
          * Insertar estandares
          */
@@ -335,7 +337,7 @@ function insertarDatos(){
             }
 
     }
-    $progreso += 13;
+    $progreso += 12;
     printProgress($progreso);
 
     echo "Finalizado la tarea, recuento de errores: \n";
