@@ -1,16 +1,964 @@
 {
-    "evidencias": [
+    "evidencias":[
         {
-            "id":"1.2.12.1.2",
+            "id":"1.2.12.1.3",
             "nombre":"(Listados de asistentes con firmas, fotografías, actas de sesiones y resoluciones, invitaciones actores externos) en el desarrollo de la Planificación de la Carrera"
         },
         {
-            "id":"1.2.12.1.3",
+            "id":"2.10.53.1.7",
             "nombre":"Acta de entrega del laboratorio a la carrera."
         },
         {
-            "id":"1.2.12.1.4",
+            "id":"4.25.146.1.4",
+            "nombre":"Actas de calificación."
+        },
+        {
+            "id":"1.3.14.1.4",
             "nombre":"Ajustes curricular de Carrera"
+        },
+        {
+            "id":"2.9.52.1.2",
+            "nombre":"Analisis de la base de datos de libros existentes en biblioteca para cada carrera (ediciones actualizadas)"
+        },
+        {
+            "id":"2.9.47.1.3",
+            "nombre":"Base de datos de los libros físico y digital de la Carrera (5 años) ( Firmado y sellado por Biblioteca central)"
+        },
+        {
+            "id":"1.3.13.1.5",
+            "nombre":"Calendario Académico Institucional"
+        },
+        {
+            "id":"1.4.22.1.2",
+            "nombre":"Certificación de los beneficiarios de los proyectos de Vinculación."
+        },
+        {
+            "id":"2.9.47.1.6",
+            "nombre":"Certificación de pago de la compra de libros (Factura de compra)"
+        },
+        {
+            "id":"2.7.39.1.2",
+            "nombre":"Contenidos mínimos en nivelación"
+        },
+        {
+            "id":"3.12.64.1.2",
+            "nombre":"Contratos, nombramiento y/o acción de personal de los profesores investigadores de acuerdo a su tiempo de dedicación"
+        },
+        {
+            "id":"1.1.6.1.2",
+            "nombre":"Convenios Marcos y específicos de carrera (Vinculación, Investigación)"
+        },
+        {
+            "id":"1.2.11.1.3",
+            "nombre":"Convenios y cartas de aceptación para redes de investigación"
+        },
+        {
+            "id":"4.24.142.1.4",
+            "nombre":"Cronograma de Tutorias del docente con horas."
+        },
+        {
+            "id":"1.1.4.1.5",
+            "nombre":"Distributivo académico de la carrera."
+        },
+        {
+            "id":"1.1.4.1.8",
+            "nombre":"Documento de conformación de grupos de investigación de la Carrera (Listado de grupos de investigación de la Carrera.)"
+        },
+        {
+            "id":"5.27.160.1.3",
+            "nombre":"Documentos que contengan la planificación, ejecución y resultados del análisis socioeconómico, asignación de ayudas o becas de la unidad de bienestar universitario que evidencia el mejoramiento del rendimiento académico de los estudianes de la carrera."
+        },
+        {
+            "id":"1.1.5.1.7",
+            "nombre":"Estatuto"
+        },
+        {
+            "id":"1.1.2.1.3",
+            "nombre":"Estudio de pertinencia de la carrera."
+        },
+        {
+            "id":"1.1.5.1.2",
+            "nombre":"Estudio de prospectiva de carrera"
+        },
+        {
+            "id":"4.22.135.1.2",
+            "nombre":"Evaluación de silabo"
+        },
+        {
+            "id":"4.23.138.1.3",
+            "nombre":"Informe de uso del EVEA."
+        },
+        {
+            "id":"3.12.64.1.1",
+            "nombre":"Evidencia del título  de cuarto nivel  MSc SENESCYT"
+        },
+        {
+            "id":"3.13.68.1.1",
+            "nombre":"Evidencia del título  de cuarto nivel  MScE , rankings de universidades Latinoamérica, logros académicos y experiencia en investigación"
+        },
+        {
+            "id":"3.13.69.1.2",
+            "nombre":"Evidencia del título  de cuarto nivel  PhD (LEYENDA)"
+        },
+        {
+            "id":"3.13.67.1.2",
+            "nombre":"Evidencia del título  de cuarto nivel  PhDE (registrado en la SENESCYT)"
+        },
+        {
+            "id":"2.8.45.1.6",
+            "nombre":"Formatos de calificación de los trabajos de titulación"
+        },
+        {
+            "id":"2.8.45.1.4",
+            "nombre":"Formatos de registro de tutores, directores, coordinadores, profesores de grupos de investigación."
+        },
+        {
+            "id":"2.8.41.1.3",
+            "nombre":"Guías de titulación"
+        },
+        {
+            "id":"4.24.142.1.3",
+            "nombre":"Horarios de docentes con horas de tutorias académicas"
+        },
+        {
+            "id":"2.6.33.1.3",
+            "nombre":"Informe comparativo de sílabos entre ciclos y contenidos mínimos (modificación de contenidos)"
+        },
+        {
+            "id":"4.21.125.1.4",
+            "nombre":"Informe comparativo del perfil de egreso con los resultados de aprendizaje de los estudiantes"
+        },
+        {
+            "id":"1.4.20.1.4",
+            "nombre":"Informe consolidado de los proyectos de vinculación con sus estatus"
+        },
+        {
+            "id":"4.25.147.1.3",
+            "nombre":"Informe consolidado de resultados de las PAE, de la Carrera"
+        },
+        {
+            "id":"2.9.49.1.6",
+            "nombre":"Informe de adquisición de libros de la carrera (resultados de compra en función de los solicitado por docentes)"
+        },
+        {
+            "id":"2.6.33.1.2",
+            "nombre":"Informe de ajustes de Carrera"
+        },
+        {
+            "id":"3.14.74.1.8",
+            "nombre":"Informe de avance de actividades de investigación del ciclo."
+        },
+        {
+            "id":"5.27.159.1.4",
+            "nombre":"Informe de Becas"
+        },
+        {
+            "id":"3.16.89.1.2",
+            "nombre":"Informe de capacitación"
+        },
+        {
+            "id":"1.3.17.1.2",
+            "nombre":"Informe de cumplimiento del plan de comunicaión"
+        },
+        {
+            "id":"2.8.41.1.5",
+            "nombre":"Informe de cumplimiento del plan de la Unidad de Titulación"
+        },
+        {
+            "id":"2.6.30.1.2",
+            "nombre":"Informe de cumplimiento del plan de seguimiento a graduados"
+        },
+        {
+            "id":"2.5.28.1.4",
+            "nombre":"Informe de cumplimiento del sílabo del Sianet y uso de la platorma Evea por Carrera"
+        },
+        {
+            "id":"2.6.34.1.1",
+            "nombre":"Informe de difución de resultados del seguimiento a graduados"
+        },
+        {
+            "id":"5.27.159.1.3",
+            "nombre":"Informe de difusión de los ervicios de bienestar universitario a través de redes sociales."
+        },
+        {
+            "id":"4.23.139.1.2",
+            "nombre":"Informe de ejecución de PAE y PIS"
+        },
+        {
+            "id":"4.24.144.1.6",
+            "nombre":"Informe de ejecución del plan de vinculación con la sociedad e investigación."
+        },
+        {
+            "id":"1.3.13.1.4",
+            "nombre":"Informe de ejecución del sílabo por ciclo"
+        },
+        {
+            "id":"4.25.147.1.1",
+            "nombre":"Informe de ejecuciòn y resultados de los proyectos integradores de saberes"
+        },
+        {
+            "id":"1.1.6.1.3",
+            "nombre":"Informe de elaboración del PEI"
+        },
+        {
+            "id":"4.21.121.1.5",
+            "nombre":"Informe de elaboración del perfil de egreso (con la participación de actores relevantes  en su revisión y validación)"
+        },
+        {
+            "id":"2.11.57.1.1",
+            "nombre":"Informe de evaluación a la plataforma (conectividad, acceso)-  Director de Sistemas"
+        },
+        {
+            "id":"2.5.28.1.2",
+            "nombre":"Informe de evaluación de Sílabo por carrera"
+        },
+        {
+            "id":"2.11.59.1.1",
+            "nombre":"Informe de evaluación de utilidad de la plataforma (que involucre a profesores y estudiantes)"
+        },
+        {
+            "id":"1.2.12.1.2",
+            "nombre":"Informe de evaluación del PEDI (Evidencias de proceso de formulación del Plan estratégico y estudio prospectivo de facultad)"
+        },
+        {
+            "id":"1.3.16.1.2",
+            "nombre":"Informe de evaluaciones a docentes por carrera para la implementación de estrategias"
+        },
+        {
+            "id":"1.2.9.1.1",
+            "nombre":"Informe de formulación del plan estratégico con la participación de actores claves"
+        },
+        {
+            "id":"1.1.5.1.4",
+            "nombre":"Informe de gestión Académica de la carrera"
+        },
+        {
+            "id":"1.4.23.1.1",
+            "nombre":"Informe de impacto del proyecto ejecutados de vinculación"
+        },
+        {
+            "id":"1.3.15.1.4",
+            "nombre":"Informe de implementación de propuestas de estudiantes y docentes para mejora de los procesos de aprendizaje esperados"
+        },
+        {
+            "id":"2.9.52.1.1",
+            "nombre":"Informe de la Carrera respecto a la calidad de los recursos bibliográficos"
+        },
+        {
+            "id":"5.27.159.1.2",
+            "nombre":"Informe de la participación de los estudiantes de la carrera en la socialización de los beneficios que brinda bienestar uniresitario"
+        },
+        {
+            "id":"2.8.45.1.3",
+            "nombre":"Informe de la Unidad de Titulación para conocer asignación de Directores,  pares académicos, estudiantes por modalidades de titulación"
+        },
+        {
+            "id":"2.8.42.1.5",
+            "nombre":"Informe de los docentes con horas de titulación de los trabajos asignados en el periodo acádemico"
+        },
+        {
+            "id":"4.21.127.1.1",
+            "nombre":"Informe de mecanismos utilizados para la difusión de las carreras (ferias, medios de comunicación, entre otros)"
+        },
+        {
+            "id":"1.1.7.1.3",
+            "nombre":"Informe de medición de impactos de las carreras en el contexto"
+        },
+        {
+            "id":"2.9.51.1.2",
+            "nombre":"Informe de que la cantidad bibliografica, son suficientes, adecuados, pertinentes y vigentes"
+        },
+        {
+            "id":"4.22.130.1.2",
+            "nombre":"Informe de resultados de aprendizaje de los estudiantes de la carrera según el cuadro de equivalencias del reglamento de evaluación estudiantil."
+        },
+        {
+            "id":"4.25.150.1.3",
+            "nombre":"Informe de resultados de PAE / PIS"
+        },
+        {
+            "id":"5.26.153.1.2",
+            "nombre":"Informe de resultados relacionados a los beneficios de bienestar universitario de los estudiantes de la carrera."
+        },
+        {
+            "id":"1.1.2.1.4",
+            "nombre":"Informe de seguimiento a graduados y medición de impactos"
+        },
+        {
+            "id":"1.4.23.1.2",
+            "nombre":"Informe de seguimiento al desarrollo de los proyectos de vinculación"
+        },
+        {
+            "id":"1.3.19.1.2",
+            "nombre":"Informe de seguimiento al plan  de apoyo a los estudiantes"
+        },
+        {
+            "id":"1.3.18.1.3",
+            "nombre":"Informe de seguimiento al plan de mejoramiento de la Calidad"
+        },
+        {
+            "id":"2.5.28.1.3",
+            "nombre":"Informe de seguimiento al sílabo por estudiantes"
+        },
+        {
+            "id":"2.7.40.1.1",
+            "nombre":"Informe de socialización de políticas de admisión en unidades académicas"
+        },
+        {
+            "id":"2.6.33.1.1",
+            "nombre":"Informe de socilización de resultados de seguimiento a graduados"
+        },
+        {
+            "id":"4.22.136.1.1",
+            "nombre":"Informe de tutorias académicas en funsión del plan que incluya estadísticas de indices de repitencia a través de las evaluaciones en el proceso de enseñanza aprendizaje."
+        },
+        {
+            "id":"2.10.53.1.8",
+            "nombre":"Informe de uso de equipos por estudiante y carrera (contador numerico de uso de equipos, listado de alumnos)"
+        },
+        {
+            "id":"2.11.56.1.4",
+            "nombre":"Informe de utilización del Entorno de Aprendizaje Virtual de los docentes y estudiantes (uso del chat,evaluaciones, foros, entre otros) por carreras"
+        },
+        {
+            "id":"2.10.53.1.5",
+            "nombre":"Informe del espacio físico asignado al laboratorio por cantidad de equipos  (Documento firmado y sellado por el Responsable de los laboratorios)"
+        },
+        {
+            "id":"5.27.157.1.2",
+            "nombre":"Informe del proceso de otorgamiento de Becas"
+        },
+        {
+            "id":"1.3.13.1.3",
+            "nombre":"Informe del sianet del cumplimiento del contenido"
+        },
+        {
+            "id":"4.25.152.1.1",
+            "nombre":"Informe del sianet del rendimiento de los estudiantes"
+        },
+        {
+            "id":"1.3.18.1.4",
+            "nombre":"Informe final de la implementación del Plan de mejoramiento de la autoevaluación"
+        },
+        {
+            "id":"2.10.53.1.4",
+            "nombre":"Informe técnico del estado de los laboratorios (mantenimientos, preventivos, predictivos, calibración)."
+        },
+        {
+            "id":"4.22.128.1.2",
+            "nombre":"Informes de ajustes curriculares de carrera"
+        },
+        {
+            "id":"1.3.16.1.1",
+            "nombre":"Informes de Autoevaluación de la carrera"
+        },
+        {
+            "id":"2.5.25.1.1",
+            "nombre":"Informes de comisión académica de cada Facultad (firmas acuerdos fotografías"
+        },
+        {
+            "id":"2.9.48.1.4",
+            "nombre":"Informes de ejecución de los planes de inducción de base de datos, titulación, concurso proyectos de investigación."
+        },
+        {
+            "id":"3.16.91.1.1",
+            "nombre":"Informes de evaluación de desempeño docente"
+        },
+        {
+            "id":"5.27.159.1.5",
+            "nombre":"Informes de Homologación"
+        },
+        {
+            "id":"3.16.90.1.4",
+            "nombre":"Informes de horas de gestión de los docentes."
+        },
+        {
+            "id":"1.4.22.1.1",
+            "nombre":"Informes de los proyectos de vinculación culminados con medición de impacto."
+        },
+        {
+            "id":"1.3.15.1.2",
+            "nombre":"Informes de reuniones de socialización de las actividades de carrera"
+        },
+        {
+            "id":"3.16.88.1.4",
+            "nombre":"Informes de socialización de los resultados de evaluación de desempeño docente"
+        },
+        {
+            "id":"2.9.50.1.2",
+            "nombre":"Lineamientos institucionales para la organización del aprendizaje como instrumernto de aplicación para las buenas prácticas academicas (planificación y ejecución de horas PAE, anexos (listado de estudiantes, informe de estudiantes, registron de calificación de PAE)"
+        },
+        {
+            "id":"1.1.4.1.7",
+            "nombre":"Lineas de investigación aprobadas de la carrera"
+        },
+        {
+            "id":"5.31.174.1.1",
+            "nombre":"Lista certíficada actualizada, generada desde el Sianet por secretaria de carrera del total de estudiantes de las cohortes definidas que concluyeron el proceso de Titulación (Proyecto de titulación o aprobaron el examen complexivo)"
+        },
+        {
+            "id":"5.26.154.1.1",
+            "nombre":"Lista certificada de estudiantes a quienes se les ha concedido algún tipo de beneficio o servicio, especificando el tipo y monto del apoyo."
+        },
+        {
+            "id":"3.15.83.1.2",
+            "nombre":"Lista de profesores  titulares con dedicación a tiempo completo"
+        },
+        {
+            "id":"3.15.84.1.1",
+            "nombre":"Lista total de profesores relacionados con la carrera"
+        },
+        {
+            "id":"3.18.97.1.1",
+            "nombre":"Listado  de Artículos cientificos publicados por docentes de la carrera incluido el valor, entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al artículo ¡-ésimo"
+        },
+        {
+            "id":"3.18.99.1.1",
+            "nombre":"Listado  de Artículos cientificos publicados por docentes de la carrera incluido el valor, entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al artículo ¡-ésimo con sus respectivos links"
+        },
+        {
+            "id":"3.19.104.1.1",
+            "nombre":"Listado  de profesores de la carrera que son Autores o Coautores"
+        },
+        {
+            "id":"2.8.45.1.5",
+            "nombre":"Listado certificado  de estudiantes en titulación."
+        },
+        {
+            "id":"5.30.170.1.1",
+            "nombre":"Listado certíficado por secretaria de carrera de los estudiantes de las cohortes seleccionadas que se mantienen en la carrera durante el periodo de evaluación."
+        },
+        {
+            "id":"5.31.175.1.1",
+            "nombre":"Listado certíficado por secretaria de carrera del total de estudiantes de las cohortes definidas para el cálculo de la titulación"
+        },
+        {
+            "id":"5.30.171.1.1",
+            "nombre":"Listado certíficado por secretaria de carrera del total de estudiantes de las cohortes definidas para el cálculo de retención en un periodos de dos años."
+        },
+        {
+            "id":"3.16.92.1.3",
+            "nombre":"Listado de asistencia de docentes a la socialización de resultados de evaluación docente de la carrera."
+        },
+        {
+            "id":"5.29.169.1.1",
+            "nombre":"Listado de estudiantes matriculados durante los períodos académicos ordinarios por ciclo, asignatura y paralelo."
+        },
+        {
+            "id":"3.13.67.1.4",
+            "nombre":"Listado de IES  en los rankings de Universidades de  Latinoamericana que evidencien los logros académicos y experiencia en investigación"
+        },
+        {
+            "id":"3.13.67.1.3",
+            "nombre":"Listado de IES para el programa de becas para doctorado (PHD) para docentes de universidades y escuelas politécnicas "
+        },
+        {
+            "id":"3.14.80.1.2",
+            "nombre":"Listado de la producción cientifica (libros, capitulos de libros, Artículos, ponencias) que sean coherentes con el contexto local, nacional, regional o mundial."
+        },
+        {
+            "id":"3.14.79.1.1",
+            "nombre":"Listado de la producción cientifica (libros, capitulos de libros, Artículos, ponencias) relacionadas a las lineas de investigación y con el estudio de pertinencia de la carrera."
+        },
+        {
+            "id":"3.14.78.1.1",
+            "nombre":"Listado de la producción cientifica (libros, capitulos de libros, Artículos, ponencias) relacionadas a las lineas de investigación y las asignaturas de la carrera."
+        },
+        {
+            "id":"3.14.81.1.1",
+            "nombre":"Listado de la producción cientifica (libros, capitulos de libros, Artículos, ponencias) relacionados con las lineas de investigación y los proyectos de titulación aprobados de la carrera."
+        },
+        {
+            "id":"2.9.47.1.5",
+            "nombre":"Listado de libros adquiridos por carreras"
+        },
+        {
+            "id":"3.17.93.1.1",
+            "nombre":"Listado de profesores que han realizado a ponencias y/o eventos de actualización científica y pedagógica  en el periodo de evaluación con su sumatoria"
+        },
+        {
+            "id":"3.14.73.1.5",
+            "nombre":"Listado de programas de y/o Proyectos de investigación Aprobados de la carrera; incluye participantes docentes y estudiantes"
+        },
+        {
+            "id":"3.14.75.1.2",
+            "nombre":"Listado de proyectos aprobados ejecutados y en ejecución de la carrera en el periodo de evaluación en relación a las lineas de investigación de la carrera. Listado de profesores con titularidad que forman parte de gupos de investigación de la carrera"
+        },
+        {
+            "id":"1.4.21.1.3",
+            "nombre":"Listado de proyectos de vinculación aprobados, ejecutados y de ejecución e informes finales certificado"
+        },
+        {
+            "id":"2.7.38.1.1",
+            "nombre":"Listado de selección de estudiantes por género, discapacidad, autodenominación, etnia, lugar de origen, edad de la carrera."
+        },
+        {
+            "id":"3.13.67.1.1",
+            "nombre":"Listado de universidades de excelencia"
+        },
+        {
+            "id":"3.13.71.1.1",
+            "nombre":"Listado del total de profesores de la carrera"
+        },
+        {
+            "id":"3.14.73.1.7",
+            "nombre":"Listado grupo de redes de investigación externos"
+        },
+        {
+            "id":"3.20.119.1.1",
+            "nombre":"Listado total de capitulos, publicados por profesores de la carrera, incluido el valor, entre 0 y 0,5, otorgado al impacto local, regional o nacional atribuido al libro ¡-ésimo con sus respectivos links"
+        },
+        {
+            "id":"2.10.55.1.1",
+            "nombre":"Listado total de laboratorios equipos, mobiliarios, softwares  de la carrera a evaluar"
+        },
+        {
+            "id":"3.20.114.1.1",
+            "nombre":"Listado total de libros, publicados por profesores de la carrera, incluido el valor, entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al libro ¡-ésimo con sus respectivos links"
+        },
+        {
+            "id":"3.14.73.1.8",
+            "nombre":"Listados de docentes y estudiantes de los proyectos de investigación"
+        },
+        {
+            "id":"3.20.111.1.1",
+            "nombre":"Listados de profesores que han publicado  libros o capítulos de libros de la carrera con sus respectivos links"
+        },
+        {
+            "id":"3.19.103.1.1",
+            "nombre":"Listados de profesores que han publicado artículos cientificos (autores y coautores) de la carrera con sus respectivos links en revistas de impacto mundial"
+        },
+        {
+            "id":"3.18.96.1.1",
+            "nombre":"Listados de profesores que han publicado artículos cientificos (autores y coautores) de la carrera con sus respectivos links en revistas de impacto mundial incluido el indice SJR otorgado al artículo i-ésimo."
+        },
+        {
+            "id":"5.29.166.1.1",
+            "nombre":"Listados filtrado del distributivo académico de la carrera, certificado por secretaria de carrera."
+        },
+        {
+            "id":"5.29.165.1.1",
+            "nombre":"Listas certificadas emitidas por secretaria de carrera de los estudiantes matriculados."
+        },
+        {
+            "id":"1.1.5.1.3",
+            "nombre":"LOES (Ley Organica de Educacion Superior)"
+        },
+        {
+            "id":"1.1.4.1.6",
+            "nombre":"Malla curricular aprobada y en vigencia al momento de la evaluación  con prerequisitos y corequisitos"
+        },
+        {
+            "id":"2.6.35.1.2",
+            "nombre":"Mallas antes del ajuste y con el ajuste curricular"
+        },
+        {
+            "id":"2.10.53.1.6",
+            "nombre":"Manual de seguridad de uso de laboratorios"
+        },
+        {
+            "id":"3.16.86.1.4",
+            "nombre":"Manual de uso Software para la evaluación docente"
+        },
+        {
+            "id":"2.11.56.1.3",
+            "nombre":"Manual de usuario del EVEA –  Documento del Director de Sistemas con firmas y sellos, legalizado"
+        },
+        {
+            "id":"4.24.145.1.2",
+            "nombre":"Matriz comparativa de notas entre parciales resultado de tutorias."
+        },
+        {
+            "id":"4.22.129.1.3",
+            "nombre":"Matriz comparativa de plan de estudios, objetivos de carrera, resultados de aprendizaje. Perfil de egreso y lineas de investigación"
+        },
+        {
+            "id":"1.4.22.1.3",
+            "nombre":"Matriz comparativa entre lineas de investigación, Proyecto de vinculación y asignaturas de la carrera."
+        },
+        {
+            "id":"3.14.75.1.1",
+            "nombre":"Matriz con el listado de docentes que pertenecen a grupos de investigación con al menos una publicación o que esten desarrollando un proyecto de investigación acorde a las lineas de investigación de la carrera y en el periodo de evaluación."
+        },
+        {
+            "id":"3.12.66.1.1",
+            "nombre":"Matriz de asignaturas dictadas por profesores con formación de posgrado de maestría o equivalente afín a la asignatura"
+        },
+        {
+            "id":"3.14.74.1.10",
+            "nombre":"Matriz de estudiantes de grado que participan en proyectos de investigación"
+        },
+        {
+            "id":"1.2.12.1.1",
+            "nombre":"Matriz de involucrados en la Planificación de la Carrera"
+        },
+        {
+            "id":"3.14.74.1.9",
+            "nombre":"Matriz de los grupos de investigación y su contribución al desarrollo de la investigación formativa y a la integración  con un currículo de la carrera y los proyectos de vinculación con la sociedad"
+        },
+        {
+            "id":"2.5.26.1.3",
+            "nombre":"Matriz de registros de cumplimiento de horários"
+        },
+        {
+            "id":"2.10.54.1.1",
+            "nombre":"Matriz de valoración de disponibilidad enfocado en equipamiento y funcionalidad según el plan de prácticas."
+        },
+        {
+            "id":"3.13.69.1.1",
+            "nombre":"Matriz que contenga Lista de docentes con título de PHD, Universidad, año de obtención del Título."
+        },
+        {
+            "id":"4.21.123.1.1",
+            "nombre":"Modelo educacional de la Universidad del periodo de evaluación."
+        },
+        {
+            "id":"2.10.53.1.1",
+            "nombre":"Normativa  / Reglamento de procesos de práctica"
+        },
+        {
+            "id":"2.6.36.1.4",
+            "nombre":"Nueva oferta académica de pre y posgrado"
+        },
+        {
+            "id":"2.9.47.1.4",
+            "nombre":"Número de ejemplares físicos que existen por libro ( Firmado y sellado por Biblioteca General)"
+        },
+        {
+            "id":"2.9.51.1.1",
+            "nombre":"Número de estudiantes por libro ( Firmado y sellado por Secretaría de Carrera)"
+        },
+        {
+            "id":"2.9.49.1.1",
+            "nombre":"Oficio de requeriemto de libros en base a las necesidades para investigación y titulación (coordinación de carrera)"
+        },
+        {
+            "id":"2.9.49.1.2",
+            "nombre":"Oficio de requeriemto de libros en base a las necesidades para investigación y titulación (Decanato consolidado de las carreras)"
+        },
+        {
+            "id":"4.21.127.1.2",
+            "nombre":"Página web de la Universidad"
+        },
+        {
+            "id":"1.1.1.1.4",
+            "nombre":"PDOT Local, Provincial y Regional"
+        },
+        {
+            "id":"1.1.1.1.5",
+            "nombre":"PEDI (Plan Estratégico de Desarrollo Institucional)."
+        },
+        {
+            "id":"2.7.37.1.2",
+            "nombre":"Perfil de ingreso"
+        },
+        {
+            "id":"1.3.19.1.1",
+            "nombre":"Plan de apoyo a los estudiantes que rinden el examen nacional de evaluación de carreras"
+        },
+        {
+            "id":"1.3.14.1.1",
+            "nombre":"Plan de Aseguramiento de la Calidad Carrera"
+        },
+        {
+            "id":"1.3.15.1.1",
+            "nombre":"Plan de autoevaluación interno de Carreras"
+        },
+        {
+            "id":"1.2.11.1.1",
+            "nombre":"Plan de Capacitación Docente y perfeccionamiento docente de la Carrera"
+        },
+        {
+            "id":"1.3.17.1.1",
+            "nombre":"Plan de comunicación interna y externa de Carrera (Invitaciones actores, firmas de asistentes, fotografías, actas de socialización)"
+        },
+        {
+            "id":"1.1.4.1.4",
+            "nombre":"Plan de desarrollo nacional"
+        },
+        {
+            "id":"4.21.124.1.2",
+            "nombre":"Plan de estudios."
+        },
+        {
+            "id":"1.2.8.1.4",
+            "nombre":"Plan de gestión académica de la carrera"
+        },
+        {
+            "id":"2.9.48.1.1",
+            "nombre":"Plan de inducción sobre el uso de Bases de datos virtuales, búsquedas en la web y los sistemas bibliográficos de la institución a docentes y estudientes a inicios de ciclo académico"
+        },
+        {
+            "id":"2.9.48.1.3",
+            "nombre":"Plan de inducción sobre participación en concursos de proyectos de investigación (Bases de datos virtuales, búsquedas en la web y los sistemas bibliográficos de la institución)"
+        },
+        {
+            "id":"2.9.48.1.2",
+            "nombre":"Plan de inducción sobre titulación (Bases de datos virtuales, búsquedas en la web y los sistemas bibliográficos de la institución)"
+        },
+        {
+            "id":"3.14.73.1.2",
+            "nombre":"Plan de investigación de la Carrera"
+        },
+        {
+            "id":"2.10.53.1.3",
+            "nombre":"Plan de mantenimiento de laboratorios"
+        },
+        {
+            "id":"2.6.35.1.3",
+            "nombre":"Plan de mejora a la malla y contenidos minimos en función del informe de ajuste de carrera"
+        },
+        {
+            "id":"3.16.91.1.2",
+            "nombre":"Plan de mejora del proceso de enseñanza aprendizaje"
+        },
+        {
+            "id":"1.3.14.1.3",
+            "nombre":"Plan de mejoras de Carrera"
+        },
+        {
+            "id":"1.1.7.1.1",
+            "nombre":"Plan de monitoreo y evaluación de PEI"
+        },
+        {
+            "id":"4.24.144.1.2",
+            "nombre":"Plan de prácticas pre-profesionales"
+        },
+        {
+            "id":"4.22.128.1.1",
+            "nombre":"Plan de revisión, actualización del plan de estudios"
+        },
+        {
+            "id":"1.1.2.1.5",
+            "nombre":"Plan de seguimiento a graduados (políticas)"
+        },
+        {
+            "id":"2.8.41.1.4",
+            "nombre":"Plan de titulación (para cada modalidad de Titulación)"
+        },
+        {
+            "id":"4.24.141.1.2",
+            "nombre":"Plan de Tutorias académicas"
+        },
+        {
+            "id":"2.10.53.1.2",
+            "nombre":"Plan de uso de laboratorios (incluye Guía de uso de Laboratorio)"
+        },
+        {
+            "id":"1.4.20.1.1",
+            "nombre":"Plan de vinculación con la sociedad e investigación de la carrera"
+        },
+        {
+            "id":"1.4.24.1.2",
+            "nombre":"Plan de vinculación e Informe de impacto de los proyecto ejecutados"
+        },
+        {
+            "id":"1.1.1.1.1",
+            "nombre":"Plan estratégico carrera (FODA-PESTEL-PROSPECTIVA)"
+        },
+        {
+            "id":"1.1.1.1.3",
+            "nombre":"Plan Nacionnal del Buen Vivir"
+        },
+        {
+            "id":"3.16.88.1.3",
+            "nombre":"Planes de capacitación docentes en base al informe de evaluación docente"
+        },
+        {
+            "id":"4.23.139.1.1",
+            "nombre":"Planificación PAE y PIS."
+        },
+        {
+            "id":"1.1.5.1.1",
+            "nombre":"POA  Carrera y Facultad"
+        },
+        {
+            "id":"2.7.37.1.1",
+            "nombre":"Políticas de admisión"
+        },        
+        {
+            "id":"5.26.153.1.3",
+            "nombre":"Políticas de bienestar universitario"
+        },
+        {
+            "id":"3.14.82.1.1",
+            "nombre":"Políticas de gestión de los recursos para la investigación."
+        },
+        {
+            "id":"3.14.73.1.3",
+            "nombre":"Políticas de investigación de la carrera"
+        },
+        {
+            "id":"2.11.56.1.2",
+            "nombre":"Políticas de seguridad de la plataforma"
+        },
+        {
+            "id":"4.25.151.1.7",
+            "nombre":"Portafolio estudiantil"
+        },
+        {
+            "id":"3.16.86.1.3",
+            "nombre":"Programa de evaluación de desempeño docente"
+        },
+        {
+            "id":"1.3.15.1.3",
+            "nombre":"Propuestas de estudiantes y docentes para garantizar el logro de los resultados de aprendizaje esperados"
+        },
+        {
+            "id":"4.21.121.1.3",
+            "nombre":"Proyecto de ajuste de carrera"
+        },
+        {
+            "id":"1.1.1.1.2",
+            "nombre":"Proyecto de carrera de Diseño y Rediseño"
+        },
+        {
+            "id":"3.14.82.1.4",
+            "nombre":"Proyectos de Investigación."
+        },
+        {
+            "id":"3.16.88.1.5",
+            "nombre":"Reformas al curriculo de la carrera"
+        },
+        {
+            "id":"4.24.142.1.5",
+            "nombre":"Registro de socialización del plan y el cronograma."
+        },
+        {
+            "id":"2.11.60.1.1",
+            "nombre":"Registro de utilización herramientas sincrónicas y asincrónicas EVEA  - Director de Sistemas"
+        },
+        {
+            "id":"2.9.48.1.5",
+            "nombre":"Registros de las inducciones impartidas."
+        },
+        {
+            "id":"5.26.153.1.1",
+            "nombre":"Reglamento de Becas o ayudas económicas."
+        },
+        {
+            "id":"1.2.11.1.6",
+            "nombre":"Reglamento de carrera y escalafón del profesor investigador de la UEB (describir artículos)"
+        },
+        {
+            "id":"3.16.86.1.2",
+            "nombre":"Reglamento de evaluación docente"
+        },
+        {
+            "id":"1.3.13.1.1",
+            "nombre":"Reglamento de evaluación estudiantil."
+        },
+        {
+            "id":"4.22.135.1.5",
+            "nombre":"Reglamento de regimen académico"
+        },
+        {
+            "id":"2.8.41.1.1",
+            "nombre":"Reglamento de titulación (políticas)"
+        },
+        {
+            "id":"2.11.56.1.1",
+            "nombre":"Reglamento de uso y gestión de la plataforma."
+        },
+        {
+            "id":"4.25.146.1.1",
+            "nombre":"Reporte contenido académico del silabo obtenido del sianet"
+        },
+        {
+            "id":"2.5.26.1.1",
+            "nombre":"Resoluciones y directrices de Comisión académica sobre asignación de horas en distributivo"
+        },
+        {
+            "id":"5.30.172.1.1",
+            "nombre":"Resultado del cálculo de la tasa de retención"
+        },
+        {
+            "id":"5.31.173.1.1",
+            "nombre":"Resultado del cálculo de la tasa de TITULACIÓN"
+        },
+        {
+            "id":"2.8.45.1.8",
+            "nombre":"Rubricas de calificación de documentos de titulación"
+        },
+        {
+            "id":"4.23.138.1.4",
+            "nombre":"Sianet"
+        },
+        {
+            "id":"2.9.47.1.2",
+            "nombre":"Silabo"
+        },
+        {
+            "id":"5.26.155.1.5",
+            "nombre":"Sistema de aseguramiento"
+        },
+        {
+            "id":"3.14.73.1.1",
+            "nombre":"Sistema de investigación de la Universidad Estatal de Bolívar"
+        },
+        {
+            "id":"3.16.92.1.1",
+            "nombre":"Socialización de resultados de la evaluación docente de la carrera."
+        },
+        {
+            "id":"3.17.95.1.1",
+            "nombre":"ACP: actualización científica y pedagógicas."
+        },
+        {
+            "id":"3.18.112.1.1",
+            "nombre":" β: Factor que corrige por concentración. Se refiere al porcentaje de profesores que es deseable que realicen actividades de investigación y obtengan resultados (es decir, es mayor a cero y a lo sumo, puede ser uno). Este valor, permite definir el estándar."
+        },
+        {
+            "id":"3.18.100.1.1",
+            "nombre":"SJR¡: Índice SJR de la revista en la que ha sido publicado el artículo i-ésimo."
+        },
+        {
+            "id":"3.18.101.1.1",
+            "nombre":"ɑ¡: Valor, entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al artículo ¡-ésimo."
+        },
+        {
+            "id":"3.18.102.1.1",
+            "nombre":"IPAIM:  Índice de producción académica con impacto mundial"
+        },
+        {
+            "id":"3.19.106.1.1",
+            "nombre":"NAR: Número de artículos o trabajos científicos de los profesores de la carrera, publicados o aceptados en revistas que constan en bases de datos, cuyos criterios de indexación contemplen parámetros de calidad reconocidos regionalmente."
+        },
+        {
+            "id":"3.19.107.1.1",
+            "nombre":"PR¡: Artículos o trabajos científicos del profesor i-ésimo de la carrera."
+        },
+        {
+            "id":"3.19.109.1.1",
+            "nombre":"ɑ¡: Valor, entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al artículo i-ésimo."
+        },
+        {
+            "id":"3.19.110.1.1",
+            "nombre":"IPAIR: Índice de producción académica con impacto regional."
+        },
+        {
+            "id":"3.20.115.1.1",
+            "nombre":"L¡: Libro i-ésimo publicado por profesores de la carrera."
+        },
+        {
+            "id":"3.20.116.1.1",
+            "nombre":"ɑ¡: Valor entre 0 y 1, otorgado al impacto local, regional o nacional atribuido al libro i-ésimo o capítulo de libro i-ésimo."
+        },
+        {
+            "id":"3.20.117.1.1",
+            "nombre":"CL: Número total de capítulos de libros publicados por profesores de la carrera."
+        },
+        {
+            "id":"3.20.118.1.1",
+            "nombre":"CL¡: Capítulo de lihro i-ésimo publicado por profesores de la carrera."
+        },
+        {
+            "id":"3.20.120.1.1",
+            "nombre":"LCL: Libros y/o capítulos de libros revisados por pares."
+        },
+        {
+            "id":"1.1.2.1.1",
+            "nombre":"Manual de procedimientos"
         }
     ]
 }

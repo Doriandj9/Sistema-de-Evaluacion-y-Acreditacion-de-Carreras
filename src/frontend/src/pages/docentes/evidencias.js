@@ -53,10 +53,10 @@ function renderEvidencias(respuesta,opcion) {
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
         
-        paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
+        paginacionEvidencias(evidencias,10,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
         busqueda.addEventListener('input',(function(evidencias){
             return () => {
-            paginacionEvidencias(evidencias,2,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
+            paginacionEvidencias(evidencias,10,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
             };
         })(evidencias))
         opcion === 'ver' ? mostrarEvidencias(): mostrarFormSubirArchivo();
