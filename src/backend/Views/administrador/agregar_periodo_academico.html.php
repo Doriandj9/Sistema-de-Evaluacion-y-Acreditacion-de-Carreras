@@ -1,6 +1,6 @@
 <div class="centrado-linea">
 <div class="altura-2  padding-all-1 p-relativo">
-    <table class="tabla tabla-vertical tabla-presentacion contenedor-x100 sombra centrado-linea" id="tabla-presentacion">
+    <table class="tabla tabla-vertical tabla-presentacion contenedor-x100 mb-2 sombra centrado-linea" id="tabla-presentacion">
                 <thead>
                     <tr class="titulo-tablas">
                         <th colspan="4">
@@ -51,7 +51,9 @@
                    
                 </tbody>
             </table>
-            <div class="flotante-abajo-centrado contenedor-numeros-paginacion"></div>
+            <!-- <div class="flotante-abajo-centrado contenedor-numeros-paginacion"></div> -->
+            <div class="contenedor-numeros-paginacion d-flex justify-content-center"></div>
+
 </div>
 <div class="desborde-auto barra-personalizada padding-all-1 ">
     <form class="">
