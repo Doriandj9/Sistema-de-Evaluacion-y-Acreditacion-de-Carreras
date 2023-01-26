@@ -50,7 +50,7 @@
     <thead>
       <tr>
         <th class="bg-primary text-white text-center">Criterio</th>
-        <th class="bg-primary text-white text-center">Estandar Indicador</th>
+        <th class="bg-primary text-white text-center">Estándar Indicador</th>
         <th class="bg-primary text-white text-center">Elemento Fundamental</th>
         <th class="bg-primary text-white text-center">Componente</th>
         <th class="bg-primary text-white text-center">Documento de Información</th>
