@@ -15,7 +15,7 @@
               <div class="w-100 h-100 m-3">
                   <div class="w-100 mt-4">
                     <h3 class="text-center tipografia-sanSerif-4">
-                    Inicio del Administrador
+                    ADMINISTRADOR DEL SISTEMA SEAC
                     </h3>
                     <p class="text-justificado tipografia-sanSerif-1">SEAC, es un sistema web que permite el almacenamiento de información
                        que apoya en la Evaluación y Aseguramiento de la Calidad de las carreras.</p>

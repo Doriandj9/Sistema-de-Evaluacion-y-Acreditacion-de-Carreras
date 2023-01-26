@@ -172,50 +172,50 @@ function actionIngresoManual() {
               </div>
               <div class="modal-body">
               <div class="mb-3 row">
-              <label for="cedula" class="col-sm-5 col-form-label fw-bold">Ingrese el Numero de Cedula del Docente</label>
+              <label for="cedula" class="col-sm-5 col-form-label fw-bold">Ingrese el número de cédula del docente</label>
               <div class="col-sm-7">
                 <input type="text" name="cedula" class="form-control opcional-ingreso" id="cedula"">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="nombre" class="col-sm-5 col-form-label fw-bold">Ingrese los Nombres del Docente</label>
+              <label for="nombre" class="col-sm-5 col-form-label fw-bold">Ingrese los nombres del docente</label>
               <div class="col-sm-7">
                 <input type="text" name="nombre" class="form-control" id="nombre">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="apellido" class="col-sm-5 col-form-label fw-bold">Ingrese los Apellidos del Docente</label>
+              <label for="apellido" class="col-sm-5 col-form-label fw-bold">Ingrese los apellidos del docente</label>
               <div class="col-sm-7">
                 <input type="text"  name="apellido"  class="form-control" id="apellido">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="correo" class="col-sm-5 col-form-label fw-bold">Ingrese el Correo Institucional del Docente</label>
+              <label for="correo" class="col-sm-5 col-form-label fw-bold">Ingrese el correo institucional del docente</label>
               <div class="col-sm-7">
                 <input type="email"  name="correo"  class="form-control opcional-ingreso" id="correo">
                 <div id="correoHelp" class="form-text">Ingrese el correo institucional con ueb. o mailes.</div>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="telefono" class="col-sm-5 col-form-label fw-bold">Ingrese el Numero de Celular del Docente</label>
+              <label for="telefono" class="col-sm-5 col-form-label fw-bold">Ingrese el número de celular del docente</label>
               <div class="col-sm-7">
                 <input type="text" placeholder="Opcional..." name="telefono"  class="form-control opcional-ingreso" id="telefono">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="f_inicial" class="col-sm-5 col-form-label fw-bold">Ingrese la Fecha Inicial del Cargo</label>
+              <label for="f_inicial" class="col-sm-5 col-form-label fw-bold">Ingrese la fecha inicial del cargo</label>
               <div class="col-sm-7">
                 <input type="date" name="f_inicial" class="form-control" id="f_inicial">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="f_final" class="col-sm-5 col-form-label fw-bold">Ingrese la Fecha Final del Cargo</label>
+              <label for="f_final" class="col-sm-5 col-form-label fw-bold">Ingrese la fecha final del cargo</label>
               <div class="col-sm-7">
                 <input type="date" name="f_final" value="dato.total_f_final" class="form-control" id="f_final">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="f_final" class="col-sm-5 col-form-label fw-bold">Selecione la Carrera a la que Pertenece</label>
+              <label for="f_final" class="col-sm-5 col-form-label fw-bold">Selecione la carrera a la que pertenece</label>
               <div class="col-sm-7">
               <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="carrera_manual">
                 ${select.innerHTML}

@@ -40,7 +40,7 @@
       <input type="date" class="form-control" id="f_i" name="fecha_inicial">
     </div>
     <div class="mb-4">
-        <label for="numero_asig" class="form-label">Ingrese la fecha de Finalización de cargo</label>
+        <label for="numero_asig" class="form-label">Ingrese la fecha de finalización de cargo</label>
         <input type="date" class="form-control" id="f_f" name="fecha_final">
       </div>
       <button type="submit" class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
@@ -112,7 +112,7 @@
 <div class="w-100 d-flex justify-content-center mb-3">
                         <div class="contenedor-filtro">
                         <span class="material-icons text-white">&#xe152;</span>
-                          <span class="text-white">Busqueda </span>
+                          <span class="text-white">Búsqueda </span>
                         </div>
                             <div class="contenedor-busqueda" id="content-busqueda">
                             <span class="material-icons">&#xe8b6;</span>
@@ -123,10 +123,10 @@
 <table class="table table-striped-columns w-100" id="tabla-coordinadores">
     <thead>
       <tr>
-        <th class="bg-primary text-white text-center">Nº Cedula</th>
+        <th class="bg-primary text-white text-center">Nº Cédula</th>
         <th class="bg-primary text-white text-center">Coordinador</th>
         <th class="bg-primary text-white text-center">Correo Institucional</th>
-        <th class="bg-primary text-white text-center">Fecha Incial</th>
+        <th class="bg-primary text-white text-center">Fecha Inicial</th>
         <th class="bg-primary text-white text-center">Fecha Final</th>
         <th class="bg-primary text-white text-center">Carrera</th>
         <th class="bg-primary text-white text-center">Estado</th>

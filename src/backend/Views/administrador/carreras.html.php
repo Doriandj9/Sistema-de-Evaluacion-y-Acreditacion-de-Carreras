@@ -111,7 +111,7 @@
 <div class="w-100 d-flex justify-content-center mb-3">
                                 <div class="contenedor-filtro">
                                 <span class="material-icons text-white p-1">&#xf8cf;</span>
-                                <span class="text-white p-1">Selecione un Periodo Academico</span> 
+                                <span class="text-white p-1">Seleccione un Periodo Académico</span> 
                                 </div>
                                     <div class="contenedor-busqueda" id="content-busqueda">
                                         <select class="flex-grow-1" name="opcion" id="periodos-academicos">
@@ -127,7 +127,7 @@
                                           <th class="bg-primary text-white text-center">Habilitado</th>
                                           <th class="bg-primary text-white text-center">Identificador</th>
                                         <th class="bg-primary text-white text-center">Nombre</th>
-                                        <th class="bg-primary text-white text-center">Periodo Academico</th>
+                                        <th class="bg-primary text-white text-center">Periodo Académico</th>
                                       </tr>
                                     </thead>
                                     <tbody class="tbody-h">

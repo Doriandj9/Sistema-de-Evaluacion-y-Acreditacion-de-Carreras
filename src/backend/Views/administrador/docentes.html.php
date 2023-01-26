@@ -2,10 +2,10 @@
 <p>
 Esta sección le permitirá modificar la información de los docentes ya existentes en la base de datos,
 mediante un archivo csv extraido desde la base del SI@NET, una vez dentro de la base de datos
-puede utilizar el siguiente comando para generar el archivo <pre class="terminal tipografia-times-1">
+puede utilizar el siguiente comando para generar el archivo. <pre class="terminal tipografia-times-1">
 copy public.docente (ci_doc, nombres_doc, apellidos_doc, celular, nick) TO '/ruta/nombre_archivo.csv' DELIMITER ',' CSV HEADER QUOTE '\' ESCAPE '''';</pre>
 Una vez que se haya seleccionado el archivo csv que contendra los datos de los docentes, se podrá hacer click en el
-botón para guardar los cambios y actualizar la información de los docente en la base de datos..
+botón para guardar los cambios y actualizar la información de los docente en la base de datos.
 </p>
 <div class="desborde-auto barra-personalizada padding-all-1">
     <form>

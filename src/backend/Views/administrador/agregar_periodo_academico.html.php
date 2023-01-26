@@ -12,7 +12,7 @@
                     </tr>
                     <tr>
                         <th>Periodo Académico</th>
-                        <th>Fecha de Incio</th>
+                        <th>Fecha de Inicio</th>
                         <th>Fecha de Finalización</th>
                         <th> Opción </th>
                     </tr>
@@ -69,7 +69,7 @@
                 </tr>
                 <tr>
                     <th>Periodo Académico</th>
-                    <th>Fecha de Incio</th>
+                    <th>Fecha de Inicio</th>
                     <th>Fecha de Finalización</th>
                     <th>Agregar</th>
                 </tr>

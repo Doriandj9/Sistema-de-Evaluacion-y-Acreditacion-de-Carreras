@@ -2,7 +2,7 @@
 <div class="w100 d-flex justify-content-center">
     <img width="450" height="350" src="/public/assets/img/undraw_no_data_re_kwbl.svg" alt="">
 </div>
-<p>
+<p class="text-justificado">
 Se va a realizar una copia de seguridad de los datos del sistema. Esto implica hacer una réplica de 
 todos los datos importantes en un archivo sql. La razón de hacer esta copia de seguridad es para tener 
 un de respaldo en caso de que los datos originales se pierdan o se dañen. Hacer una copia de seguridad 
