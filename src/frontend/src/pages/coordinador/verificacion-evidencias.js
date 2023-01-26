@@ -29,7 +29,7 @@ function renderEvidencias(respuesta) {
         const {evidencias} = respuesta;
         paginacionEvidenciasVerificacion(evidencias,10,1,tbody,contenedorNumeros);
         busqueda.addEventListener('input',() => {
-            paginacionEvidenciasVerificacion(evidencias,10,1,tbody,contenedorNumeros,null,null,'nombre_evidencia',busqueda.value.trim());
+            paginacionEvidenciasVerificacion(evidencias,10,1,tbody,contenedorNumeros,null,null,'nombre_evidencia',busqueda.value.trim(),true);
         })
       }else{
         spinner.remove();

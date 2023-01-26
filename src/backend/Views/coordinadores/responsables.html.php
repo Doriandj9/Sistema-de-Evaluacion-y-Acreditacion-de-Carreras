@@ -57,7 +57,7 @@
       <tr>
         <th class="bg-primary text-white text-center">Cédula</th>
         <th class="bg-primary text-white text-center">Nombre</th>
-        <th class="bg-primary text-white text-center">Correo Electronico</th>
+        <th class="bg-primary text-white text-center">Correo Electrónico</th>
         <th class="bg-primary text-white text-center">Fecha de Habilitación </th>
         <th class="bg-primary text-white text-center">Finalización de Entrega </th>
         <th class="bg-primary text-white text-center">Criterios a Cargo</th>
@@ -130,7 +130,7 @@
     </div>
     <div class="mb-2">
       <label for="id_carrera" class="form-label">Selecione las responsabilidades</label>
-      <div class="w-100 h-1  sombra p-2 overflow-auto d-flex flex-wrap align-items-start gap-2" id="responsabilidades">
+      <div class="w-100 h-2  sombra p-2 overflow-auto d-flex flex-wrap align-items-start gap-2" id="responsabilidades">
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -161,7 +161,7 @@
       <tr>
         <th class="bg-primary text-white text-center">Cédula</th>
         <th class="bg-primary text-white text-center">Nombre</th>
-        <th class="bg-primary text-white text-center">Correo Electronico</th>
+        <th class="bg-primary text-white text-center">Correo Electrónico</th>
         <th class="bg-primary text-white text-center">Fecha del Cargo</th>
         <th class="bg-primary text-white text-center">Fecha Limite del Cargo</th>
       </tr>

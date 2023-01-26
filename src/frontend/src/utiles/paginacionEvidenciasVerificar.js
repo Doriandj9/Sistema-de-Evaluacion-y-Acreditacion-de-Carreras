@@ -12,10 +12,12 @@ import alerta from "./alertasBootstrap.js";
  * @param {CallableFunction} funcionRefrescar Sirve para refrescar los botonos del tbody
  * @param {string} columnaBusqueda Es la columna que va servir para buscar las coindencias dentro de los datos
  * @param {string} valor Es el coincidencia que a buscar en la columna
+ * @param {null|boolean} paginar Se usa para la busqueda para que busque en todo el array
+ * 
  * 
  * @return {*} void
  */
- export function paginacionEvidenciasVerificacion(datos,divicionDatos,numeroActual,tbody,contNumeros,opcion='ver',funcionRefrescar = null,columnaBusqueda = null,valor=null){
+ export function paginacionEvidenciasVerificacion(datos,divicionDatos,numeroActual,tbody,contNumeros,opcion='ver',funcionRefrescar = null,columnaBusqueda = null,valor=null,paginar=null){
     const total  = datos.length;
     const fracion = divicionDatos;
     const totalNumeros = Math.ceil((total / fracion));
@@ -23,12 +25,12 @@ import alerta from "./alertasBootstrap.js";
     let numerosUI = []; // Son los numeros en botones para darles click y realize la paginacion
     let inicio = (numeroActual - 1) * divicionDatos; 
     let fin = inicio + divicionDatos;
-    let datosPaginados = datos.slice(inicio,fin);
+    let datosPaginados = paginar === true ? datos :  datos.slice(inicio,fin);
     let html = '';
     if(columnaBusqueda && valor){
-        if(!Object.keys(datos[0]).includes(columnaBusqueda) ||
-        !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
-        datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
+      if(!Object.keys(datos[0]).includes(columnaBusqueda) ||
+      !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
+      datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
     }
     datosPaginados.forEach((dato,i) => {
         html += `

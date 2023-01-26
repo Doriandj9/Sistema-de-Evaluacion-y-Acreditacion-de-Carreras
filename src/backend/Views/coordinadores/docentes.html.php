@@ -20,7 +20,7 @@
 <div class="w-100 d-flex justify-content-center mb-3">
     <div class="contenedor-filtro">
     <span class="material-icons text-white">&#xe152;</span>
-    <span class="text-white">Busqueda </span>
+    <span class="text-white">Búsqueda </span>
 </div>
 <div class="contenedor-busqueda" id="content-busqueda">
      <span class="material-icons">&#xe8b6;</span>
@@ -33,9 +33,9 @@
       <tr>
         <th class="bg-primary text-white text-center">Cédula</th>
         <th class="bg-primary text-white text-center">Nombre</th>
-        <th class="bg-primary text-white text-center">Correo Electronico</th>
+        <th class="bg-primary text-white text-center">Correo Electrónico</th>
         <th class="bg-primary text-white text-center">Nº Celular</th>
-        <th class="bg-primary text-white text-center">Fecha Incial</th>
+        <th class="bg-primary text-white text-center">Fecha Inicial</th>
         <th class="bg-primary text-white text-center">Fecha Final</th>
         <th class="bg-primary text-white text-center">Estado</th>
       </tr>
@@ -79,15 +79,15 @@
 <div class="w-75">
 <form class="tipografia-times-2" id="form-insert">
     <div class="mb-2">
-      <label for="cedula" class="form-label">Ingrese la cédula del Docente</label>
+      <label for="cedula" class="form-label">Ingrese la cédula del docente</label>
       <input type="text" name="cedula" class="form-control" id="cedula">
       </div>
     <div class="mb-2">
-      <label for="nombres" class="form-label">Ingrese los nombres del Docente</label>
+      <label for="nombres" class="form-label">Ingrese los nombres del docente</label>
       <input autocomplete="false" type="text" name="nombres" class="form-control" id="nombres">
     </div>
     <div class="mb-2">
-      <label for="apellidos" class="form-label">Ingrese los apellidos del Docente</label>
+      <label for="apellidos" class="form-label">Ingrese los apellidos del docente</label>
       <input type="text" class="form-control" name="apellidos" id="apellidos">
     </div>
     <div class="mb-2">
@@ -96,7 +96,7 @@
       <div id="emailHelp" class="form-text">El correo debe contener ueb o mailes</div>
       </div>
       <div class="mb-2">
-      <label for="telefono" class="form-label">Ingrese el número telefonico</label>
+      <label for="telefono" class="form-label">Ingrese el número telefónico</label>
       <input placeholder="Opcional ..." type="text" class="form-control" name="telefono" id="telefono">
     </div>
     <div class="mb-2 d-flex gap-2 justify-content-between">

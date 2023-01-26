@@ -7,7 +7,7 @@
         <ol>
             <li>- En la opción ver usted podrá visualizar la documentación almacenada y verificar si es la adecuada o no.</li>
             <li>- En el apartado Valoración usted podrá dar una valoración del documento almacenado.</li>
-            <li>- En la ultima opción usted podrá notificar al usuario que la documentación almacenada es incorrecta si llega a darse el caso.</li>
+            <li>- En la última opción usted podrá notificar al usuario que la documentación almacenada es incorrecta si llega a darse el caso.</li>
         </ol>
     </section>
 </article>
@@ -15,7 +15,7 @@
 <div class="w-100 d-flex justify-content-center">
 <div class="desborde-auto barra-personalizada padding-all-1 sombra w-50 mb-4">
 <div class="text-center">
-     <label for=""><strong>Selecione un periodo valido para verificar las evidencias</strong> </label>
+     <label for=""><strong>Selecione un periodo válido para verificar las evidencias</strong> </label>
 </div>
 <div class="w-100 d-flex justify-content-center mb-3">
     <div class="contenedor-filtro ps-2 pe-2">

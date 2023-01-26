@@ -9,7 +9,7 @@
              que contenga mayusculas y un minimo de 8 caracteres.</p>
             <form id="form-cambio-clave">
                 <div class="mb-3 position-relative">
-                    <label for="inputPassword1" class="form-label">Ingrese su Contraseña Actual</label>
+                    <label for="inputPassword1" class="form-label">Ingrese su contraseña actual</label>
                     <div class="p-relativo">
                     <input type="password" class="form-control" id="inputPassword1">
                     <span class="material-icons visible posicionado-derecha-ojo" id="eye">&#xe8f4;</span>
@@ -17,14 +17,14 @@
                     <div id="emailHelp" class="form-text">Por favor ingrese su contraseña actual</div>
                 </div>
                 <div class="mb-3  p-relativo">
-                    <label for="inputPassword2" class="form-label">Ingrese su nueva Contraseña</label>
+                    <label for="inputPassword2" class="form-label">Ingrese su nueva contraseña</label>
                     <div class=" p-relativo">
                     <input type="password" class="form-control" id="inputPassword2">
                     <span class="material-icons visible posicionado-derecha-ojo" id="eye">&#xe8f4;</span>
                     </div>
                 </div>
                 <div class="mb-4  p-relativo">
-                    <label for="inputPassword3" class="form-label">Repita la nueva Contraseña</label>
+                    <label for="inputPassword3" class="form-label">Repita la nueva contraseña</label>
                     <div class=" p-relativo">
                     <input type="password" class="form-control" id="inputPassword3">
                     <span class="material-icons visible posicionado-derecha-ojo" id="eye">&#xe8f4;</span>

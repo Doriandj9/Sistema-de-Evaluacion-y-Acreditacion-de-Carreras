@@ -54,7 +54,7 @@
               <div class="w-100 h-100 m-3">
                   <div class="w-100 mt-4">
                     <h3 class="text-center tipografia-sanSerif-4">
-                    SISTEMA DE EVALUACION Y ASEGURAMIENTO DE LA CALIDAD
+                    SISTEMA DE EVALUACIÓN Y ASEGURAMIENTO DE LA CALIDAD
                     </h3>
                     <p class="text-justificado tipografia-sanSerif-1">SEAC, es un sistema web que permite el almacenamiento de información
                        que apoya en la Evaluación y Aseguramiento de la Calidad de las carreras.</p>
