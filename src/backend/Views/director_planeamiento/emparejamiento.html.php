@@ -154,7 +154,7 @@
                     <th colspan="4">
                         <div class="d-flex align-items-center gap-1">
                         <span class="material-icons">&#xe7fe;</span>
-                        <strong>Agregar un Director de Planeación</strong>
+                        <strong>Emparejar Evaluadores con la carreras</strong>
                         </div>
                     </th>
                 </tr>

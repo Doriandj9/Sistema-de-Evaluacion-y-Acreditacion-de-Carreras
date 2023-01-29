@@ -27,7 +27,7 @@ Esta sección en particular le permite generar un reporte sobre los documentos d
     </div>
     <div class="contenedor-busqueda w-75" id="content-busqueda">
         <select class="w-100" name="tipo" id="periodos"> 
-                <option value="1">Evidencias Almacenada</option>
+                <option value="1">Evidencias Almacenadas</option>
                 <option value="2">Evidencias y Docentes Encargados</option>
                 <option value="3">Reporte de Autoevaluación</option>
         </select>
