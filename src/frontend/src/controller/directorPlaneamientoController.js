@@ -12,7 +12,7 @@
             importacionDinamica('emparejamiento-evaluadores.js');
         },
         "/director-planeamiento": function(){
-
+            importacionDinamica('inicio.js');
         }
     };
     try{
