@@ -83,7 +83,8 @@ import alerta from "./alertasBootstrap.js";
         <input type="hidden" value="${cod_evidencias.toString()}"/> 
         </td>
         <td>
-        <button type="button" data-info-tipo="${tipoEstandar.toString()}" data-id-evidencia="${id_evidencias.toString()}"
+        <button type="button" data-nombre-evidencia="${nombre_Evidencia.toString()}"
+        data-info-tipo="${tipoEstandar.toString()}" data-id-evidencia="${id_evidencias.toString()}"
         class="boton boton-enviar is-hover-boton-enviar p-2 d-flex aling-items-center gap-flex-1">
         <span class="material-icons text-white">&#xe85d;</span> Calificar 
         </button> 

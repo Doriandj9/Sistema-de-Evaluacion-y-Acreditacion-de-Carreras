@@ -268,6 +268,15 @@ function mostarFormCalificacion(button){
           </ul>
           </div>
 
+          <div class="mb-3 pb-2" style="border-bottom: 1px solid #ccc;">
+            <h4 for="staticEmail" class="col-form-label"><strong> Nombre de la fuente de información</strong></h4>
+            <div class="col-sm-10">
+            <p>
+            ${button.dataset.nombreEvidencia}
+            </p>
+            </div>
+        </div>
+
             <div class="mb-3">
                 <h4 for="staticEmail" class="col-form-label">Visualice la fuente de información.</h4>
                 <div class="col-sm-10">
@@ -277,6 +286,7 @@ function mostarFormCalificacion(button){
                 </label>
                 </div>
             </div>
+
             <div class="mb-3">
                 <label for="" class="form-label">
                 La forma de evaluar la presente fuente de información es de forma
@@ -320,11 +330,11 @@ function mostarFormCalificacion(button){
     })
 
    const form = modal.querySelector('form');
-   form.addEventListener('submit',e => verificacionDatos(e,modalBootstrap));
+   form.addEventListener('submit',e => verificacionDatos(e,modalBootstrap,button));
 }
 
 
-function verificacionDatos(e,modalB) {
+function verificacionDatos(e,modalB,button) {
     e.preventDefault();
     const cuanti = e.target.querySelector('#cuanti');
     const cuali = e.target.querySelector('#cuali');
@@ -345,10 +355,10 @@ function verificacionDatos(e,modalB) {
             return;
         }
     }
-    envioDatos(e.target,modalB);
+    envioDatos(e.target,modalB,button);
 }
 
-function envioDatos(form,modalBootstrap) {
+function envioDatos(form,modalBootstrap,button) {
     modalBootstrap.hide();
     const periodos = document.getElementById('periodos');
     precarga = new Precarga();
@@ -356,15 +366,18 @@ function envioDatos(form,modalBootstrap) {
     const formData = new FormData(form);
     formData.append('periodo',periodos.value.trim())
     Usuarios.registarCalificacion(formData)
-    .then(renderRespuesta)
+    .then(res => renderRespuesta(res,button))
     .catch(console.log);
 }
 
 
-function renderRespuesta(respuesta) {
+function renderRespuesta(respuesta,button) {
     precarga.end();
     if(respuesta.ident) {
         new Notificacion(respuesta.mensaje,'Aceptar',false);
+        button.setAttribute('disabled','');
+        button.classList.add('desactivado');
+        button.setAttribute('title','No puede volver a calificar una misma fuente de información.');
     }else {
         new Notificacion(respuesta.mensaje,'Regresar');
     }
