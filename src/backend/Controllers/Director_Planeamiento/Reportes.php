@@ -66,13 +66,13 @@ class Reportes implements Controller
                 <td>'. $dato->calificacion .'</td>'
                 ;
             $body .= '</tr>';
-            $num = intval(rtrim(trim($dato->calificacion),'%')) * 0.1;
+            $num = floatval(trim($dato->calificacion));
             $suma += $num;
         }
-        $total = ($suma / $totalDatos) * 10;
+        $total = round($suma / $totalDatos,2) * 10;
         $body .='<tr>
         <td style="text-align: end;" colspan="3"><strong>TOTAL</strong></td>
-        <td>'. round($total,2) . '%' .'</td>
+        <td>'. $total . '/10' .'</td>
         </tr>';
         $carrera = $this->carreras->selectFromColumn('id',$_GET['carrera'])->first();
         $html = preg_replace('/%content-tbody%/',$body,$html);
