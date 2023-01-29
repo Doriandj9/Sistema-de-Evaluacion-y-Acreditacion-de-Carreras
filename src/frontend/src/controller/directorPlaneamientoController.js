@@ -11,6 +11,9 @@
         "/director-planeamiento/emparejamiento-evaluadores": function(){
             importacionDinamica('emparejamiento-evaluadores.js');
         },
+        "/director-planeamiento/cambio/clave": function(){
+            importacionDinamica('cambio-clave.js');
+        },
         "/director-planeamiento": function(){
             importacionDinamica('inicio.js');
         }

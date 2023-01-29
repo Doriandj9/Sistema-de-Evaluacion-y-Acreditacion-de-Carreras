@@ -3,6 +3,7 @@
 namespace App\backend\Application\Rutas;
 
 use App\backend\Controllers\Director_Planeamiento\BaseIndicadores;
+use App\backend\Controllers\Director_Planeamiento\CambioClave;
 use App\backend\Controllers\Director_Planeamiento\Evaluadores;
 use App\backend\Controllers\Director_Planeamiento\Inicio;
 use App\backend\Controllers\Director_Planeamiento\Reportes;
@@ -17,6 +18,7 @@ class RutasDirectorPlaneamiento implements Route
         $baseIndicadores = new BaseIndicadores;
         $emparejamiento = new Evaluadores;
         $reportes = new Reportes;
+        $cambioClave = new CambioClave;
         return [
             'director-planeamiento' => [
                 'GET' => [
@@ -154,6 +156,12 @@ class RutasDirectorPlaneamiento implements Route
                 'GET' => [
                     'controller' => $reportes,
                     'action' => 'generar'
+                ]
+                ],
+            'director-planeamiento/cambio/clave' => [
+                'GET' => [
+                    'controller' => $cambioClave,
+                    'action' => 'vista'
                 ]
                 ],
         ];
