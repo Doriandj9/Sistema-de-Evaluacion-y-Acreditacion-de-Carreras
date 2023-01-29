@@ -56,7 +56,14 @@ function renderEvidencias(respuesta,opcion) {
         paginacionEvidencias(evidencias,10,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
         busqueda.addEventListener('input',(function(evidencias){
             return () => {
-            paginacionEvidencias(evidencias,10,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim());
+                if(busqueda.value.trim() !== '') {
+                    paginacionEvidencias(evidencias,10,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo,'nombre_evidencias',busqueda.value.trim(),true);
+                    opcion === 'ver' ? mostrarEvidencias(): mostrarFormSubirArchivo();
+
+                }else {
+                    paginacionEvidencias(evidencias,10,1,tbody,contenedorNumeros,opcion,opcion === 'ver' ? mostrarEvidencias: mostrarFormSubirArchivo);
+                    opcion === 'ver' ? mostrarEvidencias(): mostrarFormSubirArchivo();
+                }
             };
         })(evidencias))
         opcion === 'ver' ? mostrarEvidencias(): mostrarFormSubirArchivo();

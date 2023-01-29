@@ -13,9 +13,9 @@
  * @return {*} void
  */
  export function paginacionEvidencias(datos,divicionDatos,numeroActual,tbody,contNumeros,opcion='ver',funcionRefrescar = null,columnaBusqueda = null,valor=null,paginar=null){
-    const total  = datos.length;
-    const fracion = divicionDatos;
-    const totalNumeros = Math.ceil((total / fracion));
+    let total  = datos.length;
+    let fracion = divicionDatos;
+    let totalNumeros = Math.ceil((total / fracion));
     let comparacion = numeroActual; // Toma el numero que esta selecionado al momento de darle click
     let numerosUI = []; // Son los numeros en botones para darles click y realize la paginacion
     let inicio = (numeroActual - 1) * divicionDatos; 
@@ -26,6 +26,9 @@
         if(!Object.keys(datos[0]).includes(columnaBusqueda) ||
         !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
         datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
+        total = datosPaginados.length;
+        totalNumeros = Math.ceil((total / fracion));
+        datosPaginados = datosPaginados.slice(inicio,fin);
     }
     datosPaginados.forEach((dato,i) => {
         const criterio = [...new Set(dato.nombre_criterio?.split('---'))];
@@ -105,13 +108,12 @@
         // <td>${dato.estado}</td>
     })
     
-    
     for(let i = 1 ; i <= totalNumeros ; i++){
         const button = document.createElement('button');
         button.textContent = i;
         if(i === comparacion) button.classList.add('active'); // Si el numero actual es igual que el del boton ese
         button.addEventListener('click',() => { // boton esta selecionado 
-                 paginacionEvidencias(datos,divicionDatos,i,tbody,contNumeros,opcion,funcionRefrescar,columnaBusqueda,valor);
+                 paginacionEvidencias(datos,divicionDatos,i,tbody,contNumeros,opcion,funcionRefrescar,columnaBusqueda,valor,paginar);
                  if(funcionRefrescar) funcionRefrescar();
             }
         );

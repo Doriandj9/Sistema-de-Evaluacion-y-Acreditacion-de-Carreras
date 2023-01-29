@@ -37,11 +37,16 @@ function renderEvidencias(respuesta) {
         const contenedorNumeros = document.body.querySelector('.contenedor-numeros-paginacion');
         const busqueda = document.getElementById('busqueda');
         const {evidencias} = respuesta;
-        paginacionEvidenciasEvaluacion(evidencias,2,1,tbody,contenedorNumeros,mostrarEvidencias);
+        paginacionEvidenciasEvaluacion(evidencias,10,1,tbody,contenedorNumeros,mostrarEvidencias);
         busqueda.addEventListener('input',(function(evidencias,mostrarEvidencias){
             return () => {
-                paginacionEvidenciasEvaluacion(evidencias,2,1,tbody,contenedorNumeros,mostrarEvidencias,'cod_evidencias',busqueda.value.trim());
-                mostrarEvidencias();
+                if(busqueda.value.trim() !== '') {
+                    paginacionEvidenciasEvaluacion(evidencias,10,1,tbody,contenedorNumeros,mostrarEvidencias,'nombre_evidencias',busqueda.value.trim(),true);
+                    mostrarEvidencias();
+                } else {
+                    paginacionEvidenciasEvaluacion(evidencias,10,1,tbody,contenedorNumeros,mostrarEvidencias);
+                    mostrarEvidencias();
+                }
             };
         })(evidencias,mostrarEvidencias))
         mostrarEvidencias()
@@ -159,13 +164,11 @@ const modal = document.createElement('div');
     })
     const [evaluador,calificacionIn] = modal.querySelectorAll('input[type=text]');
     const observacion = modal.querySelector('textarea');
-    console.log(periodo,id);
     Evidencias.obtenerCalificacionEvidencia(periodo,id)
     .then(respuesta => {
         if(respuesta.ident){
             let {calificacion} = respuesta;
             calificacion = calificacion[0];
-            console.log(calificacion);
             evaluador.value = calificacion.nombre_docente +' '+ calificacion.apellido_docente;
             calificacionIn.value = calificacion.calificacion;
             observacion.value = calificacion.observacion;
@@ -224,7 +227,7 @@ function mostarFormCalificacion(button){
     `;
     const {max,min} = CONTROL_MAX_MIN_CUANTITIVAS_EVIDENCIAS;
     const calificacionCuantitativa = `
-    <input type="number" max="${max}" min="${min}" name="calificacion" id="cuanti"/>
+    <input type="number" class="form-control" step="0.01" name="calificacion" id="cuanti"/>
     `;
     const modal = document.createElement('div');
         modal.classList = 'modal fade';

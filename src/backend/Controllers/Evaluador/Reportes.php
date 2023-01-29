@@ -64,6 +64,9 @@ class Reportes implements Controller
             $num = intval(rtrim(trim($dato->calificacion),'%')) * 0.1;
             $suma += $num;
         }
+        if($totalDatos === 0){
+            Http::redirect('/');
+        }
         $total = ($suma / $totalDatos) * 10;
         $body .='<tr>
         <td style="text-align: end;" colspan="3"><strong>TOTAL</strong></td>

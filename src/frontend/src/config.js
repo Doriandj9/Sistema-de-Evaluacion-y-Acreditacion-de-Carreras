@@ -9,7 +9,7 @@
 // para la evaluacion de evidencias cuantitativas se 
 // usara para controlar las calificaciones
 
-const CONTROL_MAX_MIN_CUANTITIVAS_EVIDENCIAS = {max: 10, min: 0};
+const CONTROL_MAX_MIN_CUANTITIVAS_EVIDENCIAS = {max: 1, min: 0.00};
 
 // esta variable controlara las opciones de las
 // evidencias cualitativas en el srcipt se utlizara
@@ -17,11 +17,11 @@ const CONTROL_MAX_MIN_CUANTITIVAS_EVIDENCIAS = {max: 10, min: 0};
 // los valores y los nombres de escribirlos correctamente
 
 const CONTROL_MAX_MIN_CUALITATIVAS_EVIDENCIAS = {
-    "No valido": '0%',
-    "Bajo": '25%',
-    "Medio": '50%',
-    "Medio Alto": '75%',
-    "Alto": '100%' 
+    "Sin Valoración": '0.00',
+    "Deficiente": '0.20',
+    "Poco Satisfactorio": '0.40',
+    "Cuasi Satisfactorio": '0.80',
+    "Satisfactorio": '1' 
 };
 
 

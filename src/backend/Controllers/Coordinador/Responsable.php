@@ -155,6 +155,14 @@ class Responsable implements Controller
                 'fecha_inicial' => trim($_POST['f_i']),
                 'fecha_final' => trim($_POST['f_f']),
             ];
+            $responsabilidad = UsuariosResponsabilidad::whereRaw(
+                'id_usuarios = ? and id_responsabilidad = ? and id_docentes = ?
+                and id_carrera = ? and id_periodo_academico = ?',
+                [Docente::DOCENTES,intval($responsabilidad),$id_docente,trim($_SESSION['carrera']),trim($_POST['periodo'])]
+            )->get()->count();
+            if($responsabilidad >= 0){
+                continue;
+            }
             try{
                 $this->usuariosResponsabilidad->insert($data_usuarios_responsabilidad);
             }catch(\PDOException $e){
@@ -188,7 +196,8 @@ class Responsable implements Controller
             'id_carrera' => trim($_SESSION['carrera']),
             'fecha_inicial' => $periodo->fecha_inicial,
             'fecha_final' => $periodo->fecha_final,
-            'estado' => 'activo'
+            'estado' => 'activo',
+            'carrera' => trim($_SESSION['carrera'])
         ];
         $usuarioEvaludor = UsuariosDocente::where('id_usuarios',Docente::EVALUADORES)
         ->where('id_docentes',trim($_POST['docente']))
@@ -205,7 +214,8 @@ class Responsable implements Controller
                     trim($_SESSION['carrera']),
                     [
                         'fecha_inicial' => $periodo->fecha_inicial,
-                        'fecha_final' => $periodo->fecha_final
+                        'fecha_final' => $periodo->fecha_final,
+                        'carrera' => $_SESSION['carrera']
                     ]
                 );
             }catch(\PDOException $e) {

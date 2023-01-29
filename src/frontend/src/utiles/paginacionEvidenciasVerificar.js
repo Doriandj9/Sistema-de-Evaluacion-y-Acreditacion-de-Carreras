@@ -18,9 +18,9 @@ import alerta from "./alertasBootstrap.js";
  * @return {*} void
  */
  export function paginacionEvidenciasVerificacion(datos,divicionDatos,numeroActual,tbody,contNumeros,opcion='ver',funcionRefrescar = null,columnaBusqueda = null,valor=null,paginar=null){
-    const total  = datos.length;
-    const fracion = divicionDatos;
-    const totalNumeros = Math.ceil((total / fracion));
+    let total  = datos.length;
+    let fracion = divicionDatos;
+    let totalNumeros = Math.ceil((total / fracion));
     let comparacion = numeroActual; // Toma el numero que esta selecionado al momento de darle click
     let numerosUI = []; // Son los numeros en botones para darles click y realize la paginacion
     let inicio = (numeroActual - 1) * divicionDatos; 
@@ -31,6 +31,9 @@ import alerta from "./alertasBootstrap.js";
       if(!Object.keys(datos[0]).includes(columnaBusqueda) ||
       !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
       datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
+        total = datosPaginados.length;
+        totalNumeros = Math.ceil((total / fracion));
+        datosPaginados = datosPaginados.slice(inicio,fin);
     }
     datosPaginados.forEach((dato,i) => {
         html += `
@@ -88,7 +91,7 @@ import alerta from "./alertasBootstrap.js";
         button.textContent = i;
         if(i === comparacion) button.classList.add('active'); // Si el numero actual es igual que el del boton ese
         button.addEventListener('click',() => { // boton esta selecionado 
-                 paginacionEvidenciasVerificacion(datos,divicionDatos,i,tbody,contNumeros,opcion,funcionRefrescar);
+                 paginacionEvidenciasVerificacion(datos,divicionDatos,i,tbody,contNumeros,opcion,funcionRefrescar,columnaBusqueda,valor,paginar);
                  if(funcionRefrescar) funcionRefrescar();
             }
         );
