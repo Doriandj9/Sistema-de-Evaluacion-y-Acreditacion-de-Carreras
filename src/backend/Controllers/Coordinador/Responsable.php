@@ -336,6 +336,7 @@ class Responsable implements Controller
         $pdf->render();
         header('Content-Type: application/pdf');
         // $pdf->stream('reporteComplet.pdf',['compress' => 1]);
+        header("Content-Disposition: inline; filename= Reporte de Cronograma.pdf");
         echo $pdf->output(['compress'=>1]);
     }
 }

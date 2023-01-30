@@ -104,30 +104,32 @@ class Reportes implements Controller
         $pdf->render();
         header('Content-Type: application/pdf');
         // $pdf->stream('reporteComplet.pdf',['compress' => 1]);
+        header("Content-Disposition: inline; filename= Reporte de Evidencias Almacenas Emitidas por el Coordinador.pdf");
         echo $pdf->output(['compress'=>1]);
     }
     private function mostrarReporte2($datos,$periodoCarrera){
         $html = file_get_contents('./src/backend/Views/templates/loyout_reporte_coordinador_evidencias_docentes.html');
         $body = '';
-        $docentes = UsuariosResponsabilidad::whereRaw('id_carrera = ? and id_periodo_academico = ?'
-        ,[$_SESSION['carrera'],$periodoCarrera]);
         foreach($datos  as $dato) {
-            $verificado = ($dato->verificada != true) ? 'No verificada' : 'Verificada';
-            $body .= '<tr>
-                <td>'. 'Nombre del Docente' .'</td>
-                <td>'. $dato->criterios .'</td>
-                <td>'. $dato->indicador .'</td>
-                <td>'. $dato->numero_estandar .'</td>
-                <td>'. $dato->numero_elemento .'</td>
-                <td>'. $dato->nombre_evidencia .'</td>
-                <td>'. $dato->fecha_registro .'</td>                
+            // $verificado = ($dato->verificada != true) ? 'No verificada' : 'Verificada';
+            foreach($dato->evidencias as $evidencia) {
+                $body .= '<tr>
+                    <td>'. $dato->nombre_docente . ' ' . $dato->apellido_docente .'</td>                
                 ';
-                if($dato->almacenado){
-                   $body .= '<td> Almacenado </td>';   
-                }else {
-                    $body .= '<td> No almacenado </td>';   
-                }
-            $body .= '<td>'. $verificado .'</td></tr>';
+                $verificado = (preg_split('/---/',$evidencia->verificacion)[0] != true) ? 'No verificada' : 'Verificada';
+                $estado = (preg_split('/---/',$evidencia->estado)[0] != null) ? 'Almacenada' : 'No Almacenada';
+                $body .= '
+                    <td>'. implode(',',array_unique(preg_split('/---/',$evidencia->nombre_criterio))) .'</td>
+                    <td>'. implode(',',array_unique(preg_split('/---/',$evidencia->nombre_indicador))) .'</td>
+                    <td>'. implode(',',array_unique(preg_split('/---/',$evidencia->numero_estandar))) .'</td>
+                    <td>'. implode(',',array_unique(preg_split('/---/',$evidencia->numero_elemento))) .'</td>
+                    <td>'. implode(',',array_unique(preg_split('/---/',$evidencia->nombre_evidencia))) .'</td>
+                    <td>'. implode(',',array_unique(preg_split('/---/',$evidencia->fecha_registro))) .'</td>
+                    <td>'. $estado .'</td>
+                    <td>'. $verificado .'</td>
+                ';
+                $body .='</tr>';
+            }
         }
         $carrera = $this->carrera->selectFromColumn('id',$_SESSION['carrera'])->first();
         $html = preg_replace('/%content-tbody%/',$body,$html);

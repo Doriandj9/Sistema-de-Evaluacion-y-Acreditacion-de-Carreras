@@ -106,58 +106,48 @@ class Reportes {
         return $collect;
     }
     public function obtenerDatosReporteCoordinadorDocentesEvidencias($id_carrera,$id_periodo) {
-        $collect = new \Illuminate\Support\Collection();
-        
+        $datos = [];
         try {
+            $docentes = DB::table('docentes')
+             ->join('usuarios_responsabilidad','docentes.id','=','usuarios_responsabilidad.id_docentes') 
+             ->join('responsabilidad','responsabilidad.id','=','usuarios_responsabilidad.id_responsabilidad')
+             ->where('usuarios_responsabilidad.id_carrera','=',$id_carrera)
+             ->select([
+                'docentes.nombre as nombre_docente',
+                'docentes.apellido as apellido_docente',
+                'responsabilidad.id_criterio as id_criterio'
+             ])
+             ->get();
+                foreach($docentes as $docente){
                 $evidencias = DB::select('
                 select string_agg(criterios.nombre,\'---\') as nombre_criterio,
                 string_agg(estandar.nombre,\'---\') as nombre_indicador,
                 string_agg(estandar.id,\'---\') as numero_estandar,
                 string_agg(elemento_fundamental.id,\'---\') as numero_elemento,
-                evidencias.id as id_evidencias
+                string_agg(evidencias.nombre,\'---\') as nombre_evidencia,
+                string_agg(carreras_evidencias.fecha_registro::text,\'---\') as fecha_registro,
+                string_agg(carreras_evidencias.estado,\'---\') as estado,
+                string_agg(carreras_evidencias.verificada::text,\'---\') as verificacion,
+               evidencias.id
                     from criterios inner join estandar on estandar.id_criterio =
                     criterios.id inner join elemento_fundamental on elemento_fundamental.id_estandar =
                     estandar.id inner join componente_elemento_fundamental on componente_elemento_fundamental.id_elemento =
                     elemento_fundamental.id inner join evidencia_componente_elemento_fundamental on 
                     evidencia_componente_elemento_fundamental.id_componente = componente_elemento_fundamental.id
                     inner join evidencias on evidencia_componente_elemento_fundamental.id_evidencias = 
+                    evidencias.id inner join carreras_evidencias on carreras_evidencias.id_evidencias = 
                     evidencias.id
-                    GROUP BY evidencias.id');
-                foreach($evidencias as $evidenciaId){
-                    $evidencia = DB::table('carreras_evidencias')
-                    ->join('evidencias','evidencias.id','=','carreras_evidencias.id_evidencias')
-                    ->where('id_periodo_academico','=',$id_periodo)
-                    ->where('id_carrera','=',$id_carrera)
-                    ->where('id_evidencias',$evidenciaId->id_evidencias)
-                    ->select([
-                        'pdf',
-                        'verificada',
-                        'evidencias.nombre as nombre_evidencia',
-                        'fecha_registro'
-                        ])
-                    ->get()
-                    ->first();
-                    if(!$evidencia){
-                        continue;
-                    }
-                    if($evidencia->pdf !== null){
-                        $evidencia->almacenado = true;
-                    }else {
-                        $evidencia->almacenado = false;
-                    }
-                    $evidencia->criterios = $evidenciaId->nombre_criterio;
-                    $evidencia->indicador = $evidenciaId->nombre_indicador;      
-                    $evidencia->numero_estandar = $evidenciaId->numero_estandar; 
-                    $evidencia->numero_elemento = $evidenciaId->numero_elemento;
-                    $evidencia->pdf = true;     
-                    $collect->push($evidencia);
-                }
-            
+                    where criterios.id = ?
+                    and carreras_evidencias.id_periodo_academico = ?
+                    and carreras_evidencias.id_carrera = ? 
+                    GROUP BY evidencias.id',[$docente->id_criterio,$id_periodo,$id_carrera]);
+                    $docente->evidencias = $evidencias;
+                    array_push($datos,$docente);
+             }
         }catch(\PDOException $e){
             echo $e->getMessage() . ' in ' . $e->getFile() . ' : ' . $e->getLine(); 
         }
-       
-        return $collect;
+        return $datos;
     }
     public function obtenerDatosReporteCoordinadorAutevaluacion($id_carrera,$id_periodo) {
         $datos = [];
