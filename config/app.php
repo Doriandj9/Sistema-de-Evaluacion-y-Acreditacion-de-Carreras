@@ -448,7 +448,7 @@ function insertarAdministrador($data_admin) {
     $data_usuarios_docente = [
         'id_usuarios' => Docente::ADMIN,
         'id_docentes' => $data_admin['id'],
-        'id_carrera' => '0-TICS',
+        'id_carrera' => 'TICS',
         'fecha_inicial' => $date->format('Y-m-d'),
         'fecha_final' => '2080-01-02',
         'estado' => 'activo'
