@@ -158,7 +158,6 @@ function presentacion(buttons) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <h4>Descripción del estandar</h4>
               <p class="p-2">
               ${button.dataset.dato}
                 <p>
@@ -337,9 +336,9 @@ export function paginacionComponentes(datos,divicionDatos,numeroActual,tbody,con
  * @return {*} void
  */
 export function paginacionEvidencias(datos,divicionDatos,numeroActual,tbody,contNumeros,funcionRefrescar = null,columnaBusqueda = null,valor=null,paginar=null){
-  const total  = datos.length;
-  const fracion = divicionDatos;
-  const totalNumeros = Math.ceil((total / fracion));
+  let total  = datos.length;
+  let fracion = divicionDatos;
+  let totalNumeros = Math.ceil((total / fracion));
   let comparacion = numeroActual; // Toma el numero que esta selecionado al momento de darle click
   let numerosUI = []; // Son los numeros en botones para darles click y realize la paginacion
   let inicio = (numeroActual - 1) * divicionDatos; 
@@ -350,7 +349,11 @@ export function paginacionEvidencias(datos,divicionDatos,numeroActual,tbody,cont
       if(!Object.keys(datos[0]).includes(columnaBusqueda) ||
       !Object.keys(datos[datos.length - 1]).includes(columnaBusqueda)) throw new Error('El objeto no contiene la columna: ' + columnaBusqueda + ' en el objeto');
       datosPaginados = datosPaginados.filter(dato => dato[columnaBusqueda].toLowerCase().includes(valor.toLowerCase()));
-  }
+      total = datosPaginados.length;
+      totalNumeros = Math.ceil((total / fracion));
+      datosPaginados = datosPaginados.slice(inicio,fin);
+    }
+
   datosPaginados.forEach((dato,i) => {
       const criterio = [...new Set(dato.nombre_criterio?.split('---'))];
       const descripcionEstandar = [...new Set(dato.descripcion_estandar?.split('---'))];
@@ -411,7 +414,7 @@ export function paginacionEvidencias(datos,divicionDatos,numeroActual,tbody,cont
       button.textContent = i;
       if(i === comparacion) button.classList.add('active'); // Si el numero actual es igual que el del boton ese
       button.addEventListener('click',() => { // boton esta selecionado 
-               paginacionEvidencias(datos,divicionDatos,i,tbody,contNumeros,funcionRefrescar,columnaBusqueda,valor);
+               paginacionEvidencias(datos,divicionDatos,i,tbody,contNumeros,funcionRefrescar,columnaBusqueda,valor,paginar);
                if(funcionRefrescar) funcionRefrescar();
           }
       );
