@@ -5,14 +5,25 @@
                 "ente": "Sistema de Evaluacion y Aseguramiento de la Calidad",
                 "titulo": "Docente de la carrera ?c",
                 "tituloNotificacion": "Habilitado para usar la plataforma",
-                "mensaje": "Estimado docente ud ha sido notificado para utilizar la plataforma SEAC en la carrera <strong>  ?c  </strong> se habilitado el acceso a partir de la fecha <strong> ?f1 </strong> hasta <strong> ?f2 </strong> para el ingreso al servicio debe utilizar su correo institucional y la contraseña provicional sera su numero de cédula se le recomienda cambiar la misma para brindarle una mayor seguridad"
+                "mensaje": "Estimado docente, se le notifica que la plataforma para el proceso de evaluación y acreditación de carreras de la Universidad Estatal de Bolívar (SEAC), se apertura el <strong> ?f1 </strong> hasta <strong> ?f2 </strong>.<br> <strong>Datos de ingreso al sistema:</strong><br> Usuario: Correo institucional<br> Contraseña: Número de cedula<br> <strong>NOTA:</strong> Por motivos de seguridad, deberá cambiar su contraseña al momento de ingresar por primera vez a la plataforma SEAC."
             },
-            "coordinador": {},
+            "coordinador": {
+                "ente":"Sistema de Evaluacion y Aseguramiento de la Calidad",
+                "titulo":"Coordinador de la carrera ?c",
+                "tituloNotificacion":"",
+                "mensaje":"Estimado coordinador, se le notifica que la plataforma para el proceso de evaluación y acreditación de carreras de la Universidad Estatal de Bolívar (SEAC), se apertura el <strong> ?f1 </strong> hasta <strong> ?f2 </strong>.<br> <strong>Datos de ingreso al sistema:</strong><br> Usuario: Correo institucional<br> Contraseña: Número de cedula<br> <strong>NOTA:</strong> Por motivos de seguridad, deberá cambiar su contraseña al momento de ingresar por primera vez a la plataforma SEAC."
+            },
             "evaluadores":{
                 "ente": "Sistema de Evaluacion y Aseguramiento de la Calidad",
-                "titulo": "Docente de la carrera ?c",
+                "titulo": "Evaluador de la carrera ?c",
                 "tituloNotificacion": "Habilitado para usar la plataforma",
-                "mensaje": "Estimado docente ud ha sido notificado para utilizar la plataforma como evaluador resgistrado en la carrera ?c su usuario para el ingreso al sistma sera su correo electronico isntitucional y como clave temporal su numero de cédula"
+                "mensaje": "Estimado evaluador, se le notifica que la plataforma para el proceso de evaluación y acreditación de carreras de la Universidad Estatal de Bolívar (SEAC), se apertura el <strong> ?f1 </strong> hasta <strong> ?f2 </strong>.<br> <strong>Datos de ingreso al sistema:</strong><br> Usuario: Correo institucional<br> Contraseña: Número de cedula<br> <strong>NOTA:</strong> Por motivos de seguridad, deberá cambiar su contraseña al momento de ingresar por primera vez a la plataforma SEAC."
+            },
+            "director_planeamiento":{
+                "ente": "Sistema de Evaluacion y Aseguramiento de la Calidad",
+                "titulo": "Director de Planeamiento de la Universidad Estatal de Bolivar",
+                "tituloNotificacion": "Habilitado para usar la plataforma",
+                "mensaje": "Estimado director de planeamiento, se le notifica que la plataforma para el proceso de evaluación y acreditación de carreras de la Universidad Estatal de Bolívar (SEAC), se apertura el <strong> ?f1 </strong> hasta <strong> ?f2 </strong>.<br> <strong>Datos de ingreso al sistema:</strong><br> Usuario: Correo institucional<br> Contraseña: Número de cedula<br> <strong>NOTA:</strong> Por motivos de seguridad, deberá cambiar su contraseña al momento de ingresar por primera vez a la plataforma SEAC."
             },
             "otros": ""
         }

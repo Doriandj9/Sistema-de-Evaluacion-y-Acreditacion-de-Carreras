@@ -2,6 +2,7 @@
 
 namespace App\backend\Controllers\Administrador;
 
+use App\backend\Application\Utilidades\EmailMensajes;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Models\Docente;
@@ -86,13 +87,22 @@ class DirectorPlaneamiento implements Controller
                 Docente::DIRECTOR_PLANEAMIENTO,
                 $data_insert_director['id_docentes']// busca por id del docente
             )->first();
+            $cooreo = $this->docentes->selectFromColumn('id',$data_insert_docente['id'])
+            ->first()->correo;
             if (!$usuarioDocente) {
                 $this->usuariosDocentes->insert($data_insert_director);
+                $respuEmail  = EmailMensajes::directorPlaneamiento(
+                    $_ENV['MAIL_DIRECCION'],
+                    $cooreo,
+                    [ trim($_POST['f_inicial']), trim($_POST['f_final'])],
+                    true,
+                    $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
+                );
             } else {
                 Http::responseJson(json_encode(
                     [
                         'ident' => 1,
-                        'mensaje' => 'El usuario ateriormente ya fue director, por favor actualize(edite) las fechas del cargo'
+                        'mensaje' => 'El usuario anteriormente ya fue director, por favor actualize(edite) las fechas del cargo'
                     ]
                 ));
             }
@@ -132,7 +142,15 @@ class DirectorPlaneamiento implements Controller
                 trim($_POST['id']),
                 $data_edit_director
             );
-
+            $cooreo = $this->docentes->selectFromColumn('id',trim($_POST['id']))
+            ->first()->correo;
+            $respuEmail  = EmailMensajes::directorPlaneamiento(
+                $_ENV['MAIL_DIRECCION'],
+                $cooreo,
+                [ trim($_POST['f_inicial']), trim($_POST['f_final'])],
+                true,
+                $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
+            );
             Http::responseJson(json_encode(
                 [
                     'ident' => 1,

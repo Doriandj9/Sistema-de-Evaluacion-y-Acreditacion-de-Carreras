@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\backend\Controllers\Administrador;
 
 use App\backend\Application\Servicios\Email\EnviarEmail;
+use App\backend\Application\Utilidades\EmailMensajes;
 use App\backend\Application\Utilidades\Http;
 use App\backend\Controllers\Controller;
 use App\backend\Models\Carreras;
@@ -125,26 +126,17 @@ class Coordinador implements Controller
             ->first()->nombre;
             $cooreo = $this->docenteModelo->selectFromColumn('id',$datos_docentes_usuario['id_docentes'])
             ->first()->correo;
-            $respuestaEnvioEmail = EnviarEmail::enviar(
-                'Coordinador de la carrera ' . $carrera,
+            $respuestaEnvioEmail = EmailMensajes::coordinador(
                 $_ENV['MAIL_DIRECCION'],
                 $cooreo,
-                'Sistema de Evaluación y Acreditación de Carreras',
-                EnviarEmail::html(
-                    null,
-                    'Habilitación de la plataforma',
-                    'Estimado docente se le notifica que se le a aperturado la 
-                    plataforma SEAC para el proceso de evaluación y acreditacion de carreras
-                    donde tendra acceso desde la fecha <strong>' . $datos_docentes_usuario['fecha_inicial']
-                    . '</strong>  y se le restringira el acceso al mismo desde <strong>' . 
-                    $datos_docentes_usuario['fecha_final'] . '</strong>.',
-                    true,
-                    $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
-                    // El protcolo de red si tiene ssl ser https caso contratio http
-                    // esto se encuentra definido en el /index.php 
-                    // por ultimo se concatena todo quedando algo asi https://example.com
-                )
+                [$carrera, $datos_docentes_usuario['fecha_inicial'],$datos_docentes_usuario['fecha_final']],
+                true,
+                $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
+                // El protcolo de red si tiene ssl ser https caso contratio http
+                // esto se encuentra definido en el /index.php 
+                // por ultimo se concatena todo quedando algo asi https://example.com
             );
+           
             // verificamos que haya existido errores al enviar el correo electronico
             $mensajeRespuestaEmail = '';
             if($respuestaEnvioEmail->ident) {
