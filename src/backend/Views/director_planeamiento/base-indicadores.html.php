@@ -5,7 +5,7 @@
                                 <li class="is-activo-op-menu">Criterios</li>
                                 <li>Estándares</li>
                                 <li>Elementos Fundamentales</li>
-                                <li>Componentes del Elementos Fundamentales</li>
+                                <li>Componentes de los Elementos Fundamentales</li>
                                 <li>Evidencias</li>
                             </ul>
                         </div>
@@ -66,7 +66,7 @@
       <tr>
         <th class="bg-primary text-white text-center">Identificador</th>
         <th class="bg-primary text-white text-center">Nombre Indicador</th>
-        <th class="bg-primary text-white text-center">Descripción Estandar</th>
+        <th class="bg-primary text-white text-center">Descripción Estándar</th>
         <th class="bg-primary text-white text-center">Tipo</th>
         <th class="bg-primary text-white text-center">Criterio Perteneciente</th>
         <th class="bg-primary text-white text-center">Opción</th>
@@ -104,7 +104,7 @@
     <button id="ingreso-estandar" type="submit"
     class="boton boton-enviar is-hover-boton-enviar ps-4 pe-4 d-flex aling-items-center gap-flex-1">
         <span class="material-icons text-white">&#xef40;</span>
-        Ingresar Estandar
+        Ingresar Estándar
     </button>
   </div>
 </div>
@@ -118,7 +118,7 @@
       <tr>
         <th class="bg-primary text-white text-center">Identificador</th>
         <th class="bg-primary text-white text-center">Nombre</th>
-        <th class="bg-primary text-white text-center">Estandar Perteneciente</th>
+        <th class="bg-primary text-white text-center">Estándar Perteneciente</th>
         <th class="bg-primary text-white text-center">Opción</th>
       </tr>
     </thead>
@@ -164,7 +164,7 @@
       <tr>
         <th class="bg-primary text-white text-center">Número de Componente</th>
         <th class="bg-primary text-white text-center">Elemento Perteneciente</th>
-        <th class="bg-primary text-white text-center">Descripción</th>
+        <th class="bg-primary text-white text-center">Descripción del Componente</th>
         <th class="bg-primary text-white text-center">Opción</th>
       </tr>
     </thead>
@@ -223,7 +223,7 @@
     <thead>
       <tr>
         <th class="bg-primary text-white text-center">Criterio</th>
-        <th class="bg-primary text-white text-center">Estandar Indicador</th>
+        <th class="bg-primary text-white text-center">Estándar Indicador</th>
         <th class="bg-primary text-white text-center">Elemento Fundamental</th>
         <th class="bg-primary text-white text-center">Componente</th>
         <th class="bg-primary text-white text-center">Fuente de Información</th>

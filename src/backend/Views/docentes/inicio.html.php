@@ -7,7 +7,7 @@
                     <h3 class="text-center tipografia-sanSerif-4">
                     DOCENTE DE LA CARRERA
                     </h3>
-                    <p class="text-center tipografia-sanSerif-1">El docente encargado de almacenar las evidencias de la carrera podrá realizar diferentes acciones dentro del sistema.</p>
+                    <p class="text-center tipografia-sanSerif-1">El docente encargado de almacenar las evidencias de la carrera puede realizar diferentes acciones dentro del sistema.</p>
                   </div>
                   <div class="w-100 d-flex justify-content-around gap-6 tipografia-sanSerif-1 flex-wrap">
                     <div class="d-flex flex-column justify-content-center align-items-center ancho-tarjetas-1">
@@ -28,7 +28,7 @@
                         REPORTES:
                         </h5>
                         <p class="text-justificado">
-                        Permite generar reportes de las evidencias almacenadas y no almacenadas.
+                        El docente puede generar reportes de las evidencias almacenadas y no almacenadas.
                         </p>
                       </section>
                     </div>

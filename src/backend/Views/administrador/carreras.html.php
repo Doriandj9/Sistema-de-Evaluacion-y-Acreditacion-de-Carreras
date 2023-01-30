@@ -39,7 +39,7 @@
         <th class="bg-primary text-white text-center">Identificador</th>
         <th class="bg-primary text-white text-center">Nombre</th>
         <th class="bg-primary text-white text-center">Facultad</th>
-        <th class="bg-primary text-white text-center">Numero de Asignaturas</th>
+        <th class="bg-primary text-white text-center">Número de Asignaturas</th>
         <th class="bg-primary text-white text-center">Horas de Proyecto de Carrera</th>
         <th class="bg-primary text-white text-center">Opción</th>
       </tr>
@@ -78,7 +78,7 @@
 <div class="w-75">
 <form class="tipografia-times-2" id="form-insert-carreras">
     <div class="mb-2">
-      <label for="" class="form-label">Selecione la Facultad a la que corresponda</label>
+      <label for="" class="form-label">Selecione la facultad a la que corresponda</label>
         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="facultad" id="select-facultades-insert">
         <option value="none">Cargando...</option>
         </select>

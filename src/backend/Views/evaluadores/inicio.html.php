@@ -13,7 +13,7 @@
                     <div class="d-flex flex-column justify-content-center align-items-center ancho-tarjetas-1">
                       <img class="img-inicio-options-home" src="/public/assets/img/undraw_schedule_meeting_52nu.svg" alt="files">
                       <section>
-                        <h5 class="tipografia-sanSerif-4 mt-3 text-center">
+                        <h5 class="tipografia-sanSerif-4 mt-3 text-start">
                         EVALUACIÓN:
                         </h5>
                         <p class="text-justificado">

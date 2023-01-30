@@ -7,7 +7,7 @@
                     <h3 class="text-center tipografia-sanSerif-4">
                     COORDINADOR DE CARRERA
                     </h3>
-                    <p class="text-center tipografia-sanSerif-1">El coordinador de carrera podrá realizar diferentes acciones dentro del sistema.</p>
+                    <p class="text-center tipografia-sanSerif-1">El coordinador de carrera puede realizar diferentes acciones dentro del sistema.</p>
                   </div>
                   <div class="w-100 d-flex justify-content-around gap-6 tipografia-sanSerif-1 flex-wrap">
                     <div class="d-flex flex-column justify-content-center align-items-center ancho-tarjetas-1">
@@ -17,7 +17,7 @@
                         DOCENTES:
                         </h5>
                         <p class="text-justificado">
-                        Podrá visualizar la lista de docentes y también puede registrar los decentes que requiera.
+                        El coordinador puede visualizar la lista de docentes y también puede registrar los decentes que requiera.
                         </p>
                     </section>
                     </div>
@@ -28,7 +28,7 @@
                         EVIDENCIAS:
                         </h5>
                         <p class="text-justificado">
-                        El coordinador podrá visualizar la lista de evidencias almacenadas y también podrá registrar si llegara a darse el caso.
+                        El coordinador puede visualizar la lista de evidencias almacenadas y también podrá registrar si llegara a darse el caso.
                         </p>
                       </section>
                     </div>
@@ -40,7 +40,7 @@
                         VERIFICACION DE EVIDENCIAS:
                         </h5>
                         <p class="text-justificado">
-                        Se podrá observar la documentación almacenada y verificar si es la adecuada o no.
+                        Se puede observar la documentación almacenada y verificar si es la adecuada o no.
                         </p>
                       </section>
                     </div>
@@ -52,7 +52,7 @@
                         REPORTES:
                         </h5>
                         <p class="text-justificado">
-                        Permitirá generar reportes de las evidencias almacenadas.
+                        El coordinador puede generar reportes de las evidencias almacenadas.
                         </p>
                       </section>
                     </div>

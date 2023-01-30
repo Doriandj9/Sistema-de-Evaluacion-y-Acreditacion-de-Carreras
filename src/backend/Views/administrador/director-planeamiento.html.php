@@ -100,7 +100,7 @@ class="bg-primary text-white text-center"> Opción </th>
         <div class="row w-100 sombra m-0 pt-2 pb-4">
             <div class="col-4">
             <div class="mb-1">
-                <label for="cedula" class="form-label">Ingrese el numero de cédula</label>
+                <label for="cedula" class="form-label">Ingrese el número de cédula</label>
                 <input type="text" class="form-control" name="cedula" id="cedula">
             </div>
             <div class="mb-1">

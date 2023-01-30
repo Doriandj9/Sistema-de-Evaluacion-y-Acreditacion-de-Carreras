@@ -45,7 +45,7 @@
                         REPORTES:
                         </h5>
                         <p class="text-justificado">
-                        Permite generar un reporte sobre la evaluación realizada por los evaluadores a cada una de las carreras.
+                        Puede generar un reporte sobre la evaluación realizada por los evaluadores a cada una de las carreras.
                         </p>
                       </section>
                     </div>

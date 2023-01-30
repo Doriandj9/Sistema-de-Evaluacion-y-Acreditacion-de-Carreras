@@ -76,7 +76,7 @@ function accionRefrescarCriterios() {
             <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar la Información del Criterio</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar la información del criterio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -88,7 +88,7 @@ function accionRefrescarCriterios() {
               </ul>
               </div>
               <div class="mb-3 row">
-              <label for="staticEmail" class="col-sm-2 col-form-label">Indentificador</label>
+              <label for="staticEmail" class="col-sm-2 col-form-label">Identificador</label>
               <div class="col-sm-10">
                 <input type="hidden" name="id" value="${datos.id}">
                 <input type="text" name="id_editado" class="form-control" id="staticEmail" value="${datos.id}">
@@ -159,7 +159,7 @@ function ingresarCriterio() {
             <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar la Información del Criterio</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ingresar la información del criterio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -173,13 +173,13 @@ function ingresarCriterio() {
               </ul>
               </div>
               <div class="mb-3 row">
-              <label for="id" class="col-sm-4 col-form-label">Indentificador del Criterio</label>
+              <label for="id" class="col-sm-4 col-form-label">Identificador del criterio</label>
               <div class="col-sm-8">
                 <input type="text" name="id" class="form-control" id="id" >
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="nombre" class="col-sm-4 col-form-label">Nombre del Criterio</label>
+              <label for="nombre" class="col-sm-4 col-form-label">Nombre del criterio</label>
               <div class="col-sm-8">
                 <input type="text" name="nombre" class="form-control"  id="nombre">
               </div>
@@ -278,20 +278,20 @@ function accionRefrescarEstandares() {
             <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar la información del estandar</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar la información del estándar</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
               <div class="mb-3">
               <h4>Consideraciones.</h4>
               <ul  class="list-circle">
-                  <li>Puede editar la información como el identificador, el nombre, el tipo y la descripción del estandar, 
+                  <li>Puede editar la información como el identificador, el nombre, el tipo y la descripción del estándar, 
                   puede guardar los cambio dando un click en la opcion Guardar Cambios</li>
-                  <li>Recuerde que el tipo de estandar debe ser <strong> CUALITATIVO o CUANTITATIVO</strong>.</li>
+                  <li>Recuerde que el tipo de estándar debe ser <strong> CUALITATIVO o CUANTITATIVO</strong>.</li>
               </ul>
               </div>
               <div class="mb-3 row">
-              <label for="staticEmail" class="col-sm-4 col-form-label">Indentificador</label>
+              <label for="staticEmail" class="col-sm-4 col-form-label">Identificador</label>
               <div class="col-sm-8">
                 <input type="hidden" name="id" value="${datos.id_estandar}">
                 <input type="text" name="id_editado" class="form-control" id="staticEmail" value="${datos.id_estandar}">
@@ -304,13 +304,13 @@ function accionRefrescarEstandares() {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="descripcion" class="col-sm-4 col-form-label">Descripción del estandar</label>
+              <label for="descripcion" class="col-sm-4 col-form-label">Descripción del estándar</label>
               <div class="col-sm-8">
                 <textarea name="descripcion" class="form-control">${datos.descripcion}</textarea>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="tipo" class="col-sm-4 col-form-label">Tipo de estandar</label>
+              <label for="tipo" class="col-sm-4 col-form-label">Tipo de estándar</label>
               <div class="col-sm-8">
                 <input type="text" name="tipo" class="form-control" value="${datos.tipo}">
               </div>
@@ -381,7 +381,7 @@ function ingresarEstandar() {
             <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar un nuevo estandar</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar un nuevo estándar</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -393,25 +393,25 @@ function ingresarEstandar() {
               </ul>
               </div>
               <div class="mb-3 row">
-              <label for="staticEmail" class="col-sm-4 col-form-label">Ingrese el indentificador</label>
+              <label for="staticEmail" class="col-sm-4 col-form-label">Ingrese el identificador</label>
               <div class="col-sm-8">
                 <input type="text" placeholder="Ingrese un numero..." name="id" class="form-control">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="nombre" class="col-sm-4 col-form-label">Ingrese el mombre del indicador</label>
+              <label for="nombre" class="col-sm-4 col-form-label">Ingrese el nombre del indicador</label>
               <div class="col-sm-8">
                 <input type="text" placeholder="Ingrese el nombre..." name="nombre" class="form-control">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="descripcion" class="col-sm-4 col-form-label">Ingrese la descripción del estandar</label>
+              <label for="descripcion" class="col-sm-4 col-form-label">Ingrese la descripción del estándar</label>
               <div class="col-sm-8">
                 <textarea name="descripcion" class="form-control" placeholder="Aa"></textarea>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="tipo" class="col-sm-4 col-form-label">Selecione el tipo de estandar</label>
+              <label for="tipo" class="col-sm-4 col-form-label">Seleccione el tipo de estándar</label>
               <div class="col-sm-8">
                 <select class="form-select" name="tipo">
                   <option value="CUALITATIVO">CUALITATIVO</option>
@@ -420,7 +420,7 @@ function ingresarEstandar() {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="criterio" class="col-sm-4 col-form-label">Selecione el criterio al que pertenece</label>
+              <label for="criterio" class="col-sm-4 col-form-label">Seleccione el criterio al que pertenece</label>
               <div class="col-sm-8">
                 <select class="form-select" name="criterio" id="select-criterios">
                 <option >Cargando...</option>
@@ -536,7 +536,7 @@ function accionRefrescarElementos() {
           <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Editar la información del los elementos fundamentales</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Editar la información de los elementos fundamentales</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -548,7 +548,7 @@ function accionRefrescarElementos() {
             </ul>
             </div>
             <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Indentificador</label>
+            <label for="staticEmail" class="col-sm-4 col-form-label">Identificador</label>
             <div class="col-sm-8">
               <input type="hidden" name="id" value="${datos.id_elemento}">
               <input type="text" name="id_editado" class="form-control" id="staticEmail" value="${datos.id_elemento}">
@@ -561,7 +561,7 @@ function accionRefrescarElementos() {
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="criterio" class="col-sm-4 col-form-label">Nombre del estandar al que pertenece</label>
+            <label for="criterio" class="col-sm-4 col-form-label">Nombre del estándar al que pertenece</label>
             <div class="col-sm-8">
               <input type="text" disabled name="criterio" class="form-control" value="${datos.nombre_estandar}">
             </div>
@@ -626,7 +626,7 @@ function ingresarElemento() {
           <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Editar la información de los elementos fundamentales</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Ingresar la información de un elemento fundamental</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -638,7 +638,7 @@ function ingresarElemento() {
             </ul>
             </div>
             <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Ingrese el indentificador</label>
+            <label for="staticEmail" class="col-sm-4 col-form-label">Ingrese el identificador</label>
             <div class="col-sm-8">
               <input type="text" placeholder="Ingrese un numero..." name="id" class="form-control">
             </div>
@@ -650,7 +650,7 @@ function ingresarElemento() {
             </div>
           </div>
           <div class="mb-3 row">
-              <label for="estandar" class="col-sm-4 col-form-label">Selecione el estandar al que pertenece</label>
+              <label for="estandar" class="col-sm-4 col-form-label">Seleccione el estándar al que pertenece</label>
               <div class="col-sm-8">
                 <select class="form-select" name="estandar" id="select-estandares">
                 <option >Cargando...</option>
@@ -765,7 +765,7 @@ function accionRefrescarComponentes() {
           <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Editar la Información del componente del elemento fundamental</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Editar la información del componente del elemento fundamental</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -775,7 +775,7 @@ function accionRefrescarComponentes() {
                 <li>Puede editar la información como el identificador de elemento, el identificador 
                 y la descripción del componente.</li>
                 <li> Tenga en cuenta que el identificador de elemento es el identificador (número)
-                del elemento fundamental al que pertenecé y el identificador del componente es él 
+                del elemento fundamental al que pertenece y el identificador del componente es él 
                 número de componentes que se encuentra dentro del elemento fundamental, por ejemplo: <br>
                 Si el elemento fundamental 2 tiene 3 componentes, por ende el identificador de elemento
                 será: 2 y para el primer componente, el identificador será: 1. 
@@ -783,14 +783,14 @@ function accionRefrescarComponentes() {
             </ul>
             </div>
             <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Indentificador de elemento</label>
+            <label for="staticEmail" class="col-sm-4 col-form-label">Identificador de elemento</label>
             <div class="col-sm-8">
               <input type="hidden" name="id" value="${datos.id}">
               <input type="text" name="id_elemento_editado" class="form-control" id="staticEmail" value="${datos.id_elemento}">
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Indentificador del componente</label>
+            <label for="staticEmail" class="col-sm-4 col-form-label">Identificador del componente</label>
             <div class="col-sm-8">
               <input type="text" name="id_componente_editado" class="form-control" id="staticEmail" value="${datos.id_componente}">
             </div>
@@ -873,7 +873,7 @@ function ingresarComponente() {
         </ul>
         </div>
       <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-4 col-form-label">Indentificador del componente</label>
+        <label for="staticEmail" class="col-sm-4 col-form-label">Identificador del componente</label>
         <div class="col-sm-8">
           <input placeholder="Número..." type="text" name="id_componente" class="form-control">
         </div>
@@ -885,7 +885,7 @@ function ingresarComponente() {
         </div>
       </div>
       <div class="mb-3 row altura-1 desborde-auto">
-      <label> Seleccione el elemento al que pertenecé.</label>
+      <label> Seleccione el elemento al que pertenece.</label>
       <div class="w-100 p-3 d-flex flex-wrap gap-2 justify-content-center" id="elementos-f">
       </div>
         </div>
@@ -943,7 +943,7 @@ function enviarDatosComponente(e,modalBootstrap) {
   }
 
   if(radios.length <= 0) {
-    alerta('alert-warning','Por favor, selecione un elemento fundamental en la parte inferior dando un click en el circulo blanco.',3500);
+    alerta('alert-warning','Por favor, seleccione un elemento fundamental en la parte inferior dando un click en el circulo blanco.',3500);
     return;
   }
   modalBootstrap.hide();
@@ -1064,7 +1064,7 @@ function accionRefrescarEvidencias() {
           <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Editar la Información de las fuentes de información.</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Editar la información de las fuentes de información.</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1074,10 +1074,10 @@ function accionRefrescarEvidencias() {
                 <li>Puede editar la información del identificador y el nombre 
                 de la fuente de información.</li>
                 <li>
-                  Nota: El identificador esta relacionado con el criterio, estandares,elementos fundamentales y
+                  Nota: El identificador esta relacionado con el criterio, estándares, elementos fundamentales y
                   componentes de elementos por ejemplo:<br>
                   La fuente de información (Plan estratégico carrera (FODA-PESTEL-PROSPECTIVA))
-                  se encuentra en el criterio 1,estandar 1,elemento fundamental 1
+                  se encuentra en el criterio 1, estándar 1, elemento fundamental 1
                   componente de elemento fundamental 1, y es la fuente de información 1,
                   por tal razón el identificador sera: <strong>
                   1.1.1.1.1
@@ -1086,7 +1086,7 @@ function accionRefrescarEvidencias() {
             </ul>
             </div>
             <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Indentificador de fuente de información</label>
+            <label for="staticEmail" class="col-sm-4 col-form-label">Identificador de la fuente de información</label>
             <div class="col-sm-8">
               <input type="hidden" name="id" value="${datos.id_evidencias}">
               <input type="text" name="id_editado" class="form-control" id="staticEmail" value="${datos.id_evidencias}">
@@ -1176,7 +1176,7 @@ function insertarEvidencias() {
         </ul>
         </div>
       <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-4 col-form-label">Indentificador de la fuente de información</label>
+        <label for="staticEmail" class="col-sm-4 col-form-label">Identificador de la fuente de información</label>
         <div class="col-sm-8">
           <input placeholder="Números separado por puntos..." type="text" name="id" class="form-control">
         </div>
@@ -1188,7 +1188,7 @@ function insertarEvidencias() {
         </div>
       </div>
       <div class="mb-3 row altura-1 desborde-auto">
-      <label> Seleccione los componentes elemento fundamentales al que pertenecé.</label>
+      <label> Seleccione los componentes elemento fundamentales al que pertenece.</label>
       <div class="w-100 p-3 d-flex flex-wrap gap-2 justify-content-center" id="elementos-f">
       </div>
         </div>
@@ -1237,7 +1237,7 @@ function insertarEvidencias() {
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="descripcion" class="col-sm-4 col-form-label">Descripción del estandar</label>
+            <label for="descripcion" class="col-sm-4 col-form-label">Descripción del estándar</label>
             <div class="col-sm-8">
             <ul class="sombra p-3" style="list-style: inside;">
             ${[...new Set(cr.descripcion_estandar?.split('---'))].map(el => {
@@ -1291,7 +1291,7 @@ function enviarDatosEvidencias(e,modalBootstrap) {
   }
 
   if(ckeckeds.length <= 0) {
-    alerta('alert-warning','Por favor, selecione uno o varios componentes de elemento fundamentales en la parte inferior dando un click en los cuadros blancos.',3500);
+    alerta('alert-warning','Por favor, seleccione uno o varios componentes de elemento fundamentales en la parte inferior dando un click en los cuadros blancos.',3500);
     return;
   }
   modalBootstrap.hide();

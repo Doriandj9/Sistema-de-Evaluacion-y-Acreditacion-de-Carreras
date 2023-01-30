@@ -10,7 +10,7 @@
                     <h3 class="text-center tipografia-sanSerif-4">
                     ADMINISTRADOR DEL SISTEMA SEAC
                     </h3>
-                    <p class="text-center tipografia-sanSerif-1">El administrador del sistemas SEAC podra realizar diferentes acciones dentro del mismo.</p>
+                    <p class="text-center tipografia-sanSerif-1">El administrador del sistemas SEAC puede realizar diferentes acciones dentro del mismo.</p>
                   </div>
                   <div class="w-100 d-flex justify-content-around gap-6 tipografia-sanSerif-1 flex-wrap">
                     <div class="d-flex flex-column justify-content-center align-items-center ancho-tarjetas-1">
@@ -20,7 +20,7 @@
                         PERIODO ACADÉMICO:
                         </h5>
                         <p class="text-justificado">
-                        Permitirá al administrador registrar, editar y listar el periodo académico en el que se encuentre la Universidad.
+                        El administrador puede registrar, editar y listar el periodo académico en el que se encuentre la Universidad.
                         </p>
                     </section>
                     </div>
@@ -31,7 +31,7 @@
                         FACULTADES:
                         </h5>
                         <p class="text-justificado">
-                        Permitirá al administrador registrar, editar y listar.
+                        El administrador puede registrar, editar y listar.
                         </p>
                       </section>
                     </div>
@@ -43,7 +43,7 @@
                         CARRERAS:
                         </h5>
                         <p class="text-justificado">
-                        Permitirá al administrador registrar, editar y listar.
+                        El administrador puede registrar, editar y listar.
                         </p>
                       </section>
                     </div>
@@ -55,7 +55,7 @@
                         COORDINADOR DE CARRERA:
                         </h5>
                         <p class="text-justificado">
-                        Permitirá al administrador registrar, editar y listar.
+                        El administrador puede registrar, editar y listar.
                         </p>
                       </section>
                     </div>

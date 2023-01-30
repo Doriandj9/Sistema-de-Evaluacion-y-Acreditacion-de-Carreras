@@ -64,7 +64,7 @@ use App\backend\Models\Docente;
                             </li>
                             <li class="flex-linea l-enlinea-flex flex-items-center gap-flex-1">
                                 <span class="material-icons">&#xe80c;</span>
-                                <span class="text-blanco text-w-medio">
+                                <span class="text-blanco text-w-medio text-start">
                                 <?php
                                 $carrera = new Carreras();
                                 echo $carrera->selectFromColumn('id',$_SESSION['carrera'])->first()->nombre

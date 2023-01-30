@@ -4,7 +4,7 @@
 </div>
 <p>
 Esta sección en particular le permite generar un reporte sobre la evaluación realizada por los evaluadores a cada una de las
-carreras,el cual contendra la informacion personal y las fuentes de información calificadas en la plataforma.
+carreras, el cual contendra la información personal y las fuentes de información calificadas en la plataforma.
 </p>
 <form method="GET" action="/director-planeamiento/obtener/reporte" class="w-100 d-flex justify-content-center">
 <div class="desborde-auto barra-personalizada padding-all-1 sombra w-50 mb-4">

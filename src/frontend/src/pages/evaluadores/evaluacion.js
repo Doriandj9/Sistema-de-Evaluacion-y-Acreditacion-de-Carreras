@@ -255,7 +255,7 @@ function mostarFormCalificacion(button){
           que se encuentra en la parte inferior.
           </li>
           <li>
-          La calificación puede ser CUALITATIVO Y CUANTITATIVO correspondiente a cada evidencia,
+          La calificación puede ser CUALITATIVO O CUANTITATIVO correspondiente a cada evidencia,
           se le recomienda asegurarse de ingresar correctamente la calificación.
           </li>
           <li>
