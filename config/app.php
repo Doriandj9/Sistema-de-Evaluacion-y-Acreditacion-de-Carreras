@@ -106,8 +106,11 @@ function insertarDatos(){
     $erroresResponsabilidad = [];
     $erroresDocentes = [];
     // variable para mostrar el progreso
+    // insertamos los docentes
+    $progreso = 0;
+    printProgress($progreso);
     $docentesModelo = new Docente;
-    foreach($docentesModelo as $docente){
+    foreach($docentes as $docente){
         $dato = [
             'id' => $docente->ci_doc,
             'nombre' => $docente->nombres_doc,
@@ -117,9 +120,11 @@ function insertarDatos(){
             'telefono' => $docente->celular,
             'cambio_clave' => true,
         ];
-        $docentesModelo->insert($docentes);
+        $docentesModelo->insert($dato);
     }
-    $progreso = 0;
+    $progreso +=5;
+    printProgress($progreso);
+    $progreso += 1;
     printProgress($progreso);
     // insertamos la facultad por defecto y la carrera por defecto para el administrador
     $facultadModelo = new Facultad;
@@ -327,7 +332,7 @@ function insertarDatos(){
                 ]);
         }
     }
-    $progreso += 15;
+    $progreso += 10;
     printProgress($progreso);
 
     /**
