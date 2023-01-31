@@ -61,7 +61,7 @@ class Docentes implements Controller
                 //'id' => $docente['ci_doc'],
                 'nombre' => mb_substr($docente['nombres_doc'],0),
                 'apellido' => mb_substr($docente['apellidos_doc'],0),
-                'correo' => $docente['nick'],
+                'correo' => trim($docente['nick']),
                 'telefono' => $docente['celular'],
                 //'cambio_clave' => true,
                 //'clave' => password_hash($docente['ci_doc'],PASSWORD_DEFAULT)
