@@ -102,8 +102,7 @@ class Evidencias extends DatabaseTable
     on criterios.id = estandar.id_criterio where carreras_evidencias.id_carrera = ? 
     and carreras_evidencias.id_periodo_academico = ?
     GROUP BY evidencias.id
-    limit ? offset ?
-    ',[$this->carreraId,$this->periodoId,$count,$pages]);
+    ',[$this->carreraId,$this->periodoId]);
 
     return $evidencias;
    }

@@ -150,12 +150,12 @@ class Reportes {
         return $datos;
     }
     public function obtenerDatosReporteCoordinadorAutevaluacion($id_carrera,$id_periodo) {
-        $datos = [];
+       
         try {
             $evidenciasDeCarreraAlmacenadas = DB::select('
-                string_agg(evidencias.nombre ,\'---\') as nombre_evidencias, 
-                string_agg(carreras_evidencias.cod_evidencia ,\'---\') as cod_evidencias,
-                string_agg(carreras_evidencias.estado ,\'---\') as estado,
+            select
+                string_agg(evidencias.nombre ,\'---\') as nombre_evidencias,
+                string_agg(carreras_evidencias.valoracion ,\'---\') as valoracion,
                 evidencias.id as id_evidencias
                 from evidencias inner join carreras_evidencias on
                 carreras_evidencias.id_evidencias = evidencias.id inner join 
@@ -168,13 +168,13 @@ class Reportes {
                 on criterios.id = estandar.id_criterio where carreras_evidencias.id_carrera = ?
                 and carreras_evidencias.id_periodo_academico = ?
                 GROUP BY evidencias.id
-                ',[]);
+                ',[$id_carrera,$id_periodo]);
             
         }catch(\PDOException $e){
             echo $e->getMessage() . ' in ' . $e->getFile() . ' : ' . $e->getLine(); 
         }
        
-        return;
+        return $evidenciasDeCarreraAlmacenadas;
     }
 
     public function datosCrononogramaResponsables($id_carrera,$periodo,) {

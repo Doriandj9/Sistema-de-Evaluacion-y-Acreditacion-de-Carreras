@@ -65,22 +65,27 @@ class Reportes implements Controller
         $evidencias = $this->reportes->obtenerDatosReporteCoordinadorDocentesEvidencias(
             trim($_SESSION['carrera']),
             $periodo,
-            trim($_SESSION['ci'])
         );
         
        $this->mostrarReporte2($evidencias,$periodo);
     }
 
     private function reporteAutoevaluacion($periodo) {
-        echo '3';
+        $evidencias = $this->reportes->obtenerDatosReporteCoordinadorAutevaluacion(
+            trim($_SESSION['carrera']),
+            $periodo
+        );
+        $this->mostrarReporte3($evidencias);
     }
 
     private function mostrarReporte1($datos){
         $html = file_get_contents('./src/backend/Views/templates/loyout_reporte_coordinador_evidencias_almacenadas.html');
         $body = '';
+        $num = 1;
         foreach($datos  as $dato) {
             $verificado = ($dato->verificada != true) ? 'No verificada' : 'Verificada';
             $body .= '<tr>
+                <td>'.$num.'</td>
                 <td>'. $dato->nombre_evidencia .'</td>
                 <td>'. $dato->fecha_registro .'</td>                
                 ';
@@ -90,6 +95,8 @@ class Reportes implements Controller
                     $body .= '<td> No almacenado </td>';   
                 }
             $body .= '<td>'. $verificado .'</td></tr>';
+            $num++;
+
         }
         $carrera = $this->carrera->selectFromColumn('id',$_SESSION['carrera'])->first();
         $html = preg_replace('/%content-tbody%/',$body,$html);
@@ -110,10 +117,12 @@ class Reportes implements Controller
     private function mostrarReporte2($datos,$periodoCarrera){
         $html = file_get_contents('./src/backend/Views/templates/loyout_reporte_coordinador_evidencias_docentes.html');
         $body = '';
+        $num = 1;
         foreach($datos  as $dato) {
             // $verificado = ($dato->verificada != true) ? 'No verificada' : 'Verificada';
             foreach($dato->evidencias as $evidencia) {
                 $body .= '<tr>
+                    <td>'.$num.'</td>
                     <td>'. $dato->nombre_docente . ' ' . $dato->apellido_docente .'</td>                
                 ';
                 $verificado = (preg_split('/---/',$evidencia->verificacion)[0] != true) ? 'No verificada' : 'Verificada';
@@ -129,8 +138,55 @@ class Reportes implements Controller
                     <td>'. $verificado .'</td>
                 ';
                 $body .='</tr>';
+                $num++;
             }
         }
+        $carrera = $this->carrera->selectFromColumn('id',$_SESSION['carrera'])->first();
+        $html = preg_replace('/%content-tbody%/',$body,$html);
+        $html = preg_replace('/%carrera%/',strtoupper($carrera->nombre),$html);
+        $html = preg_replace('/%title%/','Reporte de evidencias almacenadas',$html);
+        $options = new Options();
+        $options->set('isRemoteEnabled', TRUE);
+        $pdf = new Dompdf($options);
+        $pdf->setPaper('A4','landscape');
+        $pdf->loadHtml($html);
+        $pdf->render();
+        header('Content-Type: application/pdf');
+        // $pdf->stream('reporteComplet.pdf',['compress' => 1]);
+        echo $pdf->output(['compress'=>1]);
+    }
+    private function mostrarReporte3($datos){
+        $html = file_get_contents('./src/backend/Views/templates/loyout_reporte_coordinador_autoevaluacion.html');
+        $valoraciones = [
+            '0' => 'No corresponde',
+            '50' => 'Parcialmente',
+            '100' => 'Corresponde',
+            '' => 'No corresponde'
+        ];
+        $body = '';
+        $sum=0;
+        $num=1;
+        foreach($datos  as $dato) {
+            // $verificado = ($dato->verificada != true) ? 'No verificada' : 'Verificada';
+            $valor = array_unique(preg_split('/---/',$dato->valoracion))[0];
+            $v = $valor == '' ? '0' : $valor;
+            $sum += intval($v);
+            $body .= '<tr>
+                    <td>'.$num.'</td>
+                    <td>'. array_unique(preg_split('/---/',$dato->nombre_evidencias))[0] .'</td> 
+                    <td>'. $valoraciones[$valor] .'</td> 
+                    <td class="centro">'. $v .'</td>  
+                </tr>
+                ';
+                $num++;
+        }
+        $total = round($sum / count($datos),2);
+        $body .= '
+            <tr> 
+            <td colspan="3">  <strong> TOTAL </strong> </td>
+            <td class="centro"> <strong>'. $total .'%'.' </strong> </td>
+            </tr>
+        ';
         $carrera = $this->carrera->selectFromColumn('id',$_SESSION['carrera'])->first();
         $html = preg_replace('/%content-tbody%/',$body,$html);
         $html = preg_replace('/%carrera%/',strtoupper($carrera->nombre),$html);
