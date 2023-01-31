@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Collection;
 class UsuariosResponsabilidad extends DatabaseTable
 {
     public const TABLE = 'usuarios_responsabilidad';
+    public $timestamps = false;
+
 
     public function __construct()
     {

@@ -155,12 +155,20 @@ class Responsable implements Controller
                 'fecha_inicial' => trim($_POST['f_i']),
                 'fecha_final' => trim($_POST['f_f']),
             ];
-            $responsabilidad = UsuariosResponsabilidad::whereRaw(
-                'id_usuarios = ? and id_responsabilidad = ? and id_docentes = ?
+            $res = UsuariosResponsabilidad::whereRaw(
+                'id_responsabilidad = ? and id_docentes = ?
                 and id_carrera = ? and id_periodo_academico = ?',
-                [Docente::DOCENTES,intval($responsabilidad),$id_docente,trim($_SESSION['carrera']),trim($_POST['periodo'])]
+                [intval($responsabilidad),$id_docente,trim($_SESSION['carrera']),trim($_POST['periodo'])]
             )->get()->count();
-            if($responsabilidad >= 0){
+            if($res >= 1){
+                UsuariosResponsabilidad::where('id_responsabilidad',intval($responsabilidad))
+                ->where('id_docentes',$id_docente,)
+                ->where('id_carrera',trim($_SESSION['carrera']))
+                ->where('id_periodo_academico',trim($_POST['periodo']))
+                ->update([
+                    'fecha_inicial' => trim($_POST['f_i']),
+                    'fecha_final' => trim($_POST['f_f']),
+                ]);
                 continue;
             }
             try{
