@@ -113,10 +113,10 @@ function insertarDatos(){
     foreach($docentes as $docente){
         $clave = password_hash($docente->ci_doc,PASSWORD_DEFAULT);
         $dato = [
-            'id' => $docente->ci_doc,
+            'id' => trim($docente->ci_doc),
             'nombre' => $docente->nombres_doc,
             'apellido' => $docente->apellidos_doc,
-            'correo' => $docente->nick,
+            'correo' => trim($docente->nick),
             'clave' => $clave,
             'telefono' => $docente->celular,
             'cambio_clave' => true,

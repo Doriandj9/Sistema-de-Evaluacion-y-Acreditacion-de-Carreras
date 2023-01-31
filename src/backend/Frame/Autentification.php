@@ -40,7 +40,7 @@ class Autentification
     public function verificacionCredenciales(string $email, string $clave): \stdClass|bool
     {
         try {
-            $usuario = $this->usuarios->selectFromColumn($this->email, $email)
+            $usuario = $this->usuarios->selectFromColumn($this->email, trim(strtolower($email)))
             ->first();
         } catch (\PDOException $e) {
             Http::responseJson(json_encode(

@@ -175,8 +175,15 @@ class Coordinador implements Controller
     private function insertarDocenteYCarrera(array $datosDocente, $datosCarrera): bool|string
     {
         try {
-            $result = $this->docenteModelo->insert($datosDocente);
-            $result = $this->docentesCarrera->insert($datosCarrera);
+            $docente = $this->docenteModelo->selectFromColumn('id',$datosDocente['id'])->first();
+            $docenteCarrera= DocentesCarreras::whereRaw('id_carreras = ? and id_docentes = ?',
+            [$datosCarrera['id_carreras'],$datosCarrera['id_docentes']])->get();
+            if(!$docente){
+                $result = $this->docenteModelo->insert($datosDocente);
+            }
+            if(count($docenteCarrera) <= 0){
+                $result = $this->docentesCarrera->insert($datosCarrera);
+            }
             return $result;
         } catch (\PDOException $e) {
             return json_encode([
