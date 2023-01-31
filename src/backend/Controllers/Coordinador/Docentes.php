@@ -176,7 +176,7 @@ class Docentes implements Controller
             Http::responseJson(json_encode(
                 [
                     'ident' => 1,
-                    'mensaje' => 'Se registro correctamen al docente',
+                    'mensaje' => 'Se registro correctamente al docente',
                     'identEmail' => $respuestaEmail->ident,
                     'email' => $respuestaEmail->mensaje
                 ]

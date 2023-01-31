@@ -249,7 +249,7 @@ class Responsable implements Controller
         $respuestEmail = EmailMensajes::evluador(
             $_ENV['MAIL_DIRECCION'],
             $docente->correo,
-            [$carrera->nombre],
+            [$carrera->nombre,$periodo->fecha_inicial,$periodo->fecha_final],
             true,
             $_ENV['PROTOCOLO_RED'] . '://' . $_SERVER['SERVER_NAME']
         );

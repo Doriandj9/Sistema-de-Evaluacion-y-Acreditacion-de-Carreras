@@ -109,7 +109,7 @@ function renderFormulario(datos) {
     let htmlSelct = '<option selected value="none">Seleccione un docente presentado a continuación: </option>';
     docentes.forEach(docente => {
         htmlSelct += `
-        <option value="${docente.id}">Nombre: ${docente.nombre.split(' ')[0] + docente.apellido.split(' ')[0]}
+        <option value="${docente.id}">Nombre: ${docente.nombre.split(' ')[0] + ' ' + docente.apellido.split(' ')[0]}
         ➡ CI: ${docente.id}
         </option>
         `;
@@ -348,7 +348,7 @@ function renderDoncentes(respuesta) {
         let htmlSelct = '<option selected value="none">Seleccione un docente presentado a continuación: </option>';
         docentes.forEach(docente => {
             htmlSelct += `
-            <option value="${docente.id}">Nombre: ${docente.nombre.split(' ')[0] + docente.apellido.split(' ')[0]}
+            <option value="${docente.id}">Nombre: ${docente.nombre.split(' ')[0] +' '+ docente.apellido.split(' ')[0]}
             ➡ CI: ${docente.id}
             </option>
             `;

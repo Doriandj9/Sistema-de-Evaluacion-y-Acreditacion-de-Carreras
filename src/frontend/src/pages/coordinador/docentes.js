@@ -93,7 +93,7 @@ function renderDatosForm(respuesta) {
         telefono.setAttribute('disabled','');
     } else {
         alerta('alert-warning',
-        'No existe este doncente registrado en la base datos, si lo registra asegurese de ingresar los datos correctos del docente',
+        'No existe este docente registrado en la base datos, si lo registra asegurese de ingresar los datos correctos del docente',
         10000
         )
         nombres.removeAttribute('disabled');
