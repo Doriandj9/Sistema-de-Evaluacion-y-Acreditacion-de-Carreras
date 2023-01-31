@@ -67,6 +67,7 @@ function insertarDatos(){
     $dir_carreras = __DIR__ . '/../src/backend/datos/sistema/carreras.json';
     $dir_usuarios = __DIR__ . '/../src/backend/datos/sistema/usuarios.json';
     $dir_responsabilidades = __DIR__ . '/../src/backend/datos/sistema/responsabilidades.json';
+    $dir_docentes = __DIR__ . '/../src/backend/datos/sistema/docentes.json';
     //datos de los archivos del sistema decodificados de json
     // archivos en json
     $datos_criterios = file_get_contents($dir_criterios);
@@ -79,6 +80,7 @@ function insertarDatos(){
     $datos_carreras = file_get_contents($dir_carreras);
     $datos_usuarios = file_get_contents($dir_usuarios);
     $datos_responsabilidades = file_get_contents($dir_responsabilidades);
+    $datos_docentes = file_get_contents($dir_docentes);
     // datos decodificados de json
     $criterios = json_decode($datos_criterios);
     $estandares_indicadores = json_decode($datos_estandares);
@@ -90,6 +92,7 @@ function insertarDatos(){
     $carreras = json_decode($datos_carreras);
     $usuarios = json_decode($datos_usuarios);
     $responsabilidades = json_decode($datos_responsabilidades);
+    $docentes = json_decode($datos_docentes);
     //variables que contendran los errores de cada insercion ala DB
     $erroresCriterios = [];
     $erroresEstandares_In = [];
@@ -101,7 +104,21 @@ function insertarDatos(){
     $erroresCarreras = [];
     $erroresUsuarios = [];
     $erroresResponsabilidad = [];
+    $erroresDocentes = [];
     // variable para mostrar el progreso
+    $docentesModelo = new Docente;
+    foreach($docentesModelo as $docente){
+        $dato = [
+            'id' => $docente->ci_doc,
+            'nombre' => $docente->nombres_doc,
+            'apellido' => $docente->apellidos_doc,
+            'correo' => $docente->nick,
+            'clave' => password_hash($docente->ci_doc,PASSWORD_DEFAULT),
+            'telefono' => $docente->celular,
+            'cambio_clave' => true,
+        ];
+        $docentesModelo->insert($docentes);
+    }
     $progreso = 0;
     printProgress($progreso);
     // insertamos la facultad por defecto y la carrera por defecto para el administrador
